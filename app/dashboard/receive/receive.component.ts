@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 
 @Component({
-    selector: "Featured",
+    selector: "receive",
     moduleId: module.id,
-    templateUrl: "./featured.component.html"
+    templateUrl: "./receive.component.html"
 })
-export class FeaturedComponent implements OnInit {
+export class ReceiveComponent implements OnInit {
     constructor() {
         /* ***********************************************************
         * Use the constructor to inject services.

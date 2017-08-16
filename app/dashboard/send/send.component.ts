@@ -1,11 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 
 @Component({
-    selector: "Search",
+    selector: "send",
     moduleId: module.id,
-    templateUrl: "./search.component.html"
+    templateUrl: "./send.component.html"
 })
-export class SearchComponent implements OnInit {
+export class SendComponent implements OnInit {
     constructor() {
         /* ***********************************************************
         * Use the constructor to inject services.

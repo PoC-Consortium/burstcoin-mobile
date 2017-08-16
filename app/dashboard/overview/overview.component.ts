@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 
 @Component({
-    selector: "Settings",
+    selector: "overview",
     moduleId: module.id,
-    templateUrl: "./settings.component.html"
+    templateUrl: "./overview.component.html"
 })
-export class SettingsComponent implements OnInit {
+export class OverviewComponent implements OnInit {
     constructor() {
         /* ***********************************************************
         * Use the constructor to inject services.
