@@ -6,16 +6,16 @@ import { FeaturedComponent } from "./featured/featured.component";
 import { HomeComponent } from "./home/home.component";
 import { SearchComponent } from "./search/search.component";
 import { SettingsComponent } from "./settings/settings.component";
-import { TabsRoutingModule } from "./tabs-routing.module";
-import { TabsComponent } from "./tabs.component";
+import { DashboardRoutingModule } from "./dashboard-routing.module";
+import { DashboardComponent } from "./dashboard.component";
 
 @NgModule({
     imports: [
         NativeScriptModule,
-        TabsRoutingModule
+        DashboardRoutingModule
     ],
     declarations: [
-        TabsComponent,
+        DashboardComponent,
         HomeComponent,
         BrowseComponent,
         SearchComponent,
@@ -26,4 +26,4 @@ import { TabsComponent } from "./tabs.component";
         NO_ERRORS_SCHEMA
     ]
 })
-export class TabsModule { }
+export class DashboardModule { }

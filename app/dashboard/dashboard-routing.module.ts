@@ -2,14 +2,14 @@ import { NgModule } from "@angular/core";
 import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 
-import { TabsComponent } from "./tabs.component";
+import { DashboardComponent } from "./dashboard.component";
 
 const routes: Routes = [
-    { path: "", component: TabsComponent }
+    { path: "", component: DashboardComponent }
 ];
 
 @NgModule({
     imports: [NativeScriptRouterModule.forChild(routes)],
     exports: [NativeScriptRouterModule]
 })
-export class TabsRoutingModule { }
+export class DashboardRoutingModule { }

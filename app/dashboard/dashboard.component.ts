@@ -3,12 +3,12 @@ import { isAndroid } from "platform";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
 
 @Component({
-    selector: "TabsComponent",
+    selector: "dashboard",
     moduleId: module.id,
-    templateUrl: "./tabs.component.html",
+    templateUrl: "./dashboard.component.html",
     styleUrls: ["./tabs.component.css"]
 })
-export class TabsComponent implements OnInit {
+export class DashboardComponent implements OnInit {
 
     private _title: string;
 
