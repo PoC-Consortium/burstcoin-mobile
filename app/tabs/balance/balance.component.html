@@ -3,15 +3,15 @@
     <StackLayout class="balance-container" orientation="vertical">
         <Image src="~/images/apple.jpg"></Image>
         <StackLayout orientation="vertical">
-            <Label class="" text="BURST-XXXXX-XXXXX-XXXXX-XXXXX"></Label>
+            <Label class="" text="BURST-XXXX-XXXX-XXXX-XXXX"></Label>
             <Label class="" text="121453.4534"></Label>
             <Label class="" text="1219$"></Label>
         </StackLayout>
     </StackLayout>
 
     <StackLayout class="actions-container" orientation="vertical">
-        <Button class="btn btn-primary btn-active" id="button" text="Send" (tap)="onTapSend($event)"></Button>
-        <Button class="btn btn-primary btn-active" id="button" text="Receive" (tap)="onTapReceive($event)"></Button>
-        <Button class="btn btn-primary btn-active" id="button" text="Cold Storage" (tap)="onTapStorage($event)"></Button>
+        <Button class="btn btn-primary btn-active action-button" text="Send" (tap)="onTapSend($event)"></Button>
+        <Button class="btn btn-primary btn-active action-button" text="Receive" (tap)="onTapReceive($event)"></Button>
+        <Button class="btn btn-primary btn-active action-button" text="Cold Storage" (tap)="onTapStorage($event)"></Button>
     </StackLayout>
 </StackLayout>
