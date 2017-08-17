@@ -24,4 +24,16 @@ export class BalanceComponent implements OnInit {
         * navigation layout as a whole.
         *************************************************************/
     }
+
+    public onTapSend(e) {
+
+    }
+
+    public onTapReceive(e) {
+
+    }
+
+    public onTapColdStorage(e) {
+
+    }
 }
