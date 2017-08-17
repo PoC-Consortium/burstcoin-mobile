@@ -6,7 +6,6 @@ npm-debug.log
 !tools/*.js
 **/*.css
 hooks/
-lib/
 node_modules/
 platforms/
 tmp/
@@ -14,4 +13,4 @@ typings/
 .idea
 .cloud
 
-!/app/util/**/*.js
+!/app/lib/js/**/*.js
