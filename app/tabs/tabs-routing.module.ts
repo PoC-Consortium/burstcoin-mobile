@@ -2,13 +2,14 @@ import { NgModule } from "@angular/core";
 import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 
+import { TabsComponent } from "./tabs.component";
+
 const routes: Routes = [
-    { path: "", redirectTo: "tabs", pathMatch: "full" },
-    { path: "tabs", loadChildren: "./tabs/tabs.module#TabsModule" }
+    { path: "", component: TabsComponent }
 ];
 
 @NgModule({
-    imports: [NativeScriptRouterModule.forRoot(routes)],
+    imports: [NativeScriptRouterModule.forChild(routes)],
     exports: [NativeScriptRouterModule]
 })
-export class AppRoutingModule { }
+export class TabsRoutingModule { }

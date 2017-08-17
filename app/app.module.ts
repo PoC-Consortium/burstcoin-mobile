@@ -4,7 +4,7 @@ import { NSModuleFactoryLoader } from "nativescript-angular/router";
 
 import { AppRoutingModule } from "./app.routing";
 import { AppComponent } from "./app.component";
-import { NgaModule } from "./lib/nga.module";
+//import { NgaModule } from "./lib/nga.module";
 
 @NgModule({
     bootstrap: [
@@ -12,8 +12,8 @@ import { NgaModule } from "./lib/nga.module";
     ],
     imports: [
         NativeScriptModule,
-        AppRoutingModule,
-        NgaModule
+        AppRoutingModule
+        //NgaModule
     ],
     declarations: [
         AppComponent

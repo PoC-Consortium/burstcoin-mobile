@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 
-import { DashboardComponent } from "./dashboard.component";
+import { BalanceComponent } from "./balance.component";
 import { OverviewComponent } from "./overview/overview.component";
 import { ReceiveComponent } from "./receive/receive.component";
 import { SendComponent } from "./send/send.component";
@@ -10,7 +10,7 @@ import { SendComponent } from "./send/send.component";
 export const routes: Routes = [
     {
         path: "",
-        component: DashboardComponent,
+        component: BalanceComponent,
         children: [
             { path: "", redirectTo: "overview", pathMatch: 'full' },
             { path: "overview", component: OverviewComponent },
@@ -24,4 +24,4 @@ export const routes: Routes = [
   imports: [NativeScriptRouterModule.forChild(routes)],
   exports: [NativeScriptRouterModule]
 })
-export class DashboardRoutingModule { }
+export class BalanceRoutingModule { }
