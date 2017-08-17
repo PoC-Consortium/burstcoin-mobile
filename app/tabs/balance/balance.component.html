@@ -1,10 +1,17 @@
 
-<StackLayout class="account-container" orientation="vertical">
-    <StackLayout class="balance-view" orientation="vertical">
+<StackLayout orientation="vertical">
+    <StackLayout class="balance-container" orientation="vertical">
         <Image src="~/images/apple.jpg"></Image>
         <StackLayout orientation="vertical">
-            <Label class="action-bar-title" text="BURST-XXXXX-XXXXX-XXXXX-XXXXX"></Label>
+            <Label class="" text="BURST-XXXXX-XXXXX-XXXXX-XXXXX"></Label>
+            <Label class="" text="121453.4534"></Label>
+            <Label class="" text="1219$"></Label>
         </StackLayout>
     </StackLayout>
-    <router-outlet></router-outlet>
+
+    <StackLayout class="actions-container" orientation="vertical">
+        <Button class="btn btn-primary btn-active" id="button" text="Send" (tap)="onTapSend($event)"></Button>
+        <Button class="btn btn-primary btn-active" id="button" text="Receive" (tap)="onTapReceive($event)"></Button>
+        <Button class="btn btn-primary btn-active" id="button" text="Cold Storage" (tap)="onTapStorage($event)"></Button>
+    </StackLayout>
 </StackLayout>
