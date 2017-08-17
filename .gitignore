@@ -14,4 +14,4 @@ typings/
 .idea
 .cloud
 
-!util/*.js
+!util/
