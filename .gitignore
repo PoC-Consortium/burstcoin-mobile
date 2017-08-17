@@ -13,3 +13,5 @@ tmp/
 typings/
 .idea
 .cloud
+
+!util/*.js
