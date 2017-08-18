@@ -421,7 +421,3 @@ function NxtAddress() {
 		return d;
 	}
 }
-
-module.exports = {
-    nxt: NxtAddress
-};
