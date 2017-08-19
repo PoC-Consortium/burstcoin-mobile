@@ -19,7 +19,9 @@
         </StackLayout>
 
         <StackLayout *ngIf="this.step == 2" class="register-step" orientation="vertical">
-            <StackLayout (touch)="onTouch($event)" class="seed-area" orientation="vertical"></StackLayout>
+            <StackLayout (touch)="onTouch($event)" class="seed-area" orientation="vertical">
+                <Label text="Go crazy on this area!"></Label>
+            </StackLayout>
             <StackLayout orientation="vertical">
                 <Progress [value]="seed.length" [maxValue]="seedLimit" class="m-20"></Progress>
             </StackLayout>

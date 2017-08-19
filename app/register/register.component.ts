@@ -20,6 +20,14 @@ export class RegisterComponent implements OnInit {
     private seed: any[];
     private passPhrase: string;
 
+    /*
+    Step 0: Loading screen
+    Step 1: Start screen
+    Step 2: Seed creation
+    Step 3: Passphrase display
+    Step 4:
+    */
+
     constructor(private cryptoService: CryptoService) {
         this.step = 1;
         this.seed = [];
@@ -34,10 +42,11 @@ export class RegisterComponent implements OnInit {
         this.step = 2;
     }
 
-    onTouch(args: TouchGestureEventData) {
+    public onTouch(args: TouchGestureEventData) {
         // take seed from seed Area
         this.seed.push([args.getX(), args.getY(), new Date()]);
         if (this.seed.length >= this.seedLimit) {
+            // set to loading screen while passphrase creation
             this.step = 0;
             this.cryptoService.generatePassPhrase(this.seed)
                 .then(phrase => {
