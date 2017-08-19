@@ -25,4 +25,4 @@ import { SendComponent } from "./send/send.component";
         NO_ERRORS_SCHEMA
     ]
 })
-export class DashboardModule { }
+export class BalanceModule { }

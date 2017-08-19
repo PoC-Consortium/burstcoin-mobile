@@ -24,6 +24,21 @@
 }
 // Common page class
 .page-content {
+    margin: 50px;
+    padding: 20px;
+
+    .info-container {
+        background-color: #EAEAEA;
+        padding: 10px;
+        text-align:center;
+    }
+
+    .body-container {
+        padding: 10px;
+        text-align:center;
+        height: 90%;
+    }
+
     .page-placeholder {
         color: $page-icon-color;
         font-size: $page-content-placeholder-font-size;
