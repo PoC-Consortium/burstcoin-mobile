@@ -53,6 +53,11 @@ export class RegisterComponent implements OnInit {
     public onTapStart(e) {
         // start seed process
         this.step = 2;
+
+        // TODO remove
+        let pg = new PassPhraseGenerator();
+        let pass: string = pg.generatePassPhrase();
+        
     }
 
     public onTouch(args: TouchGestureEventData) {
@@ -106,6 +111,11 @@ export class RegisterComponent implements OnInit {
             this.word++;
             this.textField.text = "";
             this.retypePassPhrase = [];
+
+            if (this.word >= 12) {
+                // correctly retyped all 12 words
+                this.step = 5;
+            }
         } else {
             console.log("wrong word");
         }

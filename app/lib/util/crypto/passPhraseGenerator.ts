@@ -1,4 +1,4 @@
-var seedrandom = require('seedrandom');
+let seedrandom = require('seedrandom');
 
 export class PassPhraseGenerator {
 
