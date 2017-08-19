@@ -25,12 +25,14 @@ export class RegisterComponent implements OnInit {
     Step 1: Start screen
     Step 2: Seed creation
     Step 3: Passphrase display
-    Step 4:
+    Step 4: Retype passphrase
+    Step 5: Create Burst Wallet and redirect
     */
 
     constructor(private cryptoService: CryptoService) {
         this.step = 1;
         this.seed = [];
+        this.passPhrase = "";
     }
 
     ngOnInit(): void {
@@ -55,6 +57,14 @@ export class RegisterComponent implements OnInit {
                 }
             );
         }
+    }
+
+    public onTapGenerateAgain(e) {
+        // reset
+        this.seed = [];
+        this.passPhrase = "";
+        // init seed process again
+        this.step = 2;
     }
 
 }

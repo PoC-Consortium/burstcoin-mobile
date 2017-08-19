@@ -14,13 +14,13 @@
 
         <StackLayout *ngIf="this.step == 1" class="register-step" orientation="vertical">
             <StackLayout orientation="vertical">
-                <Button class="btn btn-primary btn-active action-button" text="Start" (tap)="onTapStart($event)"></Button>
+                <Button class="btn btn-primary btn-active" text="Start" (tap)="onTapStart($event)"></Button>
             </StackLayout>
         </StackLayout>
 
         <StackLayout *ngIf="this.step == 2" class="register-step" orientation="vertical">
             <StackLayout (touch)="onTouch($event)" class="seed-area" orientation="vertical">
-                <Label text="Go crazy on this area!"></Label>
+                <Label class="font-weight-bold" text="Go crazy!"></Label>
             </StackLayout>
             <StackLayout orientation="vertical">
                 <Progress [value]="seed.length" [maxValue]="seedLimit" class="m-20"></Progress>
@@ -28,7 +28,10 @@
         </StackLayout>
 
         <StackLayout *ngIf="this.step == 3" class="register-step" orientation="vertical">
-            <Label class="" [text]="passPhrase"></Label>
+            <Label text="Write down these 12 words and keep them secret!"></Label>
+            <TextView class="input" textWrap="true" editable="false" autocorrect="false" hint="Your Passphrase" [text]="passPhrase" row="2" col="1" returnKeyType="done"></TextView>
+            <Button class="btn btn-primary btn-active" text="Got it!" (tap)="onTapGenerateAgain($event)"></Button>
+            <Button class="btn btn-primary btn-active" text="Generate Again" (tap)="onTapGenerateAgain($event)"></Button>
         </StackLayout>
 
         <StackLayout orientation="vertical">

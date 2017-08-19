@@ -10,14 +10,14 @@ export class PassPhraseGenerator {
     private seed: any[];
     private passPhrase: string;
 
-    constructor(seed = undefined) {
+    constructor() {
         seedrandom();
-        this.seed = seed;
+        this.seed = [];
     }
 
 	public generatePassPhrase() {
         // seed with given seed if seed was given, yep
-        this.seed.map(element => seedrandom(this.seed, { "entropy": true, "global":true }));
+        this.seed.map(element => seedrandom(element, { "entropy": true, "global":true }));
 
         // get random words
         let words: string[] = [];
@@ -29,7 +29,7 @@ export class PassPhraseGenerator {
         return words.join(" ");
 	}
 
-	public doSeed(seed) {
+	public reSeed(seed) {
 		this.seed = seed;
 	}
 }
