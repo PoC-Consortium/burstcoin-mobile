@@ -1,7 +1,12 @@
 
 .register-step {
+    padding-top: 200px;
     vertical-align: middle;
-    height: 90%;
+    height: 80%;
+}
+
+.progress-bottom {
+    height: 20%;
 }
 
 .seed-area {
@@ -9,5 +14,42 @@
     border-radius: 20px;
     background-color: #EAEAEA;
     width: 100%;
-    height: 80%;
+    height: 70%;
+}
+
+.seed-progress {
+    height: 20%;
+}
+
+.chip {
+    display: inline-block;
+    padding: 0 25px;
+    margin: 125px 5px 50px 5px;
+    height: 120px;
+    width: 50%;
+    font-size: 24px;
+    line-height: 25px;
+    border-radius: 20px;
+    background-color: #EAEAEA;
+}
+
+.possibilities {
+    width: 80%;
+    margin-top: 50px;
+    height: 220px;
+    text-align: center;
+}
+
+.possibility-button {
+    margin: 10px;
+    text-transform: lowercase;
+}
+
+.generate-again-button {
+    margin: 10px;
+    width: 50%;
+}
+
+.big-button {
+    height: 300px;
 }
