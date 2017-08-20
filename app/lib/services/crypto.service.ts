@@ -3,7 +3,7 @@ import { Converter } from "../util";
 import { PassPhraseGenerator } from "../util/crypto";
 
 var CryptoJS = require("crypto-js");
-var NaCL = require('tweetnacl')
+var NaCL = require('js-nacl');
 
 @Injectable()
 export class CryptoService {
@@ -28,12 +28,16 @@ export class CryptoService {
     /*
     * Generate the Master Public Key for a new passphrase
     */
-    public genneratePublicKey(passPhrase): Promise<string> {
+    public generatePublicKey(passPhrase): Promise<string> {
         return new Promise((resolve, reject) => {
             let passPhraseBytes = Converter.hexStringToByteArray(passPhrase);
     		let hashedPassPhraseBytes = CryptoJS.SHA256(passPhraseBytes);
-            let keys = NaCL.box.keyPair.fromSecretKey(hashedPassPhraseBytes)
-    		resolve(Converter.byteArrayToHexString(keys.PublicKey));
+            let keys = NaCL.crypto_sign_seed_keypair(hashedPassPhraseBytes);
+    		resolve(Converter.byteArrayToHexString(keys.signPk));
         });
+    }
+
+    public test(): Promise<string> {
+        return undefined;
     }
 }
