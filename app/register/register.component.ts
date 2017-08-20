@@ -50,6 +50,9 @@ export class RegisterComponent implements OnInit {
 
     }
 
+    /*
+    * Start the burst wallet creation
+    */
     public onTapStart(e) {
         // start seed process
         this.step = 2;
@@ -57,9 +60,12 @@ export class RegisterComponent implements OnInit {
         // TODO remove
         let pg = new PassPhraseGenerator();
         let pass: string = pg.generatePassPhrase();
-        
+
     }
 
+    /*
+    * Handler for taps and swipes on the seed area
+    */
     public onTouch(args: TouchGestureEventData) {
         // take seed from seed Area
         this.seed.push([args.getX(), args.getY(), new Date()]);
@@ -75,6 +81,9 @@ export class RegisterComponent implements OnInit {
         }
     }
 
+    /*
+    * Used to go back to seed generation step
+    */
     public onTapGenerateAgain(e) {
         // reset
         this.seed = [];
@@ -83,6 +92,10 @@ export class RegisterComponent implements OnInit {
         this.step = 2;
     }
 
+    /*
+    * This metho is responssible for showing changing the index of the passphrase
+    * one by one to show the user all 12 words in the right order
+    */
     public onTapNext(e) {
         this.word++;
         if (this.word >= 12) {
@@ -91,6 +104,10 @@ export class RegisterComponent implements OnInit {
         }
     }
 
+    /*
+    * This method is called when the onput of the textfield changes and updates
+    * the shown possibilities matching the current input
+    */
     public onChange(args: EventData) {
         this.textField = <TextField>args.object;
         let text = this.textField.text.toLowerCase();
@@ -105,6 +122,11 @@ export class RegisterComponent implements OnInit {
         }
     }
 
+    /*
+    * This method is called if a possibility gets tapped if the tapped
+    * possibility is the matching word of the passphrase then go on to the
+    * next word. If all 12 words were repeated correctly go to step 5
+    */
     public onTapPossibility(args: EventData) {
         let button = <Button>args.object;
         if (button.text == this.passPhrase[this.word]) {
