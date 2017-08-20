@@ -18,7 +18,7 @@ export class CryptoService {
     * Generate a passphrase witth the help of the PassPhraseGenerator
     * pass optional seed for seeding generation
     */
-    public generatePassPhrase(seed = undefined): Promise<string> {
+    public generatePassPhrase(seed = []): Promise<string> {
         return new Promise((resolve, reject) => {
             this.passPhraseGenerator.reSeed(seed);
             resolve(this.passPhraseGenerator.generatePassPhrase());
@@ -37,7 +37,7 @@ export class CryptoService {
         });
     }
 
-    public test(): Promise<string> {
-        return undefined;
+    public test(): string {
+        return "s";
     }
 }

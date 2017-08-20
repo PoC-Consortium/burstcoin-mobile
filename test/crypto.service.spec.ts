@@ -12,7 +12,7 @@ class CryptoServiceSuite {
         let cs = new CryptoService();
 
         return cs.generatePassPhrase().then(function(passPhrase) {
-            expect(passPhrase.length).to.equal(12);
+            expect(passPhrase.split(" ").length).to.equal(12);
         });
     }
 }
