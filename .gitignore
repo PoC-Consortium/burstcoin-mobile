@@ -14,3 +14,4 @@ typings/
 .cloud
 
 !/app/lib/js/**/*.js
+.nyc_output/
