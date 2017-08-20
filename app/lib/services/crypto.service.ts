@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Converter } from "../util";
 import { PassPhraseGenerator } from "../util/crypto";
 
-let SHA256 = require("crypto-js/sha256");
+var CryptoJS = require("crypto-js");
+var NaCL = require('tweetnacl')
 
 @Injectable()
 export class CryptoService {
@@ -29,9 +30,10 @@ export class CryptoService {
     */
     public genneratePublicKey(passPhrase): Promise<string> {
         return new Promise((resolve, reject) => {
-            let secretPhraseBytes = Converter.hexStringToByteArray(passPhrase);
-    		let digest = simpleHash(secretPhraseBytes);
-    		resolve(Converter.byteArrayToHexString(curve25519.keygen(digest).p));
+            let passPhraseBytes = Converter.hexStringToByteArray(passPhrase);
+    		let hashedPassPhraseBytes = CryptoJS.SHA256(passPhraseBytes);
+            let keys = NaCL.box.keyPair.fromSecretKey(hashedPassPhraseBytes)
+    		resolve(Converter.byteArrayToHexString(keys.PublicKey));
         });
     }
 }
