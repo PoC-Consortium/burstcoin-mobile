@@ -30,14 +30,13 @@ export class CryptoService {
     */
     public generatePublicKey(passPhrase): Promise<string> {
         return new Promise((resolve, reject) => {
-            let passPhraseBytes = Converter.hexStringToByteArray(passPhrase);
-    		let hashedPassPhraseBytes = CryptoJS.SHA256(passPhraseBytes);
-            let keys = NaCL.crypto_sign_seed_keypair(hashedPassPhraseBytes);
-    		resolve(Converter.byteArrayToHexString(keys.signPk));
-        });
-    }
+            // Hash the passphrase to gget sha word array (32 bytes)
+    		let hashedPassPhrase = CryptoJS.SHA256(passPhrase);
 
-    public test(): string {
-        return "s";
+            // use nacl curve 25519 to get Master Public Key and Master Private Key from secret passphrase
+            let keys;
+            NaCL.instantiate(nacl => { keys = nacl.crypto_sign_seed_keypair(Converter.convertWordArrayToUint8Array(hashedPassPhrase)) });
+            resolve(CryptoJS.enc.Hex.stringify(Converter.convertUint8ArrayToWordArray(keys.signPk)));
+        });
     }
 }

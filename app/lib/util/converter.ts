@@ -1,7 +1,8 @@
 let bigInt = require("big-integer");
+let CryptoJS = require("crypto-js");
 
-declare function escape(s:string): string;
-declare function unescape(s:string): string;
+declare function escape(s: string): string;
+declare function unescape(s: string): string;
 
 export class Converter {
 
@@ -25,7 +26,7 @@ export class Converter {
         }
     }
 
-    public static byteArrayToHexString(bytes) {
+    public static convertByteArrayToHexString(bytes) {
         let str = '';
         for (let i = 0; i < bytes.length; ++i) {
             if (bytes[i] < 0) {
@@ -38,7 +39,7 @@ export class Converter {
     }
 
 
-    public static stringToByteArray(str) {
+    public static convertStringToByteArray(str) {
         str = unescape(encodeURIComponent(str)); //temporary
 
         let bytes = new Array(str.length);
@@ -48,7 +49,7 @@ export class Converter {
         return bytes;
     }
 
-    public static hexStringToByteArray(str) {
+    public static convertHexStringToByteArray(str) {
         let bytes = [];
         let i = 0;
         if (0 !== str.length % 2) {
@@ -63,11 +64,11 @@ export class Converter {
     }
 
     public static stringToHexString(str) {
-        return Converter.byteArrayToHexString(Converter.stringToByteArray(str));
+        return Converter.convertByteArrayToHexString(Converter.convertStringToByteArray(str));
     }
 
     public static hexStringToString(hex) {
-        return Converter.byteArrayToString(Converter.hexStringToByteArray(hex));
+        return Converter.convertByteArrayToString(Converter.convertHexStringToByteArray(hex));
     }
 
     public static checkBytesToIntInput(bytes, numBytes, opt_startIndex) {
@@ -82,14 +83,14 @@ export class Converter {
         return startIndex;
     }
 
-    public static byteArrayToSignedShort(bytes, opt_startIndex) {
+    public static convertByteArrayToSignedShort(bytes, opt_startIndex) {
         let index = this.checkBytesToIntInput(bytes, 2, opt_startIndex);
         let value = bytes[index];
         value += bytes[index + 1] << 8;
         return value;
     }
 
-    public static byteArrayToSignedInt32(bytes, opt_startIndex) {
+    public static convertByteArrayToSignedInt32(bytes, opt_startIndex) {
         let value;
         let index = this.checkBytesToIntInput(bytes, 4, opt_startIndex);
         value = bytes[index];
@@ -99,7 +100,7 @@ export class Converter {
         return value;
     }
 
-    public static byteArrayToBigInteger(bytes, opt_startIndex) {
+    public static convertByteArrayToBigInteger(bytes, opt_startIndex) {
         let index = this.checkBytesToIntInput(bytes, 8, opt_startIndex);
 
         let value = bigInt.bigInt("0", 10);
@@ -115,67 +116,51 @@ export class Converter {
         return value;
     }
 
-    // create a wordArray that is Big-Endian
-    public static byteArrayToWordArray(byteArray) {
-        let i = 0,
-            offset = 0,
-            word = 0,
-            len = byteArray.length;
-        let words = new Uint32Array(((len / 4) | 0) + (len % 4 == 0 ? 0 : 1));
-
-        while (i < (len - (len % 4))) {
-            words[offset++] = (byteArray[i++] << 24) | (byteArray[i++] << 16) | (byteArray[i++] << 8) | (byteArray[i++]);
+    public static convertByteArrayToWordArray(ba) {
+        var wa = [],
+            i;
+        for (i = 0; i < ba.length; i++) {
+            wa[(i / 4) | 0] |= ba[i] << (24 - 8 * i);
         }
-        if (len % 4 != 0) {
-            word = byteArray[i++] << 24;
-            if (len % 4 > 1) {
-                word = word | byteArray[i++] << 16;
-            }
-            if (len % 4 > 2) {
-                word = word | byteArray[i++] << 8;
-            }
-            words[offset] = word;
-        }
-        let wordArray = {};
-        wordArray['sigBytes'] = len;
-        wordArray['words'] = words;
 
-        return wordArray;
+        return CryptoJS.lib.WordArray.create(wa, ba.length);
     }
 
-    // assumes wordArray is Big-Endian
-    public static wordArrayToByteArray(wordArray) {
-        let len = wordArray.words.length;
-        if (len == 0) {
-            return new Array(0);
-        }
-        let byteArray = new Array(wordArray.sigBytes);
-        let offset = 0,
-            word, i;
-        for (i = 0; i < len - 1; i++) {
-            word = wordArray.words[i];
-            byteArray[offset++] = word >> 24;
-            byteArray[offset++] = (word >> 16) & 0xff;
-            byteArray[offset++] = (word >> 8) & 0xff;
-            byteArray[offset++] = word & 0xff;
-        }
-        word = wordArray.words[len - 1];
-        byteArray[offset++] = word >> 24;
-        if (wordArray.sigBytes % 4 == 0) {
-            byteArray[offset++] = (word >> 16) & 0xff;
-            byteArray[offset++] = (word >> 8) & 0xff;
-            byteArray[offset++] = word & 0xff;
-        }
-        if (wordArray.sigBytes % 4 > 1) {
-            byteArray[offset++] = (word >> 16) & 0xff;
-        }
-        if (wordArray.sigBytes % 4 > 2) {
-            byteArray[offset++] = (word >> 8) & 0xff;
-        }
-        return byteArray;
+    public static convertWordToByteArray(word, length) {
+        var ba = [],
+            i,
+            xFF = 0xFF;
+        if (length > 0)
+            ba.push(word >>> 24);
+        if (length > 1)
+            ba.push((word >>> 16) & xFF);
+        if (length > 2)
+            ba.push((word >>> 8) & xFF);
+        if (length > 3)
+            ba.push(word & xFF);
+
+        return ba;
     }
 
-    public static byteArrayToString(bytes, opt_startIndex = 0, length = 0) {
+    public static convertWordArrayToByteArray(wordArray, length = 0) {
+        if (wordArray.hasOwnProperty("sigBytes") && wordArray.hasOwnProperty("words")) {
+            length = wordArray.sigBytes;
+            wordArray = wordArray.words;
+        }
+
+        let result: number[] = [],
+            bytes,
+            i = 0;
+        while (length > 0) {
+            bytes = Converter.convertWordToByteArray(wordArray[i], Math.min(4, length));
+            length -= bytes.length;
+            result.push(bytes);
+            i++;
+        }
+        return [].concat.apply([], result);
+    }
+
+    public static convertByteArrayToString(bytes, opt_startIndex = 0, length = 0) {
         if (length == 0) {
             return "";
         }
@@ -189,7 +174,7 @@ export class Converter {
         return decodeURIComponent(escape(String.fromCharCode.apply(null, bytes)));
     }
 
-    public static byteArrayToShortArray(byteArray) {
+    public static convertByteArrayToShortArray(byteArray) {
         let shortArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         let i;
         for (i = 0; i < 16; i++) {
@@ -198,7 +183,7 @@ export class Converter {
         return shortArray;
     }
 
-    public static shortArrayToByteArray(shortArray) {
+    public static convertShortArrayToByteArray(shortArray) {
         let byteArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         let i;
         for (i = 0; i < 16; i++) {
@@ -209,12 +194,65 @@ export class Converter {
         return byteArray;
     }
 
-    public static shortArrayToHexString(ary) {
+    public static convertShortArrayToHexString(ary) {
         let res = "";
         for (let i = 0; i < ary.length; i++) {
             res += Converter.nibbleToChar[(ary[i] >> 4) & 0x0f] + Converter.nibbleToChar[ary[i] & 0x0f] + Converter.nibbleToChar[(ary[i] >> 12) & 0x0f] + Converter.nibbleToChar[(ary[i] >> 8) & 0x0f];
         }
         return res;
+    }
+
+    // assumes wordArray is Big-Endian (because it comes from CryptoJS which is all BE)
+    // From: https://gist.github.com/creationix/07856504cf4d5cede5f9#file-encode-js
+    public static convertWordArrayToUint8Array(wordArray) {
+        let len = wordArray.words.length,
+            u8_array = new Uint8Array(len << 2),
+            offset = 0, word, i
+            ;
+        for (i = 0; i < len; i++) {
+            word = wordArray.words[i];
+            u8_array[offset++] = word >> 24;
+            u8_array[offset++] = (word >> 16) & 0xff;
+            u8_array[offset++] = (word >> 8) & 0xff;
+            u8_array[offset++] = word & 0xff;
+        }
+        return u8_array;
+    }
+
+    // create a wordArray that is Big-Endian (because it's used with CryptoJS which is all BE)
+    // From: https://gist.github.com/creationix/07856504cf4d5cede5f9#file-encode-js
+    public static convertUint8ArrayToWordArray(u8Array) {
+        let words = [], i = 0, len = u8Array.length;
+
+        while (i < len) {
+            words.push(
+                (u8Array[i++] << 24) |
+                (u8Array[i++] << 16) |
+                (u8Array[i++] << 8) |
+                (u8Array[i++])
+            );
+        }
+
+        return {
+            sigBytes: words.length * 4,
+            words: words
+        };
+    }
+
+    public static convertUint8ArrayToBinaryString(u8Array) {
+        let i, len = u8Array.length, b_str = "";
+        for (i = 0; i < len; i++) {
+            b_str += String.fromCharCode(u8Array[i]);
+        }
+        return b_str;
+    }
+
+    public static convertBinaryStringToUint8Array(bStr) {
+        let i, len = bStr.length, u8_array = new Uint8Array(len);
+        for (let i = 0; i < len; i++) {
+            u8_array[i] = bStr.charCodeAt(i);
+        }
+        return u8_array;
     }
 
     /**
