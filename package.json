@@ -28,6 +28,7 @@
     "big-integer": "^1.6.24",
     "crypto-js": "^3.1.9-1",
     "js-nacl": "^1.2.2",
+    "libsodium": "^0.5.2",
     "nativescript-angular": "4.2.0",
     "nativescript-sqlite": "^1.1.7",
     "nativescript-theme-core": "1.0.4",

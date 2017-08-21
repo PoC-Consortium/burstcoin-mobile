@@ -26,17 +26,23 @@ export class CryptoService {
     }
 
     /*
-    * Generate the Master Public Key for a new passphrase
+    * Generate the Master Public Key and Master Private Key for a new passphrase
+    * Ed25519 sign key pair. Public key can be converted to curve25519 public key (Burst Address)
+    * Private Key can be converted to curve25519 private key for checking transactions
     */
-    public generatePublicKey(passPhrase): Promise<string> {
+    public generateMasterPublicAndPrivateKey(passPhrase): Promise<string[]> {
         return new Promise((resolve, reject) => {
-            // Hash the passphrase to gget sha word array (32 bytes)
+            // Hash the passphrase to get sha word array (32 bytes) which serves
+            // as master seed for ed25519 key generation
     		let hashedPassPhrase = CryptoJS.SHA256(passPhrase);
-
-            // use nacl curve 25519 to get Master Public Key and Master Private Key from secret passphrase
+            // use nacl ed25519 to generate Master Public Key and Master Private Key from secret passphrase
+            // https://ed25519.cr.yp.to/
+            // https://nacl.cr.yp.to/
+            // https://www.ietf.org/mail-archive/web/cfrg/current/msg04996.html
             let keys;
             NaCL.instantiate(nacl => { keys = nacl.crypto_sign_seed_keypair(Converter.convertWordArrayToUint8Array(hashedPassPhrase)) });
-            resolve(CryptoJS.enc.Hex.stringify(Converter.convertUint8ArrayToWordArray(keys.signPk)));
+            resolve([CryptoJS.enc.Hex.stringify(Converter.convertUint8ArrayToWordArray(keys.signPk)),
+                     CryptoJS.enc.Hex.stringify(Converter.convertUint8ArrayToWordArray(keys.signSk))]); //[keys.signPk, keys.signSk]
         });
     }
 }
