@@ -63,11 +63,11 @@ export class Converter {
         return bytes;
     }
 
-    public static stringToHexString(str) {
+    public static convertStringToHexString(str) {
         return Converter.convertByteArrayToHexString(Converter.convertStringToByteArray(str));
     }
 
-    public static hexStringToString(hex) {
+    public static convertHexStringToString(hex) {
         return Converter.convertByteArrayToString(Converter.convertHexStringToByteArray(hex));
     }
 
