@@ -63,7 +63,7 @@ export class CryptoService {
             // convert each byte into a number in base 10
             let numbers = slice.map(byte => byte.toString(10));
             // create a biginteger based on the reversed byte/number array
-            let id = bigInt.fromArray(numbers, 10);
+            let id = bigInt.fromArray(numbers, 256); // base 256 for byte
             resolve(id.toString());
         });
     }

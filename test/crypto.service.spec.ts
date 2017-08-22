@@ -51,17 +51,17 @@ class CryptoServiceSuite {
 
         return cs.getAccountIdFromPublicKey(pk)
             .then(id => {
-                expect(id).to.equal("964208829");
+                expect(id).to.equal("6779331401231193177");
             })
     }
 
     @test getBurstAddressFromAccountId() {
         let cs = new CryptoService();
-        let id = "964208829";
+        let id = "6779331401231193177";
 
         return cs.getBurstAddressFromAccountId(id)
             .then(address => {
-                expect(address).to.equal("BURST-LNXA-ZQSJ-C9S4-77A7W");
+                expect(address).to.equal("BURST-LP4T-ZQSJ-9XMS-77A7W");
            })
     }
 

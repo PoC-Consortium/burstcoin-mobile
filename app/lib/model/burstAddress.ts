@@ -40,13 +40,13 @@ export class BurstAddress {
             codeword = [],
             pos = 0;
 
-        let plainString = bigInt(plain).add(BurstAddress.two64).toString();
+        let plainString = bigInt(plain).toString();//.add(BurstAddress.two64).toString();
         let length = plainString.length;
 
         for (let i = 0; i < length; i++) {
             plainString10[i] = plainString.charCodeAt(i) - '0'.charCodeAt(0);
         }
-        
+
         let digit32 = 0,
             newLength = 0;
         do // base 10 to base 32 conversion
