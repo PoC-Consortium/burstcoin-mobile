@@ -30,22 +30,39 @@ class CryptoServiceSuite {
             });
     }
 
-    @test encryptPrivateKeyWithPin() {
+    @test encryptDecryptAES() {
         let cs = new CryptoService();
-        let key = "34306951463caaca27fd6f0696ae5747e89a6af55d7b53c1dfac08d02266fdb438c0962fe6ccb06d26a948e92b43fc87bb702a7ab29d22c8a672e0fc6e570e43";
+        let text = "34306951463caaca27fd6f0696ae5747e89a6af55d7b53c1dfac08d02266fdb438c0962fe6ccb06d26a948e92b43fc87bb702a7ab29d22c8a672e0fc6e570e43";
         let pin = 777666;
 
         let en;
-        cs.encryptPrivateKeyWithPin(key, pin)
+        return cs.encryptAES(text, pin.toString())
             .then(enc => {
-                console.log("enc:" + enc);
-                cs.decryptPrivateKeyWithPin(enc, pin)
+                cs.decryptAES(enc, pin.toString())
                     .then(dec => {
-                        console.log("dec:" + dec);
+                        expect(dec).to.equal(text);
                     });
             });
+    }
 
+    @test getAccountIdFromPublicKey() {
+        let cs = new CryptoService();
+        let pk = "38c0962fe6ccb06d26a948e92b43fc87bb702a7ab29d22c8a672e0fc6e570e43";
 
+        return cs.getAccountIdFromPublicKey(pk)
+            .then(id => {
+                expect(id).to.equal("964208829");
+            })
+    }
+
+    @test getBurstAddressFromAccountId() {
+        let cs = new CryptoService();
+        let id = "964208829";
+
+        return cs.getBurstAddressFromAccountId(id)
+            .then(address => {
+                expect(address).to.equal("BURST-LNXA-ZQSJ-C9S4-77A7W");
+           })
     }
 
 }

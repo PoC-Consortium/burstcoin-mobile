@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Converter } from "../util";
 import { PassPhraseGenerator } from "../util/crypto";
+import { BurstAddress } from "../model";
 
-var CryptoJS = require("crypto-js");
-var NaCL = require('js-nacl');
+let CryptoJS = require("crypto-js");
+let NaCL = require('js-nacl');
+let bigInt = require("big-integer");
 
 @Injectable()
 export class CryptoService {
@@ -47,21 +49,52 @@ export class CryptoService {
     }
 
     /*
+    *   Convert the hex string of the public key to the account id
+    */
+    public getAccountIdFromPublicKey(publicKey: string): Promise<string> {
+        return new Promise((resolve, reject) => {
+            // hash with SHA 256
+            let hash = CryptoJS.SHA256(CryptoJS.enc.Hex.parse(publicKey));
+            let bytes = Converter.convertWordArrayToByteArray(hash);
+            // slice away first 8 bytes of SHA256 string
+            let slice = bytes.slice(0, 8);
+            // order it from lowest bit to highest / little-endian first / reverse
+            slice = slice.reverse();
+            // convert each byte into a number in base 10
+            let numbers = slice.map(byte => byte.toString(10));
+            // create a biginteger based on the reversed byte/number array
+            let id = bigInt.fromArray(numbers, 10);
+            resolve(id.toString());
+        });
+    }
+
+    /*
+    *
+    */
+    public getBurstAddressFromAccountId(id: string): Promise<string> {
+        return new Promise((resolve, reject) => {
+            // TODO: refactor shitty nxt address resolution
+            resolve(BurstAddress.encode(id));
+        });
+    }
+
+    /*
     * Encrypt a derived hd private key with a given pin and return it in Base64 form
     */
-    public encryptPrivateKeyWithPin(privateKey: string, pin: number): Promise<string> {
+    public encryptAES(text: string, key: string): Promise<string> {
         return new Promise((resolve, reject) => {
-            let encrypted = CryptoJS.AES.encrypt(privateKey, pin.toString());
+            let encrypted = CryptoJS.AES.encrypt(text, key);
             resolve(encrypted.toString()); // Base 64
         });
     }
     /*
     * Decrypt a derived hd private key with a given pin
     */
-    public decryptPrivateKeyWithPin(encrypted: string, pin: number): Promise<string> {
+    public decryptAES(encryptedBase64: string, key: string): Promise<string> {
         return new Promise((resolve, reject) => {
-            let decrypted = CryptoJS.AES.decrypt(encrypted, pin.toString());
+            let decrypted = CryptoJS.AES.decrypt(encryptedBase64, key);
             resolve(decrypted.toString(CryptoJS.enc.Utf8));
         });
     }
+
 }
