@@ -17,7 +17,7 @@ export class CryptoService {
     }
 
     /*
-    * Generate a passphrase witth the help of the PassPhraseGenerator
+    * Generate a passphrase with the help of the PassPhraseGenerator
     * pass optional seed for seeding generation
     */
     public generatePassPhrase(seed: any[] = []): Promise<string> {
@@ -49,7 +49,7 @@ export class CryptoService {
     }
 
     /*
-    *   Convert the hex string of the public key to the account id
+    *   Convert hex string of the public key to the account id
     */
     public getAccountIdFromPublicKey(publicKey: string): Promise<string> {
         return new Promise((resolve, reject) => {
@@ -60,21 +60,31 @@ export class CryptoService {
             let slice = bytes.slice(0, 8);
             // order it from lowest bit to highest / little-endian first / reverse
             slice = slice.reverse();
-            // convert each byte into a number in base 10
+            // convert each byte into a number with radix 10
             let numbers = slice.map(byte => byte.toString(10));
             // create a biginteger based on the reversed byte/number array
             let id = bigInt.fromArray(numbers, 256); // base 256 for byte
-            resolve(id.toString());
+            resolve(id.toString()); // return big integer in string
         });
     }
 
     /*
-    *
+    * Convert the account id to the appropriate Burst address
     */
     public getBurstAddressFromAccountId(id: string): Promise<string> {
         return new Promise((resolve, reject) => {
             // TODO: refactor shitty nxt address resolution
             resolve(BurstAddress.encode(id));
+        });
+    }
+
+    /*
+    * Convert Burst Address back to account id
+    */
+    public getAccountIdFromBurstAddress(address: string): Promise<string> {
+        return new Promise((resolve, reject) => {
+            // TODO: refactor shitty nxt address resolution
+            resolve(BurstAddress.decode(address));
         });
     }
 

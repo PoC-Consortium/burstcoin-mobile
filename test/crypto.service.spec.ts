@@ -65,4 +65,14 @@ class CryptoServiceSuite {
            })
     }
 
+    @test getAccountIdFromBurstAddress() {
+        let cs = new CryptoService();
+        let address = "BURST-LP4T-ZQSJ-9XMS-77A7W";
+
+        return cs.getAccountIdFromBurstAddress(address)
+            .then(id => {
+                expect(id).to.equal("6779331401231193177");
+           })
+    }
+
 }
