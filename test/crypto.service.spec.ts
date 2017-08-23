@@ -9,19 +9,23 @@ import { CryptoService } from "../app/lib/services";
 
 @suite(timeout(3000), slow(1000))
 class CryptoServiceSuite {
-    @test generatePassPhrase() {
-        let cs = new CryptoService();
 
-        return cs.generatePassPhrase().then(passPhrase => {
+    service: any;
+
+    @timeout(100) before() {
+        this.service = new CryptoService();
+    }
+
+    @test generatePassPhrase() {
+        return this.service.generatePassPhrase().then(passPhrase => {
             expect(passPhrase.split(" ").length).to.equal(12);
         });
     }
 
     @test generateMasterPublicAndPrivateKey() {
-        let cs = new CryptoService();
         let passPhrase = "radios tariff nvidia opponent pasta muscles serum wrapped swift runtime inbox goal";
 
-        return cs.generateMasterPublicAndPrivateKey(passPhrase)
+        return this.service.generateMasterPublicAndPrivateKey(passPhrase)
             .then(keys => {
                 expect(keys[0].length).to.equal(64);
                 expect(keys[0]).to.equals("38c0962fe6ccb06d26a948e92b43fc87bb702a7ab29d22c8a672e0fc6e570e43");
@@ -31,14 +35,13 @@ class CryptoServiceSuite {
     }
 
     @test encryptDecryptAES() {
-        let cs = new CryptoService();
         let text = "34306951463caaca27fd6f0696ae5747e89a6af55d7b53c1dfac08d02266fdb438c0962fe6ccb06d26a948e92b43fc87bb702a7ab29d22c8a672e0fc6e570e43";
         let pin = 777666;
 
         let en;
-        return cs.encryptAES(text, pin.toString())
+        return this.service.encryptAES(text, pin.toString())
             .then(enc => {
-                cs.decryptAES(enc, pin.toString())
+                this.service.decryptAES(enc, pin.toString())
                     .then(dec => {
                         expect(dec).to.equal(text);
                     });
@@ -46,30 +49,27 @@ class CryptoServiceSuite {
     }
 
     @test getAccountIdFromPublicKey() {
-        let cs = new CryptoService();
         let pk = "38c0962fe6ccb06d26a948e92b43fc87bb702a7ab29d22c8a672e0fc6e570e43";
 
-        return cs.getAccountIdFromPublicKey(pk)
+        return this.service.getAccountIdFromPublicKey(pk)
             .then(id => {
                 expect(id).to.equal("6779331401231193177");
             })
     }
 
     @test getBurstAddressFromAccountId() {
-        let cs = new CryptoService();
         let id = "6779331401231193177";
 
-        return cs.getBurstAddressFromAccountId(id)
+        return this.service.getBurstAddressFromAccountId(id)
             .then(address => {
                 expect(address).to.equal("BURST-LP4T-ZQSJ-9XMS-77A7W");
            })
     }
 
     @test getAccountIdFromBurstAddress() {
-        let cs = new CryptoService();
         let address = "BURST-LP4T-ZQSJ-9XMS-77A7W";
 
-        return cs.getAccountIdFromBurstAddress(address)
+        return this.service.getAccountIdFromBurstAddress(address)
             .then(id => {
                 expect(id).to.equal("6779331401231193177");
            })
