@@ -5,7 +5,7 @@ import { Observable, ReplaySubject } from 'rxjs/Rx';
 @Injectable()
 export class MarketService {
 
-    constructor(public http: Http) {
+    constructor(private http: Http) {
 
     }
 
@@ -13,15 +13,17 @@ export class MarketService {
     * Get Currency Data from coinmarketcap
     * TODO Provide interface, for eas swap of currency data provider
     */
-    public getCurrencyData(currency = undefined) {
-        let query: string = ""
-        if (currency != undefined) {
-            query = "?convert=" + currency
-        }
-        this.http.get("https://api.coinmarketcap.com/v1/ticker/burst" + query, this.getRequestOptions())
-            .toPromise()
-            .then(response => { return response.json() || {}; })
-            .catch(this.handleError);
+    public getCurrency(currency = undefined): Promise<any> {
+        return new Promise((resolve, reject) => {
+            let query: string = ""
+            if (currency != undefined) {
+                query = "?convert=" + currency
+            }
+            this.http.get("https://api.coinmarketcap.com/v1/ticker/burst" + query, this.getRequestOptions())
+                .toPromise()
+                .then(response => { console.log("dqw12"); resolve(response.json() || {}); })
+                .catch(this.handleError);
+        });
     }
 
     /*

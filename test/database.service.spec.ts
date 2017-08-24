@@ -22,7 +22,7 @@ class DatabaseServiceSuite {
         }, 500);
     }
 
-    @test insertKeys(done) {
+    @test saveKeys(done) {
     this.service.saveKeys(this.publicKey, this.privateKey)
             .then(success => {
                 expect(success).to.equal(true);
