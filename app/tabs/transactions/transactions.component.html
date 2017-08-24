@@ -1,0 +1,8 @@
+
+<ListView [items]="transactions" (itemTap)="onTapItem($event)" class="list-group">
+    <ng-template let-transaction="item" let-i="index" let-odd="odd" let-even="even">
+        <GridLayout class="list-group-item">
+            <Label [text]="transaction.id"></Label>
+        </GridLayout>
+    </ng-template>
+</ListView>
