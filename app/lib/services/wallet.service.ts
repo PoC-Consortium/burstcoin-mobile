@@ -58,19 +58,26 @@ export class WalletService {
     }
 
     public doTransaction(transaction: Transaction): Promise<Transaction> {
-        let fields = {
+        let sendFields = {
             "Content-Type": "application/json",
-        	"type": "ordinary_payment",
-            "amount": transaction.amountNQT,
-            "fee": transaction.feeNQT,
-            "recipient": transaction.recipientId,
-            "sender": transaction.senderId
+        	"type": "sendMoney",
+            "amountNQT": transaction.amountNQT,
+            "feeNQT": transaction.feeNQT,
+            "publicKey": transaction.senderPublicKey,
         };
-        return this.http.get(WalletService.walletURL + ":" + WalletService.walletPort, this.getRequestOptions(fields)).toPromise()
+        this.http.get(WalletService.walletURL + ":" + WalletService.walletPort, this.getRequestOptions(sendFields)).toPromise()
             .then(response => {
                 return response.json() || undefined;
             })
             .catch(error => this.handleError(error));
+
+        let broadcastFields = {
+            "Content-Type": "application/json",
+        	"type": "sendMoney",
+            "amountNQT": transaction.amountNQT,
+            "feeNQT": transaction.feeNQT,
+            "publicKey": transaction.senderPublicKey,
+        };
     }
 
     public getRequestOptions(fields) {
