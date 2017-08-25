@@ -6,21 +6,16 @@ let bigInt = require('big-integer');
 
 export class BurstAddress {
 
+    constructor() {
+
+    }
+
     private static readonly initialCodeword = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     private static readonly gexp: number[] = [1, 2, 4, 8, 16, 5, 10, 20, 13, 26, 17, 7, 14, 28, 29, 31, 27, 19, 3, 6, 12, 24, 21, 15, 30, 25, 23, 11, 22, 9, 18, 1];
     private static readonly glog: number[] = [0, 0, 1, 18, 2, 5, 19, 11, 3, 29, 6, 27, 20, 8, 12, 23, 4, 10, 30, 17, 7, 22, 28, 26, 21, 25, 9, 16, 13, 14, 24, 15];
     private static readonly cwmap: number[] = [3, 2, 1, 0, 7, 6, 5, 4, 13, 14, 15, 16, 12, 8, 9, 10, 11];
     private static readonly alphabet: string[] = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ'.split('');
     private static readonly base32Length = 13;
-
-    private syndrome: number[];
-    private guess: string[];
-
-    constructor() {
-
-        this.syndrome = [0, 0, 0, 0, 0];
-        this.guess = [];
-    }
 
     private static ginv(a) {
         return BurstAddress.gexp[31 - BurstAddress.glog[a]];
