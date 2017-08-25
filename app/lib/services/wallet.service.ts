@@ -1,7 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Http, Headers, RequestOptions, Response } from "@angular/http";
 import { Observable, ReplaySubject } from 'rxjs/Rx';
+
 import { Account, Currency, HttpError, Transaction } from "../model";
+import { CryptoService } from "./";
+
 
 @Injectable()
 export class WalletService {
@@ -12,7 +15,7 @@ export class WalletService {
     private static readonly walletURL: string = "http://176.9.47.157";
     private static readonly walletPort: string = "6876"; // Testnet
 
-    constructor(private http: Http) {
+    constructor(private http: Http, private cryptoservice: CryptoService) {
 
     }
 
@@ -58,26 +61,47 @@ export class WalletService {
     }
 
     public doTransaction(transaction: Transaction): Promise<Transaction> {
-        let sendFields = {
+        let unsignedTransactionBytes, sendFields, broadcastFields, transactionFields;
+        // TODO: maybe all on client signing??? WTF
+        sendFields = {
             "Content-Type": "application/json",
         	"type": "sendMoney",
             "amountNQT": transaction.amountNQT,
             "feeNQT": transaction.feeNQT,
             "publicKey": transaction.senderPublicKey,
         };
-        this.http.get(WalletService.walletURL + ":" + WalletService.walletPort, this.getRequestOptions(sendFields)).toPromise()
+        // request 'sendMoney' to burst node
+        return this.http.get(WalletService.walletURL + ":" + WalletService.walletPort, this.getRequestOptions(sendFields)).toPromise()
             .then(response => {
-                return response.json() || undefined;
+                // get unsigned transactionbytes
+                unsignedTransactionBytes = response.json().unsignedTransactionBytes || undefined;
+                // sign unsigned transaction bytes
+                return this.cryptoservice.signTransactionBytes(unsignedTransactionBytes)
+                    .then(signedTransactionBytes => {
+                        broadcastFields = {
+                            "Content-Type": "application/json",
+                            "type": "broadcastTransaction",
+                            "transactionBytes": signedTransactionBytes
+                        };
+                        // request 'broadcastTransaction' to burst node
+                        return this.http.get(WalletService.walletURL + ":" + WalletService.walletPort, this.getRequestOptions(broadcastFields)).toPromise()
+                            .then(response => {
+                                transactionFields = {
+                                    "Content-Type" : "application/json",
+                                    "type" : "getTransaction",
+                                    "transaction": response.json().transaction
+                                }
+                                // request 'getTransaction' to burst node
+                                return this.http.get(WalletService.walletURL + ":" + WalletService.walletPort, this.getRequestOptions(transactionFields)).toPromise()
+                                    .then(response => {
+                                        return new Transaction(response.json());
+                                    })
+                                    .catch(error => this.handleError(error));
+                            })
+                            .catch(error => this.handleError(error));
+                    });
             })
             .catch(error => this.handleError(error));
-
-        let broadcastFields = {
-            "Content-Type": "application/json",
-        	"type": "sendMoney",
-            "amountNQT": transaction.amountNQT,
-            "feeNQT": transaction.feeNQT,
-            "publicKey": transaction.senderPublicKey,
-        };
     }
 
     public getRequestOptions(fields) {

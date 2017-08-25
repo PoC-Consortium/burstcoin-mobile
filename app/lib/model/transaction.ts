@@ -23,7 +23,7 @@ export class Transaction {
     height: number;
     timestamp: number;
 
-    contructor(data: any = {}) {
+    constructor(data: any = {}) {
         this.id = data.transaction || undefined;
         this.senderId = data.sender || undefined;
         this.senderAddress = data.senderRS|| undefined;

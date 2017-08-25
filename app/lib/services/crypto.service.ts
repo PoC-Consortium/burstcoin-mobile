@@ -107,4 +107,10 @@ export class CryptoService {
         });
     }
 
+    /*
+    * Sign unsigned transaction bytes from the server
+    */
+    public signTransactionBytes(bytes: string): Promise<string> {
+        return undefined;
+    }
 }
