@@ -104,7 +104,7 @@ export class CreateComponent implements OnInit {
     public onTapNext(e) {
         this.word++;
         if (this.word >= 12) {
-            this.infotext = "In this step you have reenter the words of your passphrase!";
+            this.infotext = "Please reenter the words of your passphrase!";
             this.step = 4;
             this.word = 0;
         }

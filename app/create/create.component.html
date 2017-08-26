@@ -11,7 +11,7 @@
             <ActivityIndicator row="1" #activityIndicator busy="true" (busyChange)="onBusyChanged($event)" width="100" height="100" class="activity-indicator"></ActivityIndicator>
         </StackLayout>
 
-        <StackLayout *ngIf="this.step == 1" class="create-step" orientation="vertical">
+        <StackLayout *ngIf="this.step == 1" class="start-step" orientation="vertical">
             <StackLayout orientation="vertical">
                 <Button class="btn btn-primary btn-active big-button" text="Start" (tap)="onTapStart($event)"></Button>
             </StackLayout>

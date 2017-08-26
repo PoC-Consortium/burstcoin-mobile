@@ -1,0 +1,16 @@
+
+<StackLayout class="page-content" orientation="vertical">
+    <StackLayout class="info-container" orientation="vertical">
+        <StackLayout orientation="vertical">
+            <Label class="" textWrap="true" text="Import an offline wallet by entering your Burst address! Otherwise import an active wallet by entering your passphrase!"></Label>
+        </StackLayout>
+    </StackLayout>
+
+    <StackLayout class="import-container" orientation="vertical">
+        <StackLayout orientation="vertical">
+            <Label class="h3 m-15 toggle-label" textWrap="true" [text]="state"></Label>
+            <TextField class="input" [hint]="hint" [(ngModel)]='input'></TextField>
+            <Switch class="m-15 toggle-switch" checked="true" (checkedChange)="onChecked($event)"></Switch>
+        </StackLayout>
+    </StackLayout>
+</StackLayout>
