@@ -2,7 +2,7 @@
 
 export class Account {
 
-    id: number;
+    id: string;
     address: string;
     balance: number;
     type: string;

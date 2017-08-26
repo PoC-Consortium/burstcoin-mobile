@@ -15,8 +15,32 @@ export class WalletService {
     private static readonly walletURL: string = "http://176.9.47.157";
     private static readonly walletPort: string = "6876"; // Testnet
 
-    constructor(private http: Http, private cryptoservice: CryptoService) {
+    constructor(private http: Http = undefined, private cryptoService: CryptoService = undefined) {
 
+    }
+
+    public isBurstcoinAddress(address: string): boolean {
+        return /^BURST\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{5}/i.test(address);
+    }
+
+    public importBurstcoinWallet(input: string, active: boolean) {
+        let account: Account = new Account();
+        if (active) {
+            // import active wallet
+            account.type = "active";
+        } else {
+            // import offline wallet
+            account.type = "offline";
+            account.address = input;
+            this.cryptoService.getAccountIdFromBurstAddress(input)
+                .then(id => {
+                    account.id = id;
+                });
+
+        }
+        return new Promise((resolve, reject) => {
+
+        });
     }
 
     public getTransactions(account: Account): Promise<Transaction[]> {
@@ -76,7 +100,7 @@ export class WalletService {
                 // get unsigned transactionbytes
                 unsignedTransactionBytes = response.json().unsignedTransactionBytes || undefined;
                 // sign unsigned transaction bytes
-                return this.cryptoservice.signTransactionBytes(unsignedTransactionBytes)
+                return this.cryptoService.signTransactionBytes(unsignedTransactionBytes)
                     .then(signedTransactionBytes => {
                         broadcastFields = {
                             "Content-Type": "application/json",

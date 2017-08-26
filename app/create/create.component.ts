@@ -98,7 +98,7 @@ export class CreateComponent implements OnInit {
     }
 
     /*
-    * This metho is responssible for showing changing the index of the passphrase
+    * This method is responssible for showing changing the index of the passphrase
     * one by one to show the user all 12 words in the right order
     */
     public onTapNext(e) {
