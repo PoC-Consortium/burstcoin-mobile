@@ -1,0 +1,15 @@
+
+<StackLayout class="page-content" orientation="vertical">
+    <StackLayout class="info-container" orientation="vertical">
+        <StackLayout orientation="vertical">
+            <Label class="" textWrap="true" text="No wallet created yet! Choose to import an existing wallet or create a new one!"></Label>
+        </StackLayout>
+    </StackLayout>
+
+    <StackLayout class="start-container" orientation="vertical">
+        <StackLayout orientation="vertical">
+            <Button class="btn btn-primary btn-active big-button" text="Import" [nsRouterLink]="['/import']"></Button>
+            <Button class="btn btn-primary btn-active big-button" text="Create New" [nsRouterLink]="['/create']"></Button>
+        </StackLayout>
+    </StackLayout>
+</StackLayout>

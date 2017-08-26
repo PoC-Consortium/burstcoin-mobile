@@ -12,12 +12,12 @@ import { CryptoService } from "../lib/services";
 import { PassPhraseGenerator } from "../lib/util/crypto";
 
 @Component({
-    selector: "register",
+    selector: "create",
     moduleId: module.id,
-    templateUrl: "./register.component.html",
-    styleUrls: ["./register.component.css"]
+    templateUrl: "./create.component.html",
+    styleUrls: ["./create.component.css"]
 })
-export class RegisterComponent implements OnInit {
+export class CreateComponent implements OnInit {
 
     private readonly seedLimit: number = 10;
     private step: number;
@@ -27,6 +27,7 @@ export class RegisterComponent implements OnInit {
     private word: number;
     private try: string;
     private textField: TextField;
+    private infotext: string;
 
     /*
     Step 0: Loading screen
@@ -44,6 +45,7 @@ export class RegisterComponent implements OnInit {
         this.retypePassPhrase = [];
         this.word = 0;
         this.try = "";
+        this.infotext = "Here you can create a new Burst Wallet! Tap the button below to start with the creation process."
     }
 
     ngOnInit(): void {
@@ -55,12 +57,13 @@ export class RegisterComponent implements OnInit {
     */
     public onTapStart(e) {
         // start seed process
+        this.infotext = "In this step you have to create a random seed for the generation of your passphrase!";
         this.step = 2;
+
 
         // TODO remove
         let pg = new PassPhraseGenerator();
         let pass: string = pg.generatePassPhrase();
-
     }
 
     /*
@@ -75,6 +78,7 @@ export class RegisterComponent implements OnInit {
             this.cryptoService.generatePassPhrase(this.seed)
                 .then(phrase => {
                     this.passPhrase = phrase.split(" ");
+                    this.infotext = "In this step you have to memorize all 12 words of your passphrase in the right order!";
                     this.step = 3;
                 }
             );
@@ -89,6 +93,7 @@ export class RegisterComponent implements OnInit {
         this.seed = [];
         this.passPhrase = [];
         // init seed process again
+        this.infotext = "In this step you have to create a random seed for the generation of your passphrase!";
         this.step = 2;
     }
 
@@ -99,6 +104,7 @@ export class RegisterComponent implements OnInit {
     public onTapNext(e) {
         this.word++;
         if (this.word >= 12) {
+            this.infotext = "In this step you have reenter the words of your passphrase!";
             this.step = 4;
             this.word = 0;
         }
@@ -136,11 +142,17 @@ export class RegisterComponent implements OnInit {
 
             if (this.word >= 12) {
                 // correctly retyped all 12 words
+                this.infotext = "Now set a pin code for your wallet. You get asked to reenter your pin code everytime you are doing a transaction!";
                 this.step = 5;
             }
         } else {
             console.log("wrong word");
         }
     }
+
+    /*
+    *
+    */
+
 
 }

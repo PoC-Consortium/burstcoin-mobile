@@ -1,8 +1,7 @@
 
-.register-step {
-    padding-top: 200px;
+.create-step {
     vertical-align: middle;
-    height: 80%;
+    height: 70%;
 }
 
 .progress-bottom {
@@ -10,6 +9,7 @@
 }
 
 .seed-area {
+    margin-top: 150px;
     vertical-align: middle;
     border-radius: 20px;
     background-color: #EAEAEA;
@@ -25,7 +25,7 @@
     display: inline-block;
     padding: 0 25px;
     margin: 125px 5px 50px 5px;
-    height: 120px;
+    height: 100px;
     width: 50%;
     font-size: 24px;
     line-height: 25px;
@@ -34,15 +34,17 @@
 }
 
 .possibilities {
-    width: 80%;
+    width: 90%;
     margin-top: 50px;
-    height: 220px;
+    margin-left: 20px;
+    height: 200px;
     text-align: center;
 }
 
 .possibility-button {
     margin: 10px;
     text-transform: lowercase;
+    height: 150px;
 }
 
 .generate-again-button {
@@ -50,6 +52,10 @@
     width: 50%;
 }
 
+.bottom-filler {
+    height: 150px;
+}
+
 .big-button {
-    height: 300px;
+    height: 200px;
 }

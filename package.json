@@ -31,6 +31,7 @@
     "libsodium": "^0.5.2",
     "lokijs": "^1.5.0",
     "nativescript-angular": "4.2.0",
+    "nativescript-numeric-keyboard": "^3.0.3",
     "nativescript-sqlite": "^1.1.7",
     "nativescript-theme-core": "1.0.4",
     "reflect-metadata": "0.1.10",

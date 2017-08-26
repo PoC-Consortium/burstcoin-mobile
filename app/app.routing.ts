@@ -3,8 +3,10 @@ import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 
 const routes: Routes = [
-    { path: "", redirectTo: "register", pathMatch: "full" },
-    { path: "register", loadChildren: "./register/register.module#RegisterModule" },
+    { path: "", redirectTo: "start", pathMatch: "full" },
+    { path: "create", loadChildren: "./create/create.module#CreateModule" },
+    { path: "start", loadChildren: "./start/start.module#StartModule" },
+    { path: "import", loadChildren: "./import/import.module#ImportModule" },
     { path: "tabs", loadChildren: "./tabs/tabs.module#TabsModule" }
 ];
 

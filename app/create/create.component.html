@@ -1,33 +1,32 @@
 
 <StackLayout class="page-content" orientation="vertical">
     <StackLayout class="info-container" orientation="vertical">
-        <Image src="~/images/apple.jpg"></Image>
         <StackLayout orientation="vertical">
-            <Label class="" text="Create your Burst Wallet!"></Label>
+            <Label class="" textWrap="true" [text]="infotext"></Label>
         </StackLayout>
     </StackLayout>
 
     <StackLayout class="body-container" orientation="vertical">
-        <StackLayout *ngIf="this.step == 0" class="register-step" orientation="vertical">
+        <StackLayout *ngIf="this.step == 0" class="create-step" orientation="vertical">
             <ActivityIndicator row="1" #activityIndicator busy="true" (busyChange)="onBusyChanged($event)" width="100" height="100" class="activity-indicator"></ActivityIndicator>
         </StackLayout>
 
-        <StackLayout *ngIf="this.step == 1" class="register-step" orientation="vertical">
+        <StackLayout *ngIf="this.step == 1" class="create-step" orientation="vertical">
             <StackLayout orientation="vertical">
                 <Button class="btn btn-primary btn-active big-button" text="Start" (tap)="onTapStart($event)"></Button>
             </StackLayout>
         </StackLayout>
 
-        <StackLayout *ngIf="this.step == 2" class="register-step" orientation="vertical">
+        <StackLayout *ngIf="this.step == 2" class="create-step" orientation="vertical">
             <StackLayout (touch)="onTouch($event)" class="seed-area" orientation="vertical">
-                <Label class="font-weight-bold" text="Tap and swipe over this gray area to generate seed!"></Label>
+                <Label class="font-weight-bold" text="Tap and swipe over this area!"></Label>
             </StackLayout>
             <StackLayout class="seed-progress" orientation="vertical">
                 <Progress [value]="seed.length" [maxValue]="seedLimit" class="m-20"></Progress>
             </StackLayout>
         </StackLayout>
 
-        <StackLayout *ngIf="this.step == 3" class="register-step" orientation="vertical">
+        <StackLayout *ngIf="this.step == 3" class="create-step" orientation="vertical">
             <StackLayout orientation="vertical">
                 <Label text="Write down the following words and keep them secret!"></Label>
                 <Label class="chip" [text]="passPhrase[word]"></Label>
@@ -35,7 +34,7 @@
             </StackLayout>
         </StackLayout>
 
-        <StackLayout *ngIf="this.step == 4" class="register-step" orientation="vertical">
+        <StackLayout *ngIf="this.step == 4" class="create-step" orientation="vertical">
             <Label text="Write down word #{{ word + 1 }} and select it!"></Label>
             <StackLayout class="possibilities" orientation="horizontal">
                 <Button *ngFor="let possibility of retypePassPhrase" class="btn possibility-button" [text]="possibility" (tap)="onTapPossibility($event)"></Button>
@@ -43,8 +42,14 @@
             <TextField class="input" [text]="try" (textChange)="onChange($event)"></TextField>
         </StackLayout>
 
+        <StackLayout *ngIf="this.step == 5" class="create-step" orientation="vertical">
+            <Label text="Please set your Pin Code for this account!"></Label>
+            <NumericKeyboard noDecimals="true"></NumericKeyboard>
+        </StackLayout>
+
         <StackLayout class="progress-bottom" orientation="vertical">
             <Button *ngIf="this.step == 4 || this.step == 3" class="btn btn-active generate-again-button" text="Generate Again" (tap)="onTapGenerateAgain($event)"></Button>
+            <StackLayout *ngIf="this.step != 4 && this.step != 3" class="bottom-filler"></StackLayout>
             <Progress *ngIf="this.step > 1"  [value]="step - 1" maxValue="5" class="m-20"></Progress>
         </StackLayout>
     </StackLayout>

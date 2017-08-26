@@ -2,12 +2,12 @@ import { NgModule } from "@angular/core";
 import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 
-import { RegisterComponent } from "./register.component";
+import { StartComponent } from "./start.component";
 
 export const routes: Routes = [
     {
         path: "",
-        component: RegisterComponent
+        component: StartComponent
     }
 ];
 
@@ -15,4 +15,4 @@ export const routes: Routes = [
   imports: [NativeScriptRouterModule.forChild(routes)],
   exports: [NativeScriptRouterModule]
 })
-export class RegisterRoutingModule { }
+export class StartRoutingModule { }

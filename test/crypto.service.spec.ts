@@ -18,7 +18,6 @@ class CryptoServiceSuite {
     id: string;
     address: string;
 
-
     @timeout(100) before() {
         this.service = new CryptoService();
         this.passphrase = "radios tariff nvidia opponent pasta muscles serum wrapped swift runtime inbox goal";

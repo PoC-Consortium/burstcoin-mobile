@@ -1,8 +1,9 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
+import { NSNUMKEY_DIRECTIVES } from "nativescript-numeric-keyboard/angular";
 
-import { RegisterRoutingModule } from "./register.routing";
-import { RegisterComponent } from "./register.component";
+import { PinRoutingModule } from "./pin.routing";
+import { PinComponent } from "./pin.component";
 
 import { CryptoService } from "../lib/services";
 
@@ -11,10 +12,11 @@ import { CryptoService } from "../lib/services";
 @NgModule({
     imports: [
         NativeScriptModule,
-        RegisterRoutingModule
+        PinRoutingModule
     ],
     declarations: [
-        RegisterComponent
+        PinComponent,
+        NSNUMKEY_DIRECTIVES
     ],
     providers: [
         CryptoService
@@ -23,4 +25,4 @@ import { CryptoService } from "../lib/services";
         NO_ERRORS_SCHEMA
     ]
 })
-export class RegisterModule { }
+export class PinModule { }
