@@ -2,6 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { isAndroid } from "platform";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
 
+import { Wallet } from "../lib/model";
+import { DatabaseService, NotificationService, WalletService } from "../lib/services";
+
 @Component({
     selector: "TabsComponent",
     moduleId: module.id,
@@ -12,11 +15,29 @@ export class TabsComponent implements OnInit {
 
     private _title: string;
 
-    constructor() {
-        /* ***********************************************************
-        * Use the constructor to inject app services that will be needed for
-        * the whole tab navigation layout as a whole.
-        *************************************************************/
+    constructor(
+        private databaseService: DatabaseService,
+        private notificationService: NotificationService,
+        private walletService: WalletService
+    ) {
+        this.walletService.importBurstcoinWallet("BURST-LP4T-ZQSJ-9XMS-77A7W", false);
+
+        let wallet = new Wallet();
+        wallet.id = "6779331401231193177"
+        wallet.type = "offline";
+        wallet.address = "BURST-LP4T-ZQSJ-9XMS-77A7W";
+        wallet.selected = true;
+
+        setTimeout(x => {
+            this.databaseService.saveWallet(wallet)
+                .then(success => {
+                    console.log(success);
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        }, 1000);
+
     }
 
     ngOnInit(): void {

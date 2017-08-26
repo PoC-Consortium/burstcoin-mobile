@@ -2,8 +2,8 @@ import { Injectable } from "@angular/core";
 import { Http, Headers, RequestOptions, Response } from "@angular/http";
 import { Observable, ReplaySubject } from 'rxjs/Rx';
 
-import { Account, Currency, HttpError, Transaction } from "../model";
-import { CryptoService } from "./";
+import { Currency, HttpError, Transaction, Wallet } from "../model";
+import { CryptoService, DatabaseService, NotificationService} from "./";
 
 
 @Injectable()
@@ -15,7 +15,11 @@ export class WalletService {
     private static readonly walletURL: string = "http://176.9.47.157";
     private static readonly walletPort: string = "6876"; // Testnet
 
-    constructor(private http: Http = undefined, private cryptoService: CryptoService = undefined) {
+    constructor(
+        private http: Http = undefined,
+        private cryptoService: CryptoService = undefined,
+        private databaseService: DatabaseService = undefined,
+        private notificationService: NotificationService = undefined) {
 
     }
 
@@ -24,18 +28,28 @@ export class WalletService {
     }
 
     public importBurstcoinWallet(input: string, active: boolean) {
-        let account: Account = new Account();
+        let wallet: Wallet = new Wallet();
         if (active) {
             // import active wallet
-            account.type = "active";
+            wallet.type = "active";
         } else {
             // import offline wallet
-            account.type = "offline";
-            account.address = input;
+            wallet.type = "offline";
+            wallet.address = input;
+            wallet.selected = true;
             this.cryptoService.getAccountIdFromBurstAddress(input)
                 .then(id => {
-                    account.id = id;
+                    wallet.id = id;
+                    /*
+                    this.getBalance(wallet)
+                        .then(balance => {
+
+                        });
+                        */
                 });
+            this.databaseService.saveWallet(wallet).then(ac => {
+                this.notificationService.info("saved");
+            });
 
         }
         return new Promise((resolve, reject) => {
@@ -43,13 +57,13 @@ export class WalletService {
         });
     }
 
-    public getTransactions(account: Account): Promise<Transaction[]> {
+    public getTransactions(wallet: Wallet): Promise<Transaction[]> {
         let fields = {
             "Content-Type": "application/json",
             "requestType": "getAccountTransactions",
             "firstIndex": 0,
             "lastIndex": 15,
-            "account": account.id
+            "account": wallet.id
         };
         return this.http.get(WalletService.walletURL + ":" + WalletService.walletPort, this.getRequestOptions(fields)).toPromise()
             .then(response => {
@@ -71,11 +85,11 @@ export class WalletService {
             .catch(error => this.handleError(error));
     }
 
-    public getBalance(account: Account): Promise<number> {
+    public getBalance(wallet: Account): Promise<number> {
         let fields = {
             "Content-Type": "application/json",
             "requestType": "getBalance",
-            "account": account.id
+            "account": wallet.id
         };
         return this.http.get(WalletService.walletURL + ":" + WalletService.walletPort, this.getRequestOptions(fields)).toPromise()
             .then(response => {

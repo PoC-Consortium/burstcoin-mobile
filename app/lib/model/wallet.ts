@@ -1,11 +1,12 @@
 
 
-export class Account {
+export class Wallet {
 
     id: string;
     address: string;
     balance: number;
     type: string;
+    selected: boolean;
 
     publicKey: string;
     privateKey: string;

@@ -5,7 +5,7 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { ImportRoutingModule } from "./import.routing";
 import { ImportComponent } from "./import.component";
 
-import { CryptoService, DatabaseService, WalletService } from "../lib/services";
+import { CryptoService, DatabaseService, NotificationService, WalletService } from "../lib/services";
 
 
 @NgModule({
@@ -20,6 +20,7 @@ import { CryptoService, DatabaseService, WalletService } from "../lib/services";
     providers: [
         CryptoService,
         DatabaseService,
+        NotificationService,
         WalletService,
 
     ],

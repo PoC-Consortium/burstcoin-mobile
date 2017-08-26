@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { Switch } from "ui/switch";
 import { Router } from '@angular/router';
+import { SnackBar, SnackBarOptions } from "nativescript-snackbar";
 
-import { WalletService } from "../lib/services";
+import { NotificationService, WalletService } from "../lib/services";
 
 @Component({
     selector: "import",
@@ -16,12 +17,15 @@ export class ImportComponent implements OnInit {
     private hint: string;
     private active: boolean;
     private description: string;
+    private snackbar: SnackBar;
 
-    constructor(private walletService: WalletService, private router: Router) {
+    constructor(private notificationService: NotificationService, private walletService: WalletService, private router: Router) {
+        this.input = "";
         this.state = "Active Wallet";
         this.hint = "Passphrase";
         this.active = true;
         this.description = "An active wallet offers full functionaility. You can send and receive Burstcoins. In addition, you can check your balance and see the history of your transactions.";
+        this.snackbar = new SnackBar();
     }
 
     public ngOnInit() {
@@ -44,11 +48,17 @@ export class ImportComponent implements OnInit {
     }
 
     public onTapImport(e) {
-        if (this.active || this.walletService.isBurstcoinAddress(this.input)) {
-            this.walletService.importBurstcoinWallet(this.input, this.active);
-            this.router.navigate(['tabs']);
+        this.input = "BURST-LP4T-ZQSJ-9XMS-77A7W";
+        this.active = false;
+        if (this.input.length > 0) {
+            if (!this.active && !this.walletService.isBurstcoinAddress(this.input)) {
+                this.snackbar.simple("Input is not a Burstcoin address");
+            } else {
+                this.walletService.importBurstcoinWallet(this.input, this.active);
+                this.router.navigate(['tabs']);
+            }
         } else {
-            // show warning no burstcoin address
+            this.notificationService.info("Please enter something!");
         }
     }
 
