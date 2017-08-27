@@ -1,0 +1,45 @@
+
+.balance-container {
+    background-color: #EAEAEA;
+    padding: 10px;
+    margin-top: 100px;
+    text-align: center;
+    border-radius: 20px;
+    width: 80%;
+}
+
+.send-container {
+    background-color: #EAEAEA;
+    padding: 10px;
+    text-align: left;
+    border-radius: 20px;
+    width: 80%;
+}
+
+.big-label {
+    font-size: 18px;
+}
+
+.huge-label {
+    font-size: 24px;
+}
+
+.recipient-input {
+    width: 100%;
+}
+
+.number-input {
+    width: 50%;
+}
+
+.qrcode {
+    margin: 25px;
+    width: 400px;
+    height: 400px;
+    border-radius: 20px;
+}
+
+.action-button {
+    width: 70%;
+    height: 200px;
+}

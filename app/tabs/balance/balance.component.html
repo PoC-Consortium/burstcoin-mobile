@@ -14,7 +14,7 @@
     </StackLayout>
 
     <StackLayout class="actions-container" orientation="vertical">
-        <Button class="btn btn-primary btn-active action-button" text="Send" (tap)="onTapSend($event)"></Button>
+        <Button class="btn btn-primary btn-active action-button" text="Send" [nsRouterLink]="['balance/send']"></Button>
         <Button class="btn btn-primary btn-active action-button" text="Receive" (tap)="onTapReceive($event)"></Button>
     </StackLayout>
 </StackLayout>

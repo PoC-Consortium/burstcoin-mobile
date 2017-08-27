@@ -1,20 +1,9 @@
-
 <Page xmlns="http://www.nativescript.org/tns.xsd" loaded="onPageLoaded">
     <ActionBar class="action-bar">
         <Label class="action-bar-title" [text]="title"></Label>
     </ActionBar>
 
-    <!--
-    The TabView component provides a simple way to navigate between different views by
-    tapping on some of the tabs or by swiping between the views.
-    Learn more about the TabView component in this documentation article:
-    http://docs.nativescript.org/angular/code-samples/ui/tab-view
-    -->
     <TabView (selectedIndexChanged)="onSelectedIndexChanged($event)">
-        <!--
-        To add a new TabView item, add a new layout component with a tabItem Angular directive.
-        Assign the tabItem directive an object that declares the tab item button's title and icon source.
-        -->
         <StackLayout *tabItem="{title: 'Balance', iconSource: getIconSource('coins')}">
             <balance></balance>
         </StackLayout>

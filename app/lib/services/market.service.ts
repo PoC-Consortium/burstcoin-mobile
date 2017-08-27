@@ -40,9 +40,9 @@ export class MarketService {
     public getPriceBurstcoin(coins: number) {
         if (coins % 1 === 0) {
             // whole number
-            return coins.toString();
+            return coins.toString() + " BURST";
         } else {
-            return coins.toFixed(8);
+            return coins.toFixed(8) + " BURST";
         }
     }
 

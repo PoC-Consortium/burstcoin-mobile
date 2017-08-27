@@ -1,10 +1,14 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptHttpModule } from "nativescript-angular/http";
+import { BarcodeScanner } from 'nativescript-barcodescanner';
+
+import { TabsRoutingModule } from "./tabs.routing";
+import { TabsComponent } from "./tabs.component";
 
 import { BalanceComponent } from "./balance/balance.component";
-import { TabsRoutingModule } from "./tabs-routing.module";
-import { TabsComponent } from "./tabs.component";
+import { ReceiveComponent } from "./balance/receive/receive.component";
+import { SendComponent } from "./balance/send/send.component";
 
 import { CryptoService, DatabaseService, MarketService, NotificationService, WalletService } from "../lib/services";
 
@@ -16,9 +20,12 @@ import { CryptoService, DatabaseService, MarketService, NotificationService, Wal
     ],
     declarations: [
         TabsComponent,
-        BalanceComponent
+        BalanceComponent,
+        ReceiveComponent,
+        SendComponent
     ],
     providers: [
+        BarcodeScanner,
         CryptoService,
         DatabaseService,
         MarketService,

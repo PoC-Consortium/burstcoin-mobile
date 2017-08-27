@@ -1,8 +1,24 @@
-<!--
-This is the component view that represents the 'Settings' tab.
-Feel free to customize layouts and components to change how the tab view looks.
--->
-<GridLayout class="page page-content" tkMainContent>
-    <Label class="page-icon fa" text="&#xf013;"></Label>
-    <Label class="page-placeholder" text="<!-- Page content goes here -->"></Label>
-</GridLayout>
+<StackLayout orientation="vertical">
+    <StackLayout class="balance-container m-b-30" orientation="vertical">
+        <Label class="font-weight-bold font-italic p-t-10 p-b-10 big-label" text="Your balance:"></Label>
+        <StackLayout class="hr-light"></StackLayout>
+        <Label class="font-weight-bold font-italic p-t-10 p-b-10 huge-label" [text]="balance"></Label>
+    </StackLayout>
+    <StackLayout class="send-container m-b-30" orientation="vertical">
+        <GridLayout class="p-t-10 p-15" columns="*9, *2" rows="auto, auto">
+            <Label col="0" row="0" class="p-t-10 p-b-10 big-label" text="Recipient" keyboardType="done"></Label>
+            <TextView col="0" row="1" class="input recipient-input" ></TextView>
+            <Button col="1" row="1" class="fa text-center" text="&#xf029;" (tap)=onTapScan($event)></Button>
+        </GridLayout>
+        <StackLayout class="hr-light"></StackLayout>
+        <GridLayout class="p-t-10 p-15" columns="*,*" rows="auto, auto">
+            <Label col="0" row="0" class="p-t-10 p-b-10 big-label" text="Amount"></Label>
+            <Label col="1" row="0" class="p-t-10 p-b-10 big-label" text="Fee"></Label>
+            <TextView col="0" row="1" class="input-border number-input" keyboardType="number"></TextView>
+            <TextView col="1" row="1" class="input-border number-input" keyboardType="number"></TextView>
+        </GridLayout>
+    </StackLayout>
+    <StackLayout class="actions-container" orientation="vertical">
+        <Button class="btn btn-primary btn-active action-button" text="Send" (tap)="onTapSend($event)"></Button>
+    </StackLayout>
+</StackLayout>

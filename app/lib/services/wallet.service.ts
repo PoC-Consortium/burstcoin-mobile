@@ -1,5 +1,6 @@
 import { Injectable, OnInit } from "@angular/core";
 import { Http, Headers, RequestOptions, Response, URLSearchParams } from "@angular/http";
+import { Router } from '@angular/router';
 import { Observable, ReplaySubject } from 'rxjs/Rx';
 
 import { BurstAddress, Currency, HttpError, Transaction, Wallet } from "../model";
@@ -25,7 +26,8 @@ export class WalletService {
         private http: Http = undefined,
         private cryptoService: CryptoService = undefined,
         private databaseService: DatabaseService = undefined,
-        private notificationService: NotificationService = undefined
+        private notificationService: NotificationService = undefined,
+        private router: Router
     ) {
         this.databaseService.ready.subscribe((init: boolean) => this.loadSelectedWallet(init));
     }
@@ -39,6 +41,7 @@ export class WalletService {
                 })
                 .catch(wallet => {
                     console.log("redirect to start, no wallet exists");
+                    this.router.navigate(['import']);
                 })
         }
     }

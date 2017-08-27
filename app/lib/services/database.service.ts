@@ -13,7 +13,7 @@ export class DatabaseService extends Database {
     private database: any;
     private static readonly path: string = fs.path.join(fs.knownFolders.currentApp().path, "loki.db");
 
-    public ready: BehaviorSubject<any> = new BehaviorSubject(null);
+    public ready: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
     constructor() {
         super();
