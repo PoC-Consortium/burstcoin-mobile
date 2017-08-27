@@ -1,9 +1,11 @@
-import { Injectable } from "@angular/core";
+import { Injectable, OnInit } from "@angular/core";
 import { Http, Headers, RequestOptions, Response, URLSearchParams } from "@angular/http";
 import { Observable, ReplaySubject } from 'rxjs/Rx';
 
-import { Currency, HttpError, Transaction, Wallet } from "../model";
+import { BurstAddress, Currency, HttpError, Transaction, Wallet } from "../model";
 import { CryptoService, DatabaseService, NotificationService} from "./";
+
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -17,42 +19,74 @@ export class WalletService {
     private static readonly walletURL: string = "http://176.9.47.157:6876/burst";
     private static readonly walletPort: string = "6876"; // Testnet
 
+    public currentWallet: BehaviorSubject<any> = new BehaviorSubject(null);
+
     constructor(
         private http: Http = undefined,
         private cryptoService: CryptoService = undefined,
         private databaseService: DatabaseService = undefined,
-        private notificationService: NotificationService = undefined) {
-
+        private notificationService: NotificationService = undefined
+    ) {
+        this.databaseService.ready.subscribe((init: boolean) => this.loadSelectedWallet(init));
     }
 
-    public isBurstcoinAddress(address: string): boolean {
-        return /^BURST\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{5}/i.test(address);
-    }
-
-    public importBurstcoinWallet(input: string, active: boolean) {
-        let wallet: Wallet = new Wallet();
-        if (active) {
-            // import active wallet
-            wallet.type = "active";
-        } else {
-            // import offline wallet
-            wallet.type = "offline";
-            wallet.address = input;
-            wallet.selected = true;
-            this.cryptoService.getAccountIdFromBurstAddress(input)
-                .then(id => {
-                    wallet.id = id;
-                    this.getBalance(wallet.id)
-                        .then(balance => {
-                            console.log(balance);
-                            this.databaseService.saveWallet(wallet).then(ac => {
-                                this.notificationService.info("saved");
-                            });
-                        });
-                });
+    private loadSelectedWallet(init) {
+        if (init) {
+            // get selected wallet from database
+            this.databaseService.getSelectedWallet()
+                .then(wallet => {
+                    this.setCurrentWallet(wallet);
+                })
+                .catch(wallet => {
+                    console.log("redirect to start, no wallet exists");
+                })
         }
-        return new Promise((resolve, reject) => {
+    }
 
+    public setCurrentWallet(wallet: Wallet) {
+        this.currentWallet.next(wallet);
+    }
+
+    public importBurstcoinWallet(input: string, active: boolean): Promise<Wallet> {
+        return new Promise((resolve, reject) => {
+            let wallet: Wallet = new Wallet();
+            if (active) {
+                // import active wallet
+                wallet.type = "active";
+            } else {
+                this.databaseService.findWallet(BurstAddress.decode(input))
+                    .then(found => {
+                        if (found == undefined) {
+                            // import offline wallet
+                            wallet.type = "offline";
+                            wallet.address = input;
+                            wallet.selected = true;
+                            return this.cryptoService.getAccountIdFromBurstAddress(input)
+                                .then(id => {
+                                    wallet.id = id;
+                                    this.getBalance(wallet.id)
+                                        .then(balance => {
+                                            wallet.balance = balance;
+                                            return this.databaseService.saveWallet(wallet).then(ac => {
+                                                this.notificationService.info(JSON.stringify(wallet));
+                                                this.setCurrentWallet(wallet);
+                                                resolve(wallet);
+                                            });
+                                        })
+                                        .catch(error => {
+                                            return this.databaseService.saveWallet(wallet).then(ac => {
+                                                this.notificationService.info(JSON.stringify(wallet));
+                                                this.setCurrentWallet(wallet);
+                                                resolve(wallet);
+                                            });
+                                        });
+                                });
+                        } else {
+                            reject("Burstcoin address already imported!");
+                        }
+                    })
+
+            }
         });
     }
 
@@ -71,13 +105,13 @@ export class WalletService {
             .catch(error => this.handleError(error));
     }
 
-    public getTransaction(transaction: Transaction): Promise<Transaction[]> {
-        let fields = {
-            "Content-Type": "application/json",
-            "requestType": "getTransaction",
-            "transaction": transaction
-        };
-        return this.http.get(WalletService.walletURL + ":" + WalletService.walletPort, this.getRequestOptions(fields)).toPromise()
+    public getTransaction(id: string): Promise<Transaction> {
+        let params: URLSearchParams = new URLSearchParams();
+        params.set("requestType", "getTransaction");
+        params.set("transaction", id);
+        let requestOptions = this.getRequestOptions();
+        requestOptions.params = params;
+        return this.http.get(WalletService.walletURL, requestOptions).toPromise()
             .then(response => {
                 return response.json() || [];
             })
@@ -104,7 +138,7 @@ export class WalletService {
         // TODO: maybe all on client signing??? WTF
         sendFields = {
             "Content-Type": "application/json",
-        	"type": "sendMoney",
+            "type": "sendMoney",
             "amountNQT": transaction.amountNQT,
             "feeNQT": transaction.feeNQT,
             "publicKey": transaction.senderPublicKey,
@@ -126,8 +160,8 @@ export class WalletService {
                         return this.http.get(WalletService.walletURL + ":" + WalletService.walletPort, this.getRequestOptions(broadcastFields)).toPromise()
                             .then(response => {
                                 transactionFields = {
-                                    "Content-Type" : "application/json",
-                                    "type" : "getTransaction",
+                                    "Content-Type": "application/json",
+                                    "type": "getTransaction",
                                     "transaction": response.json().transaction
                                 }
                                 // request 'getTransaction' to burst node
@@ -143,6 +177,14 @@ export class WalletService {
             .catch(error => this.handleError(error));
     }
 
+    public isBurstcoinAddress(address: string): boolean {
+        return /^BURST\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{5}/i.test(address);
+    }
+
+    public convertStringToNumber(str, value = ".", position = 8) {
+        return str.substring(0, str.length - position) + value + str.substring(str.length - position);
+    }
+
     public getRequestOptions(fields = {}) {
         let headers = new Headers(fields);
         let options = new RequestOptions({ headers: headers });
@@ -152,9 +194,5 @@ export class WalletService {
     private handleError(error: Response | any) {
         console.log(error);
         return Promise.reject(new HttpError(error));
-    }
-
-    private convertStringToNumber(str, value = ".", position = 8) {
-        return str.substring(0, str.length - position) + value + str.substring(str.length-position);
     }
 }

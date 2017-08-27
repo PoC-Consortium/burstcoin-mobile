@@ -7,7 +7,7 @@ import { OverviewComponent } from "./overview/overview.component";
 import { ReceiveComponent } from "./receive/receive.component";
 import { SendComponent } from "./send/send.component";
 
-//import { NgaModule } from "../lib/nga.module";
+import { CryptoService, DatabaseService, MarketService, NotificationService, WalletService } from "../../lib/services";
 
 @NgModule({
     imports: [
@@ -20,6 +20,13 @@ import { SendComponent } from "./send/send.component";
         OverviewComponent,
         ReceiveComponent,
         SendComponent
+    ],
+    providers: [
+        CryptoService,
+        DatabaseService,
+        MarketService,
+        NotificationService,
+        WalletService
     ],
     schemas: [
         NO_ERRORS_SCHEMA

@@ -3,9 +3,10 @@
     <StackLayout class="balance-container" orientation="vertical">
         <Image src="~/images/apple.jpg"></Image>
         <StackLayout orientation="vertical">
-            <Label class="" text="BURST-XXXX-XXXX-XXXX-XXXX"></Label>
-            <Label class="" text="121453.4534"></Label>
-            <Label class="" text="1219$"></Label>
+            <Label class="" [text]="address"></Label>
+            <Label class="" [text]="balance"></Label>
+            <Label class="" [text]="balanceBTC"></Label>
+            <Label class="" [text]="balanceCur"></Label>
         </StackLayout>
     </StackLayout>
 

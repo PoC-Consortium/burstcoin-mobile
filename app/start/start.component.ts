@@ -18,7 +18,6 @@ import { PassPhraseGenerator } from "../lib/util/crypto";
     styleUrls: ["./start.component.css"]
 })
 export class StartComponent implements OnInit {
-
     constructor() {
 
     }
@@ -26,6 +25,4 @@ export class StartComponent implements OnInit {
     public ngOnInit() {
         // TODO: check if wallet already exists, then redirect to tabs
     }
-
-
 }

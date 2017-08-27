@@ -20,14 +20,11 @@ export class TabsComponent implements OnInit {
         private notificationService: NotificationService,
         private walletService: WalletService
     ) {
-        
+
     }
 
     ngOnInit(): void {
-        /* ***********************************************************
-        * Use the "ngOnInit" handler to initialize data for the whole tab
-        * navigation layout as a whole.
-        *************************************************************/
+
     }
 
     get title(): string {

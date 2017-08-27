@@ -16,6 +16,7 @@ export class Wallet {
         this.address = data.address || undefined;
         this.balance = data.balance || undefined;
         this.type = data.type || undefined;
+        this.selected = data.selected || undefined;
         this.publicKey = data.publicKey || undefined;
         this.privateKey = data.privateKey || undefined;
     }

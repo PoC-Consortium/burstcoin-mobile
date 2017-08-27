@@ -6,7 +6,7 @@ import { BalanceComponent } from "./balance/balance.component";
 import { TabsRoutingModule } from "./tabs-routing.module";
 import { TabsComponent } from "./tabs.component";
 
-import { CryptoService, DatabaseService, NotificationService, WalletService } from "../lib/services";
+import { CryptoService, DatabaseService, MarketService, NotificationService, WalletService } from "../lib/services";
 
 @NgModule({
     imports: [
@@ -21,6 +21,7 @@ import { CryptoService, DatabaseService, NotificationService, WalletService } fr
     providers: [
         CryptoService,
         DatabaseService,
+        MarketService,
         NotificationService,
         WalletService
     ],
