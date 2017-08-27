@@ -1,9 +1,11 @@
 import { Injectable } from "@angular/core";
-import { Http, Headers, RequestOptions, Response } from "@angular/http";
+import { Http, Headers, RequestOptions, Response, URLSearchParams } from "@angular/http";
 import { Observable, ReplaySubject } from 'rxjs/Rx';
 
 import { Currency, HttpError, Transaction, Wallet } from "../model";
 import { CryptoService, DatabaseService, NotificationService} from "./";
+
+import 'rxjs/add/operator/toPromise';
 
 
 @Injectable()
@@ -12,7 +14,7 @@ export class WalletService {
     //private static readonly walletURL: string = "https://wallet.cryptoguru.org";
     //private static readonly walletPort: string = "8125"; // Testnet
 
-    private static readonly walletURL: string = "http://176.9.47.157";
+    private static readonly walletURL: string = "http://176.9.47.157:6876/burst";
     private static readonly walletPort: string = "6876"; // Testnet
 
     constructor(
@@ -40,17 +42,14 @@ export class WalletService {
             this.cryptoService.getAccountIdFromBurstAddress(input)
                 .then(id => {
                     wallet.id = id;
-                    /*
-                    this.getBalance(wallet)
+                    this.getBalance(wallet.id)
                         .then(balance => {
-
+                            console.log(balance);
+                            this.databaseService.saveWallet(wallet).then(ac => {
+                                this.notificationService.info("saved");
+                            });
                         });
-                        */
                 });
-            this.databaseService.saveWallet(wallet).then(ac => {
-                this.notificationService.info("saved");
-            });
-
         }
         return new Promise((resolve, reject) => {
 
@@ -85,15 +84,17 @@ export class WalletService {
             .catch(error => this.handleError(error));
     }
 
-    public getBalance(wallet: Account): Promise<number> {
-        let fields = {
-            "Content-Type": "application/json",
-            "requestType": "getBalance",
-            "account": wallet.id
-        };
-        return this.http.get(WalletService.walletURL + ":" + WalletService.walletPort, this.getRequestOptions(fields)).toPromise()
+    public getBalance(id: string): Promise<number> {
+        let params: URLSearchParams = new URLSearchParams();
+        params.set("requestType", "getBalance");
+        params.set("account", id);
+        let requestOptions = this.getRequestOptions();
+        requestOptions.params = params;
+        return this.http.get(WalletService.walletURL, requestOptions).toPromise()
             .then(response => {
-                return response.json() || 0;
+                let balanceString = response.json().guaranteedBalanceNQT;
+                balanceString = this.convertStringToNumber(balanceString);
+                return parseFloat(balanceString);
             })
             .catch(error => this.handleError(error));
     }
@@ -142,13 +143,18 @@ export class WalletService {
             .catch(error => this.handleError(error));
     }
 
-    public getRequestOptions(fields) {
+    public getRequestOptions(fields = {}) {
         let headers = new Headers(fields);
         let options = new RequestOptions({ headers: headers });
         return options;
     }
 
     private handleError(error: Response | any) {
-        return Promise.reject(new HttpError(error.json()));
+        console.log(error);
+        return Promise.reject(new HttpError(error));
+    }
+
+    private convertStringToNumber(str, value = ".", position = 8) {
+        return str.substring(0, str.length - position) + value + str.substring(str.length-position);
     }
 }

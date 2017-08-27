@@ -48,12 +48,13 @@ export class ImportComponent implements OnInit {
     }
 
     public onTapImport(e) {
-        this.input = "BURST-LP4T-ZQSJ-9XMS-77A7W";
+        this.input = "BURST-KE7T-AA9D-5X6B-FKALA";
         this.active = false;
         if (this.input.length > 0) {
             if (!this.active && !this.walletService.isBurstcoinAddress(this.input)) {
                 this.snackbar.simple("Input is not a Burstcoin address");
             } else {
+                console.log("import")
                 this.walletService.importBurstcoinWallet(this.input, this.active);
                 this.router.navigate(['tabs']);
             }

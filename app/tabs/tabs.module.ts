@@ -1,6 +1,6 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
-import { HttpModule } from "@angular/http";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
+import { NativeScriptHttpModule } from "nativescript-angular/http";
 
 import { BalanceComponent } from "./balance/balance.component";
 import { TabsRoutingModule } from "./tabs-routing.module";
@@ -10,8 +10,8 @@ import { CryptoService, DatabaseService, NotificationService, WalletService } fr
 
 @NgModule({
     imports: [
-        HttpModule,
         NativeScriptModule,
+        NativeScriptHttpModule,
         TabsRoutingModule
     ],
     declarations: [

@@ -11,7 +11,7 @@ export class DatabaseService extends Database {
 
     private database: any;
     private ready: boolean;
-    private static readonly path: string = fs.path.join(fs.knownFolders.currentApp().path, "wallet.db");
+    private static readonly path: string = fs.path.join(fs.knownFolders.currentApp().path, "loki.db");
 
     constructor() {
         super();
@@ -27,6 +27,10 @@ export class DatabaseService extends Database {
         if (wallets == null) {
             wallets = this.database.addCollection("wallets", { unique : ["id"]});
         }
+        let settings = this.database.getCollection("settings");
+        if (settings == null) {
+            settings = this.database.addCollection("settings", { unique : ["id"]});
+        }
         this.ready = true;
         this.database.saveDatabase();
     }
@@ -38,13 +42,16 @@ export class DatabaseService extends Database {
                 let rs = wallets.find({ id : wallet.id });
                 if (rs.length == 0) {
                     wallets.insert(wallet);
-                    /*
+                } else {
                     wallets.chain().find({ id : wallet.id }).update(w => {
-                        console.log(JSON.stringify(w));
-
+                        w.balance = wallet.balance;
+                        w.type = wallet.type;
+                        w.selected = wallet.selected;
+                        w.publicKey = wallet.publicKey;
+                        w.privateKey = wallet.privateKey;
                     });
-                    */
                 }
+                console.log(JSON.stringify(wallets.data));
                 this.database.saveDatabase();
                 resolve(true);
             } else {
@@ -53,12 +60,17 @@ export class DatabaseService extends Database {
         });
     }
 
-    public findWallet(id: string): Promise<any> {
+    public getWallet(id: string): Promise<Wallet> {
         return new Promise((resolve, reject) => {
             if (this.ready) {
                 let keys = this.database.getCollection("wallet");
                 let rs = keys.find({ id : id });
-                resolve(rs);
+                if (rs.length > 0) {
+                    let wallet = new Wallet(rs[0]);
+                    resolve(wallet);
+                } else {
+                    resolve(undefined)
+                }
             } else {
                 reject(false);
             }
@@ -68,8 +80,9 @@ export class DatabaseService extends Database {
     public removeWallet(wallet: Wallet): Promise<boolean> {
         return new Promise((resolve, reject) => {
             if (this.ready) {
-                let keys = this.database.getCollection("keys");
-                let rs = keys.chain().find({ id : wallet.id }).remove();
+                let wallets = this.database.getCollection("wallets");
+                let rs = wallets.chain().find({ id : wallet.id }).remove();
+                console.log(JSON.stringify(wallets.data));
                 this.database.saveDatabase();
                 resolve(true);
             } else {

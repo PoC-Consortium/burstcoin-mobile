@@ -1,5 +1,5 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
-import { HttpModule} from '@angular/http';
+import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 
 import { ImportRoutingModule } from "./import.routing";
@@ -11,8 +11,8 @@ import { CryptoService, DatabaseService, NotificationService, WalletService } fr
 @NgModule({
     imports: [
         NativeScriptModule,
-        ImportRoutingModule,
-        HttpModule
+        NativeScriptHttpModule,
+        ImportRoutingModule
     ],
     declarations: [
         ImportComponent
@@ -21,8 +21,7 @@ import { CryptoService, DatabaseService, NotificationService, WalletService } fr
         CryptoService,
         DatabaseService,
         NotificationService,
-        WalletService,
-
+        WalletService
     ],
     schemas: [
         NO_ERRORS_SCHEMA

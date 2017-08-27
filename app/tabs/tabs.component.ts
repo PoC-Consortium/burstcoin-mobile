@@ -20,24 +20,7 @@ export class TabsComponent implements OnInit {
         private notificationService: NotificationService,
         private walletService: WalletService
     ) {
-        this.walletService.importBurstcoinWallet("BURST-LP4T-ZQSJ-9XMS-77A7W", false);
-
-        let wallet = new Wallet();
-        wallet.id = "6779331401231193177"
-        wallet.type = "offline";
-        wallet.address = "BURST-LP4T-ZQSJ-9XMS-77A7W";
-        wallet.selected = true;
-
-        setTimeout(x => {
-            this.databaseService.saveWallet(wallet)
-                .then(success => {
-                    console.log(success);
-                })
-                .catch(err => {
-                    console.log(err);
-                });
-        }, 1000);
-
+        
     }
 
     ngOnInit(): void {
