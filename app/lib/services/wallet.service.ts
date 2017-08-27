@@ -19,7 +19,7 @@ export class WalletService {
     private static readonly walletURL: string = "http://176.9.47.157:6876/burst";
     private static readonly walletPort: string = "6876"; // Testnet
 
-    public currentWallet: BehaviorSubject<any> = new BehaviorSubject(null);
+    public currentWallet: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
     constructor(
         private http: Http = undefined,

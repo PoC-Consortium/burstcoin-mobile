@@ -2,10 +2,13 @@ import { Component, OnInit } from "@angular/core";
 import { isAndroid } from "platform";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
 import { Label } from "ui/label";
+import { Image } from "ui/image"
 
 import { BurstAddress, Wallet } from "../../lib/model";
 
 import { DatabaseService, MarketService, NotificationService, WalletService } from "../../lib/services";
+
+let ZXing = require('nativescript-zxing');
 
 @Component({
     selector: "balance",
@@ -21,6 +24,8 @@ export class BalanceComponent implements OnInit {
     balance: string;
     balanceBTC: string;
     balanceCur: string;
+    qrcode: Image;
+    zx: any;
 
     constructor(
         private databaseService: DatabaseService,
@@ -32,19 +37,25 @@ export class BalanceComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.walletService.currentWallet.subscribe((wallet: Wallet) => this.update(wallet));
+        this.zx = new ZXing();
+        this.walletService.currentWallet.subscribe((wallet: Wallet) => {
+            if (wallet != undefined) {
+                this.update(wallet);
+            }
+        });
     }
 
     public update(wallet: Wallet) {
-        console.log("last" + JSON.stringify(wallet));
         this.wallet = wallet;
         this.address = wallet.address;
-        this.balance = wallet.balance.toFixed(8);
+        this.balance = "Balance: " + this.marketService.getPriceBurstcoin(wallet.balance);
         this.marketService.getCurrency()
             .then(currency => {
-                this.balanceBTC = (wallet.balance * currency.priceBTC).toString() + " BTC";
-                this.balanceCur = (wallet.balance * currency.priceCur).toString() + " " + currency.currency;
+                this.balanceBTC = this.marketService.getPriceBTC(wallet.balance, currency);
+                this.balanceCur = this.marketService.getPriceFiatCurrency(wallet.balance, currency);
             })
+        // generate qr code image
+        this.qrcode = this.zx.createBarcode({encode: wallet.address, height: 400, width: 400, format: ZXing.QR_CODE});
         // TODO: update qr code here
     }
 
