@@ -96,13 +96,11 @@ export class DatabaseService extends Database {
             if (this.ready.value) {
                 let wallets = this.database.getCollection("wallets");
                 let rs = wallets.find();
-                /*
                 let ws = [];
                 rs.map(single => {
                     ws.push(new Wallet(single))
                 })
-                */
-                resolve(rs);
+                resolve(ws);
             } else {
                 reject([]);
             }

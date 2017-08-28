@@ -31,10 +31,22 @@ export class AccountsComponent implements OnInit {
         this.databaseService.getAllWallets()
             .then(wallets => {
                 this.wallets = wallets;
+                this.marketService.getCurrency()
+                    .then(currency => {
+                        this.wallets.map(wallet => {
+                            wallet.balanceStringBTC = this.marketService.getPriceBTC(wallet.balance, currency);
+                            wallet.balanceStringCur = this.marketService.getPriceFiatCurrency(wallet.balance, currency);
+                        })
+                    })
+
             })
             .catch(err => {
                 console.log("No wallets found: " + err);
             })
+    }
+
+    public convert(balance: number) {
+        return balance * 10;
     }
 
 }
