@@ -4,7 +4,7 @@ import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-mo
 import { Label } from "ui/label";
 import { Image } from "ui/image"
 
-import { BurstAddress, Wallet } from "../../lib/model";
+import { BurstAddress, Currency, Wallet } from "../../lib/model";
 
 import { DatabaseService, MarketService, NotificationService, WalletService } from "../../lib/services";
 
@@ -31,22 +31,24 @@ export class AccountsComponent implements OnInit {
         this.databaseService.getAllWallets()
             .then(wallets => {
                 this.wallets = wallets;
-                this.marketService.getCurrency()
-                    .then(currency => {
-                        this.wallets.map(wallet => {
-                            wallet.balanceStringBTC = this.marketService.getPriceBTC(wallet.balance, currency);
-                            wallet.balanceStringCur = this.marketService.getPriceFiatCurrency(wallet.balance, currency);
-                        })
+                if (this.marketService.currency.value != undefined) {
+                    this.wallets.map(wallet => {
+                        wallet.balanceStringBTC = this.marketService.getPriceBTC(wallet.balance);
+                        wallet.balanceStringCur = this.marketService.getPriceFiatCurrency(wallet.balance);
                     })
-
+                }
             })
             .catch(err => {
                 console.log("No wallets found: " + err);
             })
+
+        this.marketService.currency.subscribe((currency: Currency) => {
+            this.wallets.map(wallet => {
+                wallet.balanceStringBTC = this.marketService.getPriceBTC(wallet.balance);
+                wallet.balanceStringCur = this.marketService.getPriceFiatCurrency(wallet.balance);
+            })
+        });
     }
 
-    public convert(balance: number) {
-        return balance * 10;
-    }
 
 }

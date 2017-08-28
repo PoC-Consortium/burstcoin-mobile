@@ -1,20 +1,26 @@
 import { Injectable } from "@angular/core";
 import { Http, Headers, RequestOptions, Response, URLSearchParams } from "@angular/http";
-import { Observable, ReplaySubject } from 'rxjs/Rx';
+import { Observable, BehaviorSubject } from 'rxjs/Rx';
 import { Currency, HttpError } from "../model";
 
 @Injectable()
 export class MarketService {
 
-    constructor(private http: Http) {
+    public currency: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
+    constructor(private http: Http) {
+        this.updateCurrency();
+    }
+
+    public setCurrency(currency: Currency) {
+        this.currency.next(currency);
     }
 
     /*
     * Get Currency Data from coinmarketcap
     * TODO Provide interface, for easy swap of currency data provider
     */
-    public getCurrency(currency: string = undefined): Promise<Currency> {
+    public updateCurrency(currency: string = undefined): void {
             let params: URLSearchParams = new URLSearchParams();
             let requestOptions = this.getRequestOptions();
             if (currency != undefined) {
@@ -22,18 +28,18 @@ export class MarketService {
                 params.set("convert", currency);
                 requestOptions.params = params;
             }
-            return this.http.get("https://api.coinmarketcap.com/v1/ticker/burst", requestOptions)
+            this.http.get("https://api.coinmarketcap.com/v1/ticker/burst", requestOptions)
                 .toPromise()
                 .then(response => {
                     let c = response.json() || [];
                     if (c.length > 0) {
                         // set currency for currency object
                         c[0]["currency"] = currency;
-                        return new Currency(c[0]);
+                        this.setCurrency(new Currency(c[0]));
                     }
                 })
                 .catch(error => {
-                    return undefined;
+                    console.log("currency update failed");
                 });
     }
 
@@ -46,15 +52,15 @@ export class MarketService {
         }
     }
 
-    public getPriceBTC(coins: number, currency: Currency) : string {
-        return (coins * currency.priceBTC).toFixed(8) + " BTC";
+    public getPriceBTC(coins: number) : string {
+        return (coins * this.currency.value.priceBTC).toFixed(8) + " BTC";
     }
 
-    public getPriceFiatCurrency(coins: number, currency: Currency) : string {
-        if (currency.currency != undefined) {
-            return (coins * currency.priceCur).toFixed(2) + " " + currency.currency.toUpperCase();
+    public getPriceFiatCurrency(coins: number) : string {
+        if (this.currency.value.currency != undefined) {
+            return (coins * this.currency.value.priceCur).toFixed(2) + " " + this.currency.value.currency.toUpperCase();
         } else {
-            return (coins * currency.priceUSD).toFixed(2) + " $" ;
+            return (coins * this.currency.value.priceUSD).toFixed(2) + " $" ;
         }
     }
 

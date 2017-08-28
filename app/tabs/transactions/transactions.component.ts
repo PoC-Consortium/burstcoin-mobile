@@ -5,6 +5,9 @@ import { Label } from "ui/label";
 
 import { Transaction } from "../../lib/model";
 
+import { DatabaseService, MarketService, NotificationService, WalletService } from "../../lib/services";
+
+
 @Component({
     selector: "transactions",
     moduleId: module.id,
@@ -15,15 +18,17 @@ export class TransactionsComponent implements OnInit {
 
     transactions: Transaction[];
 
-    constructor() {
-        
+    constructor(
+        private databaseService: DatabaseService,
+        private marketService: MarketService,
+        private notificationService: NotificationService,
+        private walletService: WalletService
+    ) {
+
     }
 
     ngOnInit(): void {
-        /* ***********************************************************
-        * Use the "ngOnInit" handler to initialize data for the whole tab
-        * navigation layout as a whole.
-        *************************************************************/
+
     }
 
     public onTapItem(e) {
