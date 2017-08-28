@@ -26,24 +26,9 @@ export class WalletService {
         private http: Http = undefined,
         private cryptoService: CryptoService = undefined,
         private databaseService: DatabaseService = undefined,
-        private notificationService: NotificationService = undefined,
-        private router: Router
+        private notificationService: NotificationService = undefined
     ) {
-        this.databaseService.ready.subscribe((init: boolean) => this.loadSelectedWallet(init));
-    }
 
-    private loadSelectedWallet(init) {
-        if (init) {
-            // get selected wallet from database
-            this.databaseService.getSelectedWallet()
-                .then(wallet => {
-                    this.setCurrentWallet(wallet);
-                })
-                .catch(wallet => {
-                    console.log("redirect to start, no wallet exists");
-                    this.router.navigate(['import']);
-                })
-        }
     }
 
     public setCurrentWallet(wallet: Wallet) {

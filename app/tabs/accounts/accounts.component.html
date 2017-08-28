@@ -1,0 +1,7 @@
+<ListView [items]="wallets" (itemTap)="onItemTap($event)">
+    <ng-template let-item="wallet" let-i="index" let-odd="odd" let-even="even">
+        <StackLayout [class.odd]="odd" [class.even]="even">
+            <Label [text]='"index: " + i'></Label>
+        </StackLayout>
+    </ng-template>
+</ListView>

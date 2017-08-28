@@ -13,7 +13,7 @@ export class DatabaseService extends Database {
     private database: any;
     private static readonly path: string = fs.path.join(fs.knownFolders.currentApp().path, "loki.db");
 
-    public ready: BehaviorSubject<any> = new BehaviorSubject(undefined);
+    public ready: BehaviorSubject<any> = new BehaviorSubject(false);
 
     constructor() {
         super();
@@ -87,6 +87,24 @@ export class DatabaseService extends Database {
                 }
             } else {
                 reject(undefined);
+            }
+        });
+    }
+
+    public getAllWallets(): Promise<Wallet[]> {
+        return new Promise((resolve, reject) => {
+            if (this.ready.value) {
+                let wallets = this.database.getCollection("wallets");
+                let rs = wallets.find();
+                /*
+                let ws = [];
+                rs.map(single => {
+                    ws.push(new Wallet(single))
+                })
+                */
+                resolve(rs);
+            } else {
+                reject([]);
             }
         });
     }

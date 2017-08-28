@@ -54,12 +54,13 @@ export class ImportComponent implements OnInit {
             if (!this.active && !this.walletService.isBurstcoinAddress(this.input)) {
                 this.snackbar.simple("Input is not a Burstcoin address");
             } else {
-                this.walletService.importBurstcoinWallet(this.input, this.active).then(wallet => {
-                    this.router.navigate(['tabs']);
-                })
-                .catch(error => {
-                    this.notificationService.info(error);
-                });
+                this.walletService.importBurstcoinWallet(this.input, this.active)
+                    .then(wallet => {
+                        this.router.navigate(['tabs']);
+                    })
+                    .catch(error => {
+                        this.notificationService.info(error);
+                    });
             }
         } else {
             this.notificationService.info("Please enter something!");

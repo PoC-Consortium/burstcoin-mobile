@@ -38,6 +38,7 @@ export class BalanceComponent implements OnInit {
 
     ngOnInit(): void {
         this.zx = new ZXing();
+        this.update(this.walletService.currentWallet.value);
         this.walletService.currentWallet.subscribe((wallet: Wallet) => {
             if (wallet != undefined) {
                 this.update(wallet);
@@ -47,7 +48,7 @@ export class BalanceComponent implements OnInit {
 
     public update(wallet: Wallet) {
         this.wallet = wallet;
-        this.address = wallet.address;
+        this.address = wallet.type == 'offline' ? wallet.address + " (" + wallet.type + ")" : wallet.address;
         this.balance = "Balance: " + this.marketService.getPriceBurstcoin(wallet.balance);
         this.marketService.getCurrency()
             .then(currency => {

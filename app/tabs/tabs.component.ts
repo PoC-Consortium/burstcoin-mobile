@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from '@angular/router';
 import { isAndroid } from "platform";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
 
@@ -18,13 +19,16 @@ export class TabsComponent implements OnInit {
     constructor(
         private databaseService: DatabaseService,
         private notificationService: NotificationService,
+        private router: Router,
         private walletService: WalletService
     ) {
 
     }
 
     ngOnInit(): void {
-
+        if (this.walletService.currentWallet.value == undefined) {
+            this.router.navigate(['start']);
+        }
     }
 
     get title(): string {

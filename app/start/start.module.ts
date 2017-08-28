@@ -4,10 +4,12 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { StartRoutingModule } from "./start.routing";
 import { StartComponent } from "./start.component";
 
+import { SharedModule } from "../lib/shared.module";
 
 @NgModule({
     imports: [
         NativeScriptModule,
+        SharedModule,
         StartRoutingModule
     ],
     declarations: [
