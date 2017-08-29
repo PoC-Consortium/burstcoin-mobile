@@ -835,7 +835,7 @@ export class Curve25519 {
      * s may be NULL if you don't care
      *
      * WARNING: if s is not NULL, this function has data-dependent timing */
-    public keygen (k) {
+    public static keygen (k) {
         let P = [];
         let s = [];
         k = k || [];
