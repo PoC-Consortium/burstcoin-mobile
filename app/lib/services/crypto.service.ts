@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Converter } from "../util";
 import { PassPhraseGenerator } from "../util/crypto";
-import { BurstAddress } from "../model";
+import { BurstAddress, Curve25519, Keypair } from "../model";
 
 let CryptoJS = require("crypto-js");
-let NaCL = require('js-nacl');
 let bigInt = require("big-integer");
 
 @Injectable()
 export class CryptoService {
 
+    private ec;
     private passPhraseGenerator: PassPhraseGenerator;
 
     constructor() {
         this.passPhraseGenerator = new PassPhraseGenerator();
+        this.ec = new EC('ed25519');
     }
 
     /*
@@ -32,7 +33,7 @@ export class CryptoService {
     * Ed25519 sign key pair. Public key can be converted to curve25519 public key (Burst Address)
     * Private Key can be converted to curve25519 private key for checking transactions
     */
-    public generateMasterPublicAndPrivateKey(passPhrase: string): Promise<string[]> {
+    public generateMasterPublicAndPrivateKey(passPhrase: string): Promise<Keypair> {
         return new Promise((resolve, reject) => {
             // Hash the passphrase to get sha word array (32 bytes) which serves
             // as master seed for ed25519 key generation
@@ -41,10 +42,14 @@ export class CryptoService {
             // https://ed25519.cr.yp.to/
             // https://nacl.cr.yp.to/
             // https://www.ietf.org/mail-archive/web/cfrg/current/msg04996.html
-            let keys;
-            NaCL.instantiate(nacl => { keys = nacl.crypto_sign_seed_keypair(Converter.convertWordArrayToUint8Array(hashedPassPhrase)) });
-            resolve([CryptoJS.enc.Hex.stringify(Converter.convertUint8ArrayToWordArray(keys.signPk)),
-                CryptoJS.enc.Hex.stringify(Converter.convertUint8ArrayToWordArray(keys.signSk))]); //[keys.signPk, keys.signSk]
+            let keys = Curve25519.keygen(Converter.convertWordArrayToByteArray(hashedPassPhrase));
+            let keypair: Keypair = new Keypair({
+                "publicKey" : converters.byteArrayToHexString(keys.p),
+                "privateKey": converters.byteArrayToHexString(keys.s)
+            });
+            console.log(keypair.publicKey);
+            console.log(keypair.privateKey);
+            resolve(keypair);
         });
     }
 
@@ -105,6 +110,13 @@ export class CryptoService {
             let decrypted = CryptoJS.AES.decrypt(encryptedBase64, key);
             resolve(decrypted.toString(CryptoJS.enc.Utf8));
         });
+    }
+
+    /*
+    *
+    */
+    public hashSHA256(input: string): string {
+        return CryptoJS.SHA256(input).toString();
     }
 
     /*

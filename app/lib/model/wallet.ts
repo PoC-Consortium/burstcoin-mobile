@@ -1,4 +1,4 @@
-
+import { Keypair } from "./keypair";
 
 export class Wallet {
 
@@ -8,11 +8,11 @@ export class Wallet {
     type: string;
     selected: boolean;
 
-    publicKey: string;
-    privateKey: string;
-
     balanceStringBTC: string;
     balanceStringCur: string;
+
+    pin: string;
+    keypair: Keypair;
 
     constructor(data: any = {}) {
         this.id = data.id || undefined;
@@ -22,7 +22,11 @@ export class Wallet {
         this.balanceStringCur = data.balance || undefined;
         this.type = data.type || undefined;
         this.selected = data.selected || undefined;
-        this.publicKey = data.publicKey || undefined;
-        this.privateKey = data.privateKey || undefined;
+        this.keypair = new Keypair();
+        if (data.keypair != undefined) {
+            this.pin = data.pin || undefined;
+            this.keypair.publicKey = data.keypair.publicKey || undefined;
+            this.keypair.privateKey = data.keypair.privateKey || undefined;
+        }
     }
 }

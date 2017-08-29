@@ -53,8 +53,8 @@ export class DatabaseService extends Database {
                         w.balance = wallet.balance;
                         w.type = wallet.type;
                         w.selected = wallet.selected;
-                        w.publicKey = wallet.publicKey;
-                        w.privateKey = wallet.privateKey;
+                        w.keypair.publicKey = wallet.keypair.publicKey;
+                        w.keypair.privateKey = wallet.keypair.privateKey;
                     });
                 }
                 this.database.saveDatabase();

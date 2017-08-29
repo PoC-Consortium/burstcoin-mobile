@@ -48,12 +48,10 @@ export class ImportComponent implements OnInit {
     }
 
     public onTapImport(e) {
-        this.input = "BURST-KE7T-AA9D-5X6B-FKALA";
-        this.active = false;
+        this.input = "climb taught wrist stroke suit creek trail remove stock shimmer swear stubborn";
+        this.active = true;
         if (this.input.length > 0) {
-            if (!this.active && !this.walletService.isBurstcoinAddress(this.input)) {
-                this.snackbar.simple("Input is not a Burstcoin address");
-            } else {
+            if (this.active || this.walletService.isBurstcoinAddress(this.input)) {
                 this.walletService.importBurstcoinWallet(this.input, this.active)
                     .then(wallet => {
                         this.router.navigate(['tabs']);
@@ -61,6 +59,8 @@ export class ImportComponent implements OnInit {
                     .catch(error => {
                         this.notificationService.info(error);
                     });
+            } else {
+                this.snackbar.simple("Input is not a Burstcoin address");
             }
         } else {
             this.notificationService.info("Please enter something!");

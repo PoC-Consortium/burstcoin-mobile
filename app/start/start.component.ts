@@ -38,11 +38,11 @@ export class StartComponent implements OnInit {
             this.databaseService.getSelectedWallet()
                 .then(wallet => {
                     this.walletService.setCurrentWallet(wallet);
-                    this.router.navigate(['tabs']);
+                    this.router.navigate(['import']);
                 })
                 .catch(wallet => {
                     console.log("no wallet exists");
-                    this.router.navigate(['start']);
+                    this.router.navigate(['import']);
                 })
         }
     }
