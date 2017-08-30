@@ -19,8 +19,10 @@
         }
     },
     "exclude": [
+        "hooks",
         "node_modules",
         "platforms",
-        "**/*.aot.ts"
+        "**/*.aot.ts",
+        "app/lib/util/crypto/curve25519.js"
     ]
 }

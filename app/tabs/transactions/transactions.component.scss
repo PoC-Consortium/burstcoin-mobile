@@ -1,12 +1,11 @@
+@import '../app-variables';
+
 .test {
 
 }
 
-.balance-container {
-    background-color: #EAEAEA;
-    padding: 10px;
-    margin: 200px;
-    text-align:center;
+.transaction-container {
+    background-color: $background-light;
 }
 
 .actions-ccontainer {

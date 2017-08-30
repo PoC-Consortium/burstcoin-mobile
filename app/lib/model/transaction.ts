@@ -13,14 +13,18 @@ export class Transaction {
     signature: string;
     signatureHash: string;
     fullHash: string;
+    block: string;
+
     amountNQT: number;
     feeNQT: number;
+    confirmations: number;
 
     type: number;
     subtype: number;
     version: number;
     deadline: number;
     height: number;
+    blockTimestamp: number;
     timestamp: number;
 
     constructor(data: any = {}) {
@@ -29,14 +33,17 @@ export class Transaction {
         this.senderAddress = data.senderRS|| undefined;
         this.senderPublicKey = data.senderPublicKey || undefined;
 
-        this.recipientId = data.recipientId || undefined;
+        this.recipientId = data.recipient || undefined;
         this.recipientAddress = data.recipientRS || undefined;
 
         this.signature = data.signature || undefined;
         this.signatureHash = data.signatureHash || undefined;
         this.fullHash = data.fullHash || undefined;
+        this.block = data.block || undefined;
+
         this.amountNQT = data.amountNQT || 0;
         this.feeNQT = data.feeNQT || 0;
+        this.confirmations = data.confirmations || 0;
 
         this.type = data.type || 0;
         this.subtype = data.subtype || 0;
@@ -44,5 +51,6 @@ export class Transaction {
         this.deadline = data.deadline || 0;
         this.timestamp = data.timestamp || 0;
         this.height = data.height || 0;
+        this.blockTimestamp = data.blockTimestamp || 0;
     }
 }

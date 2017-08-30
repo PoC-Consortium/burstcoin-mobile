@@ -1,4 +1,5 @@
 import { Keypair } from "./keypair";
+import { Transaction } from "./transaction";
 
 export class Wallet {
 
@@ -13,6 +14,7 @@ export class Wallet {
 
     pin: string;
     keypair: Keypair;
+    transactions: Transaction[];
 
     constructor(data: any = {}) {
         this.id = data.id || undefined;
@@ -27,6 +29,11 @@ export class Wallet {
             this.pin = data.pin || undefined;
             this.keypair.publicKey = data.keypair.publicKey || undefined;
             this.keypair.privateKey = data.keypair.privateKey || undefined;
+        }
+        if (data.transactions != undefined && data.transactions.length > 0) {
+            this.transactions = data.transactions;
+        } else {
+            this.transactions = [];
         }
     }
 }

@@ -92,11 +92,15 @@ export class WalletService {
                                     this.getBalance(wallet.id)
                                         .then(balance => {
                                             wallet.balance = balance;
-                                            return this.databaseService.saveWallet(wallet).then(ac => {
-                                                this.notificationService.info(JSON.stringify(wallet));
-                                                this.setCurrentWallet(wallet);
-                                                resolve(wallet);
-                                            });
+                                            this.getTransactions(wallet.id)
+                                                .then(transactions => {
+                                                    wallet.transactions = transactions;
+                                                    return this.databaseService.saveWallet(wallet).then(ac => {
+                                                        this.notificationService.info(JSON.stringify(wallet));
+                                                        this.setCurrentWallet(wallet);
+                                                        resolve(wallet);
+                                                    });
+                                                })
                                         })
                                         .catch(error => {
                                             return this.databaseService.saveWallet(wallet).then(ac => {
@@ -115,17 +119,25 @@ export class WalletService {
         });
     }
 
-    public getTransactions(wallet: Wallet): Promise<Transaction[]> {
-        let fields = {
-            "Content-Type": "application/json",
-            "requestType": "getAccountTransactions",
-            "firstIndex": 0,
-            "lastIndex": 15,
-            "account": wallet.id
-        };
-        return this.http.get(WalletService.walletURL + ":" + WalletService.walletPort, this.getRequestOptions(fields)).toPromise()
+    public getTransactions(id: string): Promise<Transaction[]> {
+        let params: URLSearchParams = new URLSearchParams();
+        params.set("requestType", "getAccountTransactions");
+        params.set("firstIndex", "0");
+        params.set("lastIndex", "15");
+        params.set("account", id);
+        let requestOptions = this.getRequestOptions();
+        requestOptions.params = params;
+        return this.http.get(WalletService.walletURL, requestOptions).toPromise()
             .then(response => {
-                return response.json() || [];
+                console.log(JSON.stringify(response.json()));
+                let transactions: Transaction[] = [];
+                response.json().transactions.map(transaction => {
+                    console.log(transaction);
+                    transaction.amountNQT = parseFloat(this.convertStringToNumber(transaction.amountNQT));
+                    transaction.feeNQT = parseFloat(this.convertStringToNumber(transaction.feeNQT));
+                    transactions.push(new Transaction(transaction));
+                });
+                return transactions || [];
             })
             .catch(error => this.handleError(error));
     }

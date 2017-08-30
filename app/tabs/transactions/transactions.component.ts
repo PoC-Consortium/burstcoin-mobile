@@ -17,6 +17,7 @@ import { DatabaseService, MarketService, NotificationService, WalletService } fr
 export class TransactionsComponent implements OnInit {
 
     transactions: Transaction[];
+    ownId: string;
 
     constructor(
         private databaseService: DatabaseService,
@@ -28,6 +29,11 @@ export class TransactionsComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.transactions = this.walletService.currentWallet.value.transactions;
+        this.ownId = this.walletService.currentWallet.value.id;
+    }
+
+    public convertFiat() {
 
     }
 

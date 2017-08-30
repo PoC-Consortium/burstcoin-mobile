@@ -11,6 +11,8 @@ import { BalanceComponent } from "./balance/balance.component";
 import { ReceiveComponent } from "./balance/receive/receive.component";
 import { SendComponent } from "./balance/send/send.component";
 
+import { TransactionsComponent } from "./transactions/transactions.component";
+
 import { SharedModule } from "../lib/shared.module";
 
 @NgModule({
@@ -24,7 +26,8 @@ import { SharedModule } from "../lib/shared.module";
         AccountsComponent,
         BalanceComponent,
         ReceiveComponent,
-        SendComponent
+        SendComponent,
+        TransactionsComponent
     ],
     providers: [
         BarcodeScanner

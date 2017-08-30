@@ -48,8 +48,8 @@ export class ImportComponent implements OnInit {
     }
 
     public onTapImport(e) {
-        this.input = "climb taught wrist stroke suit creek trail remove stock shimmer swear stubborn";
-        this.active = true;
+        this.input = "BURST-KE7T-AA9D-5X6B-FKALA"; //"climb taught wrist stroke suit creek trail remove stock shimmer swear stubborn";
+        this.active = false;
         if (this.input.length > 0) {
             if (this.active || this.walletService.isBurstcoinAddress(this.input)) {
                 this.walletService.importBurstcoinWallet(this.input, this.active)

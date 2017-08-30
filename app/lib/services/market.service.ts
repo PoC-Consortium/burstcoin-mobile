@@ -58,9 +58,9 @@ export class MarketService {
 
     public getPriceFiatCurrency(coins: number) : string {
         if (this.currency.value.currency != undefined) {
-            return (coins * this.currency.value.priceCur).toFixed(2) + " " + this.currency.value.currency.toUpperCase();
+            return (coins * this.currency.value.priceCur).toFixed(8) + " " + this.currency.value.currency.toUpperCase();
         } else {
-            return (coins * this.currency.value.priceUSD).toFixed(2) + " $" ;
+            return (coins * this.currency.value.priceUSD).toFixed(8) + " $" ;
         }
     }
 
