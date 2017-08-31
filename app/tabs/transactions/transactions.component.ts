@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { isAndroid } from "platform";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
 import { Label } from "ui/label";
+import { Border } from "ui/border";
 
 import { Transaction } from "../../lib/model";
 

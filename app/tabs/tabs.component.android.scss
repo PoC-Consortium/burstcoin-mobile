@@ -6,4 +6,9 @@ TabView {
     selected-tab-text-color: $background-dark;
     android-selected-tab-text-color: $background-dark;
     android-selected-tab-highlight-color: $background-dark;
+    font-size: 10px;
+}
+
+.tab {
+    font-size: 14px;
 }

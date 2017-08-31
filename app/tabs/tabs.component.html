@@ -4,16 +4,16 @@
     </ActionBar>
 
     <TabView (selectedIndexChanged)="onSelectedIndexChanged($event)">
-        <StackLayout *tabItem="{title: 'Balance', iconSource: getIconSource('coins')}">
+        <StackLayout class="tab" *tabItem="{title: 'Balance', iconSource: getIconSource('coins')}">
             <balance></balance>
         </StackLayout>
-        <StackLayout *tabItem="{title: 'Transactions', iconSource: getIconSource('transactions')}">
+        <StackLayout class="tab" *tabItem="{title: 'History', iconSource: getIconSource('transactions')}">
             <transactions></transactions>
         </StackLayout>
-        <StackLayout *tabItem="{title: 'Accounts', iconSource: getIconSource('accounts')}">
+        <StackLayout class="tab" *tabItem="{title: 'Accounts', iconSource: getIconSource('accounts')}">
             <accounts></accounts>
         </StackLayout>
-        <StackLayout *tabItem="{title: 'Settings', iconSource: getIconSource('gears')}">
+        <StackLayout class="tab" *tabItem="{title: 'Settings', iconSource: getIconSource('gears')}">
 
         </StackLayout>
     </TabView>
