@@ -21,11 +21,25 @@ Page {
     background-color: $background-light;
 }
 
+.action-button {
+    width: 70%;
+    height: $btn-height;
+}
+
+.input {
+    //background-color: $background-dark;
+    color: $default-text;
+}
+
+.text-view-label {
+    font-size: $text-view-label-size;
+}
+
 .list-item {
     background-color: $background-light;
     margin: 30px 20px 0px 20px;
     padding: 30px 30px 30px 30px;
-    border-radius: 10px;
+    border-radius: $default-border;
 }
 
 // Font icon class
@@ -34,21 +48,41 @@ Page {
 }
 // Common page class
 .page-content {
-    margin: 50px;
-    padding: 20px;
 
-    .info-container {
-        border-radius: 20px;
-        background-color: #EAEAEA;
-        padding: 10px;
-        text-align:center;
+    .container {
+        height: 100%;
         vertical-align: middle;
-    }
 
-    .body-container {
-        padding: 10px;
-        text-align:center;
-        height: 90%;
+        .body-container {
+            background-color: $background-light;
+            text-align: center;
+            border-radius: $default-border;
+            width: 80%;
+            padding: 50px;
+        }
+
+        .info-container {
+            background-color: $background-light;
+            text-align: center;
+            border-radius: $default-border;
+            width: 80%;
+
+            .solo {
+                margin: 30px;
+            }
+
+            .top {
+                margin: 30px 30px 0px 30px;
+            }
+
+            .middle {
+                margin: 0px 30px 0px 30px;
+            }
+
+            .bottom {
+                margin: 0px 30px 30px 30px;
+            }
+        }
     }
 
     .page-placeholder {

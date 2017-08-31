@@ -12,10 +12,9 @@
                 <Label col="2" class="font-weight-bold font-italic" [text]="balanceCur"></Label>
             </GridLayout>
     </StackLayout>
-
-    <StackLayout class="actions-container" orientation="vertical">
+    <StackLayout orientation="vertical">
         <Button *ngIf="wallet?.type == 'active'" class="btn btn-primary btn-active action-button" text="Send" [nsRouterLink]="['balance/send']"></Button>
         <!--<Button class="btn btn-primary btn-active action-button" text="Receive" (tap)="onTapReceive($event)"></Button>-->
-        <Button *ngIf="wallet?.type == 'offline'" class="btn btn-primary btn-active action-button" text="Activate" [nsRouterLink]="['accounts/activate']"></Button>
+        <Button *ngIf="wallet?.type == 'offline'" class="btn btn-primary btn-active action-button fa" text="Activate &#xf05d;" [nsRouterLink]="['accounts/activate']"></Button>
     </StackLayout>
 </StackLayout>

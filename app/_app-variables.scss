@@ -19,6 +19,8 @@ $night-light: #01526C !default;
 // Skin
 $background: $base !default;
 $default-text: #000027 !default;
+$text-view-label-size: 18 !default;
+$default-border: 3 !default;
 $light-text: #fefcf8 !default;
 $background-dark: $base !default;
 $background-light: #fefcf8 !default;
@@ -49,11 +51,11 @@ $ab-color: $default-text !default;
 // Buttons
 $btn-color: $accent !default;
 $btn-color-inverse: $white !default;
-$btn-color-secondary: #01a0ec !default;
+$btn-color-secondary: $base !default;
 $btn-color-outline-highlighted: #c0ebff !default;
 $btn-color-disabled: #a4a4a4 !default;
 $btn-font-size: 18 !default;
-$btn-radius: 0 !default;
+$btn-radius: 3 !default;
 $btn-padding-x: 10 !default;
 $btn-padding-y: 10 !default;
 $btn-margin-x:	16 !default;

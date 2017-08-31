@@ -6,6 +6,7 @@ import { TabsRoutingModule } from "./tabs.routing";
 import { TabsComponent } from "./tabs.component";
 
 import { AccountsComponent } from "./accounts/accounts.component";
+import { ActivateComponent } from "./accounts/activate/activate.component";
 
 import { BalanceComponent } from "./balance/balance.component";
 import { ReceiveComponent } from "./balance/receive/receive.component";
@@ -24,6 +25,7 @@ import { SharedModule } from "../lib/shared.module";
     declarations: [
         TabsComponent,
         AccountsComponent,
+        ActivateComponent,
         BalanceComponent,
         ReceiveComponent,
         SendComponent,
