@@ -56,9 +56,26 @@ Page {
         .body-container {
             background-color: $background-light;
             text-align: center;
+            margin-top: 20px;
             border-radius: $default-border;
             width: 80%;
             padding: 50px;
+
+            .solo {
+                margin: 30px;
+            }
+
+            .top {
+                margin: 30px 30px 0px 30px;
+            }
+
+            .middle {
+                margin: 0px 30px 0px 30px;
+            }
+
+            .bottom {
+                margin: 0px 30px 30px 30px;
+            }
         }
 
         .info-container {

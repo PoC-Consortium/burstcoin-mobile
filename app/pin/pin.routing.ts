@@ -6,7 +6,7 @@ import { PinComponent } from "./pin.component";
 
 export const routes: Routes = [
     {
-        path: "",
+        path: ":type/:return",
         component: PinComponent
     }
 ];

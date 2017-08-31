@@ -10,6 +10,7 @@ import { SendComponent } from "./balance/send/send.component";
 const routes: Routes = [
     { path: "", component: TabsComponent },
     { path: "accounts/activate", component: ActivateComponent },
+    { path: "accounts/activate/:pin", component: ActivateComponent },
     { path: "balance/receive", component: ReceiveComponent },
     { path: "balance/send", component: SendComponent }
 ];

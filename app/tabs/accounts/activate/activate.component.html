@@ -2,17 +2,16 @@
     <StackLayout class="page-content" orientation="vertical">
         <StackLayout class="container" orientation="vertical">
             <StackLayout class="info-container" orientation="vertical">
+            </StackLayout>
+            <StackLayout class="body-container m-b-20" orientation="vertical">
                 <Label class="top text-view-label fa" text="&#xf05a;"></Label>
                 <Label textWrap="true" class="bottom" [text]="'Enter the passphrase of the wallet ' + walletService.currentWallet.value.address + ' here!'"></Label>
-            </StackLayout>
-            <StackLayout class="body-container m-t-20 m-b-20" orientation="vertical">
-                <StackLayout orientation="vertical">
-                    <Label class="text-view-label fa" text="&#xf084; Passphrase"></Label>
-                    <TextView class="input"></TextView>
-                </StackLayout>
+                <StackLayout style="width: 20%" class="solo hr-light"></StackLayout>
+                <Label class="text-view-label fa top" text="&#xf084; Passphrase"></Label>
+                <TextField class="input" returnKeyType="done"></TextField>
             </StackLayout>
             <StackLayout orientation="vertical">
-                <Button class="btn btn-primary btn-active action-button fa" text="Next &#xf18e;" (tap)="onTapActivate($event)"></Button>
+                <Button class="btn btn-primary btn-active action-button fa" text="Next &#xf18e;" (tap)="onTapNext($event)"></Button>
             </StackLayout>
         </StackLayout>
     </StackLayout>
