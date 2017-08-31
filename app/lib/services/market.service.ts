@@ -53,14 +53,22 @@ export class MarketService {
     }
 
     public getPriceBTC(coins: number) : string {
-        return (coins * this.currency.value.priceBTC).toFixed(8) + " BTC";
+        if (this.currency.value != undefined) {
+            return (coins * this.currency.value.priceBTC).toFixed(8) + " BTC";
+        } else {
+            return undefined;
+        }
     }
 
     public getPriceFiatCurrency(coins: number) : string {
-        if (this.currency.value.currency != undefined) {
-            return (coins * this.currency.value.priceCur).toFixed(8) + " " + this.currency.value.currency.toUpperCase();
+        if (this.currency.value != undefined) {
+            if (this.currency.value.currency != undefined) {
+                return (coins * this.currency.value.priceCur).toFixed(8) + " " + this.currency.value.currency.toUpperCase();
+            } else {
+                return (coins * this.currency.value.priceUSD).toFixed(8) + " $" ;
+            }
         } else {
-            return (coins * this.currency.value.priceUSD).toFixed(8) + " $" ;
+            return undefined;
         }
     }
 

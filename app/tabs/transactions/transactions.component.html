@@ -1,18 +1,18 @@
-
-<ListView [items]="transactions" (itemTap)="onTapItem($event)" class="list-group">
-    <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
-        <StackLayout class="transaction-container" [class.odd]="odd" [class.even]="even">
-            <GridLayout *ngIf="item.recipientId == ownId" class="m-x-auto p-t-10 p-10" columns="auto, auto,*,auto" rows="auto, auto">
-                <Label col="0" row="0" colSpan="2" class="font-weight-bold font-italic" [text]="item.senderAddress"></Label>
-                <Label col="0" row="1" class="font-weight-bold font-italic" [text]="item.amountNQT + ' BURST'"></Label>
-                <Label col="1" row="1" class="font-weight-bold font-italic" [text]="marketService.getPriceFiatCurrency(item.amountNQT)"></Label>
-            </GridLayout>
-            <GridLayout *ngIf="item.recipientId != ownId" class="m-x-auto p-t-10 p-10" columns="auto, auto,*,auto" rows="auto, auto">
-                <Label col="0" row="0" colSpan="2" class="font-weight-bold font-italic" [text]="item.recipientAddress"></Label>
-                <Label col="0" row="1" class="font-weight-bold font-italic" [text]="item.amountNQT + ' BURST'"></Label>
-                <Label col="1" row="1" class="font-weight-bold font-italic" [text]="marketService.getPriceFiatCurrency(item.amountNQT)"></Label>
-            </GridLayout>
-            <StackLayout class="hr-light"></StackLayout>
-        </StackLayout>
-    </ng-template>
-</ListView>
+<StackLayout orientation="vertical">
+    <ListView [items]="transactions" (itemTap)="onTapItem($event)" separatorColor="transparent">
+        <ng-template let-item="item" let-i="index">
+            <StackLayout>
+                <GridLayout *ngIf="item.recipientId == ownId" class="m-x-auto list-item" columns="auto, auto,*,auto" rows="auto, auto">
+                    <Label col="0" row="0" colSpan="2" class="font-weight-bold font-italic" [text]="item.senderAddress"></Label>
+                    <Label col="0" row="1" class="font-weight-bold font-italic" [text]="item.amountNQT + ' BURST'"></Label>
+                    <Label col="1" row="1" class="font-weight-bold font-italic" [text]="marketService.getPriceFiatCurrency(item.amountNQT)"></Label>
+                </GridLayout>
+                <GridLayout *ngIf="item.recipientId != ownId" class="m-x-auto list-item" columns="auto, auto,*,auto" rows="auto, auto">
+                    <Label col="0" row="0" colSpan="2" class="font-weight-bold font-italic" [text]="item.recipientAddress"></Label>
+                    <Label col="0" row="1" class="font-weight-bold font-italic" [text]="item.amountNQT + ' BURST'"></Label>
+                    <Label col="1" row="1" class="font-weight-bold font-italic" [text]="marketService.getPriceFiatCurrency(item.amountNQT)"></Label>
+                </GridLayout>
+            </StackLayout>
+        </ng-template>
+    </ListView>
+</StackLayout>

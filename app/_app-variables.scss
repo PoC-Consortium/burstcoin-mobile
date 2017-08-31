@@ -1,47 +1,88 @@
 // Colors
-$background-dark: #003366 !default;
-$background-light: #fefcf8 !default;
-
-$blue-dark: #022734 !default;
-$blue-light: #02556E !default;
-$blue-50: rgba($blue-dark, 0.5) !default;
-$blue-20: rgba($blue-dark, 0.2) !default;
-$blue-10: rgba($blue-dark, 0.1) !default;
-
-$accent-dark: #3A53FF !default;
-$accent-light: #4781FE !default;
-
+$black: #000 !default;
+$white: #fff !default;
+$base: #00264d !default;
+$grey: #e0e0e0 !default;
+$grey-background: #bababa !default;
+$charcoal: #303030 !default;
 $success-dark: #06CE6A !default;
 $success-light: #00E676 !default;
-
 $warning-dark: #f39c11 !default;
 $warning-light: #F2C112 !default;
-
 $error-dark: #D84039 !default;
 $error-light: #ED473F !default;
-
 $midnight-dark: #0F336D !default;
 $midnight-light: #14418B !default;
-
 $night-dark: #023141 !default;
 $night-light: #01526C !default;
 
-$page-icon-color: #D7D7D7 !default;
+// Skin
+$background: $base !default;
+$default-text: #000027 !default;
+$light-text: #fefcf8 !default;
+$background-dark: $base !default;
+$background-light: #fefcf8 !default;
 
-// Sizes
-$button-height: 36 !default;
-$small-button-height: 28 !default;
+// accent varieties
+$aqua: #00caab !default;
+$blue: #3d5afe !default;
+$brown: #795548 !default;
+$forest: #006968 !default;
+$grey-dark: #5c687c !default;
+$purple: #8130ff !default;
+$lemon: #ffea00 !default;
+$lime: #aee406 !default;
+$orange: #f57c00 !default;
+$ruby: #ff1744 !default;
+$sky: #30bcff !default;
 
-$page-content-placeholder-font-size: 20;
-
-/**
- * Theme variables overrides
- **/
+$primary: lighten($black, 13%) !default;//rgba(0,0,0,.87);
+$secondary: lighten($black, 46%) !default;
+$disabled: lighten($black, 62%) !default;
+$accent: $sky !default;
+$error: #d50000 !default;
 
 // ActionBar
-$ab-background: $accent-dark;
-$ab-color: $background-light;
+$ab-background: $background-light !default;
+$ab-color: $default-text !default;
 
-$item-active-color: $accent-dark;
-$item-active-icon-color: $accent-dark;
-$item-active-background: $background-dark;
+// Buttons
+$btn-color: $accent !default;
+$btn-color-inverse: $white !default;
+$btn-color-secondary: #01a0ec !default;
+$btn-color-outline-highlighted: #c0ebff !default;
+$btn-color-disabled: #a4a4a4 !default;
+$btn-font-size: 18 !default;
+$btn-radius: 0 !default;
+$btn-padding-x: 10 !default;
+$btn-padding-y: 10 !default;
+$btn-margin-x:	16 !default;
+$btn-margin-y:	8 !default;
+$btn-height: 58 !default;
+$btn-small-height: 40 !default;
+
+// Headings
+$headings-margin-bottom: 4 !default;
+$headings-font-weight: normal !default;
+$headings-color: $primary !default;
+
+// Options
+//
+// Quickly modify global styling by enabling or disabling optional features.
+$enable-rounded:            false !default;
+$enable-shadows:            false !default;
+$enable-gradients:          false !default;
+$enable-transitions:        false !default;
+
+$item-color-android : #a0a0a0;
+$item-color-ios: #848484;
+$item-active-background: $base;
+$item-active-color: $default-text;
+$item-active-icon-color: $default-text;
+$image-background: #e0e0e0;
+$side-drawer-header-background: $accent;
+$side-drawer-header-brand: #fff;
+$side-drawer-background: $charcoal;
+
+$page-icon-color: #D7D7D7 !default;
+$page-content-placeholder-font-size: 20;

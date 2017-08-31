@@ -1,15 +1,16 @@
-<ListView [items]="wallets" (itemTap)="onItemTap($event)">
-    <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
-        <StackLayout [class.odd]="odd" [class.even]="even">
-            <GridLayout class="m-x-auto p-t-10 p-10" columns="auto,*,auto" rows="auto, auto, auto">
-                <Label col="0" row="0" class="font-weight-bold font-italic" [text]="item.id"></Label>
-                <Label col="2" row="0" class="font-weight-bold font-italic" [text]="item.balance + ' BURST'"></Label>
-                <Label col="0" row="1" class="font-weight-bold font-italic" [text]="item.address"></Label>
-                <Label col="2" row="1" class="font-weight-bold font-italic" [text]="item.balanceStringBTC"></Label>
-                <Label col="0" row="2" class="font-weight-bold font-italic" [text]="item.type"></Label>
-                <Label col="2" row="2" class="font-weight-bold font-italic" [text]="item.balanceStringCur"></Label>
-            </GridLayout>
-            <StackLayout class="hr-light"></StackLayout>
-        </StackLayout>
-    </ng-template>
-</ListView>
+<StackLayout orientation="vertical">
+    <ListView [items]="wallets" (itemTap)="onItemTap($event)" separatorColor="transparent">
+        <ng-template let-item="item" let-i="index">
+            <StackLayout>
+                <GridLayout class="m-x-auto list-item" columns="auto,*,auto" rows="auto, auto, auto">
+                    <Label col="0" row="0" class="font-weight-bold font-italic" [text]="item.id"></Label>
+                    <Label col="2" row="0" class="font-weight-bold font-italic" [text]="item.balance + ' BURST'"></Label>
+                    <Label col="0" row="1" class="font-weight-bold font-italic" [text]="item.address"></Label>
+                    <Label col="2" row="1" class="font-weight-bold font-italic" [text]="item.balanceStringBTC"></Label>
+                    <Label col="0" row="2" class="font-weight-bold font-italic" [text]="item.type"></Label>
+                    <Label col="2" row="2" class="font-weight-bold font-italic" [text]="item.balanceStringCur"></Label>
+                </GridLayout>
+            </StackLayout>
+        </ng-template>
+    </ListView>
+</StackLayout>

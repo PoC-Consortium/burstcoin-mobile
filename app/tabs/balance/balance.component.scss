@@ -1,4 +1,4 @@
-@import '../app-variables';
+@import '../../app-variables';
 
 .balance-container {
     background-color: $background-light;
@@ -16,11 +16,7 @@
     border-radius: 20px;
 }
 
-.center {
-    text-align: center;
-}
-
 .action-button {
     width: 70%;
-    height: 150px;
+    height: $btn-height;
 }

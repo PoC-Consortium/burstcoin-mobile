@@ -1,14 +1,7 @@
-// Import the theme’s variables. If you’re using a color scheme
-// other than “light”, switch the path to the alternative scheme,
-// for example '~nativescript-theme-core/scss/dark'.
-@import '~nativescript-theme-core/scss/light';
 
 // Start custom common variables
 @import 'app-variables';
 // End custom common variables
-
-// Customize any of the theme’s variables here, for instance $btn-color: red;
-// https://github.com/NativeScript/theme/blob/master/app/scss/_variables.scss
 
 // Import the theme’s main ruleset.
 @import '~nativescript-theme-core/scss/index';
@@ -16,13 +9,25 @@
 // Import the platform specific ruleset.
 @import url('~/platform.css');
 
-
-
 // Place any CSS rules you want to apply on both iOS and Android here.
 // This is where the vast majority of your CSS code goes.
 Page {
     background-color: $background-dark;
+    color: $default-text;
 }
+
+.btn-primary {
+    color: $default-text;
+    background-color: $background-light;
+}
+
+.list-item {
+    background-color: $background-light;
+    margin: 50px 20px 0px 20px;
+    padding: 30px 30px 30px 30px;
+    border-radius: 10px;
+}
+
 // Font icon class
 .fa {
    font-family: "FontAwesome";
@@ -60,9 +65,4 @@ Page {
         color: $page-icon-color;
         margin-top: 20%;
     }
-}
-
-//Action bar
-ActionBar .action-bar-title {
-    horizontal-align: center;
 }
