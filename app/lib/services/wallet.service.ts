@@ -1,6 +1,7 @@
 import { Injectable, OnInit } from "@angular/core";
 import { Http, Headers, RequestOptions, Response, URLSearchParams } from "@angular/http";
 import { Router } from '@angular/router';
+import { device } from "platform";
 import { Observable, ReplaySubject } from 'rxjs/Rx';
 
 import { BurstAddress, Currency, HttpError, Keypair, Transaction, Wallet } from "../model";
@@ -35,87 +36,88 @@ export class WalletService {
         this.currentWallet.next(wallet);
     }
 
-    public importBurstcoinWallet(input: string, active: boolean, pin : string = ""): Promise<Wallet> {
+    public createActiveWallet(input: string, pin: string = ""): Promise<Wallet> {
         return new Promise((resolve, reject) => {
             let wallet: Wallet = new Wallet();
-            if (active) {
-                // import active wallet
-                wallet.type = "active";
-                wallet.selected = true;
-                return this.cryptoService.generateMasterPublicAndPrivateKey(input)
-                    .then(keypair => {
-                        return this.cryptoService.encryptAES(keypair.privateKey, this.cryptoService.hashSHA256(pin))
-                            .then(encryptedKey => {
-                                wallet.keypair.privateKey = encryptedKey;
-                                console.log(encryptedKey);
-                                wallet.pin = this.cryptoService.hashSHA256(pin);
-                                return this.cryptoService.getAccountIdFromPublicKey(keypair.publicKey)
-                                    .then(id => {
-                                        wallet.id = id;
-                                        console.log(id);
-                                        return this.cryptoService.getBurstAddressFromAccountId(id)
-                                            .then(address => {
-                                                wallet.address = address;
-                                                console.log(address);
-                                                // TODO: check if wallet exist with this address and overwrite keys
-                                                return this.getBalance(wallet.id)
-                                                    .then(balance => {
-                                                        wallet.balance = balance;
-                                                        return this.databaseService.saveWallet(wallet).then(ac => {
-                                                            this.notificationService.info(wallet.address);
-                                                            this.setCurrentWallet(wallet);
-                                                            resolve(wallet);
-                                                        });
-                                                    })
-                                                    .catch(error => {
-                                                        return this.databaseService.saveWallet(wallet).then(ac => {
-                                                            this.notificationService.info(wallet.address);
-                                                            this.setCurrentWallet(wallet);
-                                                            resolve(wallet);
-                                                        });
-                                                    });
-                                            });
-                                    });
-                            });
-                    });
-            } else {
-                this.databaseService.findWallet(BurstAddress.decode(input))
-                    .then(found => {
-                        if (found == undefined) {
-                            // import offline wallet
-                            wallet.type = "offline";
-                            wallet.address = input;
-                            wallet.selected = true;
-                            return this.cryptoService.getAccountIdFromBurstAddress(input)
+            // import active wallet
+            wallet.type = "active";
+            wallet.selected = true;
+            return this.cryptoService.generateMasterPublicAndPrivateKey(input)
+                .then(keypair => {
+                    return this.cryptoService.encryptAES(keypair.privateKey, this.hashPin(pin))
+                        .then(encryptedKey => {
+                            wallet.keypair.privateKey = encryptedKey;
+                            console.log(encryptedKey);
+                            wallet.pin = this.hashPin(pin);
+                            return this.cryptoService.getAccountIdFromPublicKey(keypair.publicKey)
                                 .then(id => {
                                     wallet.id = id;
-                                    this.getBalance(wallet.id)
-                                        .then(balance => {
-                                            wallet.balance = balance;
-                                            this.getTransactions(wallet.id)
-                                                .then(transactions => {
-                                                    wallet.transactions = transactions;
+                                    return this.cryptoService.getBurstAddressFromAccountId(id)
+                                        .then(address => {
+                                            wallet.address = address;
+                                            console.log(address);
+                                            // TODO: check if wallet exist with this address and overwrite keys
+                                            return this.getBalance(wallet.id)
+                                                .then(balance => {
+                                                    wallet.balance = balance;
                                                     return this.databaseService.saveWallet(wallet).then(ac => {
-                                                        this.notificationService.info(JSON.stringify(wallet));
+                                                        this.notificationService.info(wallet.address);
                                                         this.setCurrentWallet(wallet);
                                                         resolve(wallet);
                                                     });
                                                 })
-                                        })
-                                        .catch(error => {
-                                            return this.databaseService.saveWallet(wallet).then(ac => {
-                                                this.notificationService.info(JSON.stringify(wallet));
-                                                this.setCurrentWallet(wallet);
-                                                resolve(wallet);
-                                            });
+                                                .catch(error => {
+                                                    return this.databaseService.saveWallet(wallet).then(ac => {
+                                                        this.notificationService.info(wallet.address);
+                                                        this.setCurrentWallet(wallet);
+                                                        resolve(wallet);
+                                                    });
+                                                });
                                         });
                                 });
-                        } else {
-                            reject("Burstcoin address already imported!");
-                        }
-                    })
+                        });
+                });
+        });
+    }
 
-            }
+    public createOfflineWallet(input: string) {
+        return new Promise((resolve, reject) => {
+            let wallet: Wallet = new Wallet();
+            this.databaseService.findWallet(BurstAddress.decode(input))
+                .then(found => {
+                    if (found == undefined) {
+                        // import offline wallet
+                        wallet.type = "offline";
+                        wallet.address = input;
+                        wallet.selected = true;
+                        return this.cryptoService.getAccountIdFromBurstAddress(input)
+                            .then(id => {
+                                wallet.id = id;
+                                this.getBalance(wallet.id)
+                                    .then(balance => {
+                                        wallet.balance = balance;
+                                        this.getTransactions(wallet.id)
+                                            .then(transactions => {
+                                                wallet.transactions = transactions;
+                                                return this.databaseService.saveWallet(wallet).then(ac => {
+                                                    this.notificationService.info(JSON.stringify(wallet));
+                                                    this.setCurrentWallet(wallet);
+                                                    resolve(wallet);
+                                                });
+                                            })
+                                    })
+                                    .catch(error => {
+                                        return this.databaseService.saveWallet(wallet).then(ac => {
+                                            this.notificationService.info(JSON.stringify(wallet));
+                                            this.setCurrentWallet(wallet);
+                                            resolve(wallet);
+                                        });
+                                    });
+                            });
+                    } else {
+                        reject("Burstcoin address already imported!");
+                    }
+                })
         });
     }
 
@@ -214,8 +216,20 @@ export class WalletService {
             .catch(error => this.handleError(error));
     }
 
+    public checkPin(pin: string): boolean {
+        return this.currentWallet != undefined ? this.currentWallet.value.pin == this.hashPin(pin) : false;
+    }
+
+    public hashPin(pin: string): string {
+        return this.cryptoService.hashSHA256(pin + device.uuid);
+    }
+
     public isBurstcoinAddress(address: string): boolean {
         return /^BURST\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{5}/i.test(address);
+    }
+
+    public isPin(pin: string): boolean {
+        return /^[0-9]{6}/i.test(pin);
     }
 
     public convertStringToNumber(str, value = ".", position = 8) {

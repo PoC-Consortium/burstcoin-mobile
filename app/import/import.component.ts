@@ -16,6 +16,7 @@ export class ImportComponent implements OnInit {
     private state: string;
     private hint: string;
     private active: boolean;
+    private pin: string;
     private description: string;
     private snackbar: SnackBar;
 
@@ -50,9 +51,18 @@ export class ImportComponent implements OnInit {
     public onTapImport(e) {
         this.input = "BURST-KE7T-AA9D-5X6B-FKALA"; //"climb taught wrist stroke suit creek trail remove stock shimmer swear stubborn";
         this.active = false;
+        this.pin = "1111";
         if (this.input.length > 0) {
-            if (this.active || this.walletService.isBurstcoinAddress(this.input)) {
-                this.walletService.importBurstcoinWallet(this.input, this.active)
+            if (this.active) {
+                this.walletService.createActiveWallet(this.input, this.pin)
+                    .then(wallet => {
+                        this.router.navigate(['tabs']);
+                    })
+                    .catch(error => {
+                        this.notificationService.info(error);
+                    });
+            } else if (this.walletService.isBurstcoinAddress(this.input)) {
+                this.walletService.createOfflineWallet(this.input)
                     .then(wallet => {
                         this.router.navigate(['tabs']);
                     })

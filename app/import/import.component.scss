@@ -1,9 +1,4 @@
-
-.import-container {
-    text-align: center;
-    vertical-align: middle;
-    height: 80%;
-}
+@import '../app-variables';
 
 .toggle-label {
     horizontal-align: center;
@@ -13,8 +8,5 @@
 .toggle-switch {
     horizontal-align: center;
     text-align: center;
-}
-
-.big-button {
-    height: 150px;
+    color: $background-dark;
 }

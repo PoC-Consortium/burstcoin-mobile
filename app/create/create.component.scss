@@ -1,35 +1,26 @@
-
-.create-step {
-    vertical-align: middle;
-    height: 70%;
-}
-
-.start-step {
-    vertical-align: middle;
-    height: 90%;
-}
+@import '../app-variables';
 
 .progress-bottom {
+    margin-top: 100px;
     height: 20%;
+}
+
+.progress-bar {
+    color: $background-light;
+    background-color: $default-text;
 }
 
 .seed-area {
-    margin-top: 150px;
     vertical-align: middle;
-    border-radius: 20px;
-    background-color: #EAEAEA;
+    text-align:center;
     width: 100%;
-    height: 70%;
-}
-
-.seed-progress {
-    height: 20%;
+    height: 60%;
 }
 
 .chip {
     display: inline-block;
     padding: 0 25px;
-    margin: 125px 5px 50px 5px;
+    margin: 50px 5px 50px 5px;
     height: 100px;
     width: 50%;
     font-size: 24px;
@@ -40,7 +31,6 @@
 
 .possibilities {
     width: 90%;
-    margin-top: 50px;
     margin-left: 20px;
     height: 200px;
     text-align: center;
@@ -53,14 +43,10 @@
 }
 
 .generate-again-button {
-    margin: 10px;
+    margin: 50px 0px 0px 0px;
     width: 50%;
 }
 
 .bottom-filler {
-    height: 150px;
-}
-
-.big-button {
     height: 150px;
 }

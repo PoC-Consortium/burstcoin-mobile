@@ -16,6 +16,18 @@ Page {
     color: $default-text;
 }
 
+.logo-small {
+    height: 300px;
+    width: 300px;
+    margin: 50px;
+}
+
+.logo-big {
+    height: 500px;
+    width: 500px;
+    margin: 100px;
+}
+
 .btn-primary {
     color: $default-text;
     background-color: $background-light;
@@ -42,6 +54,9 @@ Page {
     border-radius: $default-border;
 }
 
+.activity-indicator {
+    color: $background-light;
+}
 // Font icon class
 .fa {
    font-family: "FontAwesome";

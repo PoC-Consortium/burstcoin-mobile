@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import { Router } from '@angular/router';
 import { isAndroid } from "platform";
-import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
+import { SelectedIndexChangedEventData, TabView, TabViewItem } from "ui/tab-view";
 import { Label } from "ui/label";
 import { Progress } from "ui/progress";
 import { TouchGestureEventData } from "ui/gestures";
@@ -8,7 +9,7 @@ import { Button } from "ui/button";
 import { TextField } from "ui/text-field";
 import { EventData } from "data/observable";
 
-import { CryptoService } from "../lib/services";
+import { CryptoService, NotificationService, WalletService } from "../lib/services";
 import { PassPhraseGenerator } from "../lib/util/crypto";
 
 @Component({
@@ -26,8 +27,8 @@ export class CreateComponent implements OnInit {
     private retypePassPhrase: string[];
     private word: number;
     private try: string;
+    private pin: string;
     private textField: TextField;
-    private infotext: string;
 
     /*
     Step 0: Loading screen
@@ -38,32 +39,22 @@ export class CreateComponent implements OnInit {
     Step 5: Create Burst Wallet and redirect
     */
 
-    constructor(private cryptoService: CryptoService) {
-        this.step = 1;
+    constructor(
+        private cryptoService: CryptoService,
+        private notificationService: NotificationService,
+        private router: Router,
+        private walletService: WalletService
+    ) {
+        this.step = 4;
         this.seed = [];
         this.passPhrase = [];
         this.retypePassPhrase = [];
         this.word = 0;
         this.try = "";
-        this.infotext = "Here you can create a new Burst Wallet! Tap the button below to start with the creation process."
     }
 
     ngOnInit(): void {
 
-    }
-
-    /*
-    * Start the burst wallet creation
-    */
-    public onTapStart(e) {
-        // start seed process
-        this.infotext = "In this step you have to create a random seed for the generation of your passphrase!";
-        this.step = 2;
-
-
-        // TODO remove
-        let pg = new PassPhraseGenerator();
-        let pass: string = pg.generatePassPhrase();
     }
 
     /*
@@ -78,8 +69,7 @@ export class CreateComponent implements OnInit {
             this.cryptoService.generatePassPhrase(this.seed)
                 .then(phrase => {
                     this.passPhrase = phrase.split(" ");
-                    this.infotext = "In this step you have to memorize all 12 words of your passphrase in the right order!";
-                    this.step = 3;
+                    this.step = 2;
                 }
             );
         }
@@ -93,8 +83,8 @@ export class CreateComponent implements OnInit {
         this.seed = [];
         this.passPhrase = [];
         // init seed process again
-        this.infotext = "In this step you have to create a random seed for the generation of your passphrase!";
-        this.step = 2;
+        this.step = 1;
+        this.try = "";
     }
 
     /*
@@ -104,8 +94,7 @@ export class CreateComponent implements OnInit {
     public onTapNext(e) {
         this.word++;
         if (this.word >= 12) {
-            this.infotext = "Please reenter the words of your passphrase!";
-            this.step = 4;
+            this.step = 3;
             this.word = 0;
         }
     }
@@ -142,17 +131,28 @@ export class CreateComponent implements OnInit {
 
             if (this.word >= 12) {
                 // correctly retyped all 12 words
-                this.infotext = "Now set a pin code for your wallet. You get asked to reenter your pin code everytime you are doing a transaction!";
-                this.step = 5;
+                this.step = 4;
             }
         } else {
             console.log("wrong word");
         }
     }
 
-    /*
-    *
-    */
-
+    public onTapDone(args: EventData) {
+        this.passPhrase = ["yolo", "eewqe", "ewdwdw"];
+        console.log(this.pin);
+        if (this.walletService.isPin(this.pin)) {
+            this.step = 0;
+            this.walletService.createActiveWallet(this.passPhrase.join(" "), this.pin)
+                .then(wallet => {
+                    this.router.navigate(['tabs']);
+                })
+                .catch(err => {
+                    this.router.navigate(['create']);
+                })
+        } else {
+            this.notificationService.info("PIN must be a six-digit number!")
+        }
+    }
 
 }
