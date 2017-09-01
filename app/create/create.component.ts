@@ -20,7 +20,7 @@ import { PassPhraseGenerator } from "../lib/util/crypto";
 })
 export class CreateComponent implements OnInit {
 
-    private readonly seedLimit: number = 10;
+    private readonly seedLimit: number = 64;
     private step: number;
     private seed: any[];
     private passPhrase: string[];
@@ -45,7 +45,7 @@ export class CreateComponent implements OnInit {
         private router: Router,
         private walletService: WalletService
     ) {
-        this.step = 0;
+        this.step = 1;
         this.seed = [];
         this.passPhrase = [];
         this.retypePassPhrase = [];
@@ -133,8 +133,6 @@ export class CreateComponent implements OnInit {
                 // correctly retyped all 12 words
                 this.step = 4;
             }
-        } else {
-            console.log("wrong word");
         }
     }
 

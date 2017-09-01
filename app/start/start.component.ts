@@ -21,6 +21,8 @@ import { DatabaseService, NotificationService, WalletService } from "../lib/serv
 })
 export class StartComponent implements OnInit {
 
+    private loading: boolean;
+
     constructor(
         private databaseService: DatabaseService,
         private notificationService: NotificationService,
@@ -31,6 +33,7 @@ export class StartComponent implements OnInit {
             this.loadSelectedWallet(init)
         });
         // TODO: show initial loading
+        this.loading = false;
     }
 
     private loadSelectedWallet(init) {
@@ -45,6 +48,8 @@ export class StartComponent implements OnInit {
                     console.log("no wallet exists");
                     //this.router.navigate(['import']);
                 })
+        } else {
+            this.loading = false;
         }
     }
 

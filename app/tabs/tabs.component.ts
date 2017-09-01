@@ -15,6 +15,7 @@ import { DatabaseService, NotificationService, WalletService } from "../lib/serv
 export class TabsComponent implements OnInit {
 
     private _title: string;
+    private selectedIndex: number;
 
     constructor(
         private databaseService: DatabaseService,
@@ -58,7 +59,7 @@ export class TabsComponent implements OnInit {
     onSelectedIndexChanged(args: SelectedIndexChangedEventData) {
         const tabView = <TabView>args.object;
         const selectedTabViewItem = tabView.items[args.newIndex];
-
+        this.selectedIndex = args.newIndex;
         this.title = selectedTabViewItem.title;
     }
 }

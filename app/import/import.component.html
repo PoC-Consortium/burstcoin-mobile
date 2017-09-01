@@ -1,6 +1,10 @@
 
 <StackLayout class="page-content" orientation="vertical">
+
     <StackLayout class="container" orientation="vertical">
+
+        <Image class="logo-small m-b-15" src="res://apple"></Image>
+
         <StackLayout class="info-container" orientation="vertical">
             <StackLayout orientation="vertical">
                 <Label class="solo" textWrap="true" text="Import an active wallet by entering its passphrase! Otherwise, import an offline wallet by entering its Burstcoin address!"></Label>
@@ -11,7 +15,7 @@
             <Label class="h3 m-15 toggle-label" textWrap="true" [text]="state"></Label>
             <StackLayout class="info-container" orientation="vertical">
                 <StackLayout orientation="vertical">
-                    <Label class="" textWrap="true" [text]="description"></Label>
+                    <Label class="solo" textWrap="true" [text]="description"></Label>
                 </StackLayout>
             </StackLayout>
             <Switch class="m-15 toggle-switch" checked="true" (checkedChange)="onChecked($event)"></Switch>

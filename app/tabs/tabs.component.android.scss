@@ -1,4 +1,5 @@
 @import 'tabs.component';
+@import '../app-variables';
 
 // Place any CSS rules you want to apply only on Android here
 TabView {
@@ -9,6 +10,17 @@ TabView {
     font-size: 10px;
 }
 
+
+.tab-view-item {
+    background-color: $background-light;
+}
+
 .tab {
     font-size: 14px;
+}
+
+.action-bar-button {
+    width: 120px;
+    height: 120px;
+    margin: 0px 20px 0px 0px;
 }

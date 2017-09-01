@@ -1,13 +1,22 @@
 <StackLayout class="page-content" orientation="vertical">
     <StackLayout class="container">
-        <StackLayout class="info-container" orientation="vertical">
-            <StackLayout orientation="vertical">
-                <Label class="solo" textWrap="true" text="No wallet created yet! Choose to import an existing wallet or create a new one!"></Label>
-            </StackLayout>
+
+        <Image class="logo-normal m-b-30 m-t-10" src="res://apple"></Image>
+
+        <StackLayout *ngIf="this.loading" orientation="vertical">
+            <ActivityIndicator busy="true" width="100" height="100" class="activity-indicator"></ActivityIndicator>
         </StackLayout>
-        <StackLayout class="m-t-30" orientation="vertical">
-            <Button class="btn btn-primary btn-active action-button fa" text="Import &#xf019;" [nsRouterLink]="['/import']"></Button>
-            <Button class="btn btn-primary btn-active action-button fa" text="Create &#xf067;" [nsRouterLink]="['/create']"></Button>
+
+        <StackLayout *ngIf="this.loading == false">
+            <StackLayout class="info-container fet" orientation="vertical">
+                <StackLayout orientation="vertical">
+                    <Label class="solo" textWrap="true" text="No wallet created yet! Choose to import an existing wallet or create a new one!"></Label>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout class="m-t-15" orientation="vertical">
+                <Button class="btn btn-primary btn-active action-button fa" text="Import &#xf019;" [nsRouterLink]="['/import']"></Button>
+                <Button class="btn btn-primary btn-active action-button fa" text="Create &#xf067;" [nsRouterLink]="['/create']"></Button>
+            </StackLayout>
         </StackLayout>
     </StackLayout>
 </StackLayout>

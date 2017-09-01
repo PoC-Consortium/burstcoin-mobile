@@ -1,6 +1,10 @@
 <Page xmlns="http://www.nativescript.org/tns.xsd" loaded="onPageLoaded">
     <ActionBar class="action-bar">
-        <Label class="action-bar-title" [text]="title"></Label>
+        <GridLayout columns="auto, 200, *, auto" rows="auto">
+            <Image col="0" class="logo-tiny m-r-15" src="res://apple"></Image>
+            <Label col="1" class="action-bar-title" [text]="title"></Label>
+            <Button *ngIf="selectedIndex == 2" col="3" class="btn btn-primary btn-active action-bar-button fa" text="&#xf067;"></Button>
+        </GridLayout>
     </ActionBar>
 
     <TabView (selectedIndexChanged)="onSelectedIndexChanged($event)">

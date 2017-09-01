@@ -12,20 +12,23 @@
 // Place any CSS rules you want to apply on both iOS and Android here.
 // This is where the vast majority of your CSS code goes.
 Page {
-    background-color: $background-dark;
+    background-color: $background-light;
     color: $default-text;
+}
+
+.logo-tiny {
+    height: 100px;
+    width: 100px;
 }
 
 .logo-small {
     height: 300px;
     width: 300px;
-    margin: 50px;
 }
 
-.logo-big {
+.logo-normal {
     height: 500px;
     width: 500px;
-    margin: 100px;
 }
 
 .btn-primary {
@@ -55,7 +58,7 @@ Page {
 }
 
 .activity-indicator {
-    color: $background-light;
+    color: $background-dark;
 }
 // Font icon class
 .fa {
@@ -95,8 +98,10 @@ Page {
 
         .info-container {
             background-color: $background-light;
-            text-align: center;
+            border-color: $default-border-color;
+            border-width: 1;
             border-radius: $default-border;
+            text-align: center;
             width: 80%;
 
             .solo {

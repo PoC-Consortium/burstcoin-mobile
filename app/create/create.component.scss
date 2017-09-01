@@ -11,6 +11,10 @@
 }
 
 .seed-area {
+    background-color: $background-light;
+    border-color: $default-border-color;
+    border-width: 1;
+    border-radius: $default-border;
     vertical-align: middle;
     text-align:center;
     width: 100%;
