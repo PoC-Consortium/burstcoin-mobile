@@ -6,13 +6,13 @@
 }
 
 .progress-bar {
-    color: $background-light;
-    background-color: $default-text;
+    color: $default-text;
+    background-color: $background-dark;
 }
 
 .seed-area {
     background-color: $background-light;
-    border-color: $default-border-color;
+    border-color: $background-dark;
     border-width: 1;
     border-radius: $default-border;
     vertical-align: middle;
@@ -24,13 +24,13 @@
 .chip {
     display: inline-block;
     padding: 0 25px;
-    margin: 50px 5px 50px 5px;
+    margin: 50px 5px 30px 5px;
     height: 100px;
     width: 50%;
     font-size: 24px;
     line-height: 25px;
     border-radius: 20px;
-    background-color: #EAEAEA;
+    background-color: $light-gray;
 }
 
 .possibilities {

@@ -1,7 +1,7 @@
 <StackLayout class="page-content" orientation="vertical">
 
     <StackLayout class="container" orientation="vertical">
-        <Image *ngIf="this.step != 0" class="logo-small m-b-15 m-t-15" src="res://apple"></Image>
+        <Image *ngIf="this.step != 0" class="logo-small m-b-15 m-t-15" src="res://logo"></Image>
 
         <StackLayout class="info-container" orientation="vertical">
             <StackLayout orientation="vertical">
@@ -29,8 +29,8 @@
             <StackLayout class="body-container" orientation="vertical">
                 <Label class="top" textWrap="true" text="Write down the following words and keep them secret!"></Label>
                 <Label class="chip" [text]="passPhrase[word]"></Label>
+                <Button class="btn btn-primary btn-active action-button fa" text="Next &#xf18e;" (tap)="onTapNext($event)"></Button>
             </StackLayout>
-            <Button class="btn btn-primary btn-active action-button" text="Next" (tap)="onTapNext($event)"></Button>
         </StackLayout>
 
         <StackLayout *ngIf="this.step == 3" class="body-container m-b-15" orientation="vertical">
@@ -53,7 +53,7 @@
 
         <StackLayout class="progress-bottom" orientation="vertical">
             <StackLayout *ngIf="this.step == 2 || this.step == 3">
-                <Button class="generate-again-button btn btn-primary btn-active" text="Generate Again" (tap)="onTapGenerateAgain($event)"></Button>
+                <Button class="generate-again-button btn btn-primary btn-active fa" text="Generate Again &#xf021;" (tap)="onTapGenerateAgain($event)"></Button>
             </StackLayout>
             <StackLayout *ngIf="this.step != 3 && this.step != 2" class="bottom-filler"></StackLayout>
             <Progress class="m-20 progress-bar" *ngIf="this.step > 0" [value]="step - 1" maxValue="5"></Progress>
