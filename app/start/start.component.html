@@ -1,9 +1,16 @@
+<ActionBar class="action-bar">
+    <StackLayout orientation="horizontal">
+        <Image class="logo-tiny m-r-15" src="res://logo"></Image>
+        <Label class="action-bar-title" text="Hey there!"></Label>
+    </StackLayout>
+</ActionBar>
+
 <StackLayout class="page-content" orientation="vertical">
     <StackLayout class="container">
 
         <Image class="logo-normal m-b-30 m-t-10" src="res://logo"></Image>
 
-        <StackLayout *ngIf="this.loading" orientation="vertical">
+        <StackLayout *ngIf="this.loading" style="margin-bottom: 300px;" orientation="vertical">
             <ActivityIndicator busy="true" width="100" height="100" class="activity-indicator"></ActivityIndicator>
         </StackLayout>
 
