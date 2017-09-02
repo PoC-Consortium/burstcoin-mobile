@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Converter } from "../util";
-import { PassPhraseGenerator } from "../util/crypto";
+import { PassPhraseGenerator, ECKCDSA } from "../util/crypto";
 import { BurstAddress, Keypair } from "../model";
 
 let CryptoJS = require("crypto-js");
 let bigInt = require("big-integer");
-
-//let curve25519 = require("../util/crypto/curve25519.js");
 
 @Injectable()
 export class CryptoService {
@@ -42,15 +40,15 @@ export class CryptoService {
             // https://ed25519.cr.yp.to/
             // https://nacl.cr.yp.to/
             // https://www.ietf.org/mail-archive/web/cfrg/current/msg04996.html
-            /*
-            let keys = {};curve25519.keygen(Converter.convertWordArrayToByteArray(hashedPassPhrase));
+
+            let keys = ECKCDSA.keygen(Converter.convertWordArrayToByteArray(hashedPassPhrase));
             let keypair: Keypair = new Keypair({
                 "publicKey" : Converter.convertByteArrayToHexString(keys.p),
                 "privateKey": Converter.convertByteArrayToHexString(keys.s)
             });
             console.log(keypair.publicKey);
             console.log(keypair.privateKey);
-            */
+
             resolve(new Keypair());
         });
     }
