@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { Router } from '@angular/router';
+import { RouterExtensions } from "nativescript-angular/router";
 import { isAndroid } from "platform";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
 import { Label } from "ui/label";
@@ -26,7 +27,7 @@ export class StartComponent implements OnInit {
     constructor(
         private databaseService: DatabaseService,
         private notificationService: NotificationService,
-        private router: Router,
+        private router: RouterExtensions,
         private walletService: WalletService
     ) {
         this.databaseService.ready.subscribe((init: boolean) => {
@@ -42,20 +43,17 @@ export class StartComponent implements OnInit {
             this.databaseService.getSelectedWallet()
                 .then(wallet => {
                     this.walletService.setCurrentWallet(wallet);
-                    this.router.navigate(['tabs']);
+                    this.router.navigate(['tabs'], { clearHistory: true });
                 })
                 .catch(wallet => {
-                    console.log("no wallet exists");
-                    this.router.navigate(['import']);
+                    this.router.navigate(['import'], { clearHistory: true });
                 })
         } else {
             this.loading = false;
         }
     }
 
-
-
     public ngOnInit() {
-        // TODO: check if wallet already exists, then redirect to tabs
+
     }
 }
