@@ -26,18 +26,21 @@ export class Converter {
         }
     }
 
-    public static convertByteArrayToHexString(bytes) {
-        let str = '';
-        for (let i = 0; i < bytes.length; ++i) {
-            if (bytes[i] < 0) {
-                bytes[i] += 256;
-            }
-            str += Converter.nibbleToChar[bytes[i] >> 4] + Converter.nibbleToChar[bytes[i] & 0x0F];
-        }
-
-        return str;
+    // Convert a hex string to a byte array
+    public static convertHexStringToByteArray(hex) {
+        for (var bytes = [], c = 0; c < hex.length; c += 2)
+            bytes.push(parseInt(hex.substr(c, 2), 16));
+        return bytes;
     }
 
+    // Convert a byte array to a hex string
+    public static convertByteArrayToHexString(bytes) {
+        for (var hex = [], i = 0; i < bytes.length; i++) {
+            hex.push((bytes[i] >>> 4).toString(16));
+            hex.push((bytes[i] & 0xF).toString(16));
+        }
+        return hex.join("");
+    }
 
     public static convertStringToByteArray(str) {
         str = unescape(encodeURIComponent(str)); //temporary
@@ -45,20 +48,6 @@ export class Converter {
         let bytes = new Array(str.length);
         for (let i = 0; i < str.length; ++i)
             bytes[i] = str.charCodeAt(i);
-
-        return bytes;
-    }
-
-    public static convertHexStringToByteArray(str) {
-        let bytes = [];
-        let i = 0;
-        if (0 !== str.length % 2) {
-            bytes.push(Converter.charToNibble[str.charAt(0)]);
-            ++i;
-        }
-
-        for (; i < str.length - 1; i += 2)
-            bytes.push((Converter.charToNibble[str.charAt(i)] << 4) + Converter.charToNibble[str.charAt(i + 1)]);
 
         return bytes;
     }

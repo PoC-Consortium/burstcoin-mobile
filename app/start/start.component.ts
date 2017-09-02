@@ -33,7 +33,7 @@ export class StartComponent implements OnInit {
             this.loadSelectedWallet(init)
         });
         // TODO: show initial loading
-        this.loading = false;
+        this.loading = true;
     }
 
     private loadSelectedWallet(init) {
@@ -42,11 +42,11 @@ export class StartComponent implements OnInit {
             this.databaseService.getSelectedWallet()
                 .then(wallet => {
                     this.walletService.setCurrentWallet(wallet);
-                    //this.router.navigate(['tabs']);
+                    this.router.navigate(['tabs']);
                 })
                 .catch(wallet => {
                     console.log("no wallet exists");
-                    //this.router.navigate(['import']);
+                    this.router.navigate(['import']);
                 })
         } else {
             this.loading = false;

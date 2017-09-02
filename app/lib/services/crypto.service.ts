@@ -33,23 +33,15 @@ export class CryptoService {
     */
     public generateMasterPublicAndPrivateKey(passPhrase: string): Promise<Keypair> {
         return new Promise((resolve, reject) => {
-            // Hash the passphrase to get sha word array (32 bytes) which serves
-            // as master seed for ed25519 key generation
+            // hash passphrase with sha256
             let hashedPassPhrase = CryptoJS.SHA256(passPhrase);
-            // use nacl ed25519 to generate Master Public Key and Master Private Key from secret passphrase
-            // https://ed25519.cr.yp.to/
-            // https://nacl.cr.yp.to/
-            // https://www.ietf.org/mail-archive/web/cfrg/current/msg04996.html
-
+            // use ec-kcdsa to generate keypair from passphrase
             let keys = ECKCDSA.keygen(Converter.convertWordArrayToByteArray(hashedPassPhrase));
             let keypair: Keypair = new Keypair({
                 "publicKey" : Converter.convertByteArrayToHexString(keys.p),
                 "privateKey": Converter.convertByteArrayToHexString(keys.s)
             });
-            console.log(keypair.publicKey);
-            console.log(keypair.privateKey);
-
-            resolve(new Keypair());
+            resolve(keypair);
         });
     }
 

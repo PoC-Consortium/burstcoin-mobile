@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute, Router } from '@angular/router';
 import { BurstAddress, Wallet } from "../../../lib/model";
-import { MarketService, NotificationService, WalletService } from "../../../lib/services";
+import { CryptoService, NotificationService, WalletService } from "../../../lib/services";
 
 import { BarcodeScanner, ScanOptions } from "nativescript-barcodescanner";
 
@@ -14,19 +14,17 @@ import { BarcodeScanner, ScanOptions } from "nativescript-barcodescanner";
 export class ActivateComponent implements OnInit {
 
     pin: string;
+    passphrase: string;
+    step: number;
 
     constructor(
-        private marketService: MarketService,
-        private route: ActivatedRoute,
+        private cryptoService: CryptoService,
+        private notificationService: NotificationService,
         private router: Router,
         private walletService: WalletService
     ) {
-        this.pin = this.route.snapshot.params['pin'];
-        if (this.pin != undefined) {
-            // TODO: show loading
-            console.log("p" + this.pin);
-            // TODO: generate keys add them to wallet, encrypt with pin code, save pin hash in wallet
-        }
+        this.step = 1;
+        this.passphrase = "";
     }
 
     ngOnInit(): void {
@@ -36,6 +34,45 @@ export class ActivateComponent implements OnInit {
     }
 
     public onTapNext() {
-        this.router.navigate(['pin', 'set', encodeURIComponent('tabs/accounts/activate')]);
+        console.log(this.passphrase);
+        if (this.passphrase.length > 0) {
+            this.step = 0;
+            this.cryptoService.generateMasterPublicAndPrivateKey(this.passphrase)
+                .then(keypair => {
+                    this.cryptoService.getAccountIdFromPublicKey(keypair.publicKey)
+                        .then(id => {
+                            this.cryptoService.getBurstAddressFromAccountId(id)
+                                .then(address => {
+                                    console.log(address);
+                                    if (this.walletService.currentWallet.value.address == address) {
+                                        this.step = 2;
+                                    } else {
+                                        this.step = 1;
+                                        this.notificationService.info("Wrong passphrase! The provided passphrase does not generate the public key assigned to your wallet!")
+                                    }
+                                })
+                                .catch(error => {
+                                    this.step = 1;
+                                    this.notificationService.info("Cannot generate Burst address from account id!")
+                                })
+                        })
+                        .catch(error => {
+                            this.step = 1;
+                            this.notificationService.info("Cannot generate account id from public key!")
+                        })
+                })
+                .catch(error => {
+                    this.step = 1;
+                    this.notificationService.info("Failed to generate keypair for passphrase!")
+                })
+        } else {
+            this.notificationService.info("Please enter something!");
+        }
+
+        //this.router.navigate(['pin', 'set', encodeURIComponent('tabs/accounts/activate')]);
+    }
+
+    public onTapDone() {
+
     }
 }
