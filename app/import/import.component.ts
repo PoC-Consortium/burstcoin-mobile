@@ -13,7 +13,6 @@ import { NotificationService, WalletService } from "../lib/services";
 export class ImportComponent implements OnInit {
     private step: number;
     private input: string;
-    private pin: string;
     private state: string;
     private hint: string;
     private active: boolean;
