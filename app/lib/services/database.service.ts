@@ -92,6 +92,24 @@ export class DatabaseService extends Database {
         });
     }
 
+    public selectWallet(wallet: Wallet): Promise<Wallet> {
+        return new Promise((resolve, reject) => {
+            if (this.ready.value) {
+                wallet.selected = true;
+                let wallets = this.database.getCollection("wallets");
+                wallets.find().update(w => {
+                    w.selected = false;
+                });
+                wallets.find({ id : wallet.id }).update(w => {
+                    w.selected = true;
+                });
+                resolve(wallet);
+            } else {
+                reject(undefined);
+            }
+        });
+    }
+
     public getAllWallets(): Promise<Wallet[]> {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {

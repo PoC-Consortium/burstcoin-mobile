@@ -36,42 +36,39 @@ export class WalletService {
         this.currentWallet.next(wallet);
     }
 
-    public createActiveWallet(input: string, pin: string = ""): Promise<Wallet> {
+    public createActiveWallet(passphrase: string, pin: string = ""): Promise<Wallet> {
         return new Promise((resolve, reject) => {
             let wallet: Wallet = new Wallet();
             // import active wallet
             wallet.type = "active";
-            wallet.selected = true;
-            return this.cryptoService.generateMasterPublicAndPrivateKey(input)
+            return this.cryptoService.generateMasterPublicAndPrivateKey(passphrase)
                 .then(keypair => {
                     return this.cryptoService.encryptAES(keypair.privateKey, this.hashPin(pin))
                         .then(encryptedKey => {
                             wallet.keypair.privateKey = encryptedKey;
-                            console.log(encryptedKey);
-                            wallet.pin = this.hashPin(pin);
+                            wallet.pinHash = this.hashPin(pin);
                             return this.cryptoService.getAccountIdFromPublicKey(keypair.publicKey)
                                 .then(id => {
                                     wallet.id = id;
                                     return this.cryptoService.getBurstAddressFromAccountId(id)
                                         .then(address => {
                                             wallet.address = address;
-                                            console.log(address);
                                             // TODO: check if wallet exist with this address and overwrite keys
                                             return this.getBalance(wallet.id)
                                                 .then(balance => {
                                                     wallet.balance = balance;
-                                                    return this.databaseService.saveWallet(wallet).then(ac => {
-                                                        this.notificationService.info(wallet.address);
-                                                        this.setCurrentWallet(wallet);
-                                                        resolve(wallet);
-                                                    });
+                                                    return this.databaseService.saveWallet(wallet)
+                                                        .then(wallet => {
+                                                            this.notificationService.info(JSON.stringify(wallet));
+                                                            resolve(wallet);
+                                                        });
                                                 })
                                                 .catch(error => {
-                                                    return this.databaseService.saveWallet(wallet).then(ac => {
-                                                        this.notificationService.info(wallet.address);
-                                                        this.setCurrentWallet(wallet);
-                                                        resolve(wallet);
-                                                    });
+                                                    return this.databaseService.saveWallet(wallet)
+                                                        .then(wallet => {
+                                                            this.notificationService.info(JSON.stringify(wallet));
+                                                            resolve(wallet);
+                                                        });
                                                 });
                                         });
                                 });
@@ -80,17 +77,16 @@ export class WalletService {
         });
     }
 
-    public createOfflineWallet(input: string) {
+    public createOfflineWallet(address: string): Promise<Wallet> {
         return new Promise((resolve, reject) => {
             let wallet: Wallet = new Wallet();
-            this.databaseService.findWallet(BurstAddress.decode(input))
+            this.databaseService.findWallet(BurstAddress.decode(address))
                 .then(found => {
                     if (found == undefined) {
                         // import offline wallet
                         wallet.type = "offline";
-                        wallet.address = input;
-                        wallet.selected = true;
-                        return this.cryptoService.getAccountIdFromBurstAddress(input)
+                        wallet.address = address;
+                        return this.cryptoService.getAccountIdFromBurstAddress(address)
                             .then(id => {
                                 wallet.id = id;
                                 this.getBalance(wallet.id)
@@ -99,24 +95,54 @@ export class WalletService {
                                         this.getTransactions(wallet.id)
                                             .then(transactions => {
                                                 wallet.transactions = transactions;
-                                                return this.databaseService.saveWallet(wallet).then(ac => {
-                                                    this.notificationService.info(JSON.stringify(wallet));
-                                                    this.setCurrentWallet(wallet);
-                                                    resolve(wallet);
-                                                });
+                                                return this.databaseService.saveWallet(wallet)
+                                                    .then(wallet => {
+                                                        this.notificationService.info(JSON.stringify(wallet));
+                                                        resolve(wallet);
+                                                    });
                                             })
                                     })
                                     .catch(error => {
-                                        return this.databaseService.saveWallet(wallet).then(ac => {
-                                            this.notificationService.info(JSON.stringify(wallet));
-                                            this.setCurrentWallet(wallet);
-                                            resolve(wallet);
-                                        });
+                                        return this.databaseService.saveWallet(wallet)
+                                            .then(wallet => {
+                                                this.notificationService.info(JSON.stringify(wallet));
+                                                resolve(wallet);
+                                            });
                                     });
                             });
                     } else {
                         reject("Burstcoin address already imported!");
                     }
+                })
+        });
+    }
+
+    public activateWallet(wallet: Wallet, passphrase: string, pin: string): Promise<Wallet> {
+        return new Promise((resolve, reject) => {
+            this.cryptoService.generateMasterPublicAndPrivateKey(passphrase)
+                .then(keys => {
+                    wallet.keypair.publicKey = keys.publicKey;
+                    this.cryptoService.encryptAES(keys.privateKey, this.hashPin(pin))
+                        .then(encryptedKey => {
+                            wallet.keypair.privateKey = encryptedKey;
+                            wallet.pinHash = this.hashPin(pin);
+                            wallet.type = "active";
+                            return this.databaseService.saveWallet(wallet)
+                                .then(wallet => {
+                                    this.notificationService.info(JSON.stringify(wallet));
+                                    resolve(wallet);
+                                });
+                        })
+                })
+        });
+    }
+
+    public selectWallet(wallet: Wallet): Promise<Wallet> {
+        return new Promise((resolve, reject) => {
+            this.databaseService.selectWallet(wallet)
+                .then(wallet => {
+                    this.setCurrentWallet(wallet);
+                    resolve(wallet);
                 })
         });
     }

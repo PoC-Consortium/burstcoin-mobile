@@ -12,7 +12,7 @@ export class Wallet {
     balanceStringBTC: string;
     balanceStringCur: string;
 
-    pin: string;
+    pinHash: string;
     keypair: Keypair;
     transactions: Transaction[];
 
@@ -26,7 +26,7 @@ export class Wallet {
         this.selected = data.selected || undefined;
         this.keypair = new Keypair();
         if (data.keypair != undefined) {
-            this.pin = data.pin || undefined;
+            this.pinHash = data.pinHash || undefined;
             this.keypair.publicKey = data.keypair.publicKey || undefined;
             this.keypair.privateKey = data.keypair.privateKey || undefined;
         }

@@ -34,7 +34,6 @@ export class ActivateComponent implements OnInit {
     }
 
     public onTapNext() {
-        console.log(this.passphrase);
         if (this.passphrase.length > 0) {
             this.step = 0;
             this.cryptoService.generateMasterPublicAndPrivateKey(this.passphrase)
@@ -43,7 +42,6 @@ export class ActivateComponent implements OnInit {
                         .then(id => {
                             this.cryptoService.getBurstAddressFromAccountId(id)
                                 .then(address => {
-                                    console.log(address);
                                     if (this.walletService.currentWallet.value.address == address) {
                                         this.step = 2;
                                     } else {
@@ -68,11 +66,20 @@ export class ActivateComponent implements OnInit {
         } else {
             this.notificationService.info("Please enter something!");
         }
-
-        //this.router.navigate(['pin', 'set', encodeURIComponent('tabs/accounts/activate')]);
     }
 
     public onTapDone() {
-
+        if (this.walletService.isPin(this.pin)) {
+            this.walletService.activateWallet(this.walletService.currentWallet.value, this.passphrase, this.pin)
+                .then(wallet => {
+                    this.router.navigate['tabs'];
+                })
+                .catch(error  => {
+                    this.notificationService.info("Update of wallet failed!");
+                    this.router.navigate['tabs'];
+                })
+        } else {
+            this.notificationService.info("Please enter a six-digit number as Pin!");
+        }
     }
 }
