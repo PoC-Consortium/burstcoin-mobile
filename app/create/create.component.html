@@ -10,6 +10,7 @@
 
     <StackLayout class="container" orientation="vertical">
         <Image *ngIf="this.step != 0" class="logo-small m-b-15 m-t-15" src="res://logo"></Image>
+        <Image *ngIf="this.step == 0" class="logo-normal m-b-15 m-t-15" src="res://logo"></Image>
 
         <StackLayout class="info-container" orientation="vertical">
             <StackLayout orientation="vertical">
@@ -60,7 +61,7 @@
             </StackLayout>
         </StackLayout>
 
-        <StackLayout class="progress-bottom" orientation="vertical">
+        <StackLayout *ngIf="this.step != 0" class="progress-bottom" orientation="vertical">
             <StackLayout *ngIf="this.step == 2 || this.step == 3">
                 <Button class="generate-again-button btn btn-primary btn-active fa" text="Generate Again &#xf021;" (tap)="onTapGenerateAgain($event)"></Button>
             </StackLayout>

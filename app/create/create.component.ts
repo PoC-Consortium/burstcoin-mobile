@@ -45,7 +45,7 @@ export class CreateComponent implements OnInit {
         private router: Router,
         private walletService: WalletService
     ) {
-        this.step = 1;
+        this.step = 4;
         this.seed = [];
         this.passPhrase = [];
         this.retypePassPhrase = [];
@@ -137,14 +137,20 @@ export class CreateComponent implements OnInit {
     }
 
     public onTapDone(args: EventData) {
+        this.pin = "111111";
+        this.passPhrase = ['test'];
         if (this.walletService.isPin(this.pin)) {
             this.step = 0;
             this.walletService.createActiveWallet(this.passPhrase.join(" "), this.pin)
                 .then(wallet => {
-                    this.router.navigate(['tabs']);
+                    this.walletService.selectWallet(wallet)
+                        .then(wallet => {
+                            console.log("cur" + JSON.stringify(this.walletService.currentWallet.value));
+                            this.router.navigate(['tabs']);
+                        })
                 })
                 .catch(err => {
-                    this.router.navigate(['create']);
+                    this.router.navigate(['start']);
                 })
         } else {
             this.notificationService.info("PIN must be a six-digit number!")

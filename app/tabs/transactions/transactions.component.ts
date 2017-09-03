@@ -4,7 +4,7 @@ import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-mo
 import { Label } from "ui/label";
 import { Border } from "ui/border";
 
-import { Transaction } from "../../lib/model";
+import { Transaction, Wallet } from "../../lib/model";
 
 import { DatabaseService, MarketService, NotificationService, WalletService } from "../../lib/services";
 
@@ -26,12 +26,24 @@ export class TransactionsComponent implements OnInit {
         private notificationService: NotificationService,
         private walletService: WalletService
     ) {
-
+        this.ownId = "";
+        this.transactions = [];
     }
 
     ngOnInit(): void {
-        this.transactions = this.walletService.currentWallet.value.transactions;
-        this.ownId = this.walletService.currentWallet.value.id;
+        /*
+        if (this.walletService.currentWallet.value != undefined) {
+            this.transactions = this.walletService.currentWallet.value.transactions;
+            this.ownId = this.walletService.currentWallet.value.id;
+        }
+        */
+
+        this.walletService.currentWallet.subscribe((wallet: Wallet) => {
+            if (wallet != undefined) {
+                this.transactions = wallet.transactions;
+                this.ownId = this.walletService.currentWallet.value.id;
+            }
+        });
     }
 
     public convertFiat() {
@@ -39,6 +51,10 @@ export class TransactionsComponent implements OnInit {
     }
 
     public onTapItem(e) {
+
+    }
+
+    public refresh() {
 
     }
 }

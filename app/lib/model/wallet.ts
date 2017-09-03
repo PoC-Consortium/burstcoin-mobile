@@ -19,11 +19,11 @@ export class Wallet {
     constructor(data: any = {}) {
         this.id = data.id || undefined;
         this.address = data.address || undefined;
-        this.balance = data.balance || undefined;
+        this.balance = data.balance || 0;
         this.balanceStringBTC = data.balance || undefined;
         this.balanceStringCur = data.balance || undefined;
-        this.type = data.type || undefined;
-        this.selected = data.selected || undefined;
+        this.type = data.type || "offline";
+        this.selected = data.selected || false;
         this.keypair = new Keypair();
         if (data.keypair != undefined) {
             this.pinHash = data.pinHash || undefined;

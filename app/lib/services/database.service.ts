@@ -79,8 +79,10 @@ export class DatabaseService extends Database {
                     if (rs.length > 0) {
                         wallets.chain().find({ id : rs[0].id }).update(w => {
                             w.selected = true;
-                            resolve(w);
                         });
+                        let w = new Wallet(rs[0]);
+                        this.database.saveDatabase();
+                        resolve(w);
                     } else {
                         reject(undefined);
                     }
@@ -97,12 +99,13 @@ export class DatabaseService extends Database {
             if (this.ready.value) {
                 wallet.selected = true;
                 let wallets = this.database.getCollection("wallets");
-                wallets.find().update(w => {
+                wallets.chain().find().update(w => {
                     w.selected = false;
                 });
-                wallets.find({ id : wallet.id }).update(w => {
+                wallets.chain().find({ id : wallet.id }).update(w => {
                     w.selected = true;
                 });
+                this.database.saveDatabase();
                 resolve(wallet);
             } else {
                 reject(undefined);

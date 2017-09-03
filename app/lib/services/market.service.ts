@@ -20,7 +20,8 @@ export class MarketService {
     * Get Currency Data from coinmarketcap
     * TODO Provide interface, for easy swap of currency data provider
     */
-    public updateCurrency(currency: string = undefined): void {
+    public updateCurrency(currency: string = undefined): Promise<Currency> {
+        return new Promise((resolve, reject) => {
             let params: URLSearchParams = new URLSearchParams();
             let requestOptions = this.getRequestOptions();
             if (currency != undefined) {
@@ -28,19 +29,22 @@ export class MarketService {
                 params.set("convert", currency);
                 requestOptions.params = params;
             }
-            this.http.get("https://api.coinmarketcap.com/v1/ticker/burst", requestOptions)
+            return this.http.get("https://api.coinmarketcap.com/v1/ticker/burst", requestOptions)
                 .toPromise()
                 .then(response => {
-                    let c = response.json() || [];
-                    if (c.length > 0) {
+                    let r = response.json() || [];
+                    if (r.length > 0) {
                         // set currency for currency object
-                        c[0]["currency"] = currency;
-                        this.setCurrency(new Currency(c[0]));
+                        r[0]["currency"] = currency;
+                        let c = new Currency(r[0]);
+                        this.setCurrency(c);
+                        resolve(c);
                     }
                 })
                 .catch(error => {
                     console.log("currency update failed");
                 });
+        });
     }
 
     public getPriceBurstcoin(coins: number) {

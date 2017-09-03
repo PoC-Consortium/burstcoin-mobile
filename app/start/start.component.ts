@@ -46,7 +46,7 @@ export class StartComponent implements OnInit {
                     this.router.navigate(['tabs'], { clearHistory: true });
                 })
                 .catch(wallet => {
-                    this.router.navigate(['import'], { clearHistory: true });
+                    this.loading = false;
                 })
         } else {
             this.loading = false;

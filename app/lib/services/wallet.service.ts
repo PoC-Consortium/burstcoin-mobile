@@ -43,6 +43,7 @@ export class WalletService {
             wallet.type = "active";
             return this.cryptoService.generateMasterPublicAndPrivateKey(passphrase)
                 .then(keypair => {
+                    wallet.keypair.publicKey = keypair.publicKey;
                     return this.cryptoService.encryptAES(keypair.privateKey, this.hashPin(pin))
                         .then(encryptedKey => {
                             wallet.keypair.privateKey = encryptedKey;
@@ -53,22 +54,10 @@ export class WalletService {
                                     return this.cryptoService.getBurstAddressFromAccountId(id)
                                         .then(address => {
                                             wallet.address = address;
-                                            // TODO: check if wallet exist with this address and overwrite keys
-                                            return this.getBalance(wallet.id)
-                                                .then(balance => {
-                                                    wallet.balance = balance;
-                                                    return this.databaseService.saveWallet(wallet)
-                                                        .then(wallet => {
-                                                            this.notificationService.info(JSON.stringify(wallet));
-                                                            resolve(wallet);
-                                                        });
-                                                })
-                                                .catch(error => {
-                                                    return this.databaseService.saveWallet(wallet)
-                                                        .then(wallet => {
-                                                            this.notificationService.info(JSON.stringify(wallet));
-                                                            resolve(wallet);
-                                                        });
+                                            return this.databaseService.saveWallet(wallet)
+                                                .then(wallet => {
+                                                    console.log(JSON.stringify(wallet));
+                                                    resolve(wallet);
                                                 });
                                         });
                                 });
@@ -89,25 +78,10 @@ export class WalletService {
                         return this.cryptoService.getAccountIdFromBurstAddress(address)
                             .then(id => {
                                 wallet.id = id;
-                                this.getBalance(wallet.id)
-                                    .then(balance => {
-                                        wallet.balance = balance;
-                                        this.getTransactions(wallet.id)
-                                            .then(transactions => {
-                                                wallet.transactions = transactions;
-                                                return this.databaseService.saveWallet(wallet)
-                                                    .then(wallet => {
-                                                        this.notificationService.info(JSON.stringify(wallet));
-                                                        resolve(wallet);
-                                                    });
-                                            })
-                                    })
-                                    .catch(error => {
-                                        return this.databaseService.saveWallet(wallet)
-                                            .then(wallet => {
-                                                this.notificationService.info(JSON.stringify(wallet));
-                                                resolve(wallet);
-                                            });
+                                return this.databaseService.saveWallet(wallet)
+                                    .then(wallet => {
+                                        this.notificationService.info(JSON.stringify(wallet));
+                                        resolve(wallet);
                                     });
                             });
                     } else {
@@ -184,18 +158,24 @@ export class WalletService {
     }
 
     public getBalance(id: string): Promise<number> {
-        let params: URLSearchParams = new URLSearchParams();
-        params.set("requestType", "getBalance");
-        params.set("account", id);
-        let requestOptions = this.getRequestOptions();
-        requestOptions.params = params;
-        return this.http.get(WalletService.walletURL, requestOptions).toPromise()
-            .then(response => {
-                let balanceString = response.json().guaranteedBalanceNQT;
-                balanceString = this.convertStringToNumber(balanceString);
-                return parseFloat(balanceString);
-            })
-            .catch(error => this.handleError(error));
+        return new Promise((resolve, reject) => {
+            let params: URLSearchParams = new URLSearchParams();
+            params.set("requestType", "getBalance");
+            params.set("account", id);
+            let requestOptions = this.getRequestOptions();
+            requestOptions.params = params;
+            return this.http.get(WalletService.walletURL, requestOptions).toPromise()
+                .then(response => {
+                    if (response.json().errorCode == undefined) {
+                        let balanceString = response.json().guaranteedBalanceNQT;
+                        balanceString = this.convertStringToNumber(balanceString);
+                        resolve(parseFloat(balanceString));
+                    } else {
+                        reject(0);
+                    }
+                })
+                .catch(error => this.handleError(error));
+            });
     }
 
     public doTransaction(transaction: Transaction): Promise<Transaction> {
