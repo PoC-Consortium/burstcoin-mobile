@@ -10,6 +10,10 @@ import { DatabaseService, MarketService, NotificationService, WalletService } fr
 
 let ZXing = require('nativescript-zxing');
 
+import { registerElement } from "nativescript-angular/element-registry";
+registerElement("PullToRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
+
+
 @Component({
     selector: "balance",
     moduleId: module.id,
@@ -82,13 +86,23 @@ export class BalanceComponent implements OnInit {
         this.balance = "Balance: " + this.marketService.getPriceBurstcoin(wallet.balance);
     }
 
-    public refresh() {
+    public refresh(args) {
+        var pullRefresh = args.object;
         let wallet = this.walletService.currentWallet.value;
         this.walletService.getBalance(wallet.id)
             .then(balance => {
                 wallet.balance = balance;
                 this.balance = "Balance: " + this.marketService.getPriceBurstcoin(wallet.balance);
-                this.marketService.updateCurrency();
+                this.marketService.updateCurrency()
+                    .then(currency => {
+                        pullRefresh.refreshing = false;
+                    })
+                    .catch(error => {
+                        pullRefresh.refreshing = false;
+                    });
+            })
+            .catch(error => {
+                pullRefresh.refreshing = false;
             });
     }
 
