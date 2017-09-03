@@ -29,6 +29,12 @@ export class TabsComponent implements OnInit {
     ngOnInit(): void {
         if (this.walletService.currentWallet.value == undefined) {
             this.router.navigate(['start']);
+        } else {
+            let wallet = this.walletService.currentWallet.value;
+            this.walletService.synchronizeWallet(wallet)
+                .then(wallet => {
+                    this.walletService.setCurrentWallet(wallet);
+                })
         }
     }
 

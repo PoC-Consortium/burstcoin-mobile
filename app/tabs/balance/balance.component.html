@@ -1,4 +1,4 @@
-<PullToRefresh (refresh)="refresh($event)">
+<BalanceRefresh (refresh)="refresh($event)">
     <StackLayout orientation="vertical">
         <StackLayout class="balance-container m-b-30" orientation="vertical">
                 <Image class="qrcode" [src]="qrcode"></Image>
@@ -19,4 +19,4 @@
             <Button *ngIf="wallet?.type == 'offline'" class="btn btn-primary btn-active action-button fa" text="Activate &#xf05d;" [nsRouterLink]="['accounts/activate']"></Button>
         </StackLayout>
     </StackLayout>
-</PullToRefresh>
+</BalanceRefresh>

@@ -11,7 +11,7 @@ import { DatabaseService, MarketService, NotificationService, WalletService } fr
 let ZXing = require('nativescript-zxing');
 
 import { registerElement } from "nativescript-angular/element-registry";
-registerElement("PullToRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
+registerElement("BalanceRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
 
 
 @Component({
@@ -41,47 +41,25 @@ export class BalanceComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        /*
-        if (this.walletService.currentWallet.value != undefined) {
-            this.update(this.walletService.currentWallet.value);
-            // conversion into btc and fiat currency
-            this.marketService.currency.subscribe((currency: Currency) => {
-                if (currency != undefined) {
-                    console.log("dw");
-                    this.balanceBTC = this.marketService.getPriceBTC(this.wallet.balance);
-                    this.balanceCur = this.marketService.getPriceFiatCurrency(this.wallet.balance);
-                }
-            });
-        }
-        */
-
         this.walletService.currentWallet.subscribe((wallet: Wallet) => {
             if (wallet != undefined) {
                 this.update(wallet);
-                this.walletService.getBalance(wallet.id)
-                    .then(balance => {
-                        wallet.balance = balance;
-                        this.update(wallet);
-                        // conversion into btc and fiat currency
-                        this.marketService.currency.subscribe((currency: Currency) => {
-                            if (currency != undefined) {
-                                this.balanceBTC = this.marketService.getPriceBTC(this.wallet.balance);
-                                this.balanceCur = this.marketService.getPriceFiatCurrency(this.wallet.balance);
-                            }
-                        });
-                    })
-                    .catch(error => {
-                        this.notificationService.info("Account is not yet registered in the network. Do a transaction to register it!");
-                    });
             }
         });
 
+        // conversion into btc and fiat currency
+        this.marketService.currency.subscribe((currency: Currency) => {
+            if (currency != undefined) {
+                this.balanceBTC = this.marketService.getPriceBTC(this.wallet.balance);
+                this.balanceCur = this.marketService.getPriceFiatCurrency(this.wallet.balance);
+            }
+        });
     }
 
     public update(wallet: Wallet) {
         this.wallet = wallet;
         // generate qr code image
-        this.qrcode = this.zx.createBarcode({encode: wallet.address, height: 400, width: 400, format: ZXing.QR_CODE});
+        this.qrcode = this.zx.createBarcode({ encode: wallet.address, height: 400, width: 400, format: ZXing.QR_CODE });
         this.address = wallet.type == 'offline' ? wallet.address + " (" + wallet.type + ")" : wallet.address;
         this.balance = "Balance: " + this.marketService.getPriceBurstcoin(wallet.balance);
     }
@@ -89,9 +67,8 @@ export class BalanceComponent implements OnInit {
     public refresh(args) {
         var pullRefresh = args.object;
         let wallet = this.walletService.currentWallet.value;
-        this.walletService.getBalance(wallet.id)
-            .then(balance => {
-                wallet.balance = balance;
+        this.walletService.synchronizeWallet(wallet)
+            .then(wallet => {
                 this.balance = "Balance: " + this.marketService.getPriceBurstcoin(wallet.balance);
                 this.marketService.updateCurrency()
                     .then(currency => {
@@ -101,9 +78,6 @@ export class BalanceComponent implements OnInit {
                         pullRefresh.refreshing = false;
                     });
             })
-            .catch(error => {
-                pullRefresh.refreshing = false;
-            });
     }
 
 }

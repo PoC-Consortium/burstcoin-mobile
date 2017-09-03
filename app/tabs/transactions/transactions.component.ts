@@ -8,6 +8,9 @@ import { Transaction, Wallet } from "../../lib/model";
 
 import { DatabaseService, MarketService, NotificationService, WalletService } from "../../lib/services";
 
+import { registerElement } from "nativescript-angular/element-registry";
+registerElement("TransactionRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
+
 
 @Component({
     selector: "transactions",
@@ -31,13 +34,6 @@ export class TransactionsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        /*
-        if (this.walletService.currentWallet.value != undefined) {
-            this.transactions = this.walletService.currentWallet.value.transactions;
-            this.ownId = this.walletService.currentWallet.value.id;
-        }
-        */
-
         this.walletService.currentWallet.subscribe((wallet: Wallet) => {
             if (wallet != undefined) {
                 this.transactions = wallet.transactions;
@@ -54,7 +50,13 @@ export class TransactionsComponent implements OnInit {
 
     }
 
-    public refresh() {
-
+    public refresh(args) {
+        var pullRefresh = args.object;
+        let wallet = this.walletService.currentWallet.value;
+        this.walletService.synchronizeWallet(wallet)
+            .then(wallet => {
+                this.transactions = wallet.transactions;
+                pullRefresh.refreshing = false;
+            })
     }
 }

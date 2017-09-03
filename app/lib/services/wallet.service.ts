@@ -56,7 +56,6 @@ export class WalletService {
                                             wallet.address = address;
                                             return this.databaseService.saveWallet(wallet)
                                                 .then(wallet => {
-                                                    console.log(JSON.stringify(wallet));
                                                     resolve(wallet);
                                                 });
                                         });
@@ -111,6 +110,24 @@ export class WalletService {
         });
     }
 
+    public synchronizeWallet(wallet: Wallet): Promise<Wallet> {
+        return new Promise((resolve, reject) => {
+            this.getBalance(wallet.id)
+                .then(balance => {
+                    wallet.balance = balance;
+                    this.getTransactions(wallet.id)
+                        .then(transactions => {
+                            wallet.transactions = transactions;
+                            this.databaseService.saveWallet(wallet)
+                                .catch(error => {
+                                    console.log("failed save of wallet");
+                                })
+                            resolve(wallet);
+                        }).catch(error => resolve(wallet));
+                }).catch(error => resolve(wallet));
+            });
+    }
+
     public selectWallet(wallet: Wallet): Promise<Wallet> {
         return new Promise((resolve, reject) => {
             this.databaseService.selectWallet(wallet)
@@ -131,10 +148,8 @@ export class WalletService {
         requestOptions.params = params;
         return this.http.get(WalletService.walletURL, requestOptions).toPromise()
             .then(response => {
-                console.log(JSON.stringify(response.json()));
                 let transactions: Transaction[] = [];
                 response.json().transactions.map(transaction => {
-                    console.log(transaction);
                     transaction.amountNQT = parseFloat(this.convertStringToNumber(transaction.amountNQT));
                     transaction.feeNQT = parseFloat(this.convertStringToNumber(transaction.feeNQT));
                     transactions.push(new Transaction(transaction));
