@@ -54,7 +54,7 @@
         <StackLayout *ngIf="this.step == 4" orientation="vertical">
             <StackLayout class="body-container" orientation="vertical">
                 <Label class="text-view-label fa top" text="&#xf292; PIN"></Label>
-                <TextField class="input" [(ngModel)]="pin" keyboardType="phone" returnKeyType="done"></TextField>
+                <TextField class="input" [(ngModel)]="pin" keyboardType="number" returnKeyType="done"></TextField>
             </StackLayout>
             <StackLayout orientation="vertical">
                 <Button class="btn btn-primary btn-active action-button fa" text="Done &#xf00c;" (tap)="onTapDone($event)"></Button>

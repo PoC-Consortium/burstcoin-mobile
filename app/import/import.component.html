@@ -42,7 +42,7 @@
             </StackLayout>
             <StackLayout class="body-container m-b-20" orientation="vertical">
                 <Label class="text-view-label fa" text="&#xf292; PIN"></Label>
-                <TextField class="input" [(ngModel)]="pin" keyboardType="phone" returnKeyType="done"></TextField>
+                <TextField class="input" [(ngModel)]="pin" keyboardType="number" returnKeyType="done"></TextField>
                 <Button class="btn btn-primary btn-active action-button fa" text="Done &#xf05d;" (tap)="onTapDone($event)"></Button>
             </StackLayout>
         </StackLayout>

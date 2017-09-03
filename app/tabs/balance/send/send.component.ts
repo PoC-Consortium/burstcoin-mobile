@@ -12,7 +12,7 @@ import { BarcodeScanner, ScanOptions } from "nativescript-barcodescanner";
     styleUrls: ["./send.component.css"]
 })
 export class SendComponent implements OnInit {
-
+    step: number;
     wallet: Wallet;
     balance: string;
     recipient: string;
@@ -22,10 +22,12 @@ export class SendComponent implements OnInit {
     constructor(
         private barcodeScanner: BarcodeScanner,
         private marketService: MarketService,
+        private notificationService: NotificationService,
         private walletService: WalletService
     ) {
-        this.recipient = "BURST-";
-        this.amount = 0;
+        this.step = 1;
+        this.recipient = "BURST-1111-1111-1111-11111";
+        this.amount = 1;
         this.fee = 1;
     }
 
@@ -43,15 +45,30 @@ export class SendComponent implements OnInit {
             formats: "QR_CODE"
         }
         this.barcodeScanner.scan(options).then((result) => {
-            // Note that this Promise is never invoked when a 'continuousScanCallback' function is provided
-            alert({
-                title: "Scan result",
-                message: "Format: " + result.format + ",\nValue: " + result.text,
-                okButtonText: "OK"
-            });
+            this.recipient = result.text;
         }, (errorMessage) => {
-            console.log("No scan. " + errorMessage);
+            this.notificationService.info("Error scanning for QR code!")
         });
+    }
+
+    public onTapVerify() {
+        if (this.walletService.isBurstcoinAddress(this.recipient)) {
+            if (this.amount > 0 && !isNaN(Number(this.amount))) {
+                if (this.fee >= 1 && !isNaN(Number(this.fee))) {
+                    this.step = 2;
+                } else {
+                    this.notificationService.info("Please enter a decimal number as fee!")
+                }
+            } else {
+                this.notificationService.info("Please enter a decimal number for the amount of BURST you want to send!")
+            }
+        } else {
+            this.notificationService.info("Please enter a valid Burst address!")
+        }
+    }
+
+    public onTapDone() {
+        
     }
 
     public formatRecipient() {
