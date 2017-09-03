@@ -15,12 +15,18 @@ export class SendComponent implements OnInit {
 
     wallet: Wallet;
     balance: string;
+    recipient: string;
+    amount: number;
+    fee: number;
 
     constructor(
         private barcodeScanner: BarcodeScanner,
         private marketService: MarketService,
-        private walletService: WalletService) {
-
+        private walletService: WalletService
+    ) {
+        this.recipient = "BURST-";
+        this.amount = 0;
+        this.fee = 1;
     }
 
     ngOnInit(): void {
@@ -46,5 +52,9 @@ export class SendComponent implements OnInit {
         }, (errorMessage) => {
             console.log("No scan. " + errorMessage);
         });
+    }
+
+    public formatRecipient() {
+        this.recipient = this.recipient.toUpperCase();
     }
 }
