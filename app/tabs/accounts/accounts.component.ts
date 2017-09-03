@@ -28,25 +28,31 @@ export class AccountsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.databaseService.getAllWallets()
-            .then(wallets => {
-                this.wallets = wallets;
-                if (this.marketService.currency.value != undefined) {
-                    this.wallets.map(wallet => {
-                        wallet.balanceStringBTC = this.marketService.getPriceBTC(wallet.balance);
-                        wallet.balanceStringCur = this.marketService.getPriceFiatCurrency(wallet.balance);
+        this.walletService.currentWallet.subscribe((wallet: Wallet) => {
+            if (wallet != undefined) {
+                this.databaseService.getAllWallets()
+                    .then(wallets => {
+                        this.wallets = wallets;
+                        if (this.marketService.currency != undefined) {
+                            this.wallets.map(wallet => {
+                                wallet.balanceStringBTC = this.marketService.getPriceBTC(wallet.balance);
+                                wallet.balanceStringCur = this.marketService.getPriceFiatCurrency(wallet.balance);
+                            })
+                        }
                     })
-                }
-            })
-            .catch(err => {
-                console.log("No wallets found: " + err);
-            })
+                    .catch(err => {
+                        console.log("No wallets found: " + err);
+                    })
+            }
+        });
 
         this.marketService.currency.subscribe((currency: Currency) => {
-            this.wallets.map(wallet => {
-                wallet.balanceStringBTC = this.marketService.getPriceBTC(wallet.balance);
-                wallet.balanceStringCur = this.marketService.getPriceFiatCurrency(wallet.balance);
-            })
+            if (currency != undefined) {
+                this.wallets.map(wallet => {
+                    wallet.balanceStringBTC = this.marketService.getPriceBTC(wallet.balance);
+                    wallet.balanceStringCur = this.marketService.getPriceFiatCurrency(wallet.balance);
+                })
+            }
         });
     }
 

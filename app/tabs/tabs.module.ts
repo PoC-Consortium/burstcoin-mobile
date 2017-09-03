@@ -8,6 +8,7 @@ import { TabsComponent } from "./tabs.component";
 
 import { AccountsComponent } from "./accounts/accounts.component";
 import { ActivateComponent } from "./accounts/activate/activate.component";
+import { AddComponent } from "./accounts/add/add.component";
 
 import { BalanceComponent } from "./balance/balance.component";
 import { ReceiveComponent } from "./balance/receive/receive.component";
@@ -28,6 +29,7 @@ import { SharedModule } from "../lib/shared.module";
         TabsComponent,
         AccountsComponent,
         ActivateComponent,
+        AddComponent,
         BalanceComponent,
         ReceiveComponent,
         SendComponent,

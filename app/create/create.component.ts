@@ -145,7 +145,6 @@ export class CreateComponent implements OnInit {
                 .then(wallet => {
                     this.walletService.selectWallet(wallet)
                         .then(wallet => {
-                            console.log("cur" + JSON.stringify(this.walletService.currentWallet.value));
                             this.router.navigate(['tabs']);
                         })
                 })

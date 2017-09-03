@@ -3,12 +3,12 @@
         <ng-template let-item="item" let-i="index">
             <StackLayout>
                 <GridLayout class="m-x-auto list-item" columns="auto,*,auto" rows="auto, auto, auto">
-                    <Label col="0" row="0" class="font-weight-bold font-italic" [text]="item.id"></Label>
+                    <Label col="0" row="0" class="font-weight-bold font-italic" [text]="item.address"></Label>
                     <Label col="2" row="0" class="font-weight-bold font-italic text-right" [text]="item.balance + ' BURST'"></Label>
-                    <Label col="0" row="1" class="font-weight-bold font-italic" [text]="item.address"></Label>
-                    <Label col="2" row="1" class="font-weight-bold font-italic text-right" [text]="item.balanceStringBTC"></Label>
-                    <Label col="0" row="2" class="font-weight-bold font-italic" [text]="item.type"></Label>
-                    <Label col="2" row="2" class="font-weight-bold font-italic text-right" [text]="item.balanceStringCur"></Label>
+                    <Label col="0" row="1" class="" [text]="item.id"></Label>
+                    <Label col="2" row="1" class=" text-right" [text]="item.balanceStringBTC"></Label>
+                    <Label col="0" row="2" class="" [text]="item.type"></Label>
+                    <Label col="2" row="2" class="text-right" [text]="item.balanceStringCur"></Label>
                 </GridLayout>
             </StackLayout>
         </ng-template>

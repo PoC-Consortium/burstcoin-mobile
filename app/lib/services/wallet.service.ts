@@ -125,7 +125,7 @@ export class WalletService {
                             resolve(wallet);
                         }).catch(error => resolve(wallet));
                 }).catch(error => resolve(wallet));
-            });
+        });
     }
 
     public selectWallet(wallet: Wallet): Promise<Wallet> {
@@ -139,24 +139,26 @@ export class WalletService {
     }
 
     public getTransactions(id: string): Promise<Transaction[]> {
-        let params: URLSearchParams = new URLSearchParams();
-        params.set("requestType", "getAccountTransactions");
-        params.set("firstIndex", "0");
-        params.set("lastIndex", "15");
-        params.set("account", id);
-        let requestOptions = this.getRequestOptions();
-        requestOptions.params = params;
-        return this.http.get(WalletService.walletURL, requestOptions).toPromise()
-            .then(response => {
-                let transactions: Transaction[] = [];
-                response.json().transactions.map(transaction => {
-                    transaction.amountNQT = parseFloat(this.convertStringToNumber(transaction.amountNQT));
-                    transaction.feeNQT = parseFloat(this.convertStringToNumber(transaction.feeNQT));
-                    transactions.push(new Transaction(transaction));
-                });
-                return transactions || [];
-            })
-            .catch(error => this.handleError(error));
+        return new Promise((resolve, reject) => {
+            let params: URLSearchParams = new URLSearchParams();
+            params.set("requestType", "getAccountTransactions");
+            params.set("firstIndex", "0");
+            params.set("lastIndex", "15");
+            params.set("account", id);
+            let requestOptions = this.getRequestOptions();
+            requestOptions.params = params;
+            return this.http.get(WalletService.walletURL, requestOptions).toPromise()
+                .then(response => {
+                    let transactions: Transaction[] = [];
+                    response.json().transactions.map(transaction => {
+                        transaction.amountNQT = parseFloat(this.convertStringToNumber(transaction.amountNQT));
+                        transaction.feeNQT = parseFloat(this.convertStringToNumber(transaction.feeNQT));
+                        transactions.push(new Transaction(transaction));
+                    });
+                    resolve(transactions);
+                })
+                .catch(error => this.handleError(error));
+        });
     }
 
     public getTransaction(id: string): Promise<Transaction> {
@@ -190,7 +192,7 @@ export class WalletService {
                     }
                 })
                 .catch(error => this.handleError(error));
-            });
+        });
     }
 
     public doTransaction(transaction: Transaction): Promise<Transaction> {

@@ -12,7 +12,7 @@
         <Image *ngIf="this.step != 0" class="logo-small m-b-15 m-t-15" src="res://logo"></Image>
         <Image *ngIf="this.step == 0" class="logo-normal m-b-15 m-t-15" src="res://logo"></Image>
 
-        <StackLayout class="info-container" orientation="vertical">
+        <StackLayout *ngIf="this.step != 0" class="info-container" orientation="vertical">
             <StackLayout orientation="vertical">
                 <Label *ngIf="this.step != 0" class="top text-view-label fa" text="&#xf05a;"></Label>
                 <Label *ngIf="this.step == 1" class="bottom" textWrap="true" text="First, create a random seed for the generation of your passphrase!"></Label>

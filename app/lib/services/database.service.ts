@@ -44,6 +44,8 @@ export class DatabaseService extends Database {
     public saveWallet(wallet: Wallet): Promise<Wallet> {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
+                // clean wallet
+                wallet = this.cleanWallet(wallet);
                 let wallets = this.database.getCollection("wallets");
                 let rs = wallets.find({ id : wallet.id });
                 if (rs.length == 0) {
@@ -157,5 +159,11 @@ export class DatabaseService extends Database {
                 reject(false);
             }
         });
+    }
+
+    private cleanWallet(wallet: Wallet): Wallet {
+        wallet.balanceStringBTC = undefined;
+        wallet.balanceStringCur = undefined;
+        return wallet;
     }
 }
