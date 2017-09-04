@@ -85,6 +85,7 @@ export class CreateComponent implements OnInit {
         // init seed process again
         this.step = 1;
         this.try = "";
+        this.retypePassPhrase = [];
     }
 
     /*
