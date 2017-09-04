@@ -45,7 +45,7 @@ export class CreateComponent implements OnInit {
         private router: Router,
         private walletService: WalletService
     ) {
-        this.step = 4;
+        this.step = 1;
         this.seed = [];
         this.passPhrase = [];
         this.retypePassPhrase = [];
@@ -137,8 +137,6 @@ export class CreateComponent implements OnInit {
     }
 
     public onTapDone(args: EventData) {
-        this.pin = "111111";
-        this.passPhrase = ['test'];
         if (this.walletService.isPin(this.pin)) {
             this.step = 0;
             this.walletService.createActiveWallet(this.passPhrase.join(" "), this.pin)

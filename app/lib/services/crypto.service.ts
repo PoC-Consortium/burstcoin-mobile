@@ -100,7 +100,6 @@ export class CryptoService {
     public decryptAES(encryptedBase64: string, key: string): Promise<string> {
         return new Promise((resolve, reject) => {
             let decrypted = CryptoJS.AES.decrypt(encryptedBase64, key);
-            console.log(decrypted.toString(CryptoJS.enc.Hex));
             resolve(decrypted.toString(CryptoJS.enc.Utf8));
         });
     }
@@ -121,10 +120,10 @@ export class CryptoService {
                 .then(privateKey => {
                     let s = Converter.convertHexStringToByteArray(privateKey);
                     let m = Converter.convertWordArrayToByteArray(CryptoJS.SHA256(CryptoJS.enc.Hex.parse(transactionHex)));
-                    let m_s = [].concat(m, s);
+                    let m_s = m.concat(s);
                     let x = Converter.convertWordArrayToByteArray(CryptoJS.SHA256(Converter.convertByteArrayToWordArray(m_s)));
                     let y = ECKCDSA.keygen(x).p;
-                    let m_y = [].concat(m, y);
+                    let m_y = m.concat(y);
                     let h = Converter.convertWordArrayToByteArray(CryptoJS.SHA256(Converter.convertByteArrayToWordArray(m_y)));
                     let v = ECKCDSA.sign(h, x, s);
                     resolve(Converter.convertByteArrayToHexString([].concat(v, h)));
@@ -146,7 +145,7 @@ export class CryptoService {
             let y = ECKCDSA.verify(v, h1, publicKeyBytes);
 
             let m = Converter.convertWordArrayToByteArray(CryptoJS.SHA256(CryptoJS.enc.Hex.parse(transactionHex)));
-            let m_y  = [].concat(m, y);
+            let m_y  = m.concat(y);
             let h2 = Converter.convertWordArrayToByteArray(CryptoJS.SHA256(Converter.convertByteArrayToWordArray(m_y)));
 
             let h1hex = Converter.convertByteArrayToHexString(h1);

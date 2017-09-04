@@ -37,7 +37,7 @@ export class SendComponent implements OnInit {
         if (this.walletService.currentWallet.value != undefined) {
             this.wallet = this.walletService.currentWallet.value;
             this.balance = this.marketService.getPriceBurstcoin(this.wallet.balance);
-        } 
+        }
     }
 
     public onTapScan() {
@@ -77,7 +77,10 @@ export class SendComponent implements OnInit {
             transaction.senderPublicKey = wallet.keypair.publicKey;
             this.walletService.doTransaction(transaction, wallet.keypair.privateKey, this.walletService.hashPin(this.pin))
                 .then(transaction => {
-                    this.router.navigate(['tabs'])
+                    console.log("route")
+                    this.router.navigate(['tabs']);
+                }).catch(error => {
+                    this.notificationService.info("Transaction failed!")
                 })
         } else {
             this.notificationService.info("The provided pin does not match the pin code of the wallet!")

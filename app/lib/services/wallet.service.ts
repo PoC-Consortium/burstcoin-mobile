@@ -239,21 +239,20 @@ export class WalletService {
                                                         // request 'getTransaction' to burst node
                                                         return this.http.get(WalletService.walletURL, requestOptions).toPromise()
                                                             .then(response => {
-                                                                return new Transaction(response.json());
+                                                                resolve(new Transaction(response.json()));
                                                             })
-                                                            .catch(error => this.handleError(error));
+                                                            .catch(error => reject(undefined));
                                                     })
-                                                    .catch(error => this.handleError(error));
-                                            })
+                                                    .catch(error => reject(undefined));
+                                            }).catch(error => reject(undefined));
 
                                     } else {
-                                        console.log("not ok");
+                                        reject(undefined);
                                     }
-                                })
+                                }).catch(error => reject(undefined));
 
-                        });
-                })
-                .catch(error => this.handleError(error));
+                        }).catch(error => reject(undefined));
+                }).catch(error => reject(undefined));
         });
     }
 
@@ -277,8 +276,8 @@ export class WalletService {
         return str.substring(0, str.length - position) + value + str.substring(str.length - position);
     }
 
-    public convertNumberToString(number) {
-        return number.toFixed(8).replace(".", "");
+    public convertNumberToString(n: number) {
+        return parseFloat(n.toString()).toFixed(8).replace(".", "");
     }
 
     public getRequestOptions(fields = {}) {
