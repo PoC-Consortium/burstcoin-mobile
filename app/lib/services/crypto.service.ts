@@ -38,7 +38,7 @@ export class CryptoService {
             // use ec-kcdsa to generate keypair from passphrase
             let keys = ECKCDSA.keygen(Converter.convertWordArrayToByteArray(hashedPassPhrase));
             let keypair: Keypair = new Keypair({
-                "publicKey" : Converter.convertByteArrayToHexString(keys.p),
+                "publicKey": Converter.convertByteArrayToHexString(keys.p),
                 "privateKey": Converter.convertByteArrayToHexString(keys.s)
             });
             resolve(keypair);
@@ -100,6 +100,7 @@ export class CryptoService {
     public decryptAES(encryptedBase64: string, key: string): Promise<string> {
         return new Promise((resolve, reject) => {
             let decrypted = CryptoJS.AES.decrypt(encryptedBase64, key);
+            console.log(decrypted.toString(CryptoJS.enc.Hex));
             resolve(decrypted.toString(CryptoJS.enc.Utf8));
         });
     }
@@ -112,9 +113,56 @@ export class CryptoService {
     }
 
     /*
-    * Sign unsigned transaction bytes from the server
+    * Generate signature for transaction
     */
-    public signTransactionBytes(bytes: string): Promise<string> {
-        return undefined;
+    public generateSignature(transactionHex: string, encryptedPrivateKey: string, pin: string): Promise<string> {
+        return new Promise((resolve, reject) => {
+            this.decryptAES(encryptedPrivateKey, pin)
+                .then(privateKey => {
+                    console.log(privateKey);
+                    let s = Converter.convertHexStringToByteArray(privateKey);
+                    let m = Converter.convertWordArrayToByteArray(CryptoJS.SHA256(CryptoJS.enc.Hex.parse(transactionHex)));
+                    console.log(JSON.stringify(s));
+                    console.log(JSON.stringify(m));
+                    let m_s = [].concat(m, s);
+                    console.log(JSON.stringify(m_s));
+                    let x = Converter.convertWordArrayToByteArray(CryptoJS.SHA256(Converter.convertByteArrayToWordArray(m_s)));
+                    let y = ECKCDSA.keygen(x).p;
+                    let m_y = [].concat(m, y);
+                    let h = Converter.convertWordArrayToByteArray(CryptoJS.SHA256(Converter.convertByteArrayToWordArray(m_y)));
+                    let v = ECKCDSA.sign(h, x, s);
+                    resolve(Converter.convertByteArrayToHexString([].concat(v, h)));
+                })
+        });
+    }
+
+
+    /*
+    * Verify signature for transaction
+    */
+    public verifySignature(signature: string, transactionHex: string, publicKey: string): Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            let signatureBytes = Converter.convertHexStringToByteArray(signature);
+            let messageBytes = Converter.convertHexStringToByteArray(transactionHex);
+            let publicKeyBytes = Converter.convertHexStringToByteArray(publicKey);
+            let v = signatureBytes.slice(0, 32);
+            let h1 = signatureBytes.slice(32);
+            let y = ECKCDSA.verify(v, h1, publicKeyBytes);
+
+            let m = Converter.convertWordArrayToByteArray(CryptoJS.SHA256(CryptoJS.enc.Hex.parse(transactionHex)));
+            let m_y  = [].concat(m, y);
+            let h2 = Converter.convertWordArrayToByteArray(CryptoJS.SHA256(Converter.convertByteArrayToWordArray(m_y)));
+
+            let h1hex = Converter.convertByteArrayToHexString(h1);
+            let h2hex = Converter.convertByteArrayToHexString(h2);
+
+            resolve(h1hex == h2hex);
+        });
+    }
+
+    public generateSignedTransactionBytes(unsignedTransactionBytes: string, signature: string): Promise<string> {
+        return new Promise((resolve, reject) => {
+
+        });
     }
 }

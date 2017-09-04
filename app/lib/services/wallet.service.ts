@@ -195,52 +195,88 @@ export class WalletService {
         });
     }
 
-    public doTransaction(transaction: Transaction): Promise<Transaction> {
-        let unsignedTransactionBytes, sendFields, broadcastFields, transactionFields;
-        // TODO: maybe all on client signing??? WTF
-        sendFields = {
-            "Content-Type": "application/json",
-            "type": "sendMoney",
-            "amountNQT": transaction.amountNQT,
-            "feeNQT": transaction.feeNQT,
-            "publicKey": transaction.senderPublicKey,
-        };
-        // request 'sendMoney' to burst node
-        return this.http.get(WalletService.walletURL + ":" + WalletService.walletPort, this.getRequestOptions(sendFields)).toPromise()
-            .then(response => {
-                // get unsigned transactionbytes
-                unsignedTransactionBytes = response.json().unsignedTransactionBytes || undefined;
-                // sign unsigned transaction bytes
-                return this.cryptoService.signTransactionBytes(unsignedTransactionBytes)
-                    .then(signedTransactionBytes => {
-                        broadcastFields = {
-                            "Content-Type": "application/json",
-                            "type": "broadcastTransaction",
-                            "transactionBytes": signedTransactionBytes
-                        };
-                        // request 'broadcastTransaction' to burst node
-                        return this.http.get(WalletService.walletURL + ":" + WalletService.walletPort, this.getRequestOptions(broadcastFields)).toPromise()
-                            .then(response => {
-                                transactionFields = {
-                                    "Content-Type": "application/json",
-                                    "type": "getTransaction",
-                                    "transaction": response.json().transaction
-                                }
-                                // request 'getTransaction' to burst node
-                                return this.http.get(WalletService.walletURL + ":" + WalletService.walletPort, this.getRequestOptions(transactionFields)).toPromise()
-                                    .then(response => {
-                                        return new Transaction(response.json());
-                                    })
-                                    .catch(error => this.handleError(error));
-                            })
-                            .catch(error => this.handleError(error));
-                    });
-            })
-            .catch(error => this.handleError(error));
+    public doTransaction(transaction: Transaction, encryptedPrivateKey: string, pin: string): Promise<Transaction> {
+        return new Promise((resolve, reject) => {
+            let unsignedTransactionHex, sendFields, broadcastFields, transactionFields;
+            let params: URLSearchParams = new URLSearchParams();
+            params.set("requestType", "sendMoney");
+            params.set("recipient", transaction.recipientAddress);
+            params.set("amountNQT", this.convertNumberToString(transaction.amountNQT));
+            params.set("feeNQT", this.convertNumberToString(transaction.feeNQT));
+            params.set("publicKey", transaction.senderPublicKey);
+            params.set("deadline", "1440");
+            let requestOptions = this.getRequestOptions();
+            requestOptions.params = params;
+            /*
+            let formData: FormData = new FormData();
+            formData.append("recipient", transaction.recipientAddress);
+            formData.append("amountNQT", this.convertNumberToString(transaction.amountNQT));
+            formData.append("feeNQT", this.convertNumberToString(transaction.feeNQT));
+            formData.append("publicKey", transaction.senderPublicKey);
+            formData.append("deadline", "1440");
+            let requestBody = {
+                "recipient": transaction.recipientAddress,
+                "amountNQT": this.convertNumberToString(transaction.amountNQT),
+                "feeNQT": this.convertNumberToString(transaction.feeNQT),
+                "publicKey": transaction.senderPublicKey,
+                "deadline": 1440
+            }
+            */
+
+            // request 'sendMoney' to burst node
+            return this.http.post(WalletService.walletURL, {}, requestOptions).toPromise()
+                .then(response => {
+                    // get unsigned transactionbytes
+                    unsignedTransactionHex = response.json().unsignedTransactionBytes || undefined;
+                    // sign unsigned transaction bytes
+                    return this.cryptoService.generateSignature(unsignedTransactionHex, encryptedPrivateKey, pin)
+                        .then(signature => {
+                            return this.cryptoService.verifySignature(signature, unsignedTransactionHex, transaction.senderPublicKey)
+                                .then(verified => {
+                                    if (verified) {
+                                        console.log("ok");
+                                    } else {
+                                        console.log("not ok");
+                                    }
+                                    resolve(transaction);
+                                    /*
+                                    return this.cryptoService.generateSignedTransactionBytes(unsignedTransactionHex, signature)
+                                        .then(signedTransactionBytes => {
+                                            params = new URLSearchParams();
+                                            params.set("requestType", "broadcastTransaction");
+                                            let requestBody = {
+                                                "transactionBytes": signedTransactionBytes
+                                            }
+                                            requestOptions = this.getRequestOptions();
+                                            requestOptions.params = params;
+                                            // request 'broadcastTransaction' to burst node
+                                            return this.http.post(WalletService.walletURL, requestBody, requestOptions).toPromise()
+                                                .then(response => {
+                                                    params = new URLSearchParams();
+                                                    params.set("requestType", "getTransaction");
+                                                    params.set("transaction", response.json().transaction);
+                                                    requestOptions = this.getRequestOptions();
+                                                    requestOptions.params = params;
+                                                    // request 'getTransaction' to burst node
+                                                    return this.http.get(WalletService.walletURL, requestOptions).toPromise()
+                                                        .then(response => {
+                                                            return new Transaction(response.json());
+                                                        })
+                                                        .catch(error => this.handleError(error));
+                                                })
+                                                .catch(error => this.handleError(error));
+                                        })
+                                        */
+                                })
+
+                        });
+                })
+                .catch(error => this.handleError(error));
+        });
     }
 
     public checkPin(pin: string): boolean {
-        return this.currentWallet != undefined ? this.currentWallet.value.pin == this.hashPin(pin) : false;
+        return this.currentWallet.value != undefined ? this.currentWallet.value.pinHash == this.hashPin(pin) : false;
     }
 
     public hashPin(pin: string): string {
@@ -257,6 +293,10 @@ export class WalletService {
 
     public convertStringToNumber(str, value = ".", position = 8) {
         return str.substring(0, str.length - position) + value + str.substring(str.length - position);
+    }
+
+    public convertNumberToString(number) {
+        return number.toFixed(8).replace(".", "");
     }
 
     public getRequestOptions(fields = {}) {

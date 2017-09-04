@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 
-import { BurstAddress, Wallet } from "../../../lib/model";
+import { BurstAddress, Transaction, Wallet } from "../../../lib/model";
 import { MarketService, NotificationService, WalletService } from "../../../lib/services";
 
 import { BarcodeScanner, ScanOptions } from "nativescript-barcodescanner";
@@ -18,6 +18,7 @@ export class SendComponent implements OnInit {
     recipient: string;
     amount: number;
     fee: number;
+    pin: string;
 
     constructor(
         private barcodeScanner: BarcodeScanner,
@@ -26,8 +27,8 @@ export class SendComponent implements OnInit {
         private walletService: WalletService
     ) {
         this.step = 1;
-        this.recipient = "BURST-1111-1111-1111-11111";
-        this.amount = 1;
+        this.recipient = "BURST-KE7T-AA9D-5X6B-FKALA";
+        this.amount = 5;
         this.fee = 1;
     }
 
@@ -67,8 +68,22 @@ export class SendComponent implements OnInit {
         }
     }
 
-    public onTapDone() {
-        
+    public onTapAccept() {
+        this.pin = "111111";
+        if (this.walletService.checkPin(this.pin)) {
+            let wallet = this.walletService.currentWallet.value;
+            let transaction = new Transaction();
+            transaction.recipientAddress = this.recipient;
+            transaction.amountNQT = this.amount;
+            transaction.feeNQT = this.fee;
+            transaction.senderPublicKey = wallet.keypair.publicKey;
+            this.walletService.doTransaction(transaction, wallet.keypair.privateKey, this.pin)
+                .then(transaction => {
+                    console.log(JSON.stringify(transaction));
+                })
+        } else {
+            this.notificationService.info("The provided pin does not match the pin code of the wallet!")
+        }
     }
 
     public formatRecipient() {
