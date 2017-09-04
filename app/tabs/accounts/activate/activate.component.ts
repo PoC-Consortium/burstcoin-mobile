@@ -72,7 +72,15 @@ export class ActivateComponent implements OnInit {
         if (this.walletService.isPin(this.pin)) {
             this.walletService.activateWallet(this.walletService.currentWallet.value, this.passphrase, this.pin)
                 .then(wallet => {
-                    this.router.navigate['tabs'];
+                    this.walletService.synchronizeWallet(this.walletService.currentWallet.value)
+                        .then(wallet => {
+                            this.walletService.setCurrentWallet(wallet);
+                            this.router.navigate['tabs'];
+                        })
+                        .catch(error  => {
+                            this.walletService.setCurrentWallet(wallet);
+                            this.router.navigate['tabs'];
+                        })
                 })
                 .catch(error  => {
                     this.notificationService.info("Update of wallet failed!");

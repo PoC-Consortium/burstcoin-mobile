@@ -70,6 +70,7 @@ export class BalanceComponent implements OnInit {
         this.walletService.synchronizeWallet(wallet)
             .then(wallet => {
                 this.balance = "Balance: " + this.marketService.getPriceBurstcoin(wallet.balance);
+                this.walletService.setCurrentWallet(wallet);
                 this.marketService.updateCurrency()
                     .then(currency => {
                         pullRefresh.refreshing = false;
