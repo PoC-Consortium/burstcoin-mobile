@@ -115,17 +115,13 @@ export class CryptoService {
     /*
     * Generate signature for transaction
     */
-    public generateSignature(transactionHex: string, encryptedPrivateKey: string, pin: string): Promise<string> {
+    public generateSignature(transactionHex: string, encryptedPrivateKey: string, pinHash: string): Promise<string> {
         return new Promise((resolve, reject) => {
-            this.decryptAES(encryptedPrivateKey, pin)
+            this.decryptAES(encryptedPrivateKey, pinHash)
                 .then(privateKey => {
-                    console.log(privateKey);
                     let s = Converter.convertHexStringToByteArray(privateKey);
                     let m = Converter.convertWordArrayToByteArray(CryptoJS.SHA256(CryptoJS.enc.Hex.parse(transactionHex)));
-                    console.log(JSON.stringify(s));
-                    console.log(JSON.stringify(m));
                     let m_s = [].concat(m, s);
-                    console.log(JSON.stringify(m_s));
                     let x = Converter.convertWordArrayToByteArray(CryptoJS.SHA256(Converter.convertByteArrayToWordArray(m_s)));
                     let y = ECKCDSA.keygen(x).p;
                     let m_y = [].concat(m, y);
@@ -160,9 +156,10 @@ export class CryptoService {
         });
     }
 
-    public generateSignedTransactionBytes(unsignedTransactionBytes: string, signature: string): Promise<string> {
+    public generateSignedTransactionBytes(unsignedTransactionHex: string, signature: string): Promise<string> {
         return new Promise((resolve, reject) => {
-
+            // TODO: verification, omg
+            resolve(unsignedTransactionHex.substr(0, 192) + signature + unsignedTransactionHex.substr(320))
         });
     }
 }

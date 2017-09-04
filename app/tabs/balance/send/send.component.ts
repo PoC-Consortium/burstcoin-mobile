@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-
+import { Router } from '@angular/router';
 import { BurstAddress, Transaction, Wallet } from "../../../lib/model";
 import { MarketService, NotificationService, WalletService } from "../../../lib/services";
 
@@ -24,11 +24,12 @@ export class SendComponent implements OnInit {
         private barcodeScanner: BarcodeScanner,
         private marketService: MarketService,
         private notificationService: NotificationService,
+        private router: Router,
         private walletService: WalletService
     ) {
         this.step = 1;
-        this.recipient = "BURST-KE7T-AA9D-5X6B-FKALA";
-        this.amount = 5;
+        this.recipient = "BURST-";
+        this.amount = 0;
         this.fee = 1;
     }
 
@@ -36,9 +37,7 @@ export class SendComponent implements OnInit {
         if (this.walletService.currentWallet.value != undefined) {
             this.wallet = this.walletService.currentWallet.value;
             this.balance = this.marketService.getPriceBurstcoin(this.wallet.balance);
-        } else {
-            // TODO
-        }
+        } 
     }
 
     public onTapScan() {
@@ -69,7 +68,6 @@ export class SendComponent implements OnInit {
     }
 
     public onTapAccept() {
-        this.pin = "111111";
         if (this.walletService.checkPin(this.pin)) {
             let wallet = this.walletService.currentWallet.value;
             let transaction = new Transaction();
@@ -77,9 +75,9 @@ export class SendComponent implements OnInit {
             transaction.amountNQT = this.amount;
             transaction.feeNQT = this.fee;
             transaction.senderPublicKey = wallet.keypair.publicKey;
-            this.walletService.doTransaction(transaction, wallet.keypair.privateKey, this.pin)
+            this.walletService.doTransaction(transaction, wallet.keypair.privateKey, this.walletService.hashPin(this.pin))
                 .then(transaction => {
-                    console.log(JSON.stringify(transaction));
+                    this.router.navigate(['tabs'])
                 })
         } else {
             this.notificationService.info("The provided pin does not match the pin code of the wallet!")

@@ -15,6 +15,8 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class WalletService {
 
+    private static readonly salt = "pxepHeytDgkPAHgwxRJ3EPW4";
+
     //private static readonly walletURL: string = "https://wallet.cryptoguru.org";
     //private static readonly walletPort: string = "8125"; // Testnet
 
@@ -207,21 +209,6 @@ export class WalletService {
             params.set("deadline", "1440");
             let requestOptions = this.getRequestOptions();
             requestOptions.params = params;
-            /*
-            let formData: FormData = new FormData();
-            formData.append("recipient", transaction.recipientAddress);
-            formData.append("amountNQT", this.convertNumberToString(transaction.amountNQT));
-            formData.append("feeNQT", this.convertNumberToString(transaction.feeNQT));
-            formData.append("publicKey", transaction.senderPublicKey);
-            formData.append("deadline", "1440");
-            let requestBody = {
-                "recipient": transaction.recipientAddress,
-                "amountNQT": this.convertNumberToString(transaction.amountNQT),
-                "feeNQT": this.convertNumberToString(transaction.feeNQT),
-                "publicKey": transaction.senderPublicKey,
-                "deadline": 1440
-            }
-            */
 
             // request 'sendMoney' to burst node
             return this.http.post(WalletService.walletURL, {}, requestOptions).toPromise()
@@ -234,39 +221,34 @@ export class WalletService {
                             return this.cryptoService.verifySignature(signature, unsignedTransactionHex, transaction.senderPublicKey)
                                 .then(verified => {
                                     if (verified) {
-                                        console.log("ok");
+                                        return this.cryptoService.generateSignedTransactionBytes(unsignedTransactionHex, signature)
+                                            .then(signedTransactionBytes => {
+                                                params = new URLSearchParams();
+                                                params.set("requestType", "broadcastTransaction");
+                                                params.set("transactionBytes", signedTransactionBytes);
+                                                requestOptions = this.getRequestOptions();
+                                                requestOptions.params = params;
+                                                // request 'broadcastTransaction' to burst node
+                                                return this.http.post(WalletService.walletURL, {}, requestOptions).toPromise()
+                                                    .then(response => {
+                                                        params = new URLSearchParams();
+                                                        params.set("requestType", "getTransaction");
+                                                        params.set("transaction", response.json().transaction);
+                                                        requestOptions = this.getRequestOptions();
+                                                        requestOptions.params = params;
+                                                        // request 'getTransaction' to burst node
+                                                        return this.http.get(WalletService.walletURL, requestOptions).toPromise()
+                                                            .then(response => {
+                                                                return new Transaction(response.json());
+                                                            })
+                                                            .catch(error => this.handleError(error));
+                                                    })
+                                                    .catch(error => this.handleError(error));
+                                            })
+
                                     } else {
                                         console.log("not ok");
                                     }
-                                    resolve(transaction);
-                                    /*
-                                    return this.cryptoService.generateSignedTransactionBytes(unsignedTransactionHex, signature)
-                                        .then(signedTransactionBytes => {
-                                            params = new URLSearchParams();
-                                            params.set("requestType", "broadcastTransaction");
-                                            let requestBody = {
-                                                "transactionBytes": signedTransactionBytes
-                                            }
-                                            requestOptions = this.getRequestOptions();
-                                            requestOptions.params = params;
-                                            // request 'broadcastTransaction' to burst node
-                                            return this.http.post(WalletService.walletURL, requestBody, requestOptions).toPromise()
-                                                .then(response => {
-                                                    params = new URLSearchParams();
-                                                    params.set("requestType", "getTransaction");
-                                                    params.set("transaction", response.json().transaction);
-                                                    requestOptions = this.getRequestOptions();
-                                                    requestOptions.params = params;
-                                                    // request 'getTransaction' to burst node
-                                                    return this.http.get(WalletService.walletURL, requestOptions).toPromise()
-                                                        .then(response => {
-                                                            return new Transaction(response.json());
-                                                        })
-                                                        .catch(error => this.handleError(error));
-                                                })
-                                                .catch(error => this.handleError(error));
-                                        })
-                                        */
                                 })
 
                         });
