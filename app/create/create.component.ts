@@ -129,7 +129,8 @@ export class CreateComponent implements OnInit {
             this.word++;
             this.textField.text = "";
             this.retypePassPhrase = [];
-
+            this.try = "";
+            
             if (this.word >= 12) {
                 // correctly retyped all 12 words
                 this.step = 4;
