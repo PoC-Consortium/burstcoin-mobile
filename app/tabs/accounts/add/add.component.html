@@ -10,11 +10,7 @@
 
         <Image class="logo-small m-b-30 m-t-10" src="res://logo"></Image>
 
-        <StackLayout *ngIf="this.loading" style="margin-bottom: 300px;" orientation="vertical">
-            <ActivityIndicator busy="true" width="100" height="100" class="activity-indicator"></ActivityIndicator>
-        </StackLayout>
-
-        <StackLayout *ngIf="this.loading == false">
+        <StackLayout>
             <StackLayout class="info-container fet" orientation="vertical">
                 <StackLayout orientation="vertical">
                     <Label class="solo" textWrap="true" text="Add a new wallet by importing or creating one!"></Label>

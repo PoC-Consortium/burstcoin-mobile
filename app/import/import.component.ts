@@ -95,4 +95,11 @@ export class ImportComponent implements OnInit {
         }
     }
 
+    public formatAddress() {
+        console.log("dew");
+        if (!this.active) {
+            this.input = this.input.toUpperCase();
+        }
+    }
+
 }
