@@ -60,14 +60,16 @@ export class SettingsComponent implements OnInit {
         };
         this.modalDialogService.showModal(CurrencyComponent, options)
             .then(currency => {
-                this.settings.currency = currency;
-                this.databaseService.saveSettings(this.settings)
-                    .then(settings => {
-                        this.notificationService.info("Updating currency successfully!")
-                    })
-                    .catch(error => {
-                        this.notificationService.info("Updating currency failed!")
-                    })
+                if (this.settings.currency != currency) {
+                    this.settings.currency = currency;
+                    this.databaseService.saveSettings(this.settings)
+                        .then(settings => {
+                            this.notificationService.info("Currency successfully updated!")
+                        })
+                        .catch(error => {
+                            this.notificationService.info("Currency update failed!")
+                        })
+                }
             })
             .catch(error => console.log(JSON.stringify(error)));
     }
@@ -80,14 +82,16 @@ export class SettingsComponent implements OnInit {
         };
         this.modalDialogService.showModal(NodeComponent, options)
             .then(node => {
-                this.settings.node = node;
-                this.databaseService.saveSettings(this.settings)
-                    .then(settings => {
-                        this.notificationService.info("Updating currency successfully!")
-                    })
-                    .catch(error => {
-                        this.notificationService.info("Updating currency failed!")
-                    })
+                if (this.settings.node != node) {
+                    this.settings.node = node;
+                    this.databaseService.saveSettings(this.settings)
+                        .then(settings => {
+                            this.notificationService.info("Node successfully updated!")
+                        })
+                        .catch(error => {
+                            this.notificationService.info("Node update failed!")
+                        })
+                }
             })
             .catch(error => console.log(JSON.stringify(error)));
     }
