@@ -1,6 +1,7 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
+import { ModalDialogService } from "nativescript-angular/modal-dialog";
 import { BarcodeScanner } from 'nativescript-barcodescanner';
 
 import { TabsRoutingModule } from "./tabs.routing";
@@ -16,6 +17,9 @@ import { SendComponent } from "./balance/send/send.component";
 
 import { TransactionsComponent } from "./transactions/transactions.component";
 
+import { SettingsComponent } from "./settings/settings.component";
+import { AboutComponent } from "./settings/about/about.component";
+
 import { SharedModule } from "../lib/shared.module";
 
 @NgModule({
@@ -27,19 +31,23 @@ import { SharedModule } from "../lib/shared.module";
     ],
     declarations: [
         TabsComponent,
-        AccountsComponent,
-        ActivateComponent,
-        AddComponent,
         BalanceComponent,
         ReceiveComponent,
         SendComponent,
-        TransactionsComponent
+        TransactionsComponent,
+        AccountsComponent,
+        ActivateComponent,
+        AddComponent,
+        SettingsComponent,
+        AboutComponent
     ],
     providers: [
-        BarcodeScanner
+        BarcodeScanner,
+        ModalDialogService
     ],
     schemas: [
         NO_ERRORS_SCHEMA
-    ]
+    ],
+    entryComponents: [AboutComponent]
 })
 export class TabsModule { }

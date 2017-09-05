@@ -72,6 +72,7 @@ export class DatabaseService extends Database {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
                 let wallets = this.database.getCollection("wallets");
+                console.log(wallets.data)
                 let rs = wallets.find({ selected : true });
                 if (rs.length > 0) {
                     let wallet = new Wallet(rs[0]);

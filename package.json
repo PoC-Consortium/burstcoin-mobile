@@ -33,6 +33,7 @@
     "lokijs": "^1.5.0",
     "nativescript-angular": "4.2.0",
     "nativescript-barcodescanner": "^2.6.1",
+    "nativescript-cardview": "^2.0.2",
     "nativescript-pulltorefresh": "^2.0.2",
     "nativescript-snackbar": "^1.2.0",
     "nativescript-theme-core": "1.0.4",

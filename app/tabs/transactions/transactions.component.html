@@ -1,20 +1,18 @@
-<TransactionRefresh (refresh)="refresh($event)">
-    <StackLayout orientation="vertical">
-        <ListView [items]="transactions" (itemTap)="onTapItem($event)" separatorColor="transparent">
-            <ng-template let-item="item" let-i="index">
-                <StackLayout>
-                    <GridLayout *ngIf="item.recipientId == ownId" class="m-x-auto list-item" columns="auto, auto,*,auto" rows="auto, auto">
-                        <Label col="0" row="0" colSpan="2" class="font-weight-bold font-italic" [text]="item.senderAddress"></Label>
-                        <Label col="0" row="1" class="font-weight-bold font-italic" [text]="item.amountNQT + ' BURST'"></Label>
-                        <Label col="3" row="0" rowspan="2" class="font-weight-bold in-label" text="IN"></Label>
-                    </GridLayout>
-                    <GridLayout *ngIf="item.recipientId != ownId" class="m-x-auto list-item" columns="auto, auto,*,auto" rows="auto, auto">
-                        <Label col="0" row="0" colSpan="2" class="font-weight-bold font-italic" [text]="item.recipientAddress"></Label>
-                        <Label col="0" row="1" class="font-weight-bold font-italic" [text]="item.amountNQT + ' BURST'"></Label>
-                        <Label col="3" row="0" rowspan="2" class="font-weight-bold out-label" text="OUT"></Label>
-                    </GridLayout>
-                </StackLayout>
-            </ng-template>
-        </ListView>
-    </StackLayout>
-</TransactionRefresh>
+<StackLayout orientation="vertical">
+    <ListView [items]="transactions" (itemTap)="onTapItem($event)" separatorColor="transparent">
+        <ng-template let-item="item" let-i="index">
+            <StackLayout>
+                <GridLayout *ngIf="item.recipientId == ownId" class="m-x-auto list-item" columns="auto, auto,*,auto" rows="auto, auto">
+                    <Label col="0" row="0" colSpan="2" class="font-weight-bold font-italic" [text]="item.senderAddress"></Label>
+                    <Label col="0" row="1" class="font-weight-bold font-italic" [text]="item.amountNQT + ' BURST'"></Label>
+                    <Label col="3" row="0" rowspan="2" class="font-weight-bold in-label" text="IN"></Label>
+                </GridLayout>
+                <GridLayout *ngIf="item.recipientId != ownId" class="m-x-auto list-item" columns="auto, auto,*,auto" rows="auto, auto">
+                    <Label col="0" row="0" colSpan="2" class="font-weight-bold font-italic" [text]="item.recipientAddress"></Label>
+                    <Label col="0" row="1" class="font-weight-bold font-italic" [text]="item.amountNQT + ' BURST'"></Label>
+                    <Label col="3" row="0" rowspan="2" class="font-weight-bold out-label" text="OUT"></Label>
+                </GridLayout>
+            </StackLayout>
+        </ng-template>
+    </ListView>
+</StackLayout>

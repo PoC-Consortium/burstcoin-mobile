@@ -1,0 +1,14 @@
+@import '../../app-variables';
+
+.settings-item {
+    background-color: $background-light;
+    margin: 10;
+    border-radius: $default-border;
+}
+
+.settings-button {
+    text-transform:none;
+    font-size: 14;
+    height: $btn-height;
+    margin: 2;
+}
