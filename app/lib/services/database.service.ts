@@ -14,6 +14,7 @@ export class DatabaseService extends Database {
     private static readonly path: string = fs.path.join(fs.knownFolders.currentApp().path, "loki.db");
 
     public ready: BehaviorSubject<any> = new BehaviorSubject(false);
+    public settings: BehaviorSubject<any> = new BehaviorSubject(false);
 
     constructor() {
         super();
@@ -31,16 +32,27 @@ export class DatabaseService extends Database {
         }
         let settings = this.database.getCollection("settings");
         if (settings == null) {
-            settings = this.database.addCollection("settings", { unique : ["currency", "language", "node", "notification", "patchnotes", "theme"]});
+            settings = this.database.addCollection("settings", { unique : ["currency", "id", "language", "node", "notification", "patchnotes", "theme"]});
             settings.insert(new Settings());
-            console.log(JSON.stringify(settings.data));
         }
         this.database.saveDatabase();
-        this.setReady(true);
+        this.getSettings()
+            .then(s => {
+                this.setSettings(s);
+                this.setReady(true);
+            })
+            .catch(error => {
+                this.setSettings(new Settings());
+                this.setReady(true);
+            })
     }
 
     public setReady(state: boolean) {
         this.ready.next(state);
+    }
+
+    public setSettings(state: Settings) {
+        this.settings.next(state);
     }
 
     public saveWallet(wallet: Wallet): Promise<Wallet> {
@@ -74,7 +86,6 @@ export class DatabaseService extends Database {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
                 let wallets = this.database.getCollection("wallets");
-                console.log(wallets.data)
                 let rs = wallets.find({ selected : true });
                 if (rs.length > 0) {
                     let wallet = new Wallet(rs[0]);
@@ -164,24 +175,25 @@ export class DatabaseService extends Database {
         });
     }
 
-    public saveSettings(settings: Settings): Promise<Settings> {
+    public saveSettings(save: Settings): Promise<Settings> {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
                 let settings = this.database.getCollection("settings");
-                let rs = settings.find();
+                let rs = settings.find({ id: save.id });
                 if (rs.length > 0) {
-                    settings.chain().find({ id: settings.id }).update(s => {
-                        s.currency = settings.currency;
-                        s.language = settings.language;
-                        s.node = settings.node;
-                        s.version = settings.version;
-                        s.theme = settings.theme;
+                    settings.chain().find({ id: save.id }).update(s => {
+                        s.currency = save.currency;
+                        s.language = save.language;
+                        s.node = save.node;
+                        s.version = save.version;
+                        s.theme = save.theme;
                     });
                 } else {
-                    settings.insert(settings);
+                    settings.insert(save);
                 }
                 this.database.saveDatabase();
-                resolve(settings);
+                this.setSettings(save);
+                resolve(save);
             } else {
                 reject(undefined);
             }
@@ -193,6 +205,7 @@ export class DatabaseService extends Database {
             if (this.ready.value) {
                 let settings = this.database.getCollection("settings");
                 let rs = settings.find();
+                console.log(JSON.stringify(rs));
                 resolve(new Settings(rs[0]));
             } else {
                 resolve(new Settings());

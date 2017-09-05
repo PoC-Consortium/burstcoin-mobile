@@ -11,7 +11,7 @@ export class Settings {
         this.id = "settings";
         this.currency = data.currency || "USD";
         this.language = data.language || "US";
-        this.node = data.node || "wallet.cryptoguru.org:8125";
+        this.node = data.node || "176.9.47.157:6876/burst";
         this.version = data.version || "";
         this.theme = data.theme || "light";
     }

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { device } from "platform";
 import { Observable, ReplaySubject } from 'rxjs/Rx';
 
-import { BurstAddress, Currency, HttpError, Keypair, Transaction, Wallet } from "../model";
+import { BurstAddress, Currency, HttpError, Keypair, Settings, Transaction, Wallet } from "../model";
 import { CryptoService, DatabaseService, NotificationService} from "./";
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -16,12 +16,7 @@ import 'rxjs/add/operator/toPromise';
 export class WalletService {
 
     private static readonly salt = "pxepHeytDgkPAHgwxRJ3EPW4";
-
-    //private static readonly walletURL: string = "https://wallet.cryptoguru.org";
-    //private static readonly walletPort: string = "8125"; // Testnet
-
-    private static readonly walletURL: string = "http://176.9.47.157:6876/burst";
-    private static readonly walletPort: string = "6876"; // Testnet
+    private nodeUrl: string;
 
     public currentWallet: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
@@ -31,7 +26,9 @@ export class WalletService {
         private databaseService: DatabaseService = undefined,
         private notificationService: NotificationService = undefined
     ) {
-
+        this.databaseService.settings.subscribe((settings: Settings) => {
+            this.nodeUrl = "http://" + settings.node;
+        });
     }
 
     public setCurrentWallet(wallet: Wallet) {
@@ -81,7 +78,6 @@ export class WalletService {
                                 wallet.id = id;
                                 return this.databaseService.saveWallet(wallet)
                                     .then(wallet => {
-                                        this.notificationService.info(JSON.stringify(wallet));
                                         resolve(wallet);
                                     });
                             });
@@ -149,7 +145,7 @@ export class WalletService {
             params.set("account", id);
             let requestOptions = this.getRequestOptions();
             requestOptions.params = params;
-            return this.http.get(WalletService.walletURL, requestOptions).toPromise()
+            return this.http.get(this.nodeUrl, requestOptions).toPromise()
                 .then(response => {
                     let transactions: Transaction[] = [];
                     response.json().transactions.map(transaction => {
@@ -169,7 +165,7 @@ export class WalletService {
         params.set("transaction", id);
         let requestOptions = this.getRequestOptions();
         requestOptions.params = params;
-        return this.http.get(WalletService.walletURL, requestOptions).toPromise()
+        return this.http.get(this.nodeUrl, requestOptions).toPromise()
             .then(response => {
                 return response.json() || [];
             })
@@ -183,7 +179,7 @@ export class WalletService {
             params.set("account", id);
             let requestOptions = this.getRequestOptions();
             requestOptions.params = params;
-            return this.http.get(WalletService.walletURL, requestOptions).toPromise()
+            return this.http.get(this.nodeUrl, requestOptions).toPromise()
                 .then(response => {
                     if (response.json().errorCode == undefined) {
                         let balanceString = response.json().guaranteedBalanceNQT;
@@ -211,7 +207,7 @@ export class WalletService {
             requestOptions.params = params;
 
             // request 'sendMoney' to burst node
-            return this.http.post(WalletService.walletURL, {}, requestOptions).toPromise()
+            return this.http.post(this.nodeUrl, {}, requestOptions).toPromise()
                 .then(response => {
                     // get unsigned transactionbytes
                     unsignedTransactionHex = response.json().unsignedTransactionBytes || undefined;
@@ -229,7 +225,7 @@ export class WalletService {
                                                 requestOptions = this.getRequestOptions();
                                                 requestOptions.params = params;
                                                 // request 'broadcastTransaction' to burst node
-                                                return this.http.post(WalletService.walletURL, {}, requestOptions).toPromise()
+                                                return this.http.post(this.nodeUrl, {}, requestOptions).toPromise()
                                                     .then(response => {
                                                         params = new URLSearchParams();
                                                         params.set("requestType", "getTransaction");
@@ -237,7 +233,7 @@ export class WalletService {
                                                         requestOptions = this.getRequestOptions();
                                                         requestOptions.params = params;
                                                         // request 'getTransaction' to burst node
-                                                        return this.http.get(WalletService.walletURL, requestOptions).toPromise()
+                                                        return this.http.get(this.nodeUrl, requestOptions).toPromise()
                                                             .then(response => {
                                                                 resolve(new Transaction(response.json()));
                                                             })
