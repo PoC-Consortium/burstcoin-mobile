@@ -46,7 +46,8 @@ export class BalanceComponent implements OnInit {
                 this.update(wallet);
             }
         });
-
+        this.balanceBTC = "-";
+        this.balanceCur = "-";
         // conversion into btc and fiat currency
         this.marketService.currency.subscribe((currency: Currency) => {
             if (currency != undefined) {
