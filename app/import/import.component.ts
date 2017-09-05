@@ -1,8 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewContainerRef } from "@angular/core";
 import { Switch } from "ui/switch";
 import { Router } from '@angular/router';
+import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
 
-import { NotificationService, WalletService } from "../lib/services";
+import { CryptoService, NotificationService, WalletService } from "../lib/services";
+import { ShowComponent } from "./show/show.component";
 
 @Component({
     selector: "import",
@@ -19,7 +21,14 @@ export class ImportComponent implements OnInit {
     private pin: string;
     private description: string;
 
-    constructor(private notificationService: NotificationService, private walletService: WalletService, private router: Router) {
+    constructor(
+        private cryptoService: CryptoService,
+        private modalDialogService: ModalDialogService,
+        private notificationService: NotificationService,
+        private vcRef: ViewContainerRef,
+        private walletService: WalletService,
+        private router: Router
+    ) {
         this.step = 1;
         this.input = "";
         this.state = "Active Wallet";
@@ -68,14 +77,36 @@ export class ImportComponent implements OnInit {
         }
     }
 
+
     public onTapNext() {
         if (this.input.length > 0) {
             if (this.active) {
-                this.step = 2;
+                this.cryptoService.generateMasterPublicAndPrivateKey(this.input)
+                    .then(keypair => {
+                        this.cryptoService.getAccountIdFromPublicKey(keypair.publicKey)
+                            .then(id => {
+                                this.cryptoService.getBurstAddressFromAccountId(id)
+                                    .then(address => {
+                                        const options: ModalDialogOptions = {
+                                            viewContainerRef: this.vcRef,
+                                            context: address,
+                                            fullscreen: false,
+                                        };
+                                        this.modalDialogService.showModal(ShowComponent, options)
+                                            .then(result => {
+                                                if (result) {
+                                                    this.step = 2
+                                                }
+                                            })
+                                            .catch(error => console.log(JSON.stringify(error)));
+                                    })
+                            })
+                    })
+
+                }
+            } else {
+                this.notificationService.info("Please enter something!");
             }
-        } else {
-            this.notificationService.info("Please enter something!");
-        }
     }
 
     public onTapDone() {
@@ -96,7 +127,6 @@ export class ImportComponent implements OnInit {
     }
 
     public formatAddress() {
-        console.log("dew");
         if (!this.active) {
             this.input = this.input.toUpperCase();
         }

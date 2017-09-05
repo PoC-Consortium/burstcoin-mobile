@@ -60,10 +60,11 @@ export class SettingsComponent implements OnInit {
         };
         this.modalDialogService.showModal(CurrencyComponent, options)
             .then(currency => {
-                if (this.settings.currency != currency) {
+                if (currency != undefined && this.settings.currency != currency) {
                     this.settings.currency = currency;
                     this.databaseService.saveSettings(this.settings)
                         .then(settings => {
+                            console.log(JSON.stringify(settings));
                             this.notificationService.info("Currency successfully updated!")
                         })
                         .catch(error => {
@@ -82,7 +83,7 @@ export class SettingsComponent implements OnInit {
         };
         this.modalDialogService.showModal(NodeComponent, options)
             .then(node => {
-                if (this.settings.node != node) {
+                if (node != undefined && this.settings.node != node) {
                     this.settings.node = node;
                     this.databaseService.saveSettings(this.settings)
                         .then(settings => {
