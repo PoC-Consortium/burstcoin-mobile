@@ -19,6 +19,8 @@ import { TransactionsComponent } from "./transactions/transactions.component";
 
 import { SettingsComponent } from "./settings/settings.component";
 import { AboutComponent } from "./settings/about/about.component";
+import { CurrencyComponent } from "./settings/currency/currency.component";
+import { NodeComponent } from "./settings/node/node.component";
 
 import { SharedModule } from "../lib/shared.module";
 
@@ -39,7 +41,9 @@ import { SharedModule } from "../lib/shared.module";
         ActivateComponent,
         AddComponent,
         SettingsComponent,
-        AboutComponent
+        AboutComponent,
+        CurrencyComponent,
+        NodeComponent
     ],
     providers: [
         BarcodeScanner,
@@ -48,6 +52,10 @@ import { SharedModule } from "../lib/shared.module";
     schemas: [
         NO_ERRORS_SCHEMA
     ],
-    entryComponents: [AboutComponent]
+    entryComponents: [
+        AboutComponent,
+        CurrencyComponent,
+        NodeComponent
+    ]
 })
 export class TabsModule { }

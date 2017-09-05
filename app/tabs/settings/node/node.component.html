@@ -1,0 +1,20 @@
+<StackLayout class="modal-view-style">
+    <StackLayout class="page-content">
+        <StackLayout class="modal-container">
+            <StackLayout class="body-container">
+                <Image class="logo-small" src="res://logo"></Image>
+            </StackLayout>
+            <StackLayout class="info-container">
+                <Label class="solo fa" textWrap="true" text="The Burst node is used to communicate with the Burst network."></Label>
+            </StackLayout>
+            <StackLayout class="body-container">
+                <Label textWrap="true" text="Node address:"></Label>
+                <GridLayout rows="auto" columns="*, auto">
+                    <TextField row="0" col="0" class="input node-address" [(ngModel)]="address" returnKeyType="done"></TextField>
+                    <Button row="0" col="1" class="btn btn-primary btn-active reset-button fa" text="&#xf0e2;" (tap)="onTapReset($event)"></Button>
+                </GridLayout>
+                <Button class="btn btn-primary btn-active action-button fa" text="&#xf05d;" (tap)="onTapOk($event)"></Button>
+            </StackLayout>
+        </StackLayout>
+    <StackLayout>
+</StackLayout>

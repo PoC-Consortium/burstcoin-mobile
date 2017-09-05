@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Database } from "../model/abstract";
-import { Wallet } from "../model";
+import { Settings, Wallet } from "../model";
 
 let fs = require("file-system");
 let Loki = require("lokijs");
@@ -31,7 +31,9 @@ export class DatabaseService extends Database {
         }
         let settings = this.database.getCollection("settings");
         if (settings == null) {
-            settings = this.database.addCollection("settings", { unique : ["currency", "language", "notification", "theme"]});
+            settings = this.database.addCollection("settings", { unique : ["currency", "language", "node", "notification", "patchnotes", "theme"]});
+            settings.insert(new Settings());
+            console.log(JSON.stringify(settings.data));
         }
         this.database.saveDatabase();
         this.setReady(true);
@@ -158,6 +160,42 @@ export class DatabaseService extends Database {
                 resolve(true);
             } else {
                 reject(false);
+            }
+        });
+    }
+
+    public saveSettings(settings: Settings): Promise<Settings> {
+        return new Promise((resolve, reject) => {
+            if (this.ready.value) {
+                let settings = this.database.getCollection("settings");
+                let rs = settings.find();
+                if (rs.length > 0) {
+                    settings.chain().find({ id: settings.id }).update(s => {
+                        s.currency = settings.currency;
+                        s.language = settings.language;
+                        s.node = settings.node;
+                        s.version = settings.version;
+                        s.theme = settings.theme;
+                    });
+                } else {
+                    settings.insert(settings);
+                }
+                this.database.saveDatabase();
+                resolve(settings);
+            } else {
+                reject(undefined);
+            }
+        });
+    }
+
+    public getSettings(): Promise<Settings> {
+        return new Promise((resolve, reject) => {
+            if (this.ready.value) {
+                let settings = this.database.getCollection("settings");
+                let rs = settings.find();
+                resolve(new Settings(rs[0]));
+            } else {
+                resolve(new Settings());
             }
         });
     }

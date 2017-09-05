@@ -1,11 +1,9 @@
 <StackLayout orientation="vertical">
     <StackLayout class="settings-item" orientation="vertical">
-        <GridLayout rows="auto, auto, auto" columns="*,*">
-            <Button row="0" col="0" colspan="2" class="btn btn-primary fa settings-button" text="&#xf0ad; Burst Node: wallet.cryptoguru.org:8125" (tap)="onTapBurstNode($event)"></Button>
-            <Button row="1" col="0" class="btn btn-primary fa settings-button" text="&#xf0d6; Currency: USD" (tap)="onTapCurrency($event)"></Button>
-            <Button row="1" col="1" class="btn btn-primary fa settings-button" text="&#xf004; Support Us!" (tap)="onTapSupport($event)"></Button>
-            <Button row="2" col="0" class="btn btn-primary fa settings-button" text="&#xf1cd; Help" (tap)="onTapHelp($event)"></Button>
-            <Button row="2" col="1" class="btn btn-primary fa settings-button" text="&#xf05a; About" (tap)="onTapAbout($event)"></Button>
+        <GridLayout rows="auto, auto, auto" columns="*">
+            <Button row="0" col="0" class="btn btn-primary fa settings-button" [text]="'&#xf1b2; Node: ' + settings.node" (tap)="onTapNode($event)"></Button>
+            <Button row="1" col="0" class="btn btn-primary fa settings-button" [text]="'&#xf0d6; Currency: ' + settings.currency" (tap)="onTapCurrency($event)"></Button>
+            <Button row="2" col="0" class="btn btn-primary fa settings-button" text="&#xf05a; About" (tap)="onTapAbout($event)"></Button>
         </GridLayout>
     </StackLayout>
 </StackLayout>
