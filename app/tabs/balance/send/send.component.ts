@@ -19,6 +19,7 @@ export class SendComponent implements OnInit {
     amount: number;
     fee: number;
     pin: string;
+    total: number;
 
     constructor(
         private barcodeScanner: BarcodeScanner,
@@ -29,8 +30,9 @@ export class SendComponent implements OnInit {
     ) {
         this.step = 1;
         this.recipient = "BURST-";
-        this.amount = 0;
+        this.amount = undefined;
         this.fee = 1;
+        this.total = 1;
     }
 
     ngOnInit(): void {
@@ -55,6 +57,7 @@ export class SendComponent implements OnInit {
         if (this.walletService.isBurstcoinAddress(this.recipient)) {
             if (this.amount > 0 && !isNaN(Number(this.amount))) {
                 if (this.fee >= 1 && !isNaN(Number(this.fee))) {
+                    console.log();
                     this.step = 2;
                 } else {
                     this.notificationService.info("Please enter a decimal number as fee!")
@@ -85,6 +88,31 @@ export class SendComponent implements OnInit {
         } else {
             this.notificationService.info("The provided pin does not match the pin code of the wallet!")
         }
+    }
+
+    public verifyInputs(input: string) {
+        let aNumber;
+        let fNumber;
+        if (this.amount != undefined) {
+            aNumber = parseFloat(this.amount.toString());
+        }
+        if (this.fee != undefined) {
+            fNumber = parseFloat(this.fee.toString());
+        }
+        if (isNaN(aNumber)) {
+            aNumber = 0;
+        }
+        if (isNaN(fNumber)) {
+            fNumber = 0;
+        }
+        if (aNumber + fNumber > this.wallet.balance) {
+            if (input == "amount") {
+                this.amount = this.wallet.balance - fNumber;
+            } else {
+                this.fee = this.wallet.balance - aNumber;
+            }
+        }
+        this.total = aNumber + fNumber;
     }
 
     public formatRecipient() {
