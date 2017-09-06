@@ -54,6 +54,7 @@ import { SharedModule } from "../lib/shared.module";
     ],
     entryComponents: [
         AboutComponent,
+        AddComponent,
         CurrencyComponent,
         NodeComponent
     ]

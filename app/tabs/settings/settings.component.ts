@@ -24,8 +24,8 @@ export class SettingsComponent implements OnInit {
     constructor(
         private databaseService: DatabaseService,
         private modalDialogService: ModalDialogService,
-        private vcRef: ViewContainerRef,
         private notificationService: NotificationService,
+        private vcRef: ViewContainerRef,
         private walletService: WalletService
     ) {
         this.settings = new Settings();
@@ -46,9 +46,7 @@ export class SettingsComponent implements OnInit {
             fullscreen: false,
         };
         this.modalDialogService.showModal(AboutComponent, options)
-            .then(result => {
-                console.log(result);
-            })
+            .then(result => {})
             .catch(error => console.log(JSON.stringify(error)));
     }
 

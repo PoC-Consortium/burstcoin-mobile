@@ -1,19 +1,10 @@
-<ActionBar class="action-bar">
-    <StackLayout orientation="horizontal">
-        <Image class="logo-tiny m-r-15" src="res://logo"></Image>
-        <Label class="action-bar-title" text="Add New Wallet"></Label>
-    </StackLayout>
-</ActionBar>
-
-<StackLayout class="page-content" orientation="vertical">
-    <StackLayout class="container">
-
-        <Image class="logo-small m-b-30 m-t-10" src="res://logo"></Image>
-
-        <StackLayout>
-            <StackLayout class="m-t-15" orientation="vertical">
-                <Button class="btn btn-primary btn-active action-button fa" text="Import &#xf019;" [nsRouterLink]="['/import']"></Button>
-                <Button class="btn btn-primary btn-active action-button fa" text="Create &#xf067;" [nsRouterLink]="['/create']"></Button>
+<StackLayout class="modal-view-style">
+    <StackLayout class="page-content">
+        <StackLayout class="modal-container">
+            <StackLayout class="body-container">
+                <Image class="logo-small" src="res://logo"></Image>
+                <Button class="btn btn-primary btn-active action-button fa" text="Import &#xf019;" (tap)="onTapImport()"></Button>
+                <Button class="btn btn-primary btn-active action-button fa" text="Create &#xf067;" (tap)="onTapCreate()"></Button>
             </StackLayout>
         </StackLayout>
     </StackLayout>

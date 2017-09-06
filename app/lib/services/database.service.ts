@@ -205,7 +205,6 @@ export class DatabaseService extends Database {
             if (this.ready.value) {
                 let settings = this.database.getCollection("settings");
                 let rs = settings.find();
-                console.log(JSON.stringify(rs));
                 resolve(new Settings(rs[0]));
             } else {
                 resolve(new Settings());

@@ -1,10 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewContainerRef } from "@angular/core";
 import { Router } from '@angular/router';
+import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
 import { isAndroid } from "platform";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
 
 import { Wallet } from "../lib/model";
 import { DatabaseService, NotificationService, WalletService } from "../lib/services";
+import { AddComponent } from "./accounts/add/add.component";
 
 @Component({
     selector: "TabsComponent",
@@ -19,8 +21,10 @@ export class TabsComponent implements OnInit {
 
     constructor(
         private databaseService: DatabaseService,
+        private modalDialogService: ModalDialogService,
         private notificationService: NotificationService,
         private router: Router,
+        private vcRef: ViewContainerRef,
         private walletService: WalletService
     ) {
 
@@ -70,6 +74,12 @@ export class TabsComponent implements OnInit {
     }
 
     onTapAddAccount() {
-
+        const options: ModalDialogOptions = {
+            viewContainerRef: this.vcRef,
+            fullscreen: false,
+        };
+        this.modalDialogService.showModal(AddComponent, options)
+            .then(result => {})
+            .catch(error => {});
     }
 }
