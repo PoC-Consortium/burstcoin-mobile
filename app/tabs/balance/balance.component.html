@@ -3,14 +3,14 @@
         <StackLayout class="balance-container m-b-30" orientation="vertical">
                 <Image class="qrcode" [src]="qrcode"></Image>
                 <StackLayout class="hr-light"></StackLayout>
-                <Label class="font-weight-bold font-italic p-t-10 p-b-10" [text]="address"></Label>
+                <Label class="font-weight-bold p-t-10 p-b-10" [text]="address"></Label>
                 <StackLayout class="hr-light"></StackLayout>
-                <Label class="font-weight-bold font-italic p-t-10 p-b-10" [text]="balance"></Label>
+                <Label class="font-weight-bold p-t-10 p-b-10" [text]="balance"></Label>
                 <StackLayout class="hr-light"></StackLayout>
                 <GridLayout class="p-t-10 p-b-10" columns="*,auto,*" rows="auto">
-                    <Label col="0" class="font-weight-bold font-italic  m-r-10 text-right" [text]="balanceBTC"></Label>
+                    <Label col="0" class="font-weight-bold  m-r-10 text-right" [text]="balanceBTC"></Label>
                     <Label col="1" class="fa p-t-2" text="&#xf0ec;"></Label>
-                    <Label col="2" class="font-weight-bold font-italic m-l-10 text-left" [text]="balanceCur"></Label>
+                    <Label col="2" class="font-weight-bold m-l-10 text-left" [text]="balanceCur"></Label>
                 </GridLayout>
         </StackLayout>
         <StackLayout orientation="vertical">

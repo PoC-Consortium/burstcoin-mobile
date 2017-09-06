@@ -8,6 +8,10 @@ import { Transaction, Wallet } from "../../lib/model";
 
 import { DatabaseService, MarketService, NotificationService, WalletService } from "../../lib/services";
 
+import { registerElement } from "nativescript-angular/element-registry";
+registerElement("TransactionsRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
+
+
 @Component({
     selector: "transactions",
     moduleId: module.id,
@@ -52,7 +56,14 @@ export class TransactionsComponent implements OnInit {
         this.walletService.synchronizeWallet(wallet)
             .then(wallet => {
                 this.transactions = wallet.transactions;
-                pullRefresh.refreshing = false;
+                this.walletService.setCurrentWallet(wallet);
+                this.marketService.updateCurrency()
+                    .then(currency => {
+                        pullRefresh.refreshing = false;
+                    })
+                    .catch(error => {
+                        pullRefresh.refreshing = false;
+                    });
             })
     }
 }

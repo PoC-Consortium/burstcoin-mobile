@@ -8,6 +8,10 @@ import { BurstAddress, Currency, Wallet } from "../../lib/model";
 
 import { DatabaseService, MarketService, NotificationService, WalletService } from "../../lib/services";
 
+import { registerElement } from "nativescript-angular/element-registry";
+registerElement("AccountsRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
+
+
 @Component({
     selector: "accounts",
     moduleId: module.id,
@@ -54,6 +58,22 @@ export class AccountsComponent implements OnInit {
                 })
             }
         });
+    }
+
+    public refresh(args) {
+        var pullRefresh = args.object;
+        let wallet = this.walletService.currentWallet.value;
+        this.walletService.synchronizeWallet(wallet)
+            .then(wallet => {
+                this.walletService.setCurrentWallet(wallet);
+                this.marketService.updateCurrency()
+                    .then(currency => {
+                        pullRefresh.refreshing = false;
+                    })
+                    .catch(error => {
+                        pullRefresh.refreshing = false;
+                    });
+            })
     }
 
 

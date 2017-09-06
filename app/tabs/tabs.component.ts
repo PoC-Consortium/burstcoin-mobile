@@ -68,4 +68,8 @@ export class TabsComponent implements OnInit {
         this.selectedIndex = args.newIndex;
         this.title = selectedTabViewItem.title;
     }
+
+    onTapAddAccount() {
+
+    }
 }
