@@ -78,7 +78,7 @@ export class SendComponent implements OnInit {
             transaction.amountNQT = this.amount;
             transaction.feeNQT = this.fee;
             transaction.senderPublicKey = wallet.keypair.publicKey;
-            this.walletService.doTransaction(transaction, wallet.keypair.privateKey, this.walletService.hashPin(this.pin))
+            this.walletService.doTransaction(transaction, wallet.keypair.privateKey, this.pin)
                 .then(transaction => {
                     console.log("route")
                     this.router.navigate(['tabs']);

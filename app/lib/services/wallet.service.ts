@@ -15,7 +15,6 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class WalletService {
 
-    private static readonly salt = "pxepHeytDgkPAHgwxRJ3EPW4";
     private nodeUrl: string;
 
     public currentWallet: BehaviorSubject<any> = new BehaviorSubject(undefined);
@@ -43,10 +42,10 @@ export class WalletService {
             return this.cryptoService.generateMasterPublicAndPrivateKey(passphrase)
                 .then(keypair => {
                     wallet.keypair.publicKey = keypair.publicKey;
-                    return this.cryptoService.encryptAES(keypair.privateKey, this.hashPin(pin))
+                    return this.cryptoService.encryptAES(keypair.privateKey, this.hashPinEncryption(pin))
                         .then(encryptedKey => {
                             wallet.keypair.privateKey = encryptedKey;
-                            wallet.pinHash = this.hashPin(pin);
+                            wallet.pinHash = this.hashPinStorage(pin);
                             return this.cryptoService.getAccountIdFromPublicKey(keypair.publicKey)
                                 .then(id => {
                                     wallet.id = id;
@@ -93,10 +92,10 @@ export class WalletService {
             this.cryptoService.generateMasterPublicAndPrivateKey(passphrase)
                 .then(keys => {
                     wallet.keypair.publicKey = keys.publicKey;
-                    this.cryptoService.encryptAES(keys.privateKey, this.hashPin(pin))
+                    this.cryptoService.encryptAES(keys.privateKey, this.hashPinEncryption(pin))
                         .then(encryptedKey => {
                             wallet.keypair.privateKey = encryptedKey;
-                            wallet.pinHash = this.hashPin(pin);
+                            wallet.pinHash = this.hashPinStorage(pin);
                             wallet.type = "active";
                             return this.databaseService.saveWallet(wallet)
                                 .then(wallet => {
@@ -212,7 +211,7 @@ export class WalletService {
                     // get unsigned transactionbytes
                     unsignedTransactionHex = response.json().unsignedTransactionBytes || undefined;
                     // sign unsigned transaction bytes
-                    return this.cryptoService.generateSignature(unsignedTransactionHex, encryptedPrivateKey, pin)
+                    return this.cryptoService.generateSignature(unsignedTransactionHex, encryptedPrivateKey, this.hashPinEncryption(pin))
                         .then(signature => {
                             return this.cryptoService.verifySignature(signature, unsignedTransactionHex, transaction.senderPublicKey)
                                 .then(verified => {
@@ -253,11 +252,16 @@ export class WalletService {
     }
 
     public checkPin(pin: string): boolean {
-        return this.currentWallet.value != undefined ? this.currentWallet.value.pinHash == this.hashPin(pin) : false;
+        return this.currentWallet.value != undefined ? this.currentWallet.value.pinHash == this.hashPinStorage(pin) : false;
     }
 
-    public hashPin(pin: string): string {
+    public hashPinEncryption(pin: string): string {
         return this.cryptoService.hashSHA256(pin + device.uuid);
+    }
+
+    public hashPinStorage(pin: string): string {
+        console.log(device.model);
+        return this.cryptoService.hashSHA256(pin + device.model);
     }
 
     public isBurstcoinAddress(address: string): boolean {
