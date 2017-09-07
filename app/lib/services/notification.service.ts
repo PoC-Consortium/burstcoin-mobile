@@ -5,33 +5,15 @@ import { SnackBar, SnackBarOptions } from "nativescript-snackbar";
 export class NotificationService {
     private snackbar: SnackBar;
 
-    infoOptions: SnackBarOptions;
-
     constructor() {
         this.snackbar = new SnackBar();
     }
 
     public error(error: string): void {
-        let options: SnackBarOptions = {
-            actionText: "OK",
-            actionTextColor: '#ff4081',
-            snackText: error,
-            hideDelay: 5000,
-            textColor: '#346db2', // Optional, Android only
-            backgroundColor: '#eaeaea' // Optional, Android only
-        };
-        this.snackbar.action(options);
+        this.snackbar.simple(error, "#9d0416", "#fefcf8");
     }
 
     public info(message: string) {
-        let options: SnackBarOptions = {
-            actionText: "OK",
-            actionTextColor: '#ff4081',
-            snackText: message,
-            hideDelay: 3500,
-            textColor: '#346db2',
-            backgroundColor: '#eaeaea'
-        };
-        this.snackbar.action(options);
+        this.snackbar.simple(message, "#000027", "#fefcf8");
     }
 }

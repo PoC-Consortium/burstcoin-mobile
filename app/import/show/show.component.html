@@ -4,7 +4,7 @@
             <StackLayout class="body-container">
                 <Image class="logo-small" src="res://logo"></Image>
                 <Label class="solo fa" textWrap="true" text="Is this your Burst address?"></Label>
-                <Label class="font-weight-bold font-italic" [text]="address"></Label>
+                <Label class="bottom font-weight-bold" [text]="address"></Label>
                 <GridLayout rows="auto" columns="*,*">
                     <Button col="0" class="btn btn-primary btn-active fa" text="&#xf00d;" (tap)="onTapNo($event)"></Button>
                     <Button col="1" class="btn btn-primary btn-active fa" text="&#xf00c;" (tap)="onTapOk($event)"></Button>
