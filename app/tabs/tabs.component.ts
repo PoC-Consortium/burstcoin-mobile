@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewContainerRef } from "@angular/core";
-import { Router } from '@angular/router';
+import { RouterExtensions } from "nativescript-angular/router";
 import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
 import { isAndroid } from "platform";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
@@ -23,7 +23,7 @@ export class TabsComponent implements OnInit {
         private databaseService: DatabaseService,
         private modalDialogService: ModalDialogService,
         private notificationService: NotificationService,
-        private router: Router,
+        private router: RouterExtensions,
         private vcRef: ViewContainerRef,
         private walletService: WalletService
     ) {

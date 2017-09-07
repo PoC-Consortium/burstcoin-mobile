@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
-import { Router } from '@angular/router';
+import { RouterExtensions } from "nativescript-angular/router";
 import { isAndroid } from "platform";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "ui/tab-view";
 import { Label } from "ui/label";
@@ -42,7 +42,7 @@ export class CreateComponent implements OnInit {
     constructor(
         private cryptoService: CryptoService,
         private notificationService: NotificationService,
-        private router: Router,
+        private router: RouterExtensions,
         private walletService: WalletService
     ) {
         this.step = 1;
@@ -130,7 +130,7 @@ export class CreateComponent implements OnInit {
             this.textField.text = "";
             this.retypePassPhrase = [];
             this.try = "";
-            
+
             if (this.word >= 12) {
                 // correctly retyped all 12 words
                 this.step = 4;

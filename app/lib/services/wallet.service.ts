@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from "@angular/core";
 import { Http, Headers, RequestOptions, Response, URLSearchParams } from "@angular/http";
-import { Router } from '@angular/router';
+import { RouterExtensions } from "nativescript-angular/router";
 import { device } from "platform";
 import { Observable, ReplaySubject } from 'rxjs/Rx';
 

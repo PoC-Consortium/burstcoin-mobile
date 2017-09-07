@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { Router } from '@angular/router';
+import { RouterExtensions } from "nativescript-angular/router";
 import { BurstAddress, Transaction, Wallet } from "../../../lib/model";
 import { MarketService, NotificationService, WalletService } from "../../../lib/services";
 
@@ -25,7 +25,7 @@ export class SendComponent implements OnInit {
         private barcodeScanner: BarcodeScanner,
         private marketService: MarketService,
         private notificationService: NotificationService,
-        private router: Router,
+        private router: RouterExtensions,
         private walletService: WalletService
     ) {
         this.step = 1;

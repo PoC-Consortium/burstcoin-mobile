@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { ActivatedRoute, Router } from '@angular/router';
+import { RouterExtensions } from "nativescript-angular/router";
 import { BurstAddress, Wallet } from "../../../lib/model";
 import { CryptoService, NotificationService, WalletService } from "../../../lib/services";
 
@@ -20,7 +20,7 @@ export class ActivateComponent implements OnInit {
     constructor(
         private cryptoService: CryptoService,
         private notificationService: NotificationService,
-        private router: Router,
+        private router: RouterExtensions,
         private walletService: WalletService
     ) {
         this.step = 1;

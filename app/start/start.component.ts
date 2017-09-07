@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
-import { Router } from '@angular/router';
 import { RouterExtensions } from "nativescript-angular/router";
 import { isAndroid } from "platform";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";

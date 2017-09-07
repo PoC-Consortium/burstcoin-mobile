@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from "@angular/core";
 import { Switch } from "ui/switch";
-import { Router } from '@angular/router';
+import { RouterExtensions } from "nativescript-angular/router";
 import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
 
 import { CryptoService, NotificationService, WalletService } from "../lib/services";
@@ -27,7 +27,7 @@ export class ImportComponent implements OnInit {
         private notificationService: NotificationService,
         private vcRef: ViewContainerRef,
         private walletService: WalletService,
-        private router: Router
+        private router: RouterExtensions
     ) {
         this.step = 1;
         this.input = "";
