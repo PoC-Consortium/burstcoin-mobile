@@ -18,6 +18,7 @@ export class Transaction {
     amountNQT: number;
     feeNQT: number;
     confirmations: number;
+    confirmed: boolean;
 
     type: number;
     subtype: number;
@@ -44,6 +45,7 @@ export class Transaction {
         this.amountNQT = data.amountNQT || 0;
         this.feeNQT = data.feeNQT || 0;
         this.confirmations = data.confirmations || 0;
+        this.confirmed = data.confirmed == false ? false : true;
 
         this.type = data.type || 0;
         this.subtype = data.subtype || 0;

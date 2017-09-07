@@ -2,15 +2,19 @@
     <ListView [items]="transactions" (itemTap)="onTapItem($event)" separatorColor="transparent">
         <ng-template let-item="item" let-i="index">
             <StackLayout>
-                <GridLayout *ngIf="item.recipientId == ownId" class="m-x-auto list-item" columns="auto, auto,*,auto" rows="auto, auto">
+                <GridLayout *ngIf="item.recipientId == ownId" class="m-x-auto list-item" columns="auto, auto, *, auto, auto" rows="auto, auto">
                     <Label col="0" row="0" class="font-weight-bold" [text]="item.amountNQT + ' BURST'"></Label>
-                    <Label col="0" row="1" colSpan="2" [text]="item.senderAddress"></Label>
-                    <Label col="3" row="0" rowspan="2" class="font-weight-bold in-label" text="IN"></Label>
+                    <Label col="0" row="1" colspan="2" [text]="item.senderAddress"></Label>
+                    <Label col="3" row="0" rowspan="2" class="font-weight-bold transaction-label" text="IN"></Label>
+                    <Label *ngIf="item.confirmed" col="4" row="0" rowspan="2" class="fa confirmed-indicator" text="&#xf00c;"></Label>
+                    <Label *ngIf="!item.confirmed" col="4" row="0" rowspan="2" class="fa unconfirmed-indicator" text="&#xf021;"></Label>
                 </GridLayout>
-                <GridLayout *ngIf="item.recipientId != ownId" class="m-x-auto list-item" columns="auto, auto,*,auto" rows="auto, auto">
+                <GridLayout *ngIf="item.recipientId != ownId" class="m-x-auto list-item" columns="auto, auto,* ,auto, auto" rows="auto, auto">
                     <Label col="0" row="0" class="font-weight-bold" [text]="item.amountNQT + ' BURST'"></Label>
-                    <Label col="0" row="1" colSpan="2" [text]="item.recipientAddress"></Label>
-                    <Label col="3" row="0" rowspan="2" class="font-weight-bold out-label" text="OUT"></Label>
+                    <Label col="0" row="1" colspan="2" [text]="item.recipientAddress"></Label>
+                    <Label col="3" row="0" rowspan="2" class="font-weight-bold transaction-label" text="OUT"></Label>
+                    <Label *ngIf="item.confirmed" col="4" row="0" rowspan="2" class="fa confirmed-indicator" text="&#xf00c;"></Label>
+                    <Label *ngIf="!item.confirmed" col="4" row="0" rowspan="2" class="fa unconfirmed-indicator" text="&#xf021;"></Label>
                 </GridLayout>
             </StackLayout>
         </ng-template>

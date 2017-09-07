@@ -116,11 +116,13 @@ export class WalletService {
                     this.getTransactions(wallet.id)
                         .then(transactions => {
                             wallet.transactions = transactions;
-                            this.databaseService.saveWallet(wallet)
-                                .catch(error => {
-                                    reject("Failed saving the wallet!");
+                            this.getUnconfirmedTransactions(wallet.id)
+                                .then(transactions => {
+                                    wallet.transactions = transactions.concat(wallet.transactions);
+                                    this.databaseService.saveWallet(wallet)
+                                        .catch(error => { console.log("Failed saving the wallet!"); })
+                                    resolve(wallet);
                                 })
-                            resolve(wallet);
                         }).catch(error => reject("Failed retrieving transactions!"))
                 }).catch(error => reject("Failed fetching wallet balance!"))
         });
@@ -151,6 +153,28 @@ export class WalletService {
                     response.json().transactions.map(transaction => {
                         transaction.amountNQT = parseFloat(this.convertStringToNumber(transaction.amountNQT));
                         transaction.feeNQT = parseFloat(this.convertStringToNumber(transaction.feeNQT));
+                        transactions.push(new Transaction(transaction));
+                    });
+                    resolve(transactions);
+                })
+                .catch(error => this.handleError(error));
+        });
+    }
+
+    public getUnconfirmedTransactions(id: string): Promise<Transaction[]> {
+        return new Promise((resolve, reject) => {
+            let params: URLSearchParams = new URLSearchParams();
+            params.set("requestType", "getUnconfirmedTransactions");
+            params.set("account", id);
+            let requestOptions = this.getRequestOptions();
+            requestOptions.params = params;
+            return this.http.get(this.nodeUrl, requestOptions).toPromise()
+                .then(response => {
+                    let transactions: Transaction[] = [];
+                    response.json().unconfirmedTransactions.map(transaction => {
+                        transaction.amountNQT = parseFloat(this.convertStringToNumber(transaction.amountNQT));
+                        transaction.feeNQT = parseFloat(this.convertStringToNumber(transaction.feeNQT));
+                        transaction.confirmed = false;
                         transactions.push(new Transaction(transaction));
                     });
                     resolve(transactions);
