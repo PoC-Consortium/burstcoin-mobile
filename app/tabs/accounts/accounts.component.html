@@ -2,7 +2,7 @@
     <ListView [items]="wallets" (itemTap)="onItemTap($event)" separatorColor="transparent">
         <ng-template let-item="item" let-i="index">
             <StackLayout>
-                <GridLayout class="m-x-auto list-item" columns="auto,*,auto" rows="auto, auto, auto">
+                <GridLayout (tap)="selectWallet(item)" class="m-x-auto list-item" columns="auto,*,auto" rows="auto, auto, auto">
                     <Label col="0" row="0" class="font-weight-bold" [text]="item.address"></Label>
                     <Label col="2" row="0" class="font-weight-bold text-right" [text]="item.balance + ' BURST'"></Label>
                     <Label col="0" row="1" class="" [text]="item.id"></Label>

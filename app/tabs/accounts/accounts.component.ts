@@ -60,6 +60,13 @@ export class AccountsComponent implements OnInit {
         });
     }
 
+    public selectWallet(wallet: Wallet) {
+        this.walletService.selectWallet(wallet)
+            .then(wallet => {
+                this.notificationService.info("Selected wallet: " + wallet.address + "!");
+            })
+    }
+
     public refresh(args) {
         var pullRefresh = args.object;
         let wallet = this.walletService.currentWallet.value;
