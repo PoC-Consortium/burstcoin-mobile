@@ -28,6 +28,7 @@ export class BalanceComponent implements OnInit {
     balance: string;
     balanceBTC: string;
     balanceCur: string;
+    confirmed: boolean;
     qrcode: Image;
     zx: any;
 
@@ -38,6 +39,7 @@ export class BalanceComponent implements OnInit {
         private walletService: WalletService
     ) {
         this.zx = new ZXing();
+        this.confirmed = true;
     }
 
     ngOnInit(): void {
@@ -63,10 +65,11 @@ export class BalanceComponent implements OnInit {
         this.qrcode = this.zx.createBarcode({ encode: wallet.address, height: 400, width: 400, format: ZXing.QR_CODE });
         this.address = wallet.type == 'offline' ? wallet.address + " (" + wallet.type + ")" : wallet.address;
         this.balance = "Balance: " + this.marketService.getPriceBurstcoin(wallet.balance);
+        this.confirmed = wallet.balance == wallet.unconfirmedBalance;
     }
 
     public refresh(args) {
-        var pullRefresh = args.object;
+        let pullRefresh = args.object;
         let wallet = this.walletService.currentWallet.value;
         this.walletService.synchronizeWallet(wallet)
             .then(wallet => {

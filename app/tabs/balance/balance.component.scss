@@ -15,3 +15,11 @@
     height: 400px;
     border-radius: 20px;
 }
+
+.positive {
+    color: $success-light;
+}
+
+.negative {
+    color: $error-light;
+}

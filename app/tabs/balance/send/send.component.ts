@@ -49,7 +49,7 @@ export class SendComponent implements OnInit {
         this.barcodeScanner.scan(options).then((result) => {
             this.recipient = result.text;
         }, (errorMessage) => {
-            this.notificationService.info("Error scanning for QR code!")
+            this.notificationService.info("Could not scan QR code!")
         });
     }
 
@@ -57,16 +57,15 @@ export class SendComponent implements OnInit {
         if (this.walletService.isBurstcoinAddress(this.recipient)) {
             if (this.amount > 0 && !isNaN(Number(this.amount))) {
                 if (this.fee >= 1 && !isNaN(Number(this.fee))) {
-                    console.log();
                     this.step = 2;
                 } else {
-                    this.notificationService.info("Please enter a decimal number as fee!")
+                    this.notificationService.info("Please enter a decimal number (atleast 1) as fee!")
                 }
             } else {
                 this.notificationService.info("Please enter a decimal number for the amount of BURST you want to send!")
             }
         } else {
-            this.notificationService.info("Please enter a valid Burst address!")
+            this.notificationService.info("Please enter a valid Burstcoin address!")
         }
     }
 
@@ -80,10 +79,9 @@ export class SendComponent implements OnInit {
             transaction.senderPublicKey = wallet.keypair.publicKey;
             this.walletService.doTransaction(transaction, wallet.keypair.privateKey, this.pin)
                 .then(transaction => {
-                    console.log("route")
                     this.router.navigate(['tabs']);
                 }).catch(error => {
-                    this.notificationService.info("Transaction failed!")
+                    this.notificationService.info(error);
                 })
         } else {
             this.notificationService.info("The provided pin does not match the pin code of the wallet!")

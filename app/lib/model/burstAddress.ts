@@ -120,7 +120,7 @@ export class BurstAddress {
             codewordLength++;
         }
 
-        if (codewordLength == 17 && !BurstAddress.validate(codeword) || codewordLength != 17) {
+        if (!BurstAddress.isValid(address)) {
             return undefined;
         }
 
@@ -156,21 +156,57 @@ export class BurstAddress {
         return bigInt(out.split("").reverse().join("")).toString();
     }
 
-    public static validate(codeword: number[]) {
+    public static isValid(address: string) {
+        if (address.indexOf('BURST-') == 0) {
+            address = address.substr(6);
+        } else {
+            return false;
+        }
+
+        let codeword = BurstAddress.initialCodeword,
+            codewordLength = 0;
+
+        for (let i = 0; i < address.length; i++) {
+            let pos = BurstAddress.alphabet.indexOf(address.charAt(i));
+
+            if (pos <= -1 || pos > BurstAddress.alphabet.length) {
+                continue;
+            }
+
+            if (codewordLength > 16) {
+                return false;
+            }
+
+            let codeworkIndex = BurstAddress.cwmap[codewordLength];
+            codeword[codeworkIndex] = pos;
+            codewordLength++;
+        }
+
+        if (codewordLength != 17) {
+            return false;
+        }
+
         let sum = 0;
-        let t = 0;
+
         for (let i = 1; i < 5; i++) {
-            for (let j = 0, t = 0; j < 31; j++) {
-                if (j > 12 && j < 27) continue;
+            let t = 0;
+
+            for (let j = 0; j < 31; j++) {
+                if (j > 12 && j < 27) {
+                    continue;
+                }
 
                 let pos = j;
-                if (j > 26) pos -= 14;
+                if (j > 26) {
+                    pos -= 14;
+                }
 
                 t ^= BurstAddress.gmult(codeword[pos], BurstAddress.gexp[(i * j) % 31]);
             }
 
             sum |= t;
         }
+
         return (sum == 0);
     }
 }

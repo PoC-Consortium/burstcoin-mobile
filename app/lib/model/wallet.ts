@@ -5,6 +5,7 @@ export class Wallet {
 
     id: string;
     address: string;
+    unconfirmedBalance: number;
     balance: number;
     type: string;
     selected: boolean;
@@ -20,6 +21,7 @@ export class Wallet {
         this.id = data.id || undefined;
         this.address = data.address || undefined;
         this.balance = data.balance || 0;
+        this.unconfirmedBalance = data.unconfirmedBalance || 0;
         this.balanceStringBTC = data.balance || undefined;
         this.balanceStringCur = data.balance || undefined;
         this.type = data.type || "offline";

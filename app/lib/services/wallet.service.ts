@@ -111,17 +111,18 @@ export class WalletService {
         return new Promise((resolve, reject) => {
             this.getBalance(wallet.id)
                 .then(balance => {
-                    wallet.balance = balance;
+                    wallet.balance = balance.confirmed;
+                    wallet.unconfirmedBalance = balance.unconfirmed;
                     this.getTransactions(wallet.id)
                         .then(transactions => {
                             wallet.transactions = transactions;
                             this.databaseService.saveWallet(wallet)
                                 .catch(error => {
-                                    console.log("failed save of wallet");
+                                    reject("Failed saving the wallet!");
                                 })
                             resolve(wallet);
-                        }).catch(error => resolve(wallet));
-                }).catch(error => resolve(wallet));
+                        }).catch(error => reject("Failed retrieving transactions!"))
+                }).catch(error => reject("Failed fetching wallet balance!"))
         });
     }
 
@@ -171,7 +172,7 @@ export class WalletService {
             .catch(error => this.handleError(error));
     }
 
-    public getBalance(id: string): Promise<number> {
+    public getBalance(id: string): Promise<any> {
         return new Promise((resolve, reject) => {
             let params: URLSearchParams = new URLSearchParams();
             params.set("requestType", "getBalance");
@@ -183,7 +184,9 @@ export class WalletService {
                     if (response.json().errorCode == undefined) {
                         let balanceString = response.json().guaranteedBalanceNQT;
                         balanceString = this.convertStringToNumber(balanceString);
-                        resolve(parseFloat(balanceString));
+                        let unconfirmedBalanceString = response.json().unconfirmedBalanceNQT;
+                        unconfirmedBalanceString = this.convertStringToNumber(unconfirmedBalanceString);
+                        resolve({ confirmed: parseFloat(balanceString), unconfirmed: parseFloat(unconfirmedBalanceString)});
                     } else {
                         reject(0);
                     }
@@ -208,46 +211,50 @@ export class WalletService {
             // request 'sendMoney' to burst node
             return this.http.post(this.nodeUrl, {}, requestOptions).toPromise()
                 .then(response => {
-                    // get unsigned transactionbytes
-                    unsignedTransactionHex = response.json().unsignedTransactionBytes || undefined;
-                    // sign unsigned transaction bytes
-                    return this.cryptoService.generateSignature(unsignedTransactionHex, encryptedPrivateKey, this.hashPinEncryption(pin))
-                        .then(signature => {
-                            return this.cryptoService.verifySignature(signature, unsignedTransactionHex, transaction.senderPublicKey)
-                                .then(verified => {
-                                    if (verified) {
-                                        return this.cryptoService.generateSignedTransactionBytes(unsignedTransactionHex, signature)
-                                            .then(signedTransactionBytes => {
-                                                params = new URLSearchParams();
-                                                params.set("requestType", "broadcastTransaction");
-                                                params.set("transactionBytes", signedTransactionBytes);
-                                                requestOptions = this.getRequestOptions();
-                                                requestOptions.params = params;
-                                                // request 'broadcastTransaction' to burst node
-                                                return this.http.post(this.nodeUrl, {}, requestOptions).toPromise()
-                                                    .then(response => {
-                                                        params = new URLSearchParams();
-                                                        params.set("requestType", "getTransaction");
-                                                        params.set("transaction", response.json().transaction);
-                                                        requestOptions = this.getRequestOptions();
-                                                        requestOptions.params = params;
-                                                        // request 'getTransaction' to burst node
-                                                        return this.http.get(this.nodeUrl, requestOptions).toPromise()
-                                                            .then(response => {
-                                                                resolve(new Transaction(response.json()));
-                                                            })
-                                                            .catch(error => reject(undefined));
-                                                    })
-                                                    .catch(error => reject(undefined));
-                                            }).catch(error => reject(undefined));
+                    console.log(JSON.stringify(response));
+                    if (response.json().unsignedTransactionBytes != undefined) {
+                        // get unsigned transactionbytes
+                        unsignedTransactionHex = response.json().unsignedTransactionBytes;
+                        // sign unsigned transaction bytes
+                        return this.cryptoService.generateSignature(unsignedTransactionHex, encryptedPrivateKey, this.hashPinEncryption(pin))
+                            .then(signature => {
+                                return this.cryptoService.verifySignature(signature, unsignedTransactionHex, transaction.senderPublicKey)
+                                    .then(verified => {
+                                        if (verified) {
+                                            return this.cryptoService.generateSignedTransactionBytes(unsignedTransactionHex, signature)
+                                                .then(signedTransactionBytes => {
+                                                    params = new URLSearchParams();
+                                                    params.set("requestType", "broadcastTransaction");
+                                                    params.set("transactionBytes", signedTransactionBytes);
+                                                    requestOptions = this.getRequestOptions();
+                                                    requestOptions.params = params;
+                                                    // request 'broadcastTransaction' to burst node
+                                                    return this.http.post(this.nodeUrl, {}, requestOptions).toPromise()
+                                                        .then(response => {
+                                                            params = new URLSearchParams();
+                                                            params.set("requestType", "getTransaction");
+                                                            params.set("transaction", response.json().transaction);
+                                                            requestOptions = this.getRequestOptions();
+                                                            requestOptions.params = params;
+                                                            // request 'getTransaction' to burst node
+                                                            return this.http.get(this.nodeUrl, requestOptions).toPromise()
+                                                                .then(response => {
+                                                                    resolve(new Transaction(response.json()));
+                                                                })
+                                                                .catch(error => reject("Transaction error: Finalizing transaction!"));
+                                                        })
+                                                        .catch(error => reject("Transaction error: Executing transaction!"));
+                                                }).catch(error => reject("Transaction error: Generating signed transaction!"));
+                                        } else {
+                                            reject("Transaction error: Verifying signature!");
+                                        }
+                                    }).catch(error => reject("Transaction error: Verifying signature!"));
 
-                                    } else {
-                                        reject(undefined);
-                                    }
-                                }).catch(error => reject(undefined));
-
-                        }).catch(error => reject(undefined));
-                }).catch(error => reject(undefined));
+                            }).catch(error => reject("Transaction error: Generating signature!"));
+                        } else {
+                            reject("Transaction error: Generating transaction. Check the recipient!");
+                        }
+                }).catch(error => reject("Transaction error: Generating transaction. Check the recipient!"));
         });
     }
 
@@ -260,12 +267,11 @@ export class WalletService {
     }
 
     public hashPinStorage(pin: string): string {
-        console.log(device.model);
         return this.cryptoService.hashSHA256(pin + device.model);
     }
 
     public isBurstcoinAddress(address: string): boolean {
-        return /^BURST\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{5}/i.test(address);
+        return /^BURST\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{5}/i.test(address) && BurstAddress.isValid(address);
     }
 
     public isPin(pin: string): boolean {

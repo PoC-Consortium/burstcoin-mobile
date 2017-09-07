@@ -70,7 +70,7 @@ export class ImportComponent implements OnInit {
                         this.notificationService.info(error);
                     });
             } else {
-                this.notificationService.info("Input is not a Burstcoin address");
+                this.notificationService.info("Please enter a valid Burstcoin address!");
             }
         } else {
             this.notificationService.info("Please enter something!");

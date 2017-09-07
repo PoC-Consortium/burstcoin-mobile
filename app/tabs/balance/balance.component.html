@@ -5,7 +5,8 @@
                 <StackLayout class="hr-light"></StackLayout>
                 <Label class="font-weight-bold p-t-10 p-b-10" [text]="address"></Label>
                 <StackLayout class="hr-light"></StackLayout>
-                <Label class="font-weight-bold p-t-10 p-b-10" [text]="balance"></Label>
+                <Label *ngIf="confirmed == true" class="font-weight-bold p-t-10 p-b-10" [text]="balance"></Label>
+                <Label *ngIf="confirmed == false" class="font-weight-bold p-t-10 p-b-10 fa" [text]="balance + ' &#xf021;'"></Label>
                 <StackLayout class="hr-light"></StackLayout>
                 <GridLayout class="p-t-10 p-b-10" columns="*,auto,*" rows="auto">
                     <Label col="0" class="font-weight-bold  m-r-10 text-right" [text]="balanceBTC"></Label>
