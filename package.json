@@ -1,10 +1,10 @@
 {
-  "description": "NativeScript Application",
-  "license": "SEE LICENSE IN <your-license-filename>",
-  "readme": "NativeScript Application",
-  "repository": "<fill-your-repository-here>",
+  "description": "Burstcoin Wallet",
+  "license": "closed source",
+  "readme": "none",
+  "repository": "private",
   "nativescript": {
-    "id": "org.nativescript.burstpocket",
+    "id": "org.icewave.burstcoinwallet",
     "tns-android": {
       "version": "3.1.1"
     }
