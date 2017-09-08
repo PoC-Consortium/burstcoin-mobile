@@ -15,9 +15,9 @@
                 </GridLayout>
         </StackLayout>
         <StackLayout orientation="vertical">
-            <Button *ngIf="wallet?.type == 'active'" class="btn btn-primary btn-active action-button fa" text="Send &#xf08b;" [nsRouterLink]="['balance/send']"></Button>
+            <Button *ngIf="wallet?.type == 'active'" class="btn btn-primary btn-active action-button fa" text="Send &#xf08b;" [nsRouterLink]="['/tabs/balance/send']"></Button>
             <!--<Button class="btn btn-primary btn-active action-button" text="Receive" (tap)="onTapReceive($event)"></Button>-->
-            <Button *ngIf="wallet?.type == 'offline'" class="btn btn-primary btn-active action-button fa" text="Activate &#xf05d;" [nsRouterLink]="['accounts/activate']"></Button>
+            <Button *ngIf="wallet?.type == 'offline'" class="btn btn-primary btn-active action-button fa" text="Activate &#xf05d;" [nsRouterLink]="['/tabs/accounts/activate']"></Button>
         </StackLayout>
     </StackLayout>
 </BalanceRefresh>

@@ -159,9 +159,7 @@ export class BurstAddress {
     public static isValid(address: string) {
         if (address.indexOf('BURST-') == 0) {
             address = address.substr(6);
-        } else {
-            return false;
-        }
+        } 
 
         let codeword = BurstAddress.initialCodeword,
             codewordLength = 0;

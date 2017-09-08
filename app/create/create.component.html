@@ -66,7 +66,7 @@
                 <Button class="generate-again-button btn btn-primary btn-active fa" text="Generate Again &#xf021;" (tap)="onTapGenerateAgain($event)"></Button>
             </StackLayout>
             <StackLayout *ngIf="this.step != 3 && this.step != 2" class="bottom-filler"></StackLayout>
-            <Progress class="m-20 progress-bar" *ngIf="this.step > 0" [value]="step - 1" maxValue="5"></Progress>
+            <Progress class="m-20 progress-bar" *ngIf="this.step > 0" [value]="step" maxValue="4"></Progress>
         </StackLayout>
     </StackLayout>
 </StackLayout>

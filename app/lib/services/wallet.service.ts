@@ -235,7 +235,6 @@ export class WalletService {
             // request 'sendMoney' to burst node
             return this.http.post(this.nodeUrl, {}, requestOptions).toPromise()
                 .then(response => {
-                    console.log(JSON.stringify(response));
                     if (response.json().unsignedTransactionBytes != undefined) {
                         // get unsigned transactionbytes
                         unsignedTransactionHex = response.json().unsignedTransactionBytes;
@@ -317,7 +316,6 @@ export class WalletService {
     }
 
     private handleError(error: Response | any) {
-        console.log(error);
         return Promise.reject(new HttpError(error));
     }
 }
