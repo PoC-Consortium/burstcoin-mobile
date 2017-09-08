@@ -5,6 +5,7 @@ import { Label } from "ui/label";
 import { Border } from "ui/border";
 
 import { Transaction, Wallet } from "../../lib/model";
+import { Converter } from "../../lib/util";
 
 import { DatabaseService, MarketService, NotificationService, WalletService } from "../../lib/services";
 
@@ -42,12 +43,8 @@ export class TransactionsComponent implements OnInit {
         });
     }
 
-    public convertFiat() {
-
-    }
-
-    public onTapItem(e) {
-
+    public convertTimestamp(timestamp: number) {
+        return Converter.convertTimestampToDateString(timestamp);
     }
 
     public refresh(args) {

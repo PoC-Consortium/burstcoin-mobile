@@ -3,12 +3,13 @@
         <ng-template let-item="item" let-i="index">
             <StackLayout>
                 <GridLayout (tap)="selectWallet(item)" class="m-x-auto list-item" columns="auto,*,auto" rows="auto, auto, auto">
-                    <Label col="0" row="0" class="font-weight-bold" [text]="item.address"></Label>
-                    <Label col="2" row="0" class="font-weight-bold text-right" [text]="item.balance + ' BURST'"></Label>
-                    <Label col="0" row="1" class="" [text]="item.id"></Label>
-                    <Label col="2" row="1" class=" text-right" [text]="item.balanceStringBTC"></Label>
-                    <Label col="0" row="2" class="" [text]="item.type"></Label>
-                    <Label col="2" row="2" class="text-right" [text]="item.balanceStringCur"></Label>
+                    <Label col="0" row="0" class="font-weight-bold p-b-5" [text]="item.address"></Label>
+                    <Label col="2" row="0" class="font-weight-bold text-right p-b-5" [text]="item.balance + ' BURST'"></Label>
+                    <Label col="0" row="1" class="p-b-5" [text]="item.id"></Label>
+                    <Label col="2" row="1" class="text-right p-b-5" [text]="item.balanceStringBTC"></Label>
+                    <Label *ngIf="item.type == 'active'" col="0" row="2" class="p-b-5 p-t-5 fa" text="&#xf111;"></Label>
+                    <Label *ngIf="item.type != 'active'" col="0" row="2" class="p-b-5 p-t-5 fa" text="&#xf10c;"></Label>
+                    <Label col="2" row="2" class="text-right p-b-5" [text]="item.balanceStringCur"></Label>
                 </GridLayout>
             </StackLayout>
         </ng-template>

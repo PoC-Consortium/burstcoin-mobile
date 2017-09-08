@@ -292,4 +292,8 @@ export class Converter {
     public static int32ToBytes(x, opt_bigEndian) {
         return Converter.intToBytes_(x, 4, 4294967295, opt_bigEndian);
     }
+
+    public static convertTimestampToDateString(timestamp: number) {
+        return new Date(Date.UTC(2014, 7, 11, 2, 0, 0, 0) + timestamp * 1000);
+    }
 }
