@@ -67,7 +67,7 @@ export class BalanceComponent implements OnInit {
         // generate qr code image
         this.qrcode = this.zx.createBarcode({ encode: wallet.address, height: 400, width: 400, format: ZXing.QR_CODE });
         this.address = wallet.type == 'offline' ? wallet.address + " (" + wallet.type + ")" : wallet.address;
-        this.balance = "Balance: " + this.marketService.getPriceBurstcoin(wallet.balance);
+        this.balance = this.marketService.getPriceBurstcoin(wallet.balance);
         this.confirmed = wallet.balance == wallet.unconfirmedBalance;
     }
 
@@ -76,7 +76,7 @@ export class BalanceComponent implements OnInit {
         let wallet = this.walletService.currentWallet.value;
         this.walletService.synchronizeWallet(wallet)
             .then(wallet => {
-                this.balance = "Balance: " + this.marketService.getPriceBurstcoin(wallet.balance);
+                this.balance = this.marketService.getPriceBurstcoin(wallet.balance);
                 this.walletService.setCurrentWallet(wallet);
                 this.marketService.updateCurrency()
                     .then(currency => {
