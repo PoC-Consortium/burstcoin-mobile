@@ -5,7 +5,7 @@
                 <GridLayout *ngIf="item.recipientId == ownId" class="m-x-auto list-item" columns="auto, auto, *, auto, auto" rows="auto, auto, auto">
                     <Label col="0" row="0" class="font-weight-bold fa p-b-5" [text]="item.amountNQT + ' BURST'"></Label>
                     <Label col="0" row="1" colspan="2" class="fa p-b-5" [text]="'&#xf2c0; ' + item.senderAddress"></Label>
-                    <Label col="0" row="2" class="fa p-b-5" [text]="'&#xf017; ' + (convertTimestamp(item.timestamp) | date: 'dd.MM.yyyy hh:mm:ss')"></Label>
+                    <Label col="0" row="2" class="fa p-b-5" [text]="'&#xf017; ' + (convertTimestamp(item.timestamp) | date: 'dd.MM.yyyy hh:mm:ss a')"></Label>
                     <Label col="3" row="0" rowspan="3" class="font-weight-bold transaction-label-in" text="IN"></Label>
                     <Label *ngIf="item.confirmed" col="4" row="0" rowspan="3" class="fa confirmed-indicator" text="&#xf00c;"></Label>
                     <Label *ngIf="!item.confirmed" col="4" row="0" rowspan="3" class="fa unconfirmed-indicator" text="&#xf021;"></Label>
@@ -13,7 +13,7 @@
                 <GridLayout *ngIf="item.recipientId != ownId" class="m-x-auto list-item" columns="auto, auto,* ,auto, auto" rows="auto, auto, auto">
                     <Label col="0" row="0" class="font-weight-bold fa p-b-5" [text]="item.amountNQT + ' BURST'"></Label>
                     <Label col="0" row="1" colspan="2" class="fa p-b-5" [text]="'&#xf2bc; ' + item.recipientAddress"></Label>
-                    <Label col="0" row="2" class="fa p-b-5" [text]="'&#xf017; ' + (convertTimestamp(item.timestamp) | date: 'dd.MM.yyyy hh:mm:ss')"></Label>
+                    <Label col="0" row="2" class="fa p-b-5" [text]="'&#xf017; ' + (convertTimestamp(item.timestamp) | date: 'dd.MM.yyyy hh:mm:ss a')"></Label>
                     <Label col="3" row="0" rowspan="3" class="font-weight-bold transaction-label-out" text="OUT"></Label>
                     <Label *ngIf="item.confirmed" col="4" row="0" rowspan="3" class="fa confirmed-indicator" text="&#xf00c;"></Label>
                     <Label *ngIf="!item.confirmed" col="4" row="0" rowspan="3" class="fa unconfirmed-indicator" text="&#xf021;"></Label>
