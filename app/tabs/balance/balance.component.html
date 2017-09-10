@@ -1,7 +1,11 @@
 <BalanceRefresh (refresh)="refresh($event)">
     <StackLayout orientation="vertical">
         <StackLayout class="balance-container" orientation="vertical">
-                <Image class="qrcode" [src]="qrcode"></Image>
+                <Image *ngIf="loading == false" class="qrcode" [src]="qrcode"></Image>
+                <StackLayout *ngIf="loading" class="p-30" orientation="vertical">
+                    <ActivityIndicator busy="true" width="100" height="100" class="activity-indicator"></ActivityIndicator>
+                </StackLayout>
+
                 <StackLayout class="hr-light"></StackLayout>
                 <Label class="font-weight-bold p-t-10 p-b-10" [text]="address"></Label>
                 <StackLayout class="hr-light"></StackLayout>

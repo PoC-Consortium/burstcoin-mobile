@@ -29,6 +29,7 @@ export class BalanceComponent implements OnInit {
     balanceBTC: string;
     balanceCur: string;
     confirmed: boolean;
+    loading: boolean;
     qrcode: Image;
     zx: any;
 
@@ -40,16 +41,18 @@ export class BalanceComponent implements OnInit {
     ) {
         this.zx = new ZXing();
         this.confirmed = true;
+        this.loading = true;
     }
 
     ngOnInit(): void {
         this.walletService.currentWallet.subscribe((wallet: Wallet) => {
             if (wallet != undefined) {
                 this.update(wallet);
+                this.loading = false;
             }
         });
-        this.balanceBTC = "-";
-        this.balanceCur = "-";
+        this.balanceBTC = "...";
+        this.balanceCur = "...";
         // conversion into btc and fiat currency
         this.marketService.currency.subscribe((currency: Currency) => {
             if (currency != undefined) {
