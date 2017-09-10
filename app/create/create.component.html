@@ -33,6 +33,7 @@
                     <Progress [value]="seed.length" [maxValue]="seedLimit" class="m-20"></Progress>
                 </StackLayout>
             </StackLayout>
+            <Button class="btn btn-primary btn-active action-button fa" [isEnabled]="seed.length >= seedLimit" text="Next &#xf18e;" (tap)="onTapSeedNext($event)"></Button>
         </StackLayout>
 
         <StackLayout *ngIf="this.step == 2">
@@ -66,7 +67,7 @@
                 <Button class="generate-again-button btn btn-primary btn-active fa" text="Generate Again &#xf021;" (tap)="onTapGenerateAgain($event)"></Button>
             </StackLayout>
             <StackLayout *ngIf="this.step != 3 && this.step != 2" class="bottom-filler"></StackLayout>
-            <Progress class="m-20 progress-bar" *ngIf="this.step > 0" [value]="step" maxValue="4"></Progress>
+            <Progress class="m-20 progress-bar" *ngIf="this.step > 0" [value]="step - 1" maxValue="3"></Progress>
         </StackLayout>
     </StackLayout>
 </StackLayout>

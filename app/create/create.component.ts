@@ -20,7 +20,7 @@ import { PassPhraseGenerator } from "../lib/util/crypto";
 })
 export class CreateComponent implements OnInit {
 
-    private readonly seedLimit: number = 256;
+    private readonly seedLimit: number = 10;
     private step: number;
     private seed: any[];
     private passPhrase: string[];
@@ -63,16 +63,17 @@ export class CreateComponent implements OnInit {
     public onTouch(args: TouchGestureEventData) {
         // take seed from seed Area
         this.seed.push([args.getX(), args.getY(), new Date()]);
-        if (this.seed.length >= this.seedLimit) {
-            // set to loading screen while passphrase creation
-            this.step = 0;
-            this.cryptoService.generatePassPhrase(this.seed)
-                .then(phrase => {
-                    this.passPhrase = phrase.split(" ");
-                    this.step = 2;
-                }
-            );
-        }
+    }
+
+    public onTapSeedNext(e) {
+        // set to loading screen while passphrase creation
+        this.step = 0;
+        this.cryptoService.generatePassPhrase(this.seed)
+            .then(phrase => {
+                this.passPhrase = phrase.split(" ");
+                this.step = 2;
+            }
+        );
     }
 
     /*
