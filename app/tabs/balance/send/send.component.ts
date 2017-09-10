@@ -20,6 +20,7 @@ export class SendComponent implements OnInit {
     fee: number;
     pin: string;
     total: number;
+    processing: boolean;
 
     constructor(
         private barcodeScanner: BarcodeScanner,
@@ -33,6 +34,7 @@ export class SendComponent implements OnInit {
         this.amount = undefined;
         this.fee = 1;
         this.total = 1;
+        this.processing = false;
     }
 
     ngOnInit(): void {
@@ -71,6 +73,7 @@ export class SendComponent implements OnInit {
 
     public onTapAccept() {
         if (this.walletService.checkPin(this.pin)) {
+            this.processing = true;
             let wallet = this.walletService.currentWallet.value;
             let transaction = new Transaction();
             transaction.recipientAddress = this.recipient;
@@ -79,12 +82,16 @@ export class SendComponent implements OnInit {
             transaction.senderPublicKey = wallet.keypair.publicKey;
             this.walletService.doTransaction(transaction, wallet.keypair.privateKey, this.pin)
                 .then(transaction => {
-                    this.router.navigate(['tabs']);
+                    this.notificationService.info("Transaction successful!");
+                    setTimeout(t => {
+                        this.router.navigate(['/tabs']);
+                    }, 500);
                 }).catch(error => {
+                    this.processing = false;
                     this.notificationService.info(error);
                 })
         } else {
-            this.notificationService.info("The provided pin does not match the pin code of the wallet!")
+            this.notificationService.info("Wrong PIN!")
         }
     }
 

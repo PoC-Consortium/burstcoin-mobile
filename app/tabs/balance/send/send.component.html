@@ -53,15 +53,20 @@
                 </GridLayout>
                 <StackLayout class="hr-light"></StackLayout>
             </StackLayout>
-            <StackLayout class="info-container" orientation="vertical">
-                <Label textWrap="true" class="solo" text="Enter your pin code!"></Label>
+            <StackLayout *ngIf="!processing">
+                <StackLayout class="info-container" orientation="vertical">
+                    <Label textWrap="true" class="solo" text="Enter your pin code!"></Label>
+                </StackLayout>
+                <StackLayout class="body-container m-b-5" orientation="vertical">
+                    <Label class="text-view-label fa" text="&#xf292; PIN"></Label>
+                    <TextField class="input" [(ngModel)]="pin" keyboardType="number" returnKeyType="done"></TextField>
+                </StackLayout>
+                <StackLayout class="m-b-20" orientation="vertical">
+                    <Button class="btn btn-primary btn-active action-button fa" text="Accept &#xf05d;" (tap)="onTapAccept($event)"></Button>
+                </StackLayout>
             </StackLayout>
-            <StackLayout class="body-container m-b-5" orientation="vertical">
-                <Label class="text-view-label fa" text="&#xf292; PIN"></Label>
-                <TextField class="input" [(ngModel)]="pin" keyboardType="number" returnKeyType="done"></TextField>
-            </StackLayout>
-            <StackLayout class="m-b-20" orientation="vertical">
-                <Button class="btn btn-primary btn-active action-button fa" text="Accept &#xf05d;" (tap)="onTapAccept($event)"></Button>
+            <StackLayout class="p-20" *ngIf="processing">
+                <ActivityIndicator busy="true" width="100" height="100" class="activity-indicator"></ActivityIndicator>
             </StackLayout>
         </StackLayout>
     </StackLayout>
