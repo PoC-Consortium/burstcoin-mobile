@@ -12,6 +12,7 @@ tmp/
 typings/
 .idea
 .cloud
+*.apk
 
 !/app/lib/js/**/*.js
 .nyc_output/
