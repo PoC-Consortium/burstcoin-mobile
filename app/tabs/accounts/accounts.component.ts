@@ -97,8 +97,10 @@ export class AccountsComponent implements OnInit {
                             });
                     }
                 })
+                .catch(wallet => {
+                    pullRefresh.refreshing = false;
+                })
             });
-
     }
 
 

@@ -62,5 +62,8 @@ export class TransactionsComponent implements OnInit {
                         pullRefresh.refreshing = false;
                     });
             })
+            .catch(wallet => {
+                pullRefresh.refreshing = false;
+            })
     }
 }

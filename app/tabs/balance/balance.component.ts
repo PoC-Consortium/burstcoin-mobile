@@ -86,6 +86,9 @@ export class BalanceComponent implements OnInit {
                         pullRefresh.refreshing = false;
                     });
             })
+            .catch(wallet => {
+                pullRefresh.refreshing = false;
+            })
     }
 
 }
