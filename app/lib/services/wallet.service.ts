@@ -123,8 +123,8 @@ export class WalletService {
                                         .catch(error => { console.log("Failed saving the wallet!"); })
                                     resolve(wallet);
                                 })
-                        }).catch(error => reject("Failed retrieving transactions!"))
-                }).catch(error => reject("Failed fetching wallet balance!"))
+                        }).catch(error => reject(wallet))
+                }).catch(error => reject(wallet))
         });
     }
 

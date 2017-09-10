@@ -38,7 +38,7 @@ export class TabsComponent implements OnInit {
                 })
                 .catch(wallet => {
                     this.walletService.setCurrentWallet(wallet);
-                    this.notificationService.info("Could not fetch wallet data. Please check your internet connection!")
+                    //this.notificationService.info("Failed synchronization. Check your internet connection!")
                 })
         }
     }

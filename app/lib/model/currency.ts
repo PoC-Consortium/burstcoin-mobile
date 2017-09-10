@@ -21,23 +21,23 @@ export class Currency {
     marketCapCur: number;
 
     constructor(data:any = {}) {
-        this.id = data.id || undefined;
-		this.name = data.name || undefined;
-		this.symbol = data.symbol || undefined;
-        this.rank = data.rank || undefined;
-        this.priceUSD = data.price_usd || undefined;
-        this.priceBTC = data.price_btc || undefined;
-        this.volume24h = data["24h_volume_usd"] || undefined;
-        this.marketCapUSD = data.market_cap_usd || undefined;
-        this.availableSupply = data.avalaible_supply || undefined;
-        this.totalSupply = data.total_supply || undefined;
-        this.percentChange1h = data.percent_change_1h || undefined;
-        this.percentChange24h = data.percent_change_24h || undefined;
-        this.percentChange7d = data.percent_change_7d || undefined;
-        this.lastUpdated = data.last_updated || undefined;
-        this.currency = data.currency != undefined ? data.currency.toLowerCase() : undefined;
-        this.priceCur = data["price_" + this.currency] || undefined;
-        this.volume24hCur = data["24h_volume_" + this.currency] || undefined;
-        this.marketCapCur = data["market_cap_" + this.currency] || undefined;
+        this.id = data.id || "";
+		this.name = data.name || "";
+		this.symbol = data.symbol || "";
+        this.rank = data.rank || 0;
+        this.priceUSD = data.price_usd || 0;
+        this.priceBTC = data.price_btc || 0;
+        this.volume24h = data["24h_volume_usd"] || 0;
+        this.marketCapUSD = data.market_cap_usd || 0;
+        this.availableSupply = data.avalaible_supply || 0;
+        this.totalSupply = data.total_supply || 0;
+        this.percentChange1h = data.percent_change_1h || 0;
+        this.percentChange24h = data.percent_change_24h || 0;
+        this.percentChange7d = data.percent_change_7d || 0;
+        this.lastUpdated = data.last_updated || 0;
+        this.currency = data.currency != undefined ? data.currency.toLowerCase() : "USD";
+        this.priceCur = data["price_" + this.currency] || "";
+        this.volume24hCur = data["24h_volume_" + this.currency] || "";
+        this.marketCapCur = data["market_cap_" + this.currency] || "";
     }
 }
