@@ -60,7 +60,7 @@ export class MarketService {
         if (this.currency.value != undefined) {
             return (coins * this.currency.value.priceBTC).toFixed(8) + " BTC";
         } else {
-            return undefined;
+            return "...";
         }
     }
 
@@ -72,7 +72,7 @@ export class MarketService {
                 return (coins * this.currency.value.priceUSD).toFixed(8) + " $" ;
             }
         } else {
-            return undefined;
+            return "...";
         }
     }
 

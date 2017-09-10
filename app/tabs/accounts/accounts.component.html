@@ -6,10 +6,10 @@
                     <Label col="0" row="0" class="font-weight-bold p-b-5" [text]="item.address"></Label>
                     <Label col="2" row="0" class="font-weight-bold text-right p-b-5" [text]="item.balance + ' BURST'"></Label>
                     <Label col="0" row="1" class="p-b-5" [text]="item.id"></Label>
-                    <Label col="2" row="1" class="text-right p-b-5" [text]="item.balanceStringBTC"></Label>
+                    <Label col="2" row="1" class="text-right p-b-5" [text]="marketService.getPriceBTC(item.balance)"></Label>
                     <Label *ngIf="item.type == 'active'" col="0" row="2" class="p-b-5 p-t-5 fa" text="&#xf111;"></Label>
                     <Label *ngIf="item.type != 'active'" col="0" row="2" class="p-b-5 p-t-5 fa" text="&#xf10c;"></Label>
-                    <Label col="2" row="2" class="text-right p-b-5" [text]="item.balanceStringCur"></Label>
+                    <Label col="2" row="2" class="text-right p-b-5" [text]="marketService.getPriceFiatCurrency(item.balance)"></Label>
                 </GridLayout>
                 <Button *ngIf="i == wallets.length - 1" class="btn btn-primary btn-active icon-button fa text-center" text="&#xf067;" (tap)="onTapAddAccount()"></Button>
             </StackLayout>

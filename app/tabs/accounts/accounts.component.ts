@@ -35,32 +35,13 @@ export class AccountsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.walletService.currentWallet.subscribe((wallet: Wallet) => {
-            if (wallet != undefined) {
-                this.databaseService.getAllWallets()
-                    .then(wallets => {
-                        this.wallets = wallets;
-                        if (this.marketService.currency != undefined) {
-                            this.wallets.map(wallet => {
-                                wallet.balanceStringBTC = this.marketService.getPriceBTC(wallet.balance);
-                                wallet.balanceStringCur = this.marketService.getPriceFiatCurrency(wallet.balance);
-                            })
-                        }
-                    })
-                    .catch(err => {
-                        console.log("No wallets found: " + err);
-                    })
-            }
-        });
-
-        this.marketService.currency.subscribe((currency: Currency) => {
-            if (currency != undefined) {
-                this.wallets.map(wallet => {
-                    wallet.balanceStringBTC = this.marketService.getPriceBTC(wallet.balance);
-                    wallet.balanceStringCur = this.marketService.getPriceFiatCurrency(wallet.balance);
-                })
-            }
-        });
+        this.databaseService.getAllWallets()
+            .then(wallets => {
+                this.wallets = wallets;
+            })
+            .catch(err => {
+                console.log("No wallets found: " + err);
+            })
     }
 
     public selectWallet(wallet: Wallet) {
@@ -77,30 +58,39 @@ export class AccountsComponent implements OnInit {
             fullscreen: false,
         };
         this.modalDialogService.showModal(AddComponent, options)
-            .then(result => {})
-            .catch(error => {});
+            .then(result => { })
+            .catch(error => { });
     }
 
     public refresh(args) {
         var pullRefresh = args.object;
-        this.wallets.map(wallet => {
-            this.walletService.synchronizeWallet(wallet)
+        for (let i = 0; i < this.wallets.length; i++) {
+            this.walletService.synchronizeWallet(this.wallets[i])
                 .then(wallet => {
-                    if (wallet.id == this.walletService.currentWallet.value.id) {
-                        this.walletService.setCurrentWallet(this.walletService.currentWallet.value);
+                    if (i == this.wallets.length - 1) {
                         this.marketService.updateCurrency()
                             .then(currency => {
                                 pullRefresh.refreshing = false;
                             })
                             .catch(error => {
                                 pullRefresh.refreshing = false;
+                                this.notificationService.info("Could not fetch currency information!")
                             });
                     }
                 })
-                .catch(wallet => {
-                    pullRefresh.refreshing = false;
+                .catch(error => {
+                    if (i == this.wallets.length - 1) {
+                        this.marketService.updateCurrency()
+                            .then(currency => {
+                                pullRefresh.refreshing = false;
+                            })
+                            .catch(error => {
+                                pullRefresh.refreshing = false;
+                                this.notificationService.info("Could not fetch currency information!")
+                            });
+                    }
                 })
-            });
+        }
     }
 
 
