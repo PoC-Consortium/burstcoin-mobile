@@ -63,6 +63,7 @@ export class AccountsComponent implements OnInit {
     public selectWallet(wallet: Wallet) {
         this.walletService.selectWallet(wallet)
             .then(wallet => {
+                this.marketService.setCurrency(this.marketService.currency.value);
                 this.notificationService.info("Selected wallet: " + wallet.address + "!");
             })
     }
