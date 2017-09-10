@@ -11,6 +11,7 @@
                     <Label *ngIf="item.type != 'active'" col="0" row="2" class="p-b-5 p-t-5 fa" text="&#xf10c;"></Label>
                     <Label col="2" row="2" class="text-right p-b-5" [text]="item.balanceStringCur"></Label>
                 </GridLayout>
+                <Button *ngIf="i == wallets.length - 1" class="btn btn-primary btn-active icon-button fa text-center" text="&#xf067;" (tap)="onTapAddAccount()"></Button>
             </StackLayout>
         </ng-template>
     </ListView>

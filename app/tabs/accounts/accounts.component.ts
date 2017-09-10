@@ -1,12 +1,13 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewContainerRef } from "@angular/core";
+import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
 import { isAndroid } from "platform";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
 import { Label } from "ui/label";
 import { Image } from "ui/image"
 
 import { BurstAddress, Currency, Wallet } from "../../lib/model";
-
 import { DatabaseService, MarketService, NotificationService, WalletService } from "../../lib/services";
+import { AddComponent } from "./add/add.component";
 
 import { registerElement } from "nativescript-angular/element-registry";
 registerElement("AccountsRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
@@ -25,7 +26,9 @@ export class AccountsComponent implements OnInit {
     constructor(
         private databaseService: DatabaseService,
         private marketService: MarketService,
+        private modalDialogService: ModalDialogService,
         private notificationService: NotificationService,
+        private vcRef: ViewContainerRef,
         private walletService: WalletService
     ) {
         this.wallets = [];
@@ -68,20 +71,34 @@ export class AccountsComponent implements OnInit {
             })
     }
 
+    public onTapAddAccount() {
+        const options: ModalDialogOptions = {
+            viewContainerRef: this.vcRef,
+            fullscreen: false,
+        };
+        this.modalDialogService.showModal(AddComponent, options)
+            .then(result => {})
+            .catch(error => {});
+    }
+
     public refresh(args) {
         var pullRefresh = args.object;
-        let wallet = this.walletService.currentWallet.value;
-        this.walletService.synchronizeWallet(wallet)
-            .then(wallet => {
-                this.walletService.setCurrentWallet(wallet);
-                this.marketService.updateCurrency()
-                    .then(currency => {
-                        pullRefresh.refreshing = false;
-                    })
-                    .catch(error => {
-                        pullRefresh.refreshing = false;
-                    });
-            })
+        this.wallets.map(wallet => {
+            this.walletService.synchronizeWallet(wallet)
+                .then(wallet => {
+                    if (wallet.id == this.walletService.currentWallet.value.id) {
+                        this.walletService.setCurrentWallet(this.walletService.currentWallet.value);
+                        this.marketService.updateCurrency()
+                            .then(currency => {
+                                pullRefresh.refreshing = false;
+                            })
+                            .catch(error => {
+                                pullRefresh.refreshing = false;
+                            });
+                    }
+                })
+            });
+
     }
 
 
