@@ -2,12 +2,17 @@
     <StackLayout class="page-content">
         <StackLayout class="modal-container">
             <StackLayout class="body-container">
-                <Image class="logo-small" src="res://logo"></Image>
-                <Label class="solo fa" textWrap="true" text="Developed by"></Label>
                 <Label class="solo fa" textWrap="true" text="Feedback, Bugs, Help?"></Label>
-                <Button class="btn btn-primary btn-active about-button fa" text="&#xf09b; Documentation" (tap)="onTapOk($event)"></Button>
+                <Button class="btn btn-primary btn-active about-button fa" text="&#xf09b; Documentation" (tap)="onTapDocumentation($event)"></Button>
                 <Label class="solo fa" textWrap="true" text="Follow us on twitter to get updates on our projects!"></Label>
-                <Button class="btn btn-primary btn-active about-button fa" text="&#xf099; PoC Consortium" (tap)="onTapOk($event)"></Button>
+                <Button class="btn btn-primary btn-active about-button fa" text="&#xf099; PoC Consortium" (tap)="onTapTwitter($event)"></Button>
+                <Label class="solo fa" textWrap="true" text="Developed by"></Label>
+                <Image class="dev-logo p-b-10" src="res://icewavelogo"></Image>
+                <Label class="solo fa" textWrap="true" text="In Association with"></Label>
+                <GridLayout class="p-l-20 p-r-20" rows="auto" columns="*,*">
+                    <Image col="0" class="logo-tiny text-center" src="res://poclogo"></Image>
+                    <Image col="1" class="logo-tiny text-center" src="res://cglogo"></Image>
+                </GridLayout>
             </StackLayout>
         </StackLayout>
     </StackLayout>

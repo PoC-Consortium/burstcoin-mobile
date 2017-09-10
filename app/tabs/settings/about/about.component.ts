@@ -2,6 +2,8 @@ import { Component, OnInit, NgModule } from "@angular/core";
 import { ModalDialogParams } from "nativescript-angular/modal-dialog";
 import { Page } from "ui/page";
 
+import * as utils from "utils/utils";
+
 // >> passing-parameters
 @Component({
     moduleId: module.id,
@@ -22,7 +24,11 @@ export class AboutComponent implements OnInit {
 
     }
 
-    public onTapOk() {
-        this.params.closeCallback();
+    public onTapDocumentation() {
+        utils.openUrl("https://cgebe.github.io/burstcoin-wallet/")
+    }
+
+    public onTapTwitter() {
+        utils.openUrl("https://twitter.com/PoC_Consortium")
     }
 }
