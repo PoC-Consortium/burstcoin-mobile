@@ -1,11 +1,13 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewContainerRef } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
+import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
 import { isAndroid } from "platform";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
 
 import { Wallet } from "../lib/model";
 import { DatabaseService, NotificationService, WalletService } from "../lib/services";
-import { AddComponent } from "./accounts/add/add.component";
+
+import { NoteComponent } from "./note/note.component";
 
 @Component({
     selector: "TabsComponent",
@@ -20,8 +22,10 @@ export class TabsComponent implements OnInit {
 
     constructor(
         private databaseService: DatabaseService,
+        private modalDialogService: ModalDialogService,
         private notificationService: NotificationService,
         private router: RouterExtensions,
+        private vcRef: ViewContainerRef,
         private walletService: WalletService
     ) {
 
@@ -35,9 +39,11 @@ export class TabsComponent implements OnInit {
             this.walletService.synchronizeWallet(wallet)
                 .then(wallet => {
                     this.walletService.setCurrentWallet(wallet);
+                    this.showNotes();
                 })
                 .catch(wallet => {
                     this.walletService.setCurrentWallet(wallet);
+                    this.showNotes();
                     //this.notificationService.info("Failed synchronization. Check your internet connection!")
                 })
         }
@@ -72,6 +78,16 @@ export class TabsComponent implements OnInit {
         const selectedTabViewItem = tabView.items[args.newIndex];
         this.selectedIndex = args.newIndex;
         this.title = selectedTabViewItem.title;
+    }
+
+    public showNotes() {
+        const options: ModalDialogOptions = {
+            viewContainerRef: this.vcRef,
+            fullscreen: false,
+        };
+        this.modalDialogService.showModal(NoteComponent, options)
+            .then(node => {})
+            .catch(error => {});
     }
 
 }

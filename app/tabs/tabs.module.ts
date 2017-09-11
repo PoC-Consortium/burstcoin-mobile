@@ -15,6 +15,8 @@ import { BalanceComponent } from "./balance/balance.component";
 import { ReceiveComponent } from "./balance/receive/receive.component";
 import { SendComponent } from "./balance/send/send.component";
 
+import { NoteComponent } from "./note/note.component";
+
 import { TransactionsComponent } from "./transactions/transactions.component";
 
 import { SettingsComponent } from "./settings/settings.component";
@@ -43,7 +45,8 @@ import { SharedModule } from "../lib/shared.module";
         SettingsComponent,
         AboutComponent,
         CurrencyComponent,
-        NodeComponent
+        NodeComponent,
+        NoteComponent
     ],
     providers: [
         BarcodeScanner,
@@ -56,7 +59,8 @@ import { SharedModule } from "../lib/shared.module";
         AboutComponent,
         AddComponent,
         CurrencyComponent,
-        NodeComponent
+        NodeComponent,
+        NoteComponent
     ]
 })
 export class TabsModule { }
