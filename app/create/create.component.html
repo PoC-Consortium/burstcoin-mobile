@@ -62,7 +62,7 @@
             </StackLayout>
         </StackLayout>
 
-        <StackLayout *ngIf="this.step != 0" class="progress-bottom" orientation="vertical">
+        <StackLayout *ngIf="step != 0 && step != 1" class="progress-bottom" orientation="vertical">
             <StackLayout *ngIf="this.step == 2 || this.step == 3">
                 <Button class="generate-again-button btn btn-primary btn-active fa" text="Generate Again &#xf021;" (tap)="onTapGenerateAgain($event)"></Button>
             </StackLayout>

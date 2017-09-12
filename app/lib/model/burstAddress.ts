@@ -22,7 +22,9 @@ export class BurstAddress {
     }
 
     private static gmult(a, b) {
-        if (a == 0 || b == 0) return 0;
+        if (a == 0 || b == 0) {
+            return 0;
+        }
 
         let idx = (BurstAddress.glog[a] + BurstAddress.glog[b]) % 31;
 
@@ -31,7 +33,7 @@ export class BurstAddress {
 
     public static encode(plain: string): string {
         let plainString10 = [],
-            codeword = [],
+            codeword = BurstAddress.initialCodeword,
             pos = 0;
 
         let plainString = bigInt(plain).toString();
@@ -159,7 +161,7 @@ export class BurstAddress {
     public static isValid(address: string) {
         if (address.indexOf('BURST-') == 0) {
             address = address.substr(6);
-        } 
+        }
 
         let codeword = BurstAddress.initialCodeword,
             codewordLength = 0;
