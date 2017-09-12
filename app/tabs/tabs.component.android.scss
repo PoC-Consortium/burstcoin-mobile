@@ -7,7 +7,7 @@ TabView {
     selected-tab-text-color: $background-dark;
     android-selected-tab-text-color: $background-dark;
     android-selected-tab-highlight-color: $background-dark;
-    font-size: 10px;
+    font-size: 10;
 }
 
 
@@ -16,11 +16,11 @@ TabView {
 }
 
 .tab {
-    font-size: 14px;
+    font-size: 14;
 }
 
 .action-bar-button {
-    width: 120px;
-    height: 120px;
-    margin: 0px 20px 0px 0px;
+    width: 40;
+    height: 40;
+    margin: 0 7 0 0;
 }

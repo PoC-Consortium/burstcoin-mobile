@@ -9,7 +9,7 @@
 
     <StackLayout class="container" orientation="vertical">
 
-        <Image class="logo-small m-b-15" src="res://logo"></Image>
+        <Image class="logo-small m-b-5" src="res://logo"></Image>
 
         <StackLayout class="info-container" orientation="vertical">
             <StackLayout orientation="vertical">
@@ -27,7 +27,7 @@
                     </StackLayout>
                 </StackLayout>
 
-                <Switch class="m-15 toggle-switch" checked="true" (checkedChange)="onChecked($event)"></Switch>
+                <Switch class="m-10 toggle-switch" checked="true" (checkedChange)="onChecked($event)"></Switch>
                 <TextField class="input" [hint]="hint" [(ngModel)]="input" (returnPress)="formatAddress()"></TextField>
             </StackLayout>
             <StackLayout orientation="vertical">
@@ -40,7 +40,7 @@
             <StackLayout class="info-container" orientation="vertical">
                 <Label textWrap="true" class="solo" text="Please set a six-digit pin code for your wallet. The pin code is used to approve outgoing transactions."></Label>
             </StackLayout>
-            <StackLayout class="body-container m-b-20" orientation="vertical">
+            <StackLayout class="body-container" orientation="vertical">
                 <Label class="text-view-label fa" text="&#xf292; PIN"></Label>
                 <TextField class="input" [(ngModel)]="pin" keyboardType="number" returnKeyType="done"></TextField>
                 <Button class="btn btn-primary btn-active action-button fa" text="Done &#xf05d;" (tap)="onTapDone($event)"></Button>

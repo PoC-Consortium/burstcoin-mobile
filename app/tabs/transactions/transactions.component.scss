@@ -1,10 +1,10 @@
 @import '../../app-variables';
 
 .transaction-label-in {
-    font-size: 16px;
+    font-size: 16;
     color: $background-dark;
     background-color: $background-light;
-    border-width: 2px;
+    border-width: 1;
     border-radius: $default-border;
     border-color: $background-dark;
     width: 70;
@@ -13,10 +13,10 @@
 }
 
 .transaction-label-out {
-    font-size: 16px;
+    font-size: 16;
     color: $background-light;
     background-color: $background-dark;
-    border-width: 2px;
+    border-width: 1;
     border-radius: $default-border;
     width: 70;
     text-align: center;
@@ -26,13 +26,13 @@
 .confirmed-indicator {
     color: $success-light;
     vertical-align: middle;
-    font-size: 16px;
+    font-size: 16;
     padding-left: 5;
 }
 
 .unconfirmed-indicator {
     color: $sky;
     vertical-align: middle;
-    font-size: 16px;
+    font-size: 16;
     padding-left: 5;
 }
