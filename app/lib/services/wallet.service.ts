@@ -45,7 +45,7 @@ export class WalletService {
                     return this.cryptoService.encryptAES(keypair.privateKey, this.hashPinEncryption(pin))
                         .then(encryptedKey => {
                             wallet.keypair.privateKey = encryptedKey;
-                            wallet.pinHash = this.hashPinStorage(pin);
+                            wallet.pinHash = this.hashPinStorage(pin, wallet.keypair.publicKey);
                             return this.cryptoService.getAccountIdFromPublicKey(keypair.publicKey)
                                 .then(id => {
                                     wallet.id = id;
@@ -95,7 +95,7 @@ export class WalletService {
                     this.cryptoService.encryptAES(keys.privateKey, this.hashPinEncryption(pin))
                         .then(encryptedKey => {
                             wallet.keypair.privateKey = encryptedKey;
-                            wallet.pinHash = this.hashPinStorage(pin);
+                            wallet.pinHash = this.hashPinStorage(pin, wallet.keypair.publicKey);
                             wallet.type = "active";
                             return this.databaseService.saveWallet(wallet)
                                 .then(wallet => {
@@ -131,10 +131,9 @@ export class WalletService {
     public selectWallet(wallet: Wallet): Promise<Wallet> {
         return new Promise((resolve, reject) => {
             this.databaseService.selectWallet(wallet)
-                .then(wallet => {
-                    this.setCurrentWallet(wallet);
-                    resolve(wallet);
-                })
+                .then(wallet => {})
+            this.setCurrentWallet(wallet);
+            resolve(wallet);
         });
     }
 
@@ -282,15 +281,15 @@ export class WalletService {
     }
 
     public checkPin(pin: string): boolean {
-        return this.currentWallet.value != undefined ? this.currentWallet.value.pinHash == this.hashPinStorage(pin) : false;
+        return this.currentWallet.value != undefined ? this.currentWallet.value.pinHash == this.hashPinStorage(pin, this.currentWallet.value.keypair.publicKey) : false;
     }
 
     public hashPinEncryption(pin: string): string {
         return this.cryptoService.hashSHA256(pin + device.uuid);
     }
 
-    public hashPinStorage(pin: string): string {
-        return this.cryptoService.hashSHA256(pin + device.model);
+    public hashPinStorage(pin: string, publicKey: string): string {
+        return this.cryptoService.hashSHA256(pin + publicKey);
     }
 
     public isBurstcoinAddress(address: string): boolean {
