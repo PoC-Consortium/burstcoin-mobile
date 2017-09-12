@@ -24,10 +24,10 @@ export class StartComponent implements OnInit {
     private loading: boolean;
 
     constructor(
-        private accountService: AccountService,
         private databaseService: DatabaseService,
         private notificationService: NotificationService,
-        private router: RouterExtensions
+        private router: RouterExtensions,
+        private accountService: AccountService,
     ) {
         this.databaseService.ready.subscribe((init: boolean) => {
             this.loadSelectedAccount(init)

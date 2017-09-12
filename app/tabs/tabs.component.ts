@@ -21,12 +21,12 @@ export class TabsComponent implements OnInit {
     private selectedIndex: number;
 
     constructor(
-        private accountService: AccountService,
         private databaseService: DatabaseService,
         private modalDialogService: ModalDialogService,
         private notificationService: NotificationService,
         private router: RouterExtensions,
-        private vcRef: ViewContainerRef
+        private vcRef: ViewContainerRef,
+        private accountService: AccountService
     ) {
 
     }

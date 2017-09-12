@@ -1,6 +1,5 @@
 import { NgModule, NgModuleFactoryLoader, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
-import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { NSModuleFactoryLoader } from "nativescript-angular/router";
 
 import { AppRoutingModule } from "./app.routing";
@@ -12,7 +11,6 @@ import { SharedModule } from "./lib/shared.module";
         AppComponent
     ],
     imports: [
-        NativeScriptModule,
         NativeScriptModule,
         AppRoutingModule,
         SharedModule.forRoot()

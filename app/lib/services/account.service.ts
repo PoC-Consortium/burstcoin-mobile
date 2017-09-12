@@ -20,10 +20,10 @@ export class AccountService {
     public currentAccount: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
     constructor(
-        private http: Http = undefined,
-        private cryptoService: CryptoService = undefined,
-        private databaseService: DatabaseService = undefined,
-        private notificationService: NotificationService = undefined
+        private http: Http,
+        private cryptoService: CryptoService,
+        private databaseService: DatabaseService,
+        private notificationService: NotificationService
     ) {
         this.databaseService.settings.subscribe((settings: Settings) => {
             this.nodeUrl = "http://" + settings.node;
