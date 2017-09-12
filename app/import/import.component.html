@@ -19,6 +19,10 @@
             </StackLayout>
         </StackLayout>
 
+        <StackLayout *ngIf="this.step == 0" class="p-10" orientation="vertical">
+            <ActivityIndicator busy="true" width="100" height="100" class="activity-indicator"></ActivityIndicator>
+        </StackLayout>
+
         <StackLayout *ngIf="step == 1">
             <StackLayout class="body-container" orientation="vertical">
                 <Label class="h3 toggle-label" textWrap="true" [text]="state"></Label>

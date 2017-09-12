@@ -9,6 +9,7 @@ import { Image } from "ui/image"
 import { Account, BurstAddress, Currency } from "../../lib/model";
 import { AccountService, DatabaseService, MarketService, NotificationService } from "../../lib/services";
 import { AddComponent } from "./add/add.component";
+import { RemoveComponent } from "./remove/remove.component";
 
 import { registerElement } from "nativescript-angular/element-registry";
 registerElement("AccountsRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
@@ -47,9 +48,10 @@ export class AccountsComponent implements OnInit {
     }
 
     public selectAccount(account: Account) {
+        this.notificationService.info("Selected account: " + account.address);
+        this.accounts.map(a => a.selected = false);
         this.accountService.selectAccount(account)
             .then(account => {
-                this.notificationService.info("Selected account: " + account.address);
                 this.marketService.setCurrency(this.marketService.currency.value);
             })
     }
@@ -65,24 +67,33 @@ export class AccountsComponent implements OnInit {
     }
 
     public onTapRemoveAccount(account: Account) {
-        this.accountService.removeAccount(account)
-            .then(success => {
-                let index = this.accounts.indexOf(account);
-                if (index > -1) {
-                   this.accounts.splice(index, 1);
-                }
-                if (this.accounts.length <= 0) {
-                    this.router.navigate(['start']);
-                    return;
-                } else {
-                    if (account.selected == true) {
-                        this.selectAccount(this.accounts[0]);
+        const options: ModalDialogOptions = {
+            viewContainerRef: this.vcRef,
+            context: account,
+            fullscreen: false,
+        };
+        this.modalDialogService.showModal(RemoveComponent, options)
+            .then(ok => {
+                if (ok) {
+                    let index = this.accounts.indexOf(account);
+                    if (index > -1) {
+                       this.accounts.splice(index, 1);
+                    }
+                    if (this.accounts.length < 1) {
+                        this.router.navigate(['start']);
+                        return;
+                    } else {
+                        this.accountService.selectAccount(this.accounts[0])
+                            .then(selected => {
+                                this.databaseService.getAllAccounts()
+                                    .then(accounts => {
+                                        this.notificationService.info("Successfully removed account: " + account.address);
+                                    })
+                            })
                     }
                 }
             })
-            .catch(error => {
-                this.notificationService.error("Could not remove account!")
-            })
+            .catch(error => console.log(JSON.stringify(error)));
     }
 
     public refresh(args) {

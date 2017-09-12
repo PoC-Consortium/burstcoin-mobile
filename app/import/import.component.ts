@@ -59,6 +59,7 @@ export class ImportComponent implements OnInit {
     public onTapImport(e) {
         if (this.input.length > 0) {
             if (this.accountService.isBurstcoinAddress(this.input)) {
+                this.step = 0;
                 this.accountService.createOfflineAccount(this.input)
                     .then(account => {
                         this.accountService.selectAccount(account)
@@ -81,6 +82,7 @@ export class ImportComponent implements OnInit {
     public onTapNext() {
         if (this.input.length > 0) {
             if (this.active) {
+                this.step = 0;
                 this.cryptoService.generateMasterPublicAndPrivateKey(this.input)
                     .then(keypair => {
                         this.cryptoService.getAccountIdFromPublicKey(keypair.publicKey)
@@ -92,6 +94,7 @@ export class ImportComponent implements OnInit {
                                             context: address,
                                             fullscreen: false,
                                         };
+                                        this.step = 1;
                                         this.modalDialogService.showModal(ShowComponent, options)
                                             .then(result => {
                                                 if (result) {
@@ -111,6 +114,7 @@ export class ImportComponent implements OnInit {
 
     public onTapDone() {
         if (this.accountService.isPin(this.pin)) {
+            this.step = 0;
             this.accountService.createActiveAccount(this.input, this.pin)
                 .then(account => {
                     this.accountService.selectAccount(account)
@@ -119,6 +123,7 @@ export class ImportComponent implements OnInit {
                         })
                 })
                 .catch(error => {
+                    this.step = 2;
                     this.notificationService.info(error);
                 });
         } else {

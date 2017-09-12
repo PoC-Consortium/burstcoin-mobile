@@ -1,0 +1,20 @@
+<StackLayout class="modal-view-style">
+    <StackLayout class="page-content">
+        <StackLayout class="modal-container">
+            <StackLayout class="body-container">
+                <Image class="logo-small" src="res://logo"></Image>
+                <StackLayout *ngIf="!loading">
+                    <Label class="solo fa" textWrap="true" text="Do you really want to remove this account?"></Label>
+                    <Label class="bottom font-weight-bold" [text]="remove.address"></Label>
+                    <GridLayout rows="auto" columns="*,*">
+                        <Button col="0" class="btn btn-primary btn-active fa" text="&#xf00d;" (tap)="onTapNo($event)"></Button>
+                        <Button col="1" class="btn btn-primary btn-active fa" text="&#xf00c;" (tap)="onTapOk($event)"></Button>
+                    </GridLayout>
+                </StackLayout>
+                <StackLayout *ngIf="loading" orientation="vertical">
+                    <ActivityIndicator busy="true" width="100" height="100" class="activity-indicator"></ActivityIndicator>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</StackLayout>

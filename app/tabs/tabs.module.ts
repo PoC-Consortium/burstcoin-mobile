@@ -10,6 +10,7 @@ import { TabsComponent } from "./tabs.component";
 import { AccountsComponent } from "./accounts/accounts.component";
 import { ActivateComponent } from "./accounts/activate/activate.component";
 import { AddComponent } from "./accounts/add/add.component";
+import { RemoveComponent } from "./accounts/remove/remove.component";
 
 import { BalanceComponent } from "./balance/balance.component";
 import { ReceiveComponent } from "./balance/receive/receive.component";
@@ -42,6 +43,7 @@ import { SharedModule } from "../lib/shared.module";
         AccountsComponent,
         ActivateComponent,
         AddComponent,
+        RemoveComponent,
         SettingsComponent,
         AboutComponent,
         CurrencyComponent,
@@ -60,7 +62,8 @@ import { SharedModule } from "../lib/shared.module";
         AddComponent,
         CurrencyComponent,
         NodeComponent,
-        NoteComponent
+        NoteComponent,
+        RemoveComponent
     ]
 })
 export class TabsModule { }
