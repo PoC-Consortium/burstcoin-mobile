@@ -4,9 +4,9 @@ import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-mo
 import { Label } from "ui/label";
 import { Border } from "ui/border";
 
-import { Transaction, Settings, Wallet } from "../../lib/model";
+import { Account, Transaction, Settings } from "../../lib/model";
 
-import { DatabaseService, MarketService, NotificationService, WalletService } from "../../lib/services";
+import { AccountService, DatabaseService, MarketService, NotificationService } from "../../lib/services";
 import { AboutComponent } from "./about/about.component";
 import { CurrencyComponent } from "./currency/currency.component";
 import { NodeComponent } from "./node/node.component";
@@ -22,11 +22,11 @@ export class SettingsComponent implements OnInit {
     private settings: Settings;
 
     constructor(
+        private accountService: AccountService,
         private databaseService: DatabaseService,
         private modalDialogService: ModalDialogService,
         private notificationService: NotificationService,
-        private vcRef: ViewContainerRef,
-        private walletService: WalletService
+        private vcRef: ViewContainerRef
     ) {
         this.settings = new Settings();
         this.settings.currency = "...";

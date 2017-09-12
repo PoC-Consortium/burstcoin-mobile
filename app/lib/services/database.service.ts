@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Database } from "../model/abstract";
-import { Settings, Wallet } from "../model";
+import { Account, Settings } from "../model";
 
 let fs = require("file-system");
 let Loki = require("lokijs");
@@ -26,9 +26,9 @@ export class DatabaseService extends Database {
     }
 
     public init() {
-        let wallets = this.database.getCollection("wallets");
-        if (wallets == null) {
-            wallets = this.database.addCollection("wallets", { unique : ["id"]});
+        let accounts = this.database.getCollection("accounts");
+        if (accounts == null) {
+            accounts = this.database.addCollection("accounts", { unique : ["id"]});
         }
         let settings = this.database.getCollection("settings");
         if (settings == null) {
@@ -55,48 +55,46 @@ export class DatabaseService extends Database {
         this.settings.next(state);
     }
 
-    public saveWallet(wallet: Wallet): Promise<Wallet> {
+    public saveAccount(account: Account): Promise<Account> {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
-                // clean wallet
-                wallet = this.cleanWallet(wallet);
-                let wallets = this.database.getCollection("wallets");
-                let rs = wallets.find({ id : wallet.id });
+                let accounts = this.database.getCollection("accounts");
+                let rs = accounts.find({ id : account.id });
                 if (rs.length == 0) {
-                    wallets.insert(wallet);
+                    accounts.insert(account);
                 } else {
-                    wallets.chain().find({ id : wallet.id }).update(w => {
-                        w.balance = wallet.balance;
-                        w.type = wallet.type;
-                        w.selected = wallet.selected;
-                        w.keypair.publicKey = wallet.keypair.publicKey;
-                        w.keypair.privateKey = wallet.keypair.privateKey;
-                        w.transactions = wallet.transactions;
+                    accounts.chain().find({ id : account.id }).update(w => {
+                        w.balance = account.balance;
+                        w.type = account.type;
+                        w.selected = account.selected;
+                        w.keypair.publicKey = account.keypair.publicKey;
+                        w.keypair.privateKey = account.keypair.privateKey;
+                        w.transactions = account.transactions;
                     });
                 }
                 this.database.saveDatabase();
-                resolve(wallet);
+                resolve(account);
             } else {
                 reject(undefined);
             }
         });
     }
 
-    public getSelectedWallet(): Promise<Wallet> {
+    public getSelectedAccount(): Promise<Account> {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
-                let wallets = this.database.getCollection("wallets");
-                let rs = wallets.find({ selected : true });
+                let accounts = this.database.getCollection("accounts");
+                let rs = accounts.find({ selected : true });
                 if (rs.length > 0) {
-                    let wallet = new Wallet(rs[0]);
-                    resolve(wallet);
+                    let account = new Account(rs[0]);
+                    resolve(account);
                 } else {
-                    rs = wallets.find();
+                    rs = accounts.find();
                     if (rs.length > 0) {
-                        wallets.chain().find({ id : rs[0].id }).update(w => {
+                        accounts.chain().find({ id : rs[0].id }).update(w => {
                             w.selected = true;
                         });
-                        let w = new Wallet(rs[0]);
+                        let w = new Account(rs[0]);
                         this.database.saveDatabase();
                         resolve(w);
                     } else {
@@ -110,33 +108,33 @@ export class DatabaseService extends Database {
         });
     }
 
-    public selectWallet(wallet: Wallet): Promise<Wallet> {
+    public selectAccount(account: Account): Promise<Account> {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
-                wallet.selected = true;
-                let wallets = this.database.getCollection("wallets");
-                wallets.chain().find().update(w => {
+                account.selected = true;
+                let accounts = this.database.getCollection("accounts");
+                accounts.chain().find().update(w => {
                     w.selected = false;
                 });
-                wallets.chain().find({ id : wallet.id }).update(w => {
+                accounts.chain().find({ id : account.id }).update(w => {
                     w.selected = true;
                 });
                 this.database.saveDatabase();
-                resolve(wallet);
+                resolve(account);
             } else {
                 reject(undefined);
             }
         });
     }
 
-    public getAllWallets(): Promise<Wallet[]> {
+    public getAllAccounts(): Promise<Account[]> {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
-                let wallets = this.database.getCollection("wallets");
-                let rs = wallets.find();
+                let accounts = this.database.getCollection("accounts");
+                let rs = accounts.find();
                 let ws = [];
                 rs.map(single => {
-                    ws.push(new Wallet(single))
+                    ws.push(new Account(single))
                 })
                 resolve(ws);
             } else {
@@ -145,14 +143,14 @@ export class DatabaseService extends Database {
         });
     }
 
-    public findWallet(id: string): Promise<Wallet> {
+    public findAccount(id: string): Promise<Account> {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
-                let wallets = this.database.getCollection("wallets");
-                let rs = wallets.find({ id : id });
+                let accounts = this.database.getCollection("accounts");
+                let rs = accounts.find({ id : id });
                 if (rs.length > 0) {
-                    let wallet = new Wallet(rs[0]);
-                    resolve(wallet);
+                    let account = new Account(rs[0]);
+                    resolve(account);
                 } else {
                     resolve(undefined)
                 }
@@ -162,11 +160,11 @@ export class DatabaseService extends Database {
         });
     }
 
-    public removeWallet(wallet: Wallet): Promise<boolean> {
+    public removeAccount(account: Account): Promise<boolean> {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
-                let wallets = this.database.getCollection("wallets");
-                let rs = wallets.chain().find({ id : wallet.id }).remove();
+                let accounts = this.database.getCollection("accounts");
+                let rs = accounts.chain().find({ id : account.id }).remove();
                 this.database.saveDatabase();
                 resolve(true);
             } else {
@@ -212,9 +210,4 @@ export class DatabaseService extends Database {
         });
     }
 
-    private cleanWallet(wallet: Wallet): Wallet {
-        wallet.balanceStringBTC = undefined;
-        wallet.balanceStringCur = undefined;
-        return wallet;
-    }
 }

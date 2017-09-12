@@ -1,7 +1,7 @@
 <ActionBar class="action-bar">
     <StackLayout orientation="horizontal">
         <Image class="logo-tiny m-r-15" src="res://logo"></Image>
-        <Label class="action-bar-title" text="Import Existing Wallet"></Label>
+        <Label class="action-bar-title" text="Import Existing Account"></Label>
     </StackLayout>
 </ActionBar>
 
@@ -15,7 +15,7 @@
         <StackLayout class="info-container" orientation="vertical">
             <StackLayout orientation="vertical">
                 <Label class="top text-view-label fa" text="&#xf05a;"></Label>
-                <Label class="bottom" textWrap="true" text="Import an active wallet by entering its passphrase! Otherwise, import an offline wallet by entering its Burstcoin address!"></Label>
+                <Label class="bottom" textWrap="true" text="Import an active account by entering its passphrase! Otherwise, import an offline account by entering its Burstcoin address!"></Label>
             </StackLayout>
         </StackLayout>
 
@@ -39,7 +39,7 @@
 
         <StackLayout *ngIf="step == 2">
             <StackLayout class="info-container" orientation="vertical">
-                <Label textWrap="true" class="solo" text="Please set a six-digit pin code for your wallet. The pin code is used to approve outgoing transactions."></Label>
+                <Label textWrap="true" class="solo" text="Please set a six-digit pin code for your account. The pin code is used to approve outgoing transactions."></Label>
             </StackLayout>
             <StackLayout class="body-container" orientation="vertical">
                 <Label class="text-view-label fa" text="&#xf292; PIN"></Label>

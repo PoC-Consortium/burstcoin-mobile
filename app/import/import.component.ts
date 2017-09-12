@@ -3,7 +3,7 @@ import { Switch } from "ui/switch";
 import { RouterExtensions } from "nativescript-angular/router";
 import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
 
-import { CryptoService, NotificationService, WalletService } from "../lib/services";
+import { CryptoService, NotificationService, AccountService } from "../lib/services";
 import { ShowComponent } from "./show/show.component";
 
 @Component({
@@ -26,43 +26,43 @@ export class ImportComponent implements OnInit {
         private modalDialogService: ModalDialogService,
         private notificationService: NotificationService,
         private vcRef: ViewContainerRef,
-        private walletService: WalletService,
+        private accountService: AccountService,
         private router: RouterExtensions
     ) {
         this.step = 1;
         this.input = "";
-        this.state = "Active Wallet";
+        this.state = "Active Account";
         this.hint = "Passphrase";
         this.active = true;
-        this.description = "An active wallet offers full functionaility. You can send and receive Burstcoins. In addition, you can check your balance and see the history of your transactions.";
+        this.description = "An active account offers full functionaility. You can send and receive Burstcoins. In addition, you can check your balance and see the history of your transactions.";
     }
 
     public ngOnInit() {
-        // TODO: check if wallet already exists, then redirect to tabs
+        // TODO: check if account already exists, then redirect to tabs
     }
 
     public onChecked(args) {
         let toggle = <Switch>args.object;
         if (toggle.checked) {
-            this.state = "Active Wallet";
+            this.state = "Active Account";
             this.hint = "Passphrase";
             this.active = true;
-            this.description = "An active wallet offers full functionaility. You can send and receive Burstcoins. In addition, you can check your balance and see the history of your transactions.";
+            this.description = "An active account offers full functionaility. You can send and receive Burstcoins. In addition, you can check your balance and see the history of your transactions.";
         } else {
-            this.state = "Offline Wallet";
+            this.state = "Offline Account";
             this.hint = "BURST-XXXX-XXXX-XXXX-XXXXX";
             this.active = false;
-            this.description = "An offline wallet offers the same functionaility than an active wallet, except you cannot send Burstcoins to another address.";
+            this.description = "An offline account offers the same functionaility than an active account, except you cannot send Burstcoins to another address.";
         }
     }
 
     public onTapImport(e) {
         if (this.input.length > 0) {
-            if (this.walletService.isBurstcoinAddress(this.input)) {
-                this.walletService.createOfflineWallet(this.input)
-                    .then(wallet => {
-                        this.walletService.selectWallet(wallet)
-                            .then(wallet => {
+            if (this.accountService.isBurstcoinAddress(this.input)) {
+                this.accountService.createOfflineAccount(this.input)
+                    .then(account => {
+                        this.accountService.selectAccount(account)
+                            .then(account => {
                                 this.router.navigate(['tabs']);
                             });
                     })
@@ -110,11 +110,11 @@ export class ImportComponent implements OnInit {
     }
 
     public onTapDone() {
-        if (this.walletService.isPin(this.pin)) {
-            this.walletService.createActiveWallet(this.input, this.pin)
-                .then(wallet => {
-                    this.walletService.selectWallet(wallet)
-                        .then(wallet => {
+        if (this.accountService.isPin(this.pin)) {
+            this.accountService.createActiveAccount(this.input, this.pin)
+                .then(account => {
+                    this.accountService.selectAccount(account)
+                        .then(account => {
                             this.router.navigate(['tabs'])
                         })
                 })

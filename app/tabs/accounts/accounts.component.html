@@ -1,8 +1,8 @@
 <AccountsRefresh (refresh)="refresh($event)">
-    <ListView [items]="wallets" (itemTap)="onItemTap($event)" separatorColor="transparent">
+    <ListView [items]="accounts" (itemTap)="onItemTap($event)" separatorColor="transparent">
         <ng-template let-item="item" let-i="index">
             <StackLayout>
-                <GridLayout (tap)="selectWallet(item)" class="list-item" columns="auto, auto, auto, auto *, auto" rows="auto, auto, auto, auto">
+                <GridLayout (tap)="selectAccount(item)" class="list-item" columns="auto, auto, auto, auto *, auto" rows="auto, auto, auto, auto">
                     <Label col="0" row="0" colspan="3" class="address" [text]="item.address"></Label>
                     <Label *ngIf="item.selected" col="5" row="0" rowspan="2" class="fa text-center select-indicator" text="&#xf111;"></Label>
                     <Label *ngIf="!item.selected" col="5" row="0" rowspan="2" class="fa text-center select-indicator" text="&#xf10c;"></Label>
@@ -17,7 +17,7 @@
 
                     <Button col="5" row="2" rowspan="2" style="margin: 2" class="btn btn-primary btn-active icon-button fa text-center" text="&#xf00d;" (tap)="onTapRemoveAccount(item)"></Button>
                 </GridLayout>
-                <Button *ngIf="i == wallets.length - 1" class="btn btn-primary btn-active icon-button fa text-center" text="&#xf067;" (tap)="onTapAddAccount()"></Button>
+                <Button *ngIf="i == accounts.length - 1" class="btn btn-primary btn-active icon-button fa text-center" text="&#xf067;" (tap)="onTapAddAccount()"></Button>
             </StackLayout>
         </ng-template>
     </ListView>

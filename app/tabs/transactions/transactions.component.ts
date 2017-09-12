@@ -4,10 +4,10 @@ import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-mo
 import { Label } from "ui/label";
 import { Border } from "ui/border";
 
-import { Transaction, Wallet } from "../../lib/model";
+import { Account, Transaction } from "../../lib/model";
 import { Converter } from "../../lib/util";
 
-import { DatabaseService, MarketService, NotificationService, WalletService } from "../../lib/services";
+import { AccountService, DatabaseService, MarketService, NotificationService } from "../../lib/services";
 
 import { registerElement } from "nativescript-angular/element-registry";
 registerElement("TransactionsRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
@@ -28,17 +28,17 @@ export class TransactionsComponent implements OnInit {
         private databaseService: DatabaseService,
         private marketService: MarketService,
         private notificationService: NotificationService,
-        private walletService: WalletService
+        private accountService: AccountService
     ) {
         this.ownId = "";
         this.transactions = [];
     }
 
     ngOnInit(): void {
-        this.walletService.currentWallet.subscribe((wallet: Wallet) => {
-            if (wallet != undefined) {
-                this.transactions = wallet.transactions;
-                this.ownId = this.walletService.currentWallet.value.id;
+        this.accountService.currentAccount.subscribe((account: Account) => {
+            if (account != undefined) {
+                this.transactions = account.transactions;
+                this.ownId = this.accountService.currentAccount.value.id;
             }
         });
     }
@@ -49,11 +49,11 @@ export class TransactionsComponent implements OnInit {
 
     public refresh(args) {
         var pullRefresh = args.object;
-        let wallet = this.walletService.currentWallet.value;
-        this.walletService.synchronizeWallet(wallet)
-            .then(wallet => {
-                this.transactions = wallet.transactions;
-                this.walletService.setCurrentWallet(wallet);
+        let account = this.accountService.currentAccount.value;
+        this.accountService.synchronizeAccount(account)
+            .then(account => {
+                this.transactions = account.transactions;
+                this.accountService.setCurrentAccount(account);
                 this.marketService.updateCurrency()
                     .then(currency => {
                         pullRefresh.refreshing = false;
@@ -62,7 +62,7 @@ export class TransactionsComponent implements OnInit {
                         pullRefresh.refreshing = false;
                     });
             })
-            .catch(wallet => {
+            .catch(account => {
                 pullRefresh.refreshing = false;
             })
     }

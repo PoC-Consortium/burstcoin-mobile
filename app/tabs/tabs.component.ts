@@ -4,8 +4,8 @@ import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/mod
 import { isAndroid } from "platform";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
 
-import { Wallet } from "../lib/model";
-import { DatabaseService, NotificationService, WalletService } from "../lib/services";
+import { Account } from "../lib/model";
+import { DatabaseService, NotificationService, AccountService } from "../lib/services";
 
 import { NoteComponent } from "./note/note.component";
 
@@ -21,28 +21,28 @@ export class TabsComponent implements OnInit {
     private selectedIndex: number;
 
     constructor(
+        private accountService: AccountService,
         private databaseService: DatabaseService,
         private modalDialogService: ModalDialogService,
         private notificationService: NotificationService,
         private router: RouterExtensions,
-        private vcRef: ViewContainerRef,
-        private walletService: WalletService
+        private vcRef: ViewContainerRef
     ) {
 
     }
 
     ngOnInit(): void {
-        if (this.walletService.currentWallet.value == undefined) {
+        if (this.accountService.currentAccount.value == undefined) {
             this.router.navigate(['start']);
         } else {
-            let wallet = this.walletService.currentWallet.value;
-            this.walletService.synchronizeWallet(wallet)
-                .then(wallet => {
-                    this.walletService.setCurrentWallet(wallet);
+            let account = this.accountService.currentAccount.value;
+            this.accountService.synchronizeAccount(account)
+                .then(account => {
+                    this.accountService.setCurrentAccount(account);
                     this.showNotes();
                 })
-                .catch(wallet => {
-                    this.walletService.setCurrentWallet(wallet);
+                .catch(account => {
+                    this.accountService.setCurrentAccount(account);
                     this.showNotes();
                     //this.notificationService.info("Failed synchronization. Check your internet connection!")
                 })

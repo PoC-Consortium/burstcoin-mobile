@@ -4,7 +4,7 @@ import { RouterExtensions } from "nativescript-angular/router";
 import { device } from "platform";
 import { Observable, ReplaySubject } from 'rxjs/Rx';
 
-import { BurstAddress, Currency, HttpError, Keypair, Settings, Transaction, Wallet } from "../model";
+import { Account, BurstAddress, Currency, HttpError, Keypair, Settings, Transaction } from "../model";
 import { CryptoService, DatabaseService, NotificationService} from "./";
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -13,11 +13,11 @@ import 'rxjs/add/operator/toPromise';
 
 
 @Injectable()
-export class WalletService {
+export class AccountService {
 
     private nodeUrl: string;
 
-    public currentWallet: BehaviorSubject<any> = new BehaviorSubject(undefined);
+    public currentAccount: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
     constructor(
         private http: Http = undefined,
@@ -30,31 +30,31 @@ export class WalletService {
         });
     }
 
-    public setCurrentWallet(wallet: Wallet) {
-        this.currentWallet.next(wallet);
+    public setCurrentAccount(account: Account) {
+        this.currentAccount.next(account);
     }
 
-    public createActiveWallet(passphrase: string, pin: string = ""): Promise<Wallet> {
+    public createActiveAccount(passphrase: string, pin: string = ""): Promise<Account> {
         return new Promise((resolve, reject) => {
-            let wallet: Wallet = new Wallet();
-            // import active wallet
-            wallet.type = "active";
+            let account: Account = new Account();
+            // import active account
+            account.type = "active";
             return this.cryptoService.generateMasterPublicAndPrivateKey(passphrase)
                 .then(keypair => {
-                    wallet.keypair.publicKey = keypair.publicKey;
+                    account.keypair.publicKey = keypair.publicKey;
                     return this.cryptoService.encryptAES(keypair.privateKey, this.hashPinEncryption(pin))
                         .then(encryptedKey => {
-                            wallet.keypair.privateKey = encryptedKey;
-                            wallet.pinHash = this.hashPinStorage(pin, wallet.keypair.publicKey);
+                            account.keypair.privateKey = encryptedKey;
+                            account.pinHash = this.hashPinStorage(pin, account.keypair.publicKey);
                             return this.cryptoService.getAccountIdFromPublicKey(keypair.publicKey)
                                 .then(id => {
-                                    wallet.id = id;
+                                    account.id = id;
                                     return this.cryptoService.getBurstAddressFromAccountId(id)
                                         .then(address => {
-                                            wallet.address = address;
-                                            return this.databaseService.saveWallet(wallet)
-                                                .then(wallet => {
-                                                    resolve(wallet);
+                                            account.address = address;
+                                            return this.databaseService.saveAccount(account)
+                                                .then(account => {
+                                                    resolve(account);
                                                 });
                                         });
                                 });
@@ -63,21 +63,21 @@ export class WalletService {
         });
     }
 
-    public createOfflineWallet(address: string): Promise<Wallet> {
+    public createOfflineAccount(address: string): Promise<Account> {
         return new Promise((resolve, reject) => {
-            let wallet: Wallet = new Wallet();
-            this.databaseService.findWallet(BurstAddress.decode(address))
+            let account: Account = new Account();
+            this.databaseService.findAccount(BurstAddress.decode(address))
                 .then(found => {
                     if (found == undefined) {
-                        // import offline wallet
-                        wallet.type = "offline";
-                        wallet.address = address;
+                        // import offline account
+                        account.type = "offline";
+                        account.address = address;
                         return this.cryptoService.getAccountIdFromBurstAddress(address)
                             .then(id => {
-                                wallet.id = id;
-                                return this.databaseService.saveWallet(wallet)
-                                    .then(wallet => {
-                                        resolve(wallet);
+                                account.id = id;
+                                return this.databaseService.saveAccount(account)
+                                    .then(account => {
+                                        resolve(account);
                                     });
                             });
                     } else {
@@ -87,29 +87,29 @@ export class WalletService {
         });
     }
 
-    public activateWallet(wallet: Wallet, passphrase: string, pin: string): Promise<Wallet> {
+    public activateAccount(account: Account, passphrase: string, pin: string): Promise<Account> {
         return new Promise((resolve, reject) => {
             this.cryptoService.generateMasterPublicAndPrivateKey(passphrase)
                 .then(keys => {
-                    wallet.keypair.publicKey = keys.publicKey;
+                    account.keypair.publicKey = keys.publicKey;
                     this.cryptoService.encryptAES(keys.privateKey, this.hashPinEncryption(pin))
                         .then(encryptedKey => {
-                            wallet.keypair.privateKey = encryptedKey;
-                            wallet.pinHash = this.hashPinStorage(pin, wallet.keypair.publicKey);
-                            wallet.type = "active";
-                            return this.databaseService.saveWallet(wallet)
-                                .then(wallet => {
-                                    this.notificationService.info(JSON.stringify(wallet));
-                                    resolve(wallet);
+                            account.keypair.privateKey = encryptedKey;
+                            account.pinHash = this.hashPinStorage(pin, account.keypair.publicKey);
+                            account.type = "active";
+                            return this.databaseService.saveAccount(account)
+                                .then(account => {
+                                    this.notificationService.info(JSON.stringify(account));
+                                    resolve(account);
                                 });
                         })
                 })
         });
     }
 
-    public removeWallet(wallet: Wallet): Promise<boolean> {
+    public removeAccount(account: Account): Promise<boolean> {
         return new Promise((resolve, reject) => {
-            this.databaseService.removeWallet(wallet)
+            this.databaseService.removeAccount(account)
                 .then(success => {
                     resolve(success);
                 })
@@ -119,33 +119,33 @@ export class WalletService {
         });
     }
 
-    public synchronizeWallet(wallet: Wallet): Promise<Wallet> {
+    public synchronizeAccount(account: Account): Promise<Account> {
         return new Promise((resolve, reject) => {
-            this.getBalance(wallet.id)
+            this.getBalance(account.id)
                 .then(balance => {
-                    wallet.balance = balance.confirmed;
-                    wallet.unconfirmedBalance = balance.unconfirmed;
-                    this.getTransactions(wallet.id)
+                    account.balance = balance.confirmed;
+                    account.unconfirmedBalance = balance.unconfirmed;
+                    this.getTransactions(account.id)
                         .then(transactions => {
-                            wallet.transactions = transactions;
-                            this.getUnconfirmedTransactions(wallet.id)
+                            account.transactions = transactions;
+                            this.getUnconfirmedTransactions(account.id)
                                 .then(transactions => {
-                                    wallet.transactions = transactions.concat(wallet.transactions);
-                                    this.databaseService.saveWallet(wallet)
-                                        .catch(error => { console.log("Failed saving the wallet!"); })
-                                    resolve(wallet);
+                                    account.transactions = transactions.concat(account.transactions);
+                                    this.databaseService.saveAccount(account)
+                                        .catch(error => { console.log("Failed saving the account!"); })
+                                    resolve(account);
                                 })
-                        }).catch(error => reject(wallet))
-                }).catch(error => reject(wallet))
+                        }).catch(error => reject(account))
+                }).catch(error => reject(account))
         });
     }
 
-    public selectWallet(wallet: Wallet): Promise<Wallet> {
+    public selectAccount(account: Account): Promise<Account> {
         return new Promise((resolve, reject) => {
-            this.databaseService.selectWallet(wallet)
-                .then(wallet => {})
-            this.setCurrentWallet(wallet);
-            resolve(wallet);
+            this.databaseService.selectAccount(account)
+                .then(account => {})
+            this.setCurrentAccount(account);
+            resolve(account);
         });
     }
 
@@ -293,7 +293,7 @@ export class WalletService {
     }
 
     public checkPin(pin: string): boolean {
-        return this.currentWallet.value != undefined ? this.currentWallet.value.pinHash == this.hashPinStorage(pin, this.currentWallet.value.keypair.publicKey) : false;
+        return this.currentAccount.value != undefined ? this.currentAccount.value.pinHash == this.hashPinStorage(pin, this.currentAccount.value.keypair.publicKey) : false;
     }
 
     public hashPinEncryption(pin: string): string {

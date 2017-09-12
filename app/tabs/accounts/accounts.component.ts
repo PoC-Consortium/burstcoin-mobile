@@ -6,8 +6,8 @@ import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-mo
 import { Label } from "ui/label";
 import { Image } from "ui/image"
 
-import { BurstAddress, Currency, Wallet } from "../../lib/model";
-import { DatabaseService, MarketService, NotificationService, WalletService } from "../../lib/services";
+import { Account, BurstAddress, Currency } from "../../lib/model";
+import { AccountService, DatabaseService, MarketService, NotificationService } from "../../lib/services";
 import { AddComponent } from "./add/add.component";
 
 import { registerElement } from "nativescript-angular/element-registry";
@@ -22,34 +22,34 @@ registerElement("AccountsRefresh", () => require("nativescript-pulltorefresh").P
 })
 export class AccountsComponent implements OnInit {
 
-    wallets: Wallet[];
+    accounts: Account[];
 
     constructor(
+        private accountService: AccountService,
         private databaseService: DatabaseService,
         private marketService: MarketService,
         private modalDialogService: ModalDialogService,
         private notificationService: NotificationService,
         private router: RouterExtensions,
-        private vcRef: ViewContainerRef,
-        private walletService: WalletService
+        private vcRef: ViewContainerRef
     ) {
-        this.wallets = [];
+        this.accounts = [];
     }
 
     ngOnInit(): void {
-        this.databaseService.getAllWallets()
-            .then(wallets => {
-                this.wallets = wallets;
+        this.databaseService.getAllAccounts()
+            .then(accounts => {
+                this.accounts = accounts;
             })
             .catch(err => {
-                console.log("No wallets found: " + err);
+                console.log("No accounts found: " + err);
             })
     }
 
-    public selectWallet(wallet: Wallet) {
-        this.walletService.selectWallet(wallet)
-            .then(wallet => {
-                this.notificationService.info("Selected wallet: " + wallet.address);
+    public selectAccount(account: Account) {
+        this.accountService.selectAccount(account)
+            .then(account => {
+                this.notificationService.info("Selected account: " + account.address);
                 this.marketService.setCurrency(this.marketService.currency.value);
             })
     }
@@ -64,19 +64,19 @@ export class AccountsComponent implements OnInit {
             .catch(error => { });
     }
 
-    public onTapRemoveAccount(wallet: Wallet) {
-        this.walletService.removeWallet(wallet)
+    public onTapRemoveAccount(account: Account) {
+        this.accountService.removeAccount(account)
             .then(success => {
-                let index = this.wallets.indexOf(wallet);
+                let index = this.accounts.indexOf(account);
                 if (index > -1) {
-                   this.wallets.splice(index, 1);
+                   this.accounts.splice(index, 1);
                 }
-                if (this.wallets.length <= 0) {
+                if (this.accounts.length <= 0) {
                     this.router.navigate(['start']);
                     return;
                 } else {
-                    if (wallet.selected == true) {
-                        this.selectWallet(this.wallets[0]);
+                    if (account.selected == true) {
+                        this.selectAccount(this.accounts[0]);
                     }
                 }
             })
@@ -87,10 +87,10 @@ export class AccountsComponent implements OnInit {
 
     public refresh(args) {
         var pullRefresh = args.object;
-        for (let i = 0; i < this.wallets.length; i++) {
-            this.walletService.synchronizeWallet(this.wallets[i])
-                .then(wallet => {
-                    if (i == this.wallets.length - 1) {
+        for (let i = 0; i < this.accounts.length; i++) {
+            this.accountService.synchronizeAccount(this.accounts[i])
+                .then(account => {
+                    if (i == this.accounts.length - 1) {
                         this.marketService.updateCurrency()
                             .then(currency => {
                                 pullRefresh.refreshing = false;
@@ -102,7 +102,7 @@ export class AccountsComponent implements OnInit {
                     }
                 })
                 .catch(error => {
-                    if (i == this.wallets.length - 1) {
+                    if (i == this.accounts.length - 1) {
                         this.marketService.updateCurrency()
                             .then(currency => {
                                 pullRefresh.refreshing = false;

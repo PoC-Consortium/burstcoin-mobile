@@ -4,9 +4,9 @@ import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-mo
 import { Label } from "ui/label";
 import { Image } from "ui/image"
 
-import { BurstAddress, Currency, Wallet } from "../../lib/model";
+import { Account, BurstAddress, Currency } from "../../lib/model";
 
-import { DatabaseService, MarketService, NotificationService, WalletService } from "../../lib/services";
+import { AccountService, DatabaseService, MarketService, NotificationService } from "../../lib/services";
 
 let ZXing = require('nativescript-zxing');
 
@@ -22,7 +22,7 @@ registerElement("BalanceRefresh", () => require("nativescript-pulltorefresh").Pu
 })
 export class BalanceComponent implements OnInit {
 
-    wallet: Wallet;
+    account: Account;
 
     address: string;
     balance: string;
@@ -32,10 +32,10 @@ export class BalanceComponent implements OnInit {
     zx: any;
 
     constructor(
+        private accountService: AccountService,
         private databaseService: DatabaseService,
         private marketService: MarketService,
-        private notificationService: NotificationService,
-        private walletService: WalletService
+        private notificationService: NotificationService
     ) {
         this.zx = new ZXing();
         this.confirmed = true;
@@ -43,32 +43,32 @@ export class BalanceComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.walletService.currentWallet.subscribe((wallet: Wallet) => {
-            if (wallet != undefined) {
+        this.accountService.currentAccount.subscribe((account: Account) => {
+            if (account != undefined) {
                 // update information
-                this.update(wallet);
+                this.update(account);
                 // reset
                 this.loading = false;
             }
         });
     }
 
-    public update(wallet: Wallet) {
-        this.wallet = wallet;
+    public update(account: Account) {
+        this.account = account;
         // generate qr code image
-        this.qrcode = this.zx.createBarcode({ encode: wallet.address, height: 400, width: 400, format: ZXing.QR_CODE });
-        this.address = wallet.type == 'offline' ? wallet.address + " (" + wallet.type + ")" : wallet.address;
-        this.balance = this.marketService.getPriceBurstcoin(wallet.balance);
-        this.confirmed = wallet.balance == wallet.unconfirmedBalance;
+        this.qrcode = this.zx.createBarcode({ encode: account.address, height: 400, width: 400, format: ZXing.QR_CODE });
+        this.address = account.type == 'offline' ? account.address + " (" + account.type + ")" : account.address;
+        this.balance = this.marketService.getPriceBurstcoin(account.balance);
+        this.confirmed = account.balance == account.unconfirmedBalance;
     }
 
     public refresh(args) {
         let pullRefresh = args.object;
-        let wallet = this.walletService.currentWallet.value;
-        this.walletService.synchronizeWallet(wallet)
-            .then(wallet => {
-                this.balance = this.marketService.getPriceBurstcoin(wallet.balance);
-                this.walletService.setCurrentWallet(wallet);
+        let account = this.accountService.currentAccount.value;
+        this.accountService.synchronizeAccount(account)
+            .then(account => {
+                this.balance = this.marketService.getPriceBurstcoin(account.balance);
+                this.accountService.setCurrentAccount(account);
                 this.marketService.updateCurrency()
                     .then(currency => {
                         pullRefresh.refreshing = false;
@@ -77,7 +77,7 @@ export class BalanceComponent implements OnInit {
                         pullRefresh.refreshing = false;
                     });
             })
-            .catch(wallet => {
+            .catch(account => {
                 pullRefresh.refreshing = false;
             })
     }

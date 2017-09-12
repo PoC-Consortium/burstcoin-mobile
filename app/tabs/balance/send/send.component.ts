@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
-import { BurstAddress, Transaction, Wallet } from "../../../lib/model";
-import { MarketService, NotificationService, WalletService } from "../../../lib/services";
+import { Account, BurstAddress, Transaction } from "../../../lib/model";
+import { AccountService, MarketService, NotificationService } from "../../../lib/services";
 
 import { BarcodeScanner, ScanOptions } from "nativescript-barcodescanner";
 
@@ -13,7 +13,7 @@ import { BarcodeScanner, ScanOptions } from "nativescript-barcodescanner";
 })
 export class SendComponent implements OnInit {
     step: number;
-    wallet: Wallet;
+    account: Account;
     balance: string;
     recipient: string;
     amount: number;
@@ -23,11 +23,11 @@ export class SendComponent implements OnInit {
     processing: boolean;
 
     constructor(
+        private accountService: AccountService,
         private barcodeScanner: BarcodeScanner,
         private marketService: MarketService,
         private notificationService: NotificationService,
-        private router: RouterExtensions,
-        private walletService: WalletService
+        private router: RouterExtensions
     ) {
         this.step = 1;
         this.recipient = "BURST-";
@@ -38,9 +38,9 @@ export class SendComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        if (this.walletService.currentWallet.value != undefined) {
-            this.wallet = this.walletService.currentWallet.value;
-            this.balance = this.marketService.getPriceBurstcoin(this.wallet.balance);
+        if (this.accountService.currentAccount.value != undefined) {
+            this.account = this.accountService.currentAccount.value;
+            this.balance = this.marketService.getPriceBurstcoin(this.account.balance);
         }
     }
 
@@ -56,7 +56,7 @@ export class SendComponent implements OnInit {
     }
 
     public onTapVerify() {
-        if (this.walletService.isBurstcoinAddress(this.recipient)) {
+        if (this.accountService.isBurstcoinAddress(this.recipient)) {
             if (this.amount > 0 && !isNaN(Number(this.amount))) {
                 if (this.fee >= 1 && !isNaN(Number(this.fee))) {
                     this.step = 2;
@@ -72,15 +72,15 @@ export class SendComponent implements OnInit {
     }
 
     public onTapAccept() {
-        if (this.walletService.checkPin(this.pin)) {
+        if (this.accountService.checkPin(this.pin)) {
             this.processing = true;
-            let wallet = this.walletService.currentWallet.value;
+            let account = this.accountService.currentAccount.value;
             let transaction = new Transaction();
             transaction.recipientAddress = this.recipient;
             transaction.amountNQT = this.amount;
             transaction.feeNQT = this.fee;
-            transaction.senderPublicKey = wallet.keypair.publicKey;
-            this.walletService.doTransaction(transaction, wallet.keypair.privateKey, this.pin)
+            transaction.senderPublicKey = account.keypair.publicKey;
+            this.accountService.doTransaction(transaction, account.keypair.privateKey, this.pin)
                 .then(transaction => {
                     this.notificationService.info("Transaction successful!");
                     setTimeout(t => {
@@ -110,11 +110,11 @@ export class SendComponent implements OnInit {
         if (isNaN(fNumber)) {
             fNumber = 0;
         }
-        if (aNumber + fNumber > this.wallet.balance) {
+        if (aNumber + fNumber > this.account.balance) {
             if (input == "amount") {
-                this.amount = this.wallet.balance - fNumber;
+                this.amount = this.account.balance - fNumber;
             } else {
-                this.fee = this.wallet.balance - aNumber;
+                this.fee = this.account.balance - aNumber;
             }
         }
         this.total = aNumber + fNumber;

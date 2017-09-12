@@ -1,7 +1,7 @@
 <ActionBar class="action-bar">
     <StackLayout orientation="horizontal">
         <Image class="logo-tiny m-r-15" src="res://logo"></Image>
-        <Label class="action-bar-title" text="Activate Offline Wallet"></Label>
+        <Label class="action-bar-title" text="Activate Offline Account"></Label>
     </StackLayout>
 </ActionBar>
 
@@ -18,7 +18,7 @@
                 <StackLayout *ngIf="step == 1">
                     <StackLayout class="info-container" orientation="vertical">
                         <Label class="top text-view-label fa" text="&#xf05a;"></Label>
-                        <Label textWrap="true" class="bottom" [text]="'Enter the passphrase of the wallet ' + walletService.currentWallet.value.address + ' here!'"></Label>
+                        <Label textWrap="true" class="bottom" [text]="'Enter the passphrase of the account ' + accountService.currentAccount.value.address + ' here!'"></Label>
                     </StackLayout>
                     <StackLayout class="body-container m-b-20" orientation="vertical">
                         <Label class="text-view-label fa" text="&#xf084; Passphrase"></Label>

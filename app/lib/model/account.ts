@@ -1,7 +1,7 @@
 import { Keypair } from "./keypair";
 import { Transaction } from "./transaction";
 
-export class Wallet {
+export class Account {
 
     id: string;
     address: string;
@@ -9,9 +9,6 @@ export class Wallet {
     balance: number;
     type: string;
     selected: boolean;
-
-    balanceStringBTC: string;
-    balanceStringCur: string;
 
     pinHash: string;
     keypair: Keypair;
@@ -22,8 +19,6 @@ export class Wallet {
         this.address = data.address || undefined;
         this.balance = data.balance || 0;
         this.unconfirmedBalance = data.unconfirmedBalance || 0;
-        this.balanceStringBTC = data.balance || undefined;
-        this.balanceStringCur = data.balance || undefined;
         this.type = data.type || "offline";
         this.selected = data.selected || false;
         this.keypair = new Keypair();

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
-import { BurstAddress, Wallet } from "../../../lib/model";
-import { CryptoService, NotificationService, WalletService } from "../../../lib/services";
+import { Account, BurstAddress } from "../../../lib/model";
+import { CryptoService, NotificationService, AccountService } from "../../../lib/services";
 
 import { BarcodeScanner, ScanOptions } from "nativescript-barcodescanner";
 
@@ -18,17 +18,17 @@ export class ActivateComponent implements OnInit {
     step: number;
 
     constructor(
+        private accountService: AccountService,
         private cryptoService: CryptoService,
         private notificationService: NotificationService,
-        private router: RouterExtensions,
-        private walletService: WalletService
+        private router: RouterExtensions
     ) {
         this.step = 1;
         this.passphrase = "";
     }
 
     ngOnInit(): void {
-        if (this.walletService.currentWallet.value.active) {
+        if (this.accountService.currentAccount.value.active) {
             this.router.navigate(['tabs']);
         }
     }
@@ -42,11 +42,11 @@ export class ActivateComponent implements OnInit {
                         .then(id => {
                             this.cryptoService.getBurstAddressFromAccountId(id)
                                 .then(address => {
-                                    if (this.walletService.currentWallet.value.address == address) {
+                                    if (this.accountService.currentAccount.value.address == address) {
                                         this.step = 2;
                                     } else {
                                         this.step = 1;
-                                        this.notificationService.info("Wrong passphrase! The provided passphrase does not generate the public key assigned to your wallet!")
+                                        this.notificationService.info("Wrong passphrase! The provided passphrase does not generate the public key assigned to your account!")
                                     }
                                 })
                                 .catch(error => {
@@ -69,21 +69,21 @@ export class ActivateComponent implements OnInit {
     }
 
     public onTapDone() {
-        if (this.walletService.isPin(this.pin)) {
-            this.walletService.activateWallet(this.walletService.currentWallet.value, this.passphrase, this.pin)
-                .then(wallet => {
-                    this.walletService.synchronizeWallet(this.walletService.currentWallet.value)
-                        .then(wallet => {
-                            this.walletService.setCurrentWallet(wallet);
+        if (this.accountService.isPin(this.pin)) {
+            this.accountService.activateAccount(this.accountService.currentAccount.value, this.passphrase, this.pin)
+                .then(account => {
+                    this.accountService.synchronizeAccount(this.accountService.currentAccount.value)
+                        .then(account => {
+                            this.accountService.setCurrentAccount(account);
                             this.router.navigate['tabs'];
                         })
                         .catch(error  => {
-                            this.walletService.setCurrentWallet(wallet);
+                            this.accountService.setCurrentAccount(account);
                             this.router.navigate['tabs'];
                         })
                 })
                 .catch(error  => {
-                    this.notificationService.info("Update of wallet failed!");
+                    this.notificationService.info("Update of account failed!");
                     this.router.navigate['tabs'];
                 })
         } else {

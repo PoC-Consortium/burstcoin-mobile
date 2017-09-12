@@ -1,10 +1,10 @@
-import { Wallet } from "../";
+import { Account } from "../";
 
 export abstract class Database {
     protected static readonly DATABASE_TABLE = "burst";
     public abstract init(): void;
-    public abstract saveWallet(wallet: Wallet): Promise<Wallet>;
-    public abstract findWallet(id: string): Promise<Wallet>;
-    public abstract getSelectedWallet(): Promise<Wallet>;
-    public abstract removeWallet(wallet: Wallet): Promise<boolean>;
+    public abstract saveAccount(account: Account): Promise<Account>;
+    public abstract findAccount(id: string): Promise<Account>;
+    public abstract getSelectedAccount(): Promise<Account>;
+    public abstract removeAccount(account: Account): Promise<boolean>;
 }

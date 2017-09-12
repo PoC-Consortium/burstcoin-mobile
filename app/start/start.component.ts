@@ -9,8 +9,8 @@ import { Button } from "ui/button";
 import { TextField } from "ui/text-field";
 import { EventData } from "data/observable";
 
-import { Wallet } from "../lib/model";
-import { DatabaseService, NotificationService, WalletService } from "../lib/services";
+import { Account } from "../lib/model";
+import { AccountService, DatabaseService, NotificationService } from "../lib/services";
 
 
 @Component({
@@ -24,27 +24,27 @@ export class StartComponent implements OnInit {
     private loading: boolean;
 
     constructor(
+        private accountService: AccountService,
         private databaseService: DatabaseService,
         private notificationService: NotificationService,
-        private router: RouterExtensions,
-        private walletService: WalletService
+        private router: RouterExtensions
     ) {
         this.databaseService.ready.subscribe((init: boolean) => {
-            this.loadSelectedWallet(init)
+            this.loadSelectedAccount(init)
         });
         // TODO: show initial loading
         this.loading = true;
     }
 
-    private loadSelectedWallet(init) {
+    private loadSelectedAccount(init) {
         if (init == true) {
-            // get selected wallet from database
-            this.databaseService.getSelectedWallet()
-                .then(wallet => {
-                    this.walletService.setCurrentWallet(wallet);
+            // get selected account from database
+            this.databaseService.getSelectedAccount()
+                .then(account => {
+                    this.accountService.setCurrentAccount(account);
                     this.router.navigate(['tabs'], { clearHistory: true });
                 })
-                .catch(wallet => {
+                .catch(account => {
                     this.loading = false;
                 })
         } else {

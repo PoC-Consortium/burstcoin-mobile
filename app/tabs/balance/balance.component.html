@@ -13,15 +13,15 @@
                 <Label *ngIf="!confirmed" class="font-weight-bold p-t-10 p-b-10 fa" [text]="'Balance: ' + balance + ' &#xf021;'"></Label>
                 <StackLayout class="hr-light"></StackLayout>
                 <GridLayout class="p-t-10 p-b-10" columns="*,auto,*" rows="auto">
-                    <Label col="0" class="font-weight-bold  m-r-10 text-right" [text]="marketService.getPriceBTC(wallet.balance)"></Label>
+                    <Label col="0" class="font-weight-bold  m-r-10 text-right" [text]="marketService.getPriceBTC(account.balance)"></Label>
                     <Label col="1" class="fa p-t-2" text="&#xf0ec;"></Label>
-                    <Label col="2" class="font-weight-bold m-l-10 text-left" [text]="marketService.getPriceFiatCurrency(wallet.balance)"></Label>
+                    <Label col="2" class="font-weight-bold m-l-10 text-left" [text]="marketService.getPriceFiatCurrency(account.balance)"></Label>
                 </GridLayout>
         </StackLayout>
         <StackLayout orientation="vertical">
-            <Button *ngIf="wallet?.type == 'active'" class="btn btn-primary btn-active action-button fa" text="Send &#xf08b;" [nsRouterLink]="['/tabs/balance/send']"></Button>
+            <Button *ngIf="account?.type == 'active'" class="btn btn-primary btn-active action-button fa" text="Send &#xf08b;" [nsRouterLink]="['/tabs/balance/send']"></Button>
             <!--<Button class="btn btn-primary btn-active action-button" text="Receive" (tap)="onTapReceive($event)"></Button>-->
-            <Button *ngIf="wallet?.type == 'offline'" class="btn btn-primary btn-active action-button fa" text="Activate &#xf05d;" [nsRouterLink]="['/tabs/accounts/activate']"></Button>
+            <Button *ngIf="account?.type == 'offline'" class="btn btn-primary btn-active action-button fa" text="Activate &#xf05d;" [nsRouterLink]="['/tabs/accounts/activate']"></Button>
         </StackLayout>
     </StackLayout>
 </BalanceRefresh>
