@@ -107,6 +107,18 @@ export class WalletService {
         });
     }
 
+    public removeWallet(wallet: Wallet): Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            this.databaseService.removeWallet(wallet)
+                .then(success => {
+                    resolve(success);
+                })
+                .catch(error => {
+                    reject(error);
+                })
+        });
+    }
+
     public synchronizeWallet(wallet: Wallet): Promise<Wallet> {
         return new Promise((resolve, reject) => {
             this.getBalance(wallet.id)

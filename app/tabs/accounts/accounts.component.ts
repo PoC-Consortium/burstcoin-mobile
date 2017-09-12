@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewContainerRef } from "@angular/core";
+import { RouterExtensions } from "nativescript-angular/router";
 import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
 import { isAndroid } from "platform";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
@@ -28,6 +29,7 @@ export class AccountsComponent implements OnInit {
         private marketService: MarketService,
         private modalDialogService: ModalDialogService,
         private notificationService: NotificationService,
+        private router: RouterExtensions,
         private vcRef: ViewContainerRef,
         private walletService: WalletService
     ) {
@@ -60,6 +62,27 @@ export class AccountsComponent implements OnInit {
         this.modalDialogService.showModal(AddComponent, options)
             .then(result => { })
             .catch(error => { });
+    }
+
+    public onTapRemoveAccount(wallet: Wallet) {
+        this.walletService.removeWallet(wallet)
+            .then(success => {
+                let index = this.wallets.indexOf(wallet);
+                if (index > -1) {
+                   this.wallets.splice(index, 1);
+                }
+                if (this.wallets.length <= 0) {
+                    this.router.navigate(['start']);
+                    return;
+                } else {
+                    if (wallet.selected == true) {
+                        this.selectWallet(this.wallets[0]);
+                    }
+                }
+            })
+            .catch(error => {
+                this.notificationService.error("Could not remove account!")
+            })
     }
 
     public refresh(args) {
