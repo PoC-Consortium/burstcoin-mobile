@@ -68,6 +68,7 @@ export class ImportComponent implements OnInit {
                             });
                     })
                     .catch(error => {
+                        this.step = 1;
                         this.notificationService.info(error);
                     });
             } else {

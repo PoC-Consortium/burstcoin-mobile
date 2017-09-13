@@ -38,13 +38,13 @@
                 <Label class="font-italic p-b-15 huge-label" [text]="'Balance: ' + balance"></Label>
                 <StackLayout class="hr-light"></StackLayout>
                 <GridLayout class="text-left m-t-10 m-b-10" columns="auto, auto, *" rows="auto, auto, auto">
-                    <Label col="0" row="0" class="p-t-5 p-b-5 fa" text="&#xf2bc; "></Label>
+                    <Label col="0" row="0" class="p-t-5 p-b-5 fa" text="&#xf2bc; :"></Label>
                     <Label col="1" row="0" colspan="2" class="p-t-5 p-b-5 p-l-5 fa" [text]="recipient"></Label>
 
-                    <Label col="0" row="1" class="p-t-5 p-b-5 fa" text="&#xf0d6; "></Label>
+                    <Label col="0" row="1" class="p-t-5 p-b-5 fa" text="&#xf0d6; :"></Label>
                     <Label col="1" row="1" class="p-t-5 p-b-5 p-l-5 fa" [text]="amount"></Label>
 
-                    <Label col="0" row="2" class="p-t-5 p-b-5 fa" text="&#xf0ec; "></Label>
+                    <Label col="0" row="2" class="p-t-5 p-b-5 fa" text="&#xf0ec; :"></Label>
                     <Label col="1" row="2" class="p-t-5 p-b-5 p-l-5 fa" [text]="fee"></Label>
 
                     <Label col="2" row="1" rowspan="2" style="vertical-align:middle" class="p-5 p-l-15" [text]="'= ' + marketService.getPriceFiatCurrency(total)"></Label>
