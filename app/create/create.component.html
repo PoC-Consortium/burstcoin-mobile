@@ -27,13 +27,16 @@
             </StackLayout>
 
             <StackLayout *ngIf="step == 1" style="padding: 0px;" class="body-container m-t-10" orientation="vertical">
-                <StackLayout (touch)="onTouch($event)" class="seed-area" orientation="vertical">
+                <StackLayout *ngIf="seed.length < seedLimit" (touch)="onTouch($event)" class="seed-area" orientation="vertical">
                     <Label class="font-weight-bold" text="Tap and swipe over this area!"></Label>
                     <StackLayout class="seed-progress" orientation="vertical">
                         <Progress [value]="seed.length" [maxValue]="seedLimit" class="m-20"></Progress>
                     </StackLayout>
                 </StackLayout>
-                <Button class="btn btn-primary btn-active action-button fa" [isEnabled]="seed.length >= seedLimit" text="Next &#xf18e;" (tap)="onTapSeedNext($event)"></Button>
+                <StackLayout *ngIf="seed.length >= seedLimit">
+                    <Label class="font-weight-bold solo" text="Seed collected!"></Label>
+                    <Button class="btn btn-primary btn-active action-button fa" [isEnabled]="seed.length >= seedLimit" text="Next &#xf18e;" (tap)="onTapSeedNext($event)"></Button>
+                </StackLayout>
             </StackLayout>
 
             <StackLayout *ngIf="step == 2">
