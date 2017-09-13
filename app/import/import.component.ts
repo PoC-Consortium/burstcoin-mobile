@@ -64,7 +64,7 @@ export class ImportComponent implements OnInit {
                     .then(account => {
                         this.accountService.selectAccount(account)
                             .then(account => {
-                                this.router.navigate(['tabs']);
+                                this.router.navigate(['tabs'], { clearHistory: true });
                             });
                     })
                     .catch(error => {
@@ -119,7 +119,7 @@ export class ImportComponent implements OnInit {
                 .then(account => {
                     this.accountService.selectAccount(account)
                         .then(account => {
-                            this.router.navigate(['tabs'])
+                            this.router.navigate(['tabs'], { clearHistory: true })
                         })
                 })
                 .catch(error => {

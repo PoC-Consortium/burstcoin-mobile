@@ -39,11 +39,11 @@ export class TabsComponent implements OnInit {
             this.accountService.synchronizeAccount(account)
                 .then(account => {
                     this.accountService.setCurrentAccount(account);
-                    this.showNotes();
+                    //this.showNotes();
                 })
                 .catch(account => {
                     this.accountService.setCurrentAccount(account);
-                    this.showNotes();
+                    //this.showNotes();
                     //this.notificationService.info("Failed synchronization. Check your internet connection!")
                 })
         }

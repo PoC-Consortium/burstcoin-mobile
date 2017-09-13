@@ -80,16 +80,18 @@ export class AccountsComponent implements OnInit {
                        this.accounts.splice(index, 1);
                     }
                     if (this.accounts.length < 1) {
-                        this.router.navigate(['start']);
+                        this.router.navigate(['start'], { clearHistory: true });
                         return;
                     } else {
-                        this.accountService.selectAccount(this.accounts[0])
-                            .then(selected => {
-                                this.databaseService.getAllAccounts()
-                                    .then(accounts => {
-                                        this.notificationService.info("Successfully removed account: " + account.address);
-                                    })
-                            })
+                        if (account.selected == true) {
+                            this.accountService.selectAccount(this.accounts[0])
+                                .then(selected => {
+                                    this.marketService.setCurrency(this.marketService.currency.value);
+                                    this.notificationService.info("Successfully removed account!");
+                                })
+                        } else {
+                            this.notificationService.info("Successfully removed account!");
+                        }
                     }
                 }
             })
