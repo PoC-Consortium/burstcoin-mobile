@@ -8,6 +8,7 @@ import { TouchGestureEventData } from "ui/gestures";
 import { Button } from "ui/button";
 import { TextField } from "ui/text-field";
 import { EventData } from "data/observable";
+import { Page } from "ui/page";
 
 import { Account } from "../lib/model";
 import { AccountService, DatabaseService, NotificationService } from "../lib/services";
@@ -24,11 +25,13 @@ export class StartComponent implements OnInit {
     private loading: boolean;
 
     constructor(
+        private accountService: AccountService,
         private databaseService: DatabaseService,
         private notificationService: NotificationService,
-        private router: RouterExtensions,
-        private accountService: AccountService,
+        private page: Page,
+        private router: RouterExtensions
     ) {
+        this.page.actionBarHidden = true;
         this.databaseService.ready.subscribe((init: boolean) => {
             this.loadSelectedAccount(init)
         });
