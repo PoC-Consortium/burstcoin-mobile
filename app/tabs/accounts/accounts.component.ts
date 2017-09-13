@@ -49,7 +49,7 @@ export class AccountsComponent implements OnInit {
 
     public selectAccount(account: Account) {
         this.notificationService.info("Selected account: " + account.address);
-        this.accounts.map(a => a.selected = false);
+        this.accounts.find(a => a.selected).selected = false;
         this.accountService.selectAccount(account)
             .then(account => {
                 this.marketService.setCurrency(this.marketService.currency.value);

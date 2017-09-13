@@ -113,7 +113,7 @@ export class DatabaseService extends Database {
             if (this.ready.value) {
                 account.selected = true;
                 let accounts = this.database.getCollection("accounts");
-                accounts.chain().find().update(w => {
+                accounts.chain().find({ selected : true }).update(w => {
                     w.selected = false;
                 });
                 accounts.chain().find({ id : account.id }).update(w => {
