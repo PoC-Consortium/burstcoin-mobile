@@ -41,7 +41,7 @@
 
             <StackLayout *ngIf="step == 2">
                 <StackLayout class="body-container" orientation="vertical">
-                    <Label class="top" textWrap="true" text="Write down the following words and keep them secret!"></Label>
+                    <Label class="top" textWrap="true" text="Write down the following words separated by space and keep them secret!"></Label>
                     <Label class="chip" [text]="passPhrase[word]"></Label>
                     <Button class="btn btn-primary btn-active action-button fa" text="Next &#xf18e;" (tap)="onTapNext($event)"></Button>
                 </StackLayout>

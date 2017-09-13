@@ -1,22 +1,22 @@
 <BalanceRefresh (refresh)="refresh($event)">
     <StackLayout orientation="vertical">
-        <StackLayout class="balance-container" orientation="vertical">
-                <Image *ngIf="loading == false" class="qrcode" [src]="qrcode"></Image>
-                <StackLayout *ngIf="loading" class="p-30" orientation="vertical">
-                    <ActivityIndicator busy="true" width="100" height="100" class="activity-indicator"></ActivityIndicator>
-                </StackLayout>
+        <StackLayout (doubleTap)="onDoubleTapBalance($event)" (longPress)="onLongPressBalance($event)" (swipe)="onSwipeBalance($event)" class="balance-container" orientation="vertical">
+            <Image *ngIf="loading == false" class="qrcode" [src]="qrcode"></Image>
+            <StackLayout *ngIf="loading" class="p-30" orientation="vertical">
+                <ActivityIndicator busy="true" width="100" height="100" class="activity-indicator"></ActivityIndicator>
+            </StackLayout>
 
-                <StackLayout class="hr-light"></StackLayout>
-                <Label class="font-weight-bold p-t-10 p-b-10" [text]="address"></Label>
-                <StackLayout class="hr-light"></StackLayout>
-                <Label *ngIf="confirmed" class="font-weight-bold p-t-10 p-b-10" [text]="'Balance: ' + balance"></Label>
-                <Label *ngIf="!confirmed" class="font-weight-bold p-t-10 p-b-10 fa" [text]="'Balance: ' + balance + ' &#xf021;'"></Label>
-                <StackLayout class="hr-light"></StackLayout>
-                <GridLayout class="p-t-10 p-b-10" columns="*,auto,*" rows="auto">
-                    <Label col="0" class="font-weight-bold  m-r-10 text-right" [text]="marketService.getPriceBTC(account.balance)"></Label>
-                    <Label col="1" class="fa p-t-2" text="&#xf0ec;"></Label>
-                    <Label col="2" class="font-weight-bold m-l-10 text-left" [text]="marketService.getPriceFiatCurrency(account.balance)"></Label>
-                </GridLayout>
+            <StackLayout class="hr-light"></StackLayout>
+            <Label class="font-weight-bold p-t-10 p-b-10" [text]="address"></Label>
+            <StackLayout class="hr-light"></StackLayout>
+            <Label *ngIf="confirmed" class="font-weight-bold p-t-10 p-b-10" [text]="'Balance: ' + balance"></Label>
+            <Label *ngIf="!confirmed" class="font-weight-bold p-t-10 p-b-10 fa" [text]="'Balance: ' + balance + ' &#xf021;'"></Label>
+            <StackLayout class="hr-light"></StackLayout>
+            <GridLayout class="p-t-10 p-b-10" columns="*,auto,*" rows="auto">
+                <Label col="0" class="font-weight-bold  m-r-10 text-right" [text]="marketService.getPriceBTC(account.balance)"></Label>
+                <Label col="1" class="fa p-t-2" text="&#xf0ec;"></Label>
+                <Label col="2" class="font-weight-bold m-l-10 text-left" [text]="marketService.getPriceFiatCurrency(account.balance)"></Label>
+            </GridLayout>
         </StackLayout>
         <StackLayout orientation="vertical">
             <Button *ngIf="account?.type == 'active'" class="btn btn-primary btn-active action-button fa" text="Send &#xf08b;" [nsRouterLink]="['/tabs/balance/send']"></Button>

@@ -3,16 +3,17 @@ import { isAndroid } from "platform";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
 import { Label } from "ui/label";
 import { Image } from "ui/image"
-
+import { registerElement } from "nativescript-angular/element-registry";
 import { Account, BurstAddress, Currency } from "../../lib/model";
-
 import { AccountService, DatabaseService, MarketService, NotificationService } from "../../lib/services";
 
+
+import * as SocialShare from "nativescript-social-share";
+
+let clipboard = require("nativescript-clipboard");
 let ZXing = require('nativescript-zxing');
 
-import { registerElement } from "nativescript-angular/element-registry";
 registerElement("BalanceRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
-
 
 @Component({
     selector: "balance",
@@ -60,6 +61,15 @@ export class BalanceComponent implements OnInit {
         this.address = account.type == 'offline' ? account.address + " (" + account.type + ")" : account.address;
         this.balance = this.marketService.getPriceBurstcoin(account.balance);
         this.confirmed = account.balance == account.unconfirmedBalance;
+    }
+
+    public onDoubleTapBalance() {
+        clipboard.setText(this.account.address);
+        this.notificationService.info("Copied address to clipboard");
+    }
+
+    public onLongPressBalance() {
+        SocialShare.shareText(this.account.address);
     }
 
     public refresh(args) {
