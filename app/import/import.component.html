@@ -46,8 +46,7 @@
                 <Label textWrap="true" class="solo" text="Please set a six-digit pin code for your account. The pin code is used to approve outgoing transactions."></Label>
             </StackLayout>
             <StackLayout class="body-container" orientation="vertical">
-                <Label class="text-view-label fa" text="&#xf292; PIN"></Label>
-                <TextField class="input" [(ngModel)]="pin" keyboardType="number" returnKeyType="done"></TextField>
+                <TextField class="input" [(ngModel)]="pin" hint="PIN" keyboardType="number" returnKeyType="done"></TextField>
                 <Button class="btn btn-primary btn-active action-button fa" text="Done &#xf05d;" (tap)="onTapDone($event)"></Button>
             </StackLayout>
         </StackLayout>

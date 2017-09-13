@@ -8,8 +8,6 @@
 <StackLayout class="page-content" orientation="vertical">
     <StackLayout class="container">
 
-        <Image class="logo-small" src="res://logo"></Image>
-
         <StackLayout *ngIf="this.step == 1">
             <StackLayout class="body-container" orientation="vertical">
                 <Label class="font-italic p-b-15 huge-label" [text]="'Balance: ' + balance"></Label>
@@ -40,13 +38,13 @@
                 <Label class="font-italic p-b-15 huge-label" [text]="'Balance: ' + balance"></Label>
                 <StackLayout class="hr-light"></StackLayout>
                 <GridLayout class="text-left m-t-10 m-b-10" columns="auto, auto, *" rows="auto, auto, auto">
-                    <Label col="0" row="0" class="p-t-5 p-b-5 fa" text="&#xf2bc; Recipient:"></Label>
+                    <Label col="0" row="0" class="p-t-5 p-b-5 fa" text="&#xf2bc; "></Label>
                     <Label col="1" row="0" colspan="2" class="p-t-5 p-b-5 p-l-5 fa" [text]="recipient"></Label>
 
-                    <Label col="0" row="1" class="p-t-5 p-b-5 fa" text="&#xf0d6; Amount:"></Label>
+                    <Label col="0" row="1" class="p-t-5 p-b-5 fa" text="&#xf0d6; "></Label>
                     <Label col="1" row="1" class="p-t-5 p-b-5 p-l-5 fa" [text]="amount"></Label>
 
-                    <Label col="0" row="2" class="p-t-5 p-b-5 fa" text="&#xf0ec; Fee:"></Label>
+                    <Label col="0" row="2" class="p-t-5 p-b-5 fa" text="&#xf0ec; "></Label>
                     <Label col="1" row="2" class="p-t-5 p-b-5 p-l-5 fa" [text]="fee"></Label>
 
                     <Label col="2" row="1" rowspan="2" style="vertical-align:middle" class="p-5 p-l-15" [text]="'= ' + marketService.getPriceFiatCurrency(total)"></Label>
@@ -58,8 +56,7 @@
                     <Label textWrap="true" class="solo" text="Enter your pin code!"></Label>
                 </StackLayout>
                 <StackLayout class="body-container m-b-5" orientation="vertical">
-                    <Label class="text-view-label fa" text="&#xf292; PIN"></Label>
-                    <TextField class="input" [(ngModel)]="pin" keyboardType="number" returnKeyType="done"></TextField>
+                    <TextField class="input" [(ngModel)]="pin" hint="PIN" keyboardType="number" returnKeyType="done"></TextField>
                 </StackLayout>
                 <StackLayout class="m-b-20" orientation="vertical">
                     <Button class="btn btn-primary btn-active action-button fa" text="Accept &#xf05d;" (tap)="onTapAccept($event)"></Button>

@@ -59,7 +59,11 @@ export class SendComponent implements OnInit {
         if (this.accountService.isBurstcoinAddress(this.recipient)) {
             if (this.amount > 0 && !isNaN(Number(this.amount))) {
                 if (this.fee >= 1 && !isNaN(Number(this.fee))) {
-                    this.step = 2;
+                    if (parseFloat(this.amount.toString()) + parseFloat(this.fee.toString()) <= this.account.balance) {
+                        this.step = 2;
+                    } else {
+                        this.notificationService.info("Amount and Fee exceed your balance!")
+                    }
                 } else {
                     this.notificationService.info("Please enter a decimal number (atleast 1) as fee!")
                 }
@@ -83,9 +87,7 @@ export class SendComponent implements OnInit {
             this.accountService.doTransaction(transaction, account.keypair.privateKey, this.pin)
                 .then(transaction => {
                     this.notificationService.info("Transaction successful!");
-                    setTimeout(t => {
-                        this.router.navigate(['/tabs']);
-                    }, 500);
+                    this.router.navigate(['/tabs']);
                 }).catch(error => {
                     this.processing = false;
                     this.notificationService.info(error);
@@ -123,4 +125,5 @@ export class SendComponent implements OnInit {
     public formatRecipient() {
         this.recipient = this.recipient.toUpperCase();
     }
+
 }
