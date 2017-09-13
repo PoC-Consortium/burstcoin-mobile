@@ -1,5 +1,5 @@
 <AccountsRefresh (refresh)="refresh($event)">
-    <ListView [items]="accounts" (itemTap)="onItemTap($event)" separatorColor="transparent">
+    <ListView [items]="accounts" separatorColor="transparent">
         <ng-template let-item="item" let-i="index">
             <StackLayout>
                 <GridLayout (tap)="selectAccount(item)" class="list-item" columns="auto, auto, auto, auto *, auto" rows="auto, auto, auto, auto">

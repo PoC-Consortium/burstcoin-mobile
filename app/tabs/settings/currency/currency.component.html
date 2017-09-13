@@ -5,7 +5,7 @@
                 <Image class="logo-small" src="res://logo"></Image>
                 <Label class="solo fa" textWrap="true" text="Change currency:"></Label>
                 <ListPicker [items]="currencies" [selectedIndex]="index" (selectedIndexChange)="selectedIndexChanged($event)" class="p-5"></ListPicker>
-                <Button class="btn btn-primary btn-active action-button fa" text="&#xf05d;" (tap)="onTapOk($event)"></Button>
+                <Button class="btn btn-primary btn-active action-button fa" text="&#xf05d;" (tap)="onTapOk()"></Button>
             </StackLayout>
         </StackLayout>
     </StackLayout>

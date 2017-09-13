@@ -13,13 +13,13 @@ import { ShowComponent } from "./show/show.component";
     styleUrls: ["./import.component.css"]
 })
 export class ImportComponent implements OnInit {
-    private step: number;
-    private input: string;
-    private state: string;
-    private hint: string;
-    private active: boolean;
-    private pin: string;
-    private description: string;
+    step: number;
+    input: string;
+    state: string;
+    hint: string;
+    active: boolean;
+    pin: string;
+    description: string;
 
     constructor(
         private cryptoService: CryptoService,

@@ -34,7 +34,7 @@ export class BalanceComponent implements OnInit {
     constructor(
         private accountService: AccountService,
         private databaseService: DatabaseService,
-        private marketService: MarketService,
+        public marketService: MarketService,
         private notificationService: NotificationService
     ) {
         this.zx = new ZXing();

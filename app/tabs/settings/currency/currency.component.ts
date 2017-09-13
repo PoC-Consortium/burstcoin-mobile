@@ -10,10 +10,9 @@ import { DatabaseService } from "../../../lib/services";
 })
 export class CurrencyComponent implements OnInit {
 
-    private picked: string;
-    private currencies: string[] = ["CAD", "CHF", "CNY", "EUR", "GBP", "JPY", "RUB", "USD"];
-    private currency;
-    private index: number;
+    picked: string;
+    currencies: string[] = ["CAD", "CHF", "CNY", "EUR", "GBP", "JPY", "RUB", "USD"];
+    index: number;
 
     constructor(
         private databaseService: DatabaseService,

@@ -22,7 +22,7 @@ import { AccountService, DatabaseService, NotificationService } from "../lib/ser
 })
 export class StartComponent implements OnInit {
 
-    private loading: boolean;
+    loading: boolean;
 
     constructor(
         private accountService: AccountService,

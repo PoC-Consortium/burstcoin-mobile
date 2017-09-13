@@ -7,7 +7,6 @@ const routes: Routes = [
     { path: "create", loadChildren: "./create/create.module#CreateModule" },
     { path: "start", loadChildren: "./start/start.module#StartModule" },
     { path: "import", loadChildren: "./import/import.module#ImportModule" },
-    { path: "pin", loadChildren: "./pin/pin.module#PinModule" },
     { path: "tabs", loadChildren: "./tabs/tabs.module#TabsModule" }
 ];
 

@@ -20,15 +20,15 @@ import { PassPhraseGenerator } from "../lib/util/crypto";
 })
 export class CreateComponent implements OnInit {
 
-    private readonly seedLimit: number = 256;
-    private step: number;
-    private seed: any[];
-    private passPhrase: string[];
-    private retypePassPhrase: string[];
-    private word: number;
-    private try: string;
-    private pin: string;
-    private textField: TextField;
+    readonly seedLimit: number = 256;
+    step: number;
+    seed: any[];
+    passPhrase: string[];
+    retypePassPhrase: string[];
+    word: number;
+    try: string;
+    pin: string;
+    textField: TextField;
 
     /*
     Step 0: Loading screen

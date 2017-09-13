@@ -1,5 +1,5 @@
 <TransactionsRefresh (refresh)="refresh($event)">
-    <ListView [items]="transactions" (itemTap)="onTapItem($event)" separatorColor="transparent">
+    <ListView [items]="transactions" separatorColor="transparent">
         <ng-template let-item="item" let-i="index">
             <StackLayout>
                 <GridLayout *ngIf="item.recipientId == ownId" class="m-x-auto list-item" columns="auto, auto, *, auto, auto" rows="auto, auto, auto">

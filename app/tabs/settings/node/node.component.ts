@@ -12,7 +12,7 @@ import { DatabaseService } from "../../../lib/services";
 })
 export class NodeComponent implements OnInit {
 
-    private address: string;
+    address: string;
 
     constructor(
         private databaseService: DatabaseService,
