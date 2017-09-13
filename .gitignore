@@ -10,6 +10,7 @@ node_modules/
 platforms/
 tmp/
 typings/
+report/
 .idea
 .cloud
 *.apk
