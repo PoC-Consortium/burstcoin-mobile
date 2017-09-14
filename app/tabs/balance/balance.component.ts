@@ -1,11 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { isAndroid } from "platform";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
+import { SwipeGestureEventData } from "ui/gestures";
 import { Label } from "ui/label";
 import { Image } from "ui/image"
 import { registerElement } from "nativescript-angular/element-registry";
 import { Account, BurstAddress, Currency } from "../../lib/model";
-import { AccountService, DatabaseService, MarketService, NotificationService } from "../../lib/services";
+import { AccountService, DatabaseService, MarketService, NotificationService, TabsService } from "../../lib/services";
 
 
 import * as SocialShare from "nativescript-social-share";
@@ -36,7 +37,8 @@ export class BalanceComponent implements OnInit {
         private accountService: AccountService,
         private databaseService: DatabaseService,
         public marketService: MarketService,
-        private notificationService: NotificationService
+        private notificationService: NotificationService,
+        private tabsService: TabsService
     ) {
         this.zx = new ZXing();
         this.confirmed = true;
@@ -65,11 +67,17 @@ export class BalanceComponent implements OnInit {
 
     public onDoubleTapBalance() {
         clipboard.setText(this.account.address);
-        this.notificationService.info("Copied address to clipboard");
+        this.notificationService.info('Copied address "' + this.account.address + '" to clipboard!');
     }
 
     public onLongPressBalance() {
         SocialShare.shareText(this.account.address);
+    }
+
+    public onSwipeBalance(args: SwipeGestureEventData) {
+        if (args.direction == 2) {
+                this.tabsService.changeTab(1);
+        }
     }
 
     public refresh(args) {

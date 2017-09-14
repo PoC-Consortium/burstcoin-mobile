@@ -6,7 +6,7 @@
         </GridLayout>
     </ActionBar>
 
-    <TabView (selectedIndexChanged)="onSelectedIndexChanged($event)">
+    <TabView #tabs (selectedIndexChanged)="onSelectedIndexChanged($event)">
         <StackLayout class="tab" *tabItem="{title: 'Balance', iconSource: getIconSource('coins')}">
             <balance></balance>
         </StackLayout>

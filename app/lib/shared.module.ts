@@ -2,19 +2,21 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { NativeScriptHttpModule } from "nativescript-angular/http";
 
 import {
+    AccountService,
     CryptoService,
     DatabaseService,
     MarketService,
     NotificationService,
-    AccountService,
+    TabsService
 } from './services';
 
 const SHARED_SERVICES = [
+    AccountService,
     CryptoService,
     DatabaseService,
     MarketService,
     NotificationService,
-    AccountService
+    TabsService
 ];
 
 @NgModule({

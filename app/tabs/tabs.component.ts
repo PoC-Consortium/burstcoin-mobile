@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewContainerRef } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
 import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
 import { isAndroid } from "platform";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
 
 import { Account } from "../lib/model";
-import { DatabaseService, NotificationService, AccountService } from "../lib/services";
+import { AccountService, DatabaseService, NotificationService, TabsService } from "../lib/services";
 
 import { NoteComponent } from "./note/note.component";
 
@@ -17,6 +17,7 @@ import { NoteComponent } from "./note/note.component";
 })
 export class TabsComponent implements OnInit {
 
+    @ViewChild('tabs') tabView;
     private _title: string;
     private selectedIndex: number;
 
@@ -26,7 +27,8 @@ export class TabsComponent implements OnInit {
         private notificationService: NotificationService,
         private router: RouterExtensions,
         private vcRef: ViewContainerRef,
-        private accountService: AccountService
+        private accountService: AccountService,
+        private tabsService: TabsService
     ) {
 
     }
@@ -46,6 +48,13 @@ export class TabsComponent implements OnInit {
                     //this.showNotes();
                     //this.notificationService.info("Failed synchronization. Check your internet connection!")
                 })
+
+            // listen to tabs service for programmatically changed index
+            this.tabsService.index.subscribe((index: number) => {
+                if (index != undefined) {
+                    this.tabView.nativeElement.selectedIndex = index;
+                }
+            });
         }
     }
 
