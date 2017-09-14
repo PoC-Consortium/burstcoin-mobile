@@ -26,7 +26,7 @@ export class AccountService {
         private notificationService: NotificationService
     ) {
         this.databaseService.settings.subscribe((settings: Settings) => {
-            this.nodeUrl = "http://" + settings.node;
+            this.nodeUrl = "https://" + settings.node;
         });
     }
 

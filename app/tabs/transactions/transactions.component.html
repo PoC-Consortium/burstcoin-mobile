@@ -6,7 +6,7 @@
                     <Label col="0" row="0" colspan="3" class="font-weight-italic fa p-b-5 amount" [text]="item.amountNQT + ' BURST / ' + marketService.getPriceFiatCurrency(item.amountNQT, 2)"></Label>
                     <Label col="4" row="0" class="transaction-label-in fa" text="&#xf078;"></Label>
 
-                    <Label col="0" row="1" colspan="3" class="fa p-b-5" [text]="'&#xf2c0; ' + item.senderAddress"></Label>
+                    <Label col="0" row="1" colspan="5" class="fa p-b-5 address" [text]="'&#xf2c0; ' + item.senderAddress"></Label>
 
                     <Label col="0" row="2" colspan="3" class="fa p-b-5" [text]="'&#xf017; ' + (convertTimestamp(item.timestamp) | date: 'dd.MM.yyyy hh:mm:ss a')"></Label>
                     <Label *ngIf="item.confirmed" col="4" row="2" class="fa confirmed-indicator p-b-5 text-right" text="&#xf00c;"></Label>
@@ -16,7 +16,7 @@
                     <Label col="0" row="0" colspan="3" class="font-weight-italic fa p-b-5 amount" [text]="item.amountNQT + ' BURST / ' + marketService.getPriceFiatCurrency(item.amountNQT, 2)"></Label>
                     <Label col="4" row="0" class="transaction-label-out fa" text="&#xf077;"></Label>
 
-                    <Label col="0" row="1" colspan="3" class="fa p-b-5" [text]="'&#xf2c0; ' + item.recipientAddress"></Label>
+                    <Label col="0" row="1" colspan="5" class="fa p-b-5 address" [text]="'&#xf2c0; ' + item.recipientAddress"></Label>
 
                     <Label col="0" row="2" colspan="3" class="fa p-b-5" [text]="'&#xf017; ' + (convertTimestamp(item.timestamp) | date: 'dd.MM.yyyy hh:mm:ss a')"></Label>
                     <Label *ngIf="item.confirmed" col="4" row="2" class="fa confirmed-indicator p-b-5 text-right" text="&#xf00c;"></Label>
