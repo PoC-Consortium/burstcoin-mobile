@@ -2,12 +2,12 @@ import { Component, OnInit, ViewContainerRef } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
 import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
 import { isAndroid } from "platform";
-import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
+import { SwipeGestureEventData } from "ui/gestures";
 import { Label } from "ui/label";
 import { Image } from "ui/image"
 
 import { Account, BurstAddress, Currency } from "../../lib/model";
-import { AccountService, DatabaseService, MarketService, NotificationService } from "../../lib/services";
+import { AccountService, DatabaseService, MarketService, NotificationService, TabsService } from "../../lib/services";
 import { AddComponent } from "./add/add.component";
 import { RemoveComponent } from "./remove/remove.component";
 
@@ -32,6 +32,7 @@ export class AccountsComponent implements OnInit {
         private modalDialogService: ModalDialogService,
         private notificationService: NotificationService,
         private router: RouterExtensions,
+        private tabsService: TabsService,
         private vcRef: ViewContainerRef
     ) {
         this.accounts = [];
@@ -96,6 +97,14 @@ export class AccountsComponent implements OnInit {
                 }
             })
             .catch(error => console.log(JSON.stringify(error)));
+    }
+
+    public onSwipeItem(args: SwipeGestureEventData) {
+        if (args.direction == 1) {
+            this.tabsService.changeTab(1);
+        } else if (args.direction == 2) {
+            this.tabsService.changeTab(3);
+        }
     }
 
     public refresh(args) {

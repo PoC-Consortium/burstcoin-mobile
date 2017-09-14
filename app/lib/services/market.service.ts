@@ -56,20 +56,20 @@ export class MarketService {
         }
     }
 
-    public getPriceBTC(coins: number) : string {
+    public getPriceBTC(coins: number, decimals: number = 8) : string {
         if (this.currency.value != undefined) {
-            return (coins * this.currency.value.priceBTC).toFixed(8) + " BTC";
+            return (coins * this.currency.value.priceBTC).toFixed(decimals) + " BTC";
         } else {
             return "...";
         }
     }
 
-    public getPriceFiatCurrency(coins: number) : string {
+    public getPriceFiatCurrency(coins: number, decimals: number = 8) : string {
         if (this.currency.value != undefined) {
             if (this.currency.value.currency != "USD") {
-                return (coins * this.currency.value.priceCur).toFixed(8) + " " + this.currency.value.currency.toUpperCase();
+                return (coins * this.currency.value.priceCur).toFixed(decimals) + " " + this.currency.value.currency.toUpperCase();
             } else {
-                return (coins * this.currency.value.priceUSD).toFixed(8) + " $" ;
+                return (coins * this.currency.value.priceUSD).toFixed(decimals) + " $" ;
             }
         } else {
             return "...";

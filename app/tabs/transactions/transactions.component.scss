@@ -2,25 +2,20 @@
 
 .transaction-label-in {
     font-size: 16;
-    color: $background-dark;
-    background-color: $background-light;
-    border-width: 1;
-    border-radius: $default-border;
-    border-color: $background-dark;
-    width: 70;
-    text-align: center;
+    color: $success-light;
+    text-align: right;
     vertical-align: middle;
 }
 
 .transaction-label-out {
     font-size: 16;
-    color: $background-light;
-    background-color: $background-dark;
-    border-width: 1;
-    border-radius: $default-border;
-    width: 70;
-    text-align: center;
+    color: $error-light;
+    text-align: right;
     vertical-align: middle;
+}
+
+.amount {
+    font-size: 16;
 }
 
 .confirmed-indicator {
