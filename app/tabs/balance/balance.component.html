@@ -1,6 +1,6 @@
 <BalanceRefresh (refresh)="refresh($event)">
     <StackLayout orientation="vertical">
-        <StackLayout (doubleTap)="onDoubleTapBalance($event)" (longPress)="onLongPressBalance($event)" (swipe)="onSwipeBalance($event)" class="balance-container" orientation="vertical">
+        <StackLayout (doubleTap)="onDoubleTapBalance()" (longPress)="onLongPressBalance()" (swipe)="onSwipeBalance($event)" class="balance-container" orientation="vertical">
             <Image *ngIf="loading == false" class="qrcode" [src]="qrcode"></Image>
             <StackLayout *ngIf="loading" class="p-30" orientation="vertical">
                 <ActivityIndicator busy="true" width="100" height="100" class="activity-indicator"></ActivityIndicator>
