@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { Account, BurstAddress, Transaction } from "../../../lib/model";
 import { AccountService, MarketService, NotificationService } from "../../../lib/services";
 import { BarcodeScanner, ScanOptions } from 'nativescript-barcodescanner';
@@ -26,10 +27,15 @@ export class SendComponent implements OnInit {
         private barcodeScanner: BarcodeScanner,
         private marketService: MarketService,
         private notificationService: NotificationService,
-        private router: RouterExtensions
+        private router: RouterExtensions,
+        private route: ActivatedRoute
     ) {
         this.step = 1;
-        this.recipient = "BURST-";
+        if (this.route.snapshot.params['address'] != undefined) {
+            this.recipient = this.route.snapshot.params['address'];
+        } else {
+            this.recipient = "BURST-";
+        }
         this.amount = undefined;
         this.fee = 1;
         this.total = 1;

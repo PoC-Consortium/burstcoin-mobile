@@ -4,16 +4,17 @@ import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/mod
 import { isAndroid } from "platform";
 import { SwipeGestureEventData } from "ui/gestures";
 import { Label } from "ui/label";
-import { Image } from "ui/image"
+import { Image } from "ui/image";
+import { registerElement } from "nativescript-angular/element-registry";
 
 import { Account, BurstAddress, Currency } from "../../lib/model";
 import { AccountService, DatabaseService, MarketService, NotificationService, TabsService } from "../../lib/services";
 import { AddComponent } from "./add/add.component";
 import { RemoveComponent } from "./remove/remove.component";
 
-import { registerElement } from "nativescript-angular/element-registry";
-registerElement("AccountsRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
+let clipboard = require("nativescript-clipboard");
 
+registerElement("AccountsRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
 
 @Component({
     selector: "accounts",
@@ -65,6 +66,11 @@ export class AccountsComponent implements OnInit {
         this.modalDialogService.showModal(AddComponent, options)
             .then(result => { })
             .catch(error => { });
+    }
+
+    public onDoubleTap(address: string) {
+        clipboard.setText(address);
+        this.notificationService.info('Copied address "' + address + '" to clipboard!');
     }
 
     public onTapRemoveAccount(account: Account) {

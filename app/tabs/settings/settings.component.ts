@@ -10,6 +10,9 @@ import { AccountService, DatabaseService, MarketService, NotificationService } f
 import { AboutComponent } from "./about/about.component";
 import { CurrencyComponent } from "./currency/currency.component";
 import { NodeComponent } from "./node/node.component";
+import { SupportComponent } from "./support/support.component";
+
+import * as utils from "utils/utils";
 
 @Component({
     selector: "settings",
@@ -50,6 +53,16 @@ export class SettingsComponent implements OnInit {
             .catch(error => console.log(JSON.stringify(error)));
     }
 
+    public onTapSupport() {
+        const options: ModalDialogOptions = {
+            viewContainerRef: this.vcRef,
+            fullscreen: false,
+        };
+        this.modalDialogService.showModal(SupportComponent, options)
+            .then(result => {})
+            .catch(error => console.log(JSON.stringify(error)));
+    }
+
     public onTapCurrency() {
         const options: ModalDialogOptions = {
             viewContainerRef: this.vcRef,
@@ -71,6 +84,10 @@ export class SettingsComponent implements OnInit {
                 }
             })
             .catch(error => console.log(JSON.stringify(error)));
+    }
+
+    public onTapDocumentation() {
+        utils.openUrl("https://cgebe.github.io/burstcoin-wallet/");
     }
 
     public onTapNode() {

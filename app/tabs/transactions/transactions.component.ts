@@ -3,15 +3,17 @@ import { isAndroid } from "platform";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
 import { Label } from "ui/label";
 import { Border } from "ui/border";
+import { GestureEventData } from "ui/gestures";
+import { registerElement } from "nativescript-angular/element-registry";
 
 import { Account, Transaction } from "../../lib/model";
 import { Converter } from "../../lib/util";
 
 import { AccountService, DatabaseService, MarketService, NotificationService } from "../../lib/services";
 
-import { registerElement } from "nativescript-angular/element-registry";
-registerElement("TransactionsRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
+let clipboard = require("nativescript-clipboard");
 
+registerElement("TransactionsRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
 
 @Component({
     selector: "transactions",
@@ -41,6 +43,11 @@ export class TransactionsComponent implements OnInit {
                 this.ownId = this.accountService.currentAccount.value.id;
             }
         });
+    }
+
+    public onDoubleTap(address: string) {
+        clipboard.setText(address);
+        this.notificationService.info('Copied address "' + address + '" to clipboard!');
     }
 
     public convertTimestamp(timestamp: number) {

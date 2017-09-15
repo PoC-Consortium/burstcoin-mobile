@@ -24,6 +24,7 @@ import { SettingsComponent } from "./settings/settings.component";
 import { AboutComponent } from "./settings/about/about.component";
 import { CurrencyComponent } from "./settings/currency/currency.component";
 import { NodeComponent } from "./settings/node/node.component";
+import { SupportComponent } from "./settings/support/support.component";
 
 import { SharedModule } from "../lib/shared.module";
 
@@ -52,6 +53,7 @@ export function createBarcodeScanner() {
         AboutComponent,
         CurrencyComponent,
         NodeComponent,
+        SupportComponent,
         NoteComponent
     ],
     providers: [
@@ -67,7 +69,8 @@ export function createBarcodeScanner() {
         CurrencyComponent,
         NodeComponent,
         NoteComponent,
-        RemoveComponent
+        RemoveComponent,
+        SupportComponent
     ]
 })
 export class TabsModule { }

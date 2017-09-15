@@ -21,8 +21,6 @@ export class NodeComponent implements OnInit {
     ) {
         this.address = params.context;
         this.page.on("unloaded", () => {
-            // using the unloaded event to close the modal when there is user interaction
-            // e.g. user taps outside the modal page
             this.params.closeCallback();
         });
     }

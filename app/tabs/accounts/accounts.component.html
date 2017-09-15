@@ -2,7 +2,7 @@
     <ListView [items]="accounts" separatorColor="transparent">
         <ng-template let-item="item" let-i="index">
             <StackLayout>
-                <GridLayout (tap)="selectAccount(item)" (swipe)="onSwipeItem($event)" class="list-item" columns="auto, auto, auto, auto *, auto" rows="auto, auto, auto, auto">
+                <GridLayout (tap)="selectAccount(item)" (doubleTap)="onDoubleTap(item.address)" (swipe)="onSwipeItem($event)" class="list-item" columns="auto, auto, auto, auto *, auto" rows="auto, auto, auto, auto">
                     <Label col="0" row="0" colspan="4" [text]="item.address"></Label>
                     <Label *ngIf="item.selected" col="5" row="0" rowspan="2" class="fa text-center select-indicator" text="&#xf111;"></Label>
                     <Label *ngIf="!item.selected" col="5" row="0" rowspan="2" class="fa text-center select-indicator" text="&#xf10c;"></Label>

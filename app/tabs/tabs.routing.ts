@@ -13,7 +13,8 @@ const routes: Routes = [
     { path: "accounts/activate", component: ActivateComponent },
     { path: "accounts/add", component: AddComponent },
     { path: "balance/receive", component: ReceiveComponent },
-    { path: "balance/send", component: SendComponent }
+    { path: "balance/send", component: SendComponent },
+    { path: "balance/send/:address", component: SendComponent }
 ];
 
 @NgModule({

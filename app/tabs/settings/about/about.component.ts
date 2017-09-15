@@ -14,18 +14,12 @@ export class AboutComponent implements OnInit {
 
     constructor(private params: ModalDialogParams, private page: Page) {
         this.page.on("unloaded", () => {
-            // using the unloaded event to close the modal when there is user interaction
-            // e.g. user taps outside the modal page
             this.params.closeCallback();
         });
     }
 
     ngOnInit() {
 
-    }
-
-    public onTapDocumentation() {
-        utils.openUrl("https://cgebe.github.io/burstcoin-wallet/")
     }
 
     public onTapTwitter() {
