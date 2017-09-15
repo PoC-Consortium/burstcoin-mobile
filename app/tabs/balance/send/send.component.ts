@@ -2,8 +2,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
 import { Account, BurstAddress, Transaction } from "../../../lib/model";
 import { AccountService, MarketService, NotificationService } from "../../../lib/services";
-
-import { BarcodeScanner, ScanOptions } from "nativescript-barcodescanner";
+import { BarcodeScanner, ScanOptions } from 'nativescript-barcodescanner';
 
 @Component({
     selector: "send",
@@ -48,6 +47,7 @@ export class SendComponent implements OnInit {
         let options: ScanOptions = {
             formats: "QR_CODE"
         }
+
         this.barcodeScanner.scan(options).then((result) => {
             this.recipient = result.text;
         }, (errorMessage) => {

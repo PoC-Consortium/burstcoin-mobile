@@ -27,6 +27,10 @@ import { NodeComponent } from "./settings/node/node.component";
 
 import { SharedModule } from "../lib/shared.module";
 
+export function createBarcodeScanner() {
+  return new BarcodeScanner();
+}
+
 @NgModule({
     imports: [
         NativeScriptModule,
@@ -51,7 +55,7 @@ import { SharedModule } from "../lib/shared.module";
         NoteComponent
     ],
     providers: [
-        BarcodeScanner,
+        [{provide: BarcodeScanner, useFactory: (createBarcodeScanner)}],
         ModalDialogService
     ],
     schemas: [
