@@ -102,6 +102,7 @@ export class SettingsComponent implements OnInit {
                     this.settings.node = node;
                     this.databaseService.saveSettings(this.settings)
                         .then(settings => {
+                            this.databaseService.setSettings(settings);
                             this.notificationService.info("Node successfully updated!")
                         })
                         .catch(error => {

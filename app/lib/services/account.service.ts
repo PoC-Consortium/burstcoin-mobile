@@ -16,6 +16,7 @@ import 'rxjs/add/operator/toPromise';
 export class AccountService {
 
     private nodeUrl: string;
+    private timeout: number = 10000; // 10 seconds
 
     public currentAccount: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
@@ -26,7 +27,7 @@ export class AccountService {
         private notificationService: NotificationService
     ) {
         this.databaseService.settings.subscribe((settings: Settings) => {
-            this.nodeUrl = "https://" + settings.node;
+            this.nodeUrl = settings.node;
         });
     }
 
@@ -143,7 +144,7 @@ export class AccountService {
     public selectAccount(account: Account): Promise<Account> {
         return new Promise((resolve, reject) => {
             this.databaseService.selectAccount(account)
-                .then(account => {})
+                .then(account => { })
             this.setCurrentAccount(account);
             resolve(account);
         });
@@ -158,7 +159,7 @@ export class AccountService {
             params.set("account", id);
             let requestOptions = this.getRequestOptions();
             requestOptions.params = params;
-            return this.http.get(this.nodeUrl, requestOptions).toPromise()
+            return this.http.get(this.nodeUrl, requestOptions).timeout(this.timeout).toPromise()
                 .then(response => {
                     let transactions: Transaction[] = [];
                     response.json().transactions.map(transaction => {
@@ -168,7 +169,7 @@ export class AccountService {
                     });
                     resolve(transactions);
                 })
-                .catch(error => this.handleError(error));
+                .catch(error => reject([]));
         });
     }
 
@@ -179,7 +180,7 @@ export class AccountService {
             params.set("account", id);
             let requestOptions = this.getRequestOptions();
             requestOptions.params = params;
-            return this.http.get(this.nodeUrl, requestOptions).toPromise()
+            return this.http.get(this.nodeUrl, requestOptions).timeout(this.timeout).toPromise()
                 .then(response => {
                     let transactions: Transaction[] = [];
                     response.json().unconfirmedTransactions.map(transaction => {
@@ -190,21 +191,23 @@ export class AccountService {
                     });
                     resolve(transactions);
                 })
-                .catch(error => this.handleError(error));
+                .catch(error => reject([]));
         });
     }
 
     public getTransaction(id: string): Promise<Transaction> {
-        let params: URLSearchParams = new URLSearchParams();
-        params.set("requestType", "getTransaction");
-        params.set("transaction", id);
-        let requestOptions = this.getRequestOptions();
-        requestOptions.params = params;
-        return this.http.get(this.nodeUrl, requestOptions).toPromise()
-            .then(response => {
-                return response.json() || [];
-            })
-            .catch(error => this.handleError(error));
+        return new Promise((resolve, reject) => {
+            let params: URLSearchParams = new URLSearchParams();
+            params.set("requestType", "getTransaction");
+            params.set("transaction", id);
+            let requestOptions = this.getRequestOptions();
+            requestOptions.params = params;
+            return this.http.get(this.nodeUrl, requestOptions).timeout(this.timeout).toPromise()
+                .then(response => {
+                    return response.json() || [];
+                })
+                .catch(error => reject(undefined));
+        });
     }
 
     public getBalance(id: string): Promise<any> {
@@ -214,19 +217,19 @@ export class AccountService {
             params.set("account", id);
             let requestOptions = this.getRequestOptions();
             requestOptions.params = params;
-            return this.http.get(this.nodeUrl, requestOptions).toPromise()
+            return this.http.get(this.nodeUrl, requestOptions).timeout(this.timeout).toPromise()
                 .then(response => {
                     if (response.json().errorCode == undefined) {
                         let balanceString = response.json().guaranteedBalanceNQT;
                         balanceString = this.convertStringToNumber(balanceString);
                         let unconfirmedBalanceString = response.json().unconfirmedBalanceNQT;
                         unconfirmedBalanceString = this.convertStringToNumber(unconfirmedBalanceString);
-                        resolve({ confirmed: parseFloat(balanceString), unconfirmed: parseFloat(unconfirmedBalanceString)});
+                        resolve({ confirmed: parseFloat(balanceString), unconfirmed: parseFloat(unconfirmedBalanceString) });
                     } else {
                         reject(0);
                     }
                 })
-                .catch(error => this.handleError(error));
+                .catch(error => reject(0));
         });
     }
 
@@ -244,7 +247,7 @@ export class AccountService {
             requestOptions.params = params;
 
             // request 'sendMoney' to burst node
-            return this.http.post(this.nodeUrl, {}, requestOptions).toPromise()
+            return this.http.post(this.nodeUrl, {}, requestOptions).timeout(this.timeout).toPromise()
                 .then(response => {
                     if (response.json().unsignedTransactionBytes != undefined) {
                         // get unsigned transactionbytes
@@ -263,7 +266,7 @@ export class AccountService {
                                                     requestOptions = this.getRequestOptions();
                                                     requestOptions.params = params;
                                                     // request 'broadcastTransaction' to burst node
-                                                    return this.http.post(this.nodeUrl, {}, requestOptions).toPromise()
+                                                    return this.http.post(this.nodeUrl, {}, requestOptions).timeout(this.timeout).toPromise()
                                                         .then(response => {
                                                             params = new URLSearchParams();
                                                             params.set("requestType", "getTransaction");
@@ -271,7 +274,7 @@ export class AccountService {
                                                             requestOptions = this.getRequestOptions();
                                                             requestOptions.params = params;
                                                             // request 'getTransaction' to burst node
-                                                            return this.http.get(this.nodeUrl, requestOptions).toPromise()
+                                                            return this.http.get(this.nodeUrl, requestOptions).timeout(this.timeout).toPromise()
                                                                 .then(response => {
                                                                     resolve(new Transaction(response.json()));
                                                                 })
@@ -285,9 +288,9 @@ export class AccountService {
                                     }).catch(error => reject("Transaction error: Verifying signature!"));
 
                             }).catch(error => reject("Transaction error: Generating signature!"));
-                        } else {
-                            reject("Transaction error: Generating transaction. Check the recipient!");
-                        }
+                    } else {
+                        reject("Transaction error: Generating transaction. Check the recipient!");
+                    }
                 }).catch(error => reject("Transaction error: Generating transaction. Check the recipient!"));
         });
     }

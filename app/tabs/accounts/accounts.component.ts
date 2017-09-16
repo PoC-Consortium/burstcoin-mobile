@@ -136,7 +136,7 @@ export class AccountsComponent implements OnInit {
                             })
                             .catch(error => {
                                 pullRefresh.refreshing = false;
-                                this.notificationService.info("Could not fetch currency information!")
+                                this.notificationService.info("Could not fetch currency information! Check your internet connection.")
                             });
                     }
                 })
