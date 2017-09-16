@@ -11,6 +11,7 @@ import { Converter } from "../../lib/util";
 
 import { AccountService, DatabaseService, MarketService, NotificationService } from "../../lib/services";
 
+import * as SocialShare from "nativescript-social-share";
 let clipboard = require("nativescript-clipboard");
 
 registerElement("TransactionsRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
@@ -48,6 +49,10 @@ export class TransactionsComponent implements OnInit {
     public onDoubleTap(address: string) {
         clipboard.setText(address);
         this.notificationService.info('Copied address "' + address + '" to clipboard!');
+    }
+
+    public onLongPress(address: string) {
+        SocialShare.shareText(address);
     }
 
     public convertTimestamp(timestamp: number) {

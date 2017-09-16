@@ -12,7 +12,7 @@ import { AccountService, DatabaseService, MarketService, NotificationService, Ta
 import { AddComponent } from "./add/add.component";
 import { RemoveComponent } from "./remove/remove.component";
 
-let clipboard = require("nativescript-clipboard");
+import * as SocialShare from "nativescript-social-share";
 
 registerElement("AccountsRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
 
@@ -68,9 +68,8 @@ export class AccountsComponent implements OnInit {
             .catch(error => { });
     }
 
-    public onDoubleTap(address: string) {
-        clipboard.setText(address);
-        this.notificationService.info('Copied address "' + address + '" to clipboard!');
+    public onLongPress(address: string) {
+        SocialShare.shareText(address);
     }
 
     public onTapRemoveAccount(account: Account) {
