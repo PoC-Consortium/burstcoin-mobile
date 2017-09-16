@@ -2,8 +2,15 @@
     <StackLayout class="page-content">
         <StackLayout class="modal-container">
             <StackLayout class="body-container">
-                <Label class="solo fa" textWrap="true" text="This version is running on the testnet, therefore importing your default burst accounts will show zero balances. If you need test-BURST to experiment with the functionalities please give notice here:"></Label>
-                <Button class="btn btn-primary btn-active about-button fa" text="&#xf0d6; GetBurst" (tap)="onTapGetBurst()"></Button>
+                <Label class="solo fa" textWrap="true" [text]="'Version ' + version"></Label>
+                <Label class="top fa text-left" textWrap="true" text="Features:"></Label>
+                <Label class="middle fa text-left" textWrap="true" text="* Watch only addresses"></Label>
+                <Label class="middle fa text-left" textWrap="true" text="* Currency Conversion"></Label>
+                <Label class="middle fa text-left" textWrap="true" text="* Client-side encryption and decryption"></Label>
+                <Label class="middle fa text-left" textWrap="true" text="* QR code support"></Label>
+                <Label class="middle fa text-left" textWrap="true" text="* Secure and easy passphrase generation"></Label>
+                <Label class="top fa text-left" textWrap="true" text="Features:"></Label>
+                <Button class="btn btn-primary btn-active about-button fa" text="&#xf05d;" (tap)="onTapAccept()"></Button>
             </StackLayout>
         </StackLayout>
     <StackLayout>
