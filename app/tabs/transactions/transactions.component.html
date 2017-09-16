@@ -8,7 +8,7 @@
 
                     <Label col="0" row="1" colspan="5" class="fa p-b-5 address" [text]="'&#xf2c0; ' + item.senderAddress"></Label>
 
-                    <Label col="0" row="2" colspan="3" class="fa p-b-5" [text]="'&#xf017; ' + (convertTimestamp(item.timestamp) | date: 'dd.MM.yyyy hh:mm:ss a')"></Label>
+                    <Label col="0" row="2" colspan="3" class="fa p-b-5" [text]="'&#xf017; ' + (convertTimestamp(item.timestamp) | date: 'dd.MM.yyyy HH:mm:ss')"></Label>
                     <Label *ngIf="item.confirmed" col="4" row="2" class="fa confirmed-indicator p-b-5 text-right" text="&#xf00c;"></Label>
                     <Label *ngIf="!item.confirmed" col="4" row="2" class="fa unconfirmed-indicator p-b-5 text-right" text="&#xf021;"></Label>
                 </GridLayout>
@@ -18,7 +18,7 @@
 
                     <Label col="0" row="1" colspan="5" class="fa p-b-5 address" [text]="'&#xf2c0; ' + item.recipientAddress"></Label>
 
-                    <Label col="0" row="2" colspan="3" class="fa p-b-5" [text]="'&#xf017; ' + (convertTimestamp(item.timestamp) | date: 'dd.MM.yyyy hh:mm:ss a')"></Label>
+                    <Label col="0" row="2" colspan="3" class="fa p-b-5" [text]="'&#xf017; ' + (convertTimestamp(item.timestamp) | date: 'dd.MM.yyyy HH:mm:ss')"></Label>
                     <Label *ngIf="item.confirmed" col="4" row="2" class="fa confirmed-indicator p-b-5 text-right" text="&#xf00c;"></Label>
                     <Label *ngIf="!item.confirmed" col="4" row="2" class="fa unconfirmed-indicator p-b-5 text-right" text="&#xf021;"></Label>
                 </GridLayout>
