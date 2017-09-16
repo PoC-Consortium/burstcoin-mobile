@@ -26,15 +26,7 @@ export class NoteComponent implements OnInit {
 
     }
 
-    public onTapDocumentation() {
-        utils.openUrl("https://cgebe.github.io/burstcoin-wallet/")
-    }
-
-    public onTapGithub() {
-        utils.openUrl("https://github.com/cgebe/burstcoin-wallet/issues")
-    }
-
-    public onTapGetBurst() {
-        utils.openUrl("https://forums.getburst.net/t/discussion-thread-for-new-testnet/243?source_topic_id=244")
+    public onTapAccept() {
+        this.params.closeCallback(false);
     }
 }
