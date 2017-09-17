@@ -2,7 +2,7 @@
     Burst Address class @author cgebe
 */
 
-let bigInt = require('big-integer');
+let BN = require('bn.js');
 
 export class BurstAddress {
 
@@ -36,7 +36,7 @@ export class BurstAddress {
             codeword = BurstAddress.initialCodeword,
             pos = 0;
 
-        let plainString = bigInt(plain).toString();
+        let plainString = new BN(plain).toString();
         let length = plainString.length;
 
         for (let i = 0; i < length; i++) {
@@ -155,7 +155,7 @@ export class BurstAddress {
             out += digit10;
         } while (length > 0);
 
-        return bigInt(out.split("").reverse().join("")).toString();
+        return new BN(out.split("").reverse().join("")).toString();
     }
 
     public static isValid(address: string) {

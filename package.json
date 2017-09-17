@@ -33,7 +33,7 @@
     "@angular/http": "4.2.5",
     "@angular/platform-browser": "4.2.5",
     "@angular/router": "4.2.5",
-    "big-integer": "^1.6.24",
+    "bn.js": "^4.11.8",
     "crypto-js": "^3.1.9-1",
     "file-system": "^2.2.2",
     "libsodium": "^0.5.2",

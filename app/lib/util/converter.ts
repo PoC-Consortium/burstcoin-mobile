@@ -1,4 +1,4 @@
-let bigInt = require("big-integer");
+let BN = require('bn.js');
 let CryptoJS = require("crypto-js");
 
 declare function escape(s: string): string;
@@ -92,13 +92,13 @@ export class Converter {
     public static convertByteArrayToBigInteger(bytes, opt_startIndex) {
         let index = this.checkBytesToIntInput(bytes, 8, opt_startIndex);
 
-        let value = bigInt.bigInt("0", 10);
+        let value = new BN("0", 10);
 
         let temp1, temp2;
 
         for (let i = 7; i >= 0; i--) {
-            temp1 = value.multiply(bigInt.bigInt("256", 10));
-            temp2 = temp1.add(bigInt.bigInt(bytes[opt_startIndex + i].toString(10), 10));
+            temp1 = value.multiply(new BN("256", 10));
+            temp2 = temp1.add(new BN(bytes[opt_startIndex + i].toString(10), 10));
             value = temp2;
         }
 

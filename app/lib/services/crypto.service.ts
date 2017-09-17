@@ -4,7 +4,7 @@ import { PassPhraseGenerator, ECKCDSA } from "../util/crypto";
 import { BurstAddress, Keypair } from "../model";
 
 let CryptoJS = require("crypto-js");
-let bigInt = require("big-integer");
+let BN = require('bn.js');
 
 @Injectable()
 export class CryptoService {
@@ -60,7 +60,7 @@ export class CryptoService {
             // convert each byte into a number with radix 10
             let numbers = slice.map(byte => byte.toString(10));
             // create a biginteger based on the reversed byte/number array
-            let id = bigInt.fromArray(numbers, 256); // base 256 for byte
+            let id = new BN(numbers, 256); // base 256 for byte
             resolve(id.toString()); // return big integer in string
         });
     }
