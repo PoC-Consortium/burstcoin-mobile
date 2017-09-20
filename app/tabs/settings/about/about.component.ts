@@ -12,6 +12,8 @@ import * as utils from "utils/utils";
 })
 export class AboutComponent implements OnInit {
 
+    public version: string = "0.1.0";
+
     constructor(private params: ModalDialogParams, private page: Page) {
         this.page.on("unloaded", () => {
             this.params.closeCallback();

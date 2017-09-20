@@ -4,6 +4,9 @@
   "readme": "none",
   "repository": "private",
   "profiling": "timeline",
+  "android": {
+    "markingMode": "none"
+  },
   "nativescript": {
     "id": "org.icewave.burstcoinwallet",
     "tns-android": {
