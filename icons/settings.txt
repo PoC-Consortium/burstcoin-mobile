@@ -1,0 +1,8 @@
+https://romannurik.github.io/AndroidAssetStudio/icons-generic.html
+
+Image
+Trim
+Padding 0%
+Asset Size 30dpi
+Asset Padding 4dpi
+color #000027
