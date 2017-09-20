@@ -47,6 +47,14 @@ export class AccountsComponent implements OnInit {
             .catch(err => {
                 console.log("No accounts found: " + err);
             })
+
+        this.accountService.currentAccount.subscribe((account: Account) => {
+            if (account != undefined) {
+                this.accounts.filter(acc => acc.id == account.id).map(acc => {
+                    acc.balance = account.balance;
+                })
+            }
+        });
     }
 
     public selectAccount(account: Account) {
