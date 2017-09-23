@@ -5,6 +5,7 @@ import { device } from "platform";
 import { Observable, ReplaySubject } from 'rxjs/Rx';
 
 import { Account, BurstAddress, Currency, HttpError, Keypair, Settings, Transaction } from "../model";
+import { NoConnectionError, UnknownAccountError } from "../model/error";
 import { CryptoService, DatabaseService, NotificationService} from "./";
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -135,9 +136,9 @@ export class AccountService {
                                     this.databaseService.saveAccount(account)
                                         .catch(error => { console.log("Failed saving the account!"); })
                                     resolve(account);
-                                })
-                        }).catch(error => reject(account))
-                }).catch(error => reject(account))
+                                }).catch(error => reject(error))
+                        }).catch(error => reject(error))
+                }).catch(error => reject(error))
         });
     }
 
@@ -169,7 +170,7 @@ export class AccountService {
                     });
                     resolve(transactions);
                 })
-                .catch(error => reject([]));
+                .catch(error => reject(new NoConnectionError()));
         });
     }
 
@@ -191,7 +192,7 @@ export class AccountService {
                     });
                     resolve(transactions);
                 })
-                .catch(error => reject([]));
+                .catch(error => reject(new NoConnectionError()));
         });
     }
 
@@ -206,7 +207,7 @@ export class AccountService {
                 .then(response => {
                     return response.json() || [];
                 })
-                .catch(error => reject(undefined));
+                .catch(error => reject(new NoConnectionError()));
         });
     }
 
@@ -226,10 +227,14 @@ export class AccountService {
                         unconfirmedBalanceString = this.convertStringToNumber(unconfirmedBalanceString);
                         resolve({ confirmed: parseFloat(balanceString), unconfirmed: parseFloat(unconfirmedBalanceString) });
                     } else {
-                        reject(0);
+                        if (response.json().errorDescription == "Unknown account") {
+                            reject(new UnknownAccountError())
+                        } else {
+                            reject(new Error("Failed fetching balance"));
+                        }
                     }
                 })
-                .catch(error => reject(0));
+                .catch(error => reject(new NoConnectionError()));
         });
     }
 

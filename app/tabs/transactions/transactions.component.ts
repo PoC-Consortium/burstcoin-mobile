@@ -71,10 +71,12 @@ export class TransactionsComponent implements OnInit {
                         pullRefresh.refreshing = false;
                     })
                     .catch(error => {
+                        this.notificationService.error(error.message)
                         pullRefresh.refreshing = false;
                     });
             })
-            .catch(account => {
+            .catch(error => {
+                this.notificationService.error(error.message)
                 pullRefresh.refreshing = false;
             })
     }

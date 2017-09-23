@@ -2,14 +2,16 @@ import { Injectable } from "@angular/core";
 import { Http, Headers, RequestOptions, Response, URLSearchParams } from "@angular/http";
 import { Observable, BehaviorSubject } from 'rxjs/Rx';
 import { Currency, HttpError } from "../model";
+import { NoConnectionError } from "../model/error";
 
 @Injectable()
 export class MarketService {
 
     public currency: BehaviorSubject<any> = new BehaviorSubject(undefined);
+    private timeout: number = 10000; // 10 seconds
 
     constructor(private http: Http) {
-        this.updateCurrency();
+        this.updateCurrency().catch(error => {});
     }
 
     public setCurrency(currency: Currency) {
@@ -30,6 +32,7 @@ export class MarketService {
                 requestOptions.params = params;
             }
             return this.http.get("https://api.coinmarketcap.com/v1/ticker/burst", requestOptions)
+                .timeout(this.timeout)
                 .toPromise()
                 .then(response => {
                     let r = response.json() || [];
@@ -42,7 +45,7 @@ export class MarketService {
                     }
                 })
                 .catch(error => {
-                    console.log("currency update failed");
+                    reject(new NoConnectionError("Could not reach market for currency updates. Check your internet connection!"))
                 });
         });
     }

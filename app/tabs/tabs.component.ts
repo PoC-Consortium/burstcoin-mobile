@@ -5,6 +5,7 @@ import { isAndroid } from "platform";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
 
 import { Account } from "../lib/model";
+import { UnknownAccountError } from "../lib/model/error";
 import { AccountService, DatabaseService, NotificationService, TabsService } from "../lib/services";
 
 import { NoteComponent } from "./note/note.component";
@@ -41,12 +42,9 @@ export class TabsComponent implements OnInit {
             this.accountService.synchronizeAccount(account)
                 .then(account => {
                     this.accountService.setCurrentAccount(account);
-                    //this.showNotes();
                 })
-                .catch(account => {
+                .catch(error => {
                     this.accountService.setCurrentAccount(account);
-                    //this.showNotes();
-                    //this.notificationService.info("Failed synchronization. Check your internet connection!")
                 })
 
             // listen to tabs service for programmatically changed index

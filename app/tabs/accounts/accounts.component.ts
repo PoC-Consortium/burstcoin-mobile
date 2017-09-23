@@ -8,6 +8,7 @@ import { Image } from "ui/image";
 import { registerElement } from "nativescript-angular/element-registry";
 
 import { Account, BurstAddress, Currency } from "../../lib/model";
+import { NoConnectionError } from "../../lib/model/error";
 import { AccountService, DatabaseService, MarketService, NotificationService, TabsService } from "../../lib/services";
 import { AddComponent } from "./add/add.component";
 import { RemoveComponent } from "./remove/remove.component";
@@ -131,21 +132,26 @@ export class AccountsComponent implements OnInit {
                                 pullRefresh.refreshing = false;
                             })
                             .catch(error => {
+                                this.notificationService.error(error.message)
                                 pullRefresh.refreshing = false;
-                                this.notificationService.info("Could not fetch currency information!")
                             });
                     }
                 })
                 .catch(error => {
+                    if (error instanceof NoConnectionError) {
+                        this.notificationService.error(error.message)
+                        pullRefresh.refreshing = false;
+                        return;
+                    }
                     if (i == this.accounts.length - 1) {
                         this.marketService.updateCurrency()
                             .then(currency => {
                                 pullRefresh.refreshing = false;
                             })
                             .catch(error => {
+                                this.notificationService.error(error.message)
                                 pullRefresh.refreshing = false;
-                                this.notificationService.info("Could not fetch currency information! Check your internet connection.")
-                            });
+                            })
                     }
                 })
         }
