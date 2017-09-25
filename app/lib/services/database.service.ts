@@ -3,7 +3,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Database } from "../model/abstract";
 import { Account, Settings } from "../model";
 
-let fs = require("file-system");
+import * as fs from "tns-core-modules/file-system";
+
 let Loki = require("lokijs");
 let LokiNativeScriptAdapter = require("loki-nativescript-adapter");
 
@@ -11,7 +12,7 @@ let LokiNativeScriptAdapter = require("loki-nativescript-adapter");
 export class DatabaseService extends Database {
 
     private database: any;
-    private static readonly path: string = fs.path.join(fs.knownFolders.currentApp().path, "loki.db");
+    private static readonly path: string = fs.path.join(fs.knownFolders.documents().path, "loki.db");
 
     public ready: BehaviorSubject<any> = new BehaviorSubject(false);
     public settings: BehaviorSubject<any> = new BehaviorSubject(false);
