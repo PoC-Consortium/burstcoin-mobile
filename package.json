@@ -48,6 +48,7 @@
     "nativescript-barcodescanner": "^2.6.1",
     "nativescript-cardview": "^2.0.2",
     "nativescript-clipboard": "^1.1.6",
+    "nativescript-iqkeyboardmanager": "^1.1.0",
     "nativescript-pulltorefresh": "^2.0.2",
     "nativescript-snackbar": "^1.3.0",
     "nativescript-social-share": "^1.4.0",
