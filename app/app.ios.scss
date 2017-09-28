@@ -1,0 +1,204 @@
+
+// Start custom common variables
+@import 'app-variables';
+// End custom common variables
+
+// Import the theme’s main ruleset.
+@import '~nativescript-theme-core/scss/index';
+
+// Place any CSS rules you want to apply on both iOS and Android here.
+// This is where the vast majority of your CSS code goes.
+Page {
+    background-color: $background-light;
+    color: $default-text;
+}
+
+.action-bar {
+    text-align: left;
+}
+
+.logo-tiny {
+    height: 40;
+    width: 40;
+    background: transparent;
+    background-color: transparent;
+}
+
+.logo-small {
+    height: 100;
+    width: 100;
+    background: transparent;
+    background-color: transparent;
+}
+
+.logo-normal {
+    height: 170;
+    width: 170;
+    background: transparent;
+    background-color: transparent;
+}
+
+.btn-primary {
+    color: $default-text;
+    background-color: $background-light;
+    border-width: 1px;
+    border-color: $background-dark;
+    border-radius: $default-border;
+}
+
+.action-button {
+    width: 70%;
+    height: $btn-height;
+}
+
+.input {
+    //background-color: $background-dark;
+    color: $default-text;
+}
+
+.text-view-label {
+    font-size: $text-view-label-size;
+}
+
+.list-item {
+    background-color: $background-light;
+    margin: 10 7 0 7;
+    padding: 10;
+    border-radius: $default-border;
+}
+
+.activity-indicator {
+    color: $background-dark;
+}
+// Font icon class
+.fa {
+   font-family: "FontAwesome";
+}
+// Common page class
+.page-content {
+
+    .container {
+        height: 100%;
+        vertical-align: middle;
+
+        .body-container {
+            background-color: $background-light;
+            text-align: center;
+            margin-top: 7;
+            border-radius: $default-border;
+            width: 90%;
+            padding: 15;
+
+            .solo {
+                margin: 10;
+            }
+
+            .top {
+                margin: 10 10 0 10;
+            }
+
+            .middle {
+                margin: 0 10 0 10;
+            }
+
+            .bottom {
+                margin: 0 10 10 10;
+            }
+        }
+
+        .info-container {
+            background-color: $background-dark;
+            color: $background-light;
+            border-color: $default-border-color;
+            border-width: 1;
+            border-radius: $default-border;
+            text-align: center;
+            width: 80%;
+
+            .solo {
+                margin: 10;
+            }
+
+            .top {
+                margin: 10 10 0 10;
+            }
+
+            .middle {
+                margin: 0 10 0 10;
+            }
+
+            .bottom {
+                margin: 0 10 10 10;
+            }
+        }
+    }
+
+    .modal-container {
+        vertical-align: middle;
+
+        .body-container {
+            background-color: $background-light;
+            text-align: center;
+            border-radius: $default-border;
+            width: 100%;
+            padding: 30;
+
+            .solo {
+                margin: 10;
+            }
+
+            .top {
+                margin: 10 10 0 10;
+            }
+
+            .middle {
+                margin: 0 10 0 10;
+            }
+
+            .bottom {
+                margin: 0 10 10 10;
+            }
+        }
+
+        .info-container {
+            background-color: $background-dark;
+            color: $background-light;
+            border-color: $default-border-color;
+            border-width: 1;
+            border-radius: $default-border;
+            text-align: center;
+            width: 80%;
+
+            .solo {
+                margin: 10;
+            }
+
+            .top {
+                margin: 10 10 0 10;
+            }
+
+            .middle {
+                margin: 0 10 0 10;
+            }
+
+            .bottom {
+                margin: 0 10 10 10;
+            }
+        }
+    }
+
+    .page-placeholder {
+        color: $page-icon-color;
+        font-size: $page-content-placeholder-font-size;
+        vertical-align: center;
+        horizontal-align: center;
+    }
+
+    .page-icon {
+        font-size: 72;
+        vertical-align: top;
+        horizontal-align: center;
+        color: $page-icon-color;
+        margin-top: 20%;
+    }
+}

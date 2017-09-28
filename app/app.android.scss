@@ -6,9 +6,6 @@
 // Import the theme’s main ruleset.
 @import '~nativescript-theme-core/scss/index';
 
-// Import the platform specific ruleset.
-@import url('~/platform.css');
-
 // Place any CSS rules you want to apply on both iOS and Android here.
 // This is where the vast majority of your CSS code goes.
 Page {
