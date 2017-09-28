@@ -1,0 +1,30 @@
+
+
+@import '../../../app-variables';
+
+
+.big-label {
+    font-size: 18;
+}
+
+.huge-label {
+    font-size: 24;
+}
+
+.recipient-input {
+    width: 100%;
+    text-transform: uppercase;
+    height: 32;
+    padding: 5;
+}
+
+.number-input {
+    width: 50%;
+    height: 32;
+    padding: 5;
+}
+
+.scan-button {
+    height: 50;
+    width: 50;
+}

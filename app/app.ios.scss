@@ -11,6 +11,7 @@
 Page {
     background-color: $background-light;
     color: $default-text;
+    font-size: 14;
 }
 
 .action-bar {
@@ -52,8 +53,10 @@ Page {
 }
 
 .input {
-    //background-color: $background-dark;
+    background-color: #f0eded;
     color: $default-text;
+    border-radius: $default-border;
+    height: 32;
 }
 
 .text-view-label {

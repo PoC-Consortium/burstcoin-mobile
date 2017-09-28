@@ -1,0 +1,38 @@
+@import '../../app-variables';
+
+.transaction-label-in {
+    font-size: 16;
+    color: $success-light;
+    text-align: right;
+    vertical-align: middle;
+}
+
+.transaction-label-out {
+    font-size: 16;
+    color: $error-light;
+    text-align: right;
+    vertical-align: middle;
+}
+
+.address {
+    width: 100%
+}
+
+.amount {
+    font-size: 16;
+    width: 85%;
+}
+
+.confirmed-indicator {
+    color: $success-light;
+    vertical-align: middle;
+    font-size: 16;
+    padding-left: 5;
+}
+
+.unconfirmed-indicator {
+    color: $sky;
+    vertical-align: middle;
+    font-size: 16;
+    padding-left: 5;
+}
