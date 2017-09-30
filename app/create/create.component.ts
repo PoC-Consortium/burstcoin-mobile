@@ -29,6 +29,7 @@ export class CreateComponent implements OnInit {
     try: string;
     pin: string;
     textField: TextField;
+    wordnumber;
 
     /*
     Step 0: Loading screen
@@ -51,6 +52,7 @@ export class CreateComponent implements OnInit {
         this.retypePassPhrase = [];
         this.word = 0;
         this.try = "";
+        this.wordnumber = { value: 1 };
     }
 
     ngOnInit(): void {
@@ -131,7 +133,7 @@ export class CreateComponent implements OnInit {
             this.textField.text = "";
             this.retypePassPhrase = [];
             this.try = "";
-
+            this.wordnumber = { value: this.word + 1 };
             if (this.word >= 12) {
                 // correctly retyped all 12 words
                 this.step = 4;

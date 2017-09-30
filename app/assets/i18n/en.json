@@ -1,12 +1,22 @@
 {
-    "START" : {
-        "CREATE": "Create",
-        "IMPORT": "Import",
-        "INFO": "No account created yet! Choose to import an existing account or create a new one!"
+    "CREATE": {
+        "DONE": "Done",
+        "GENERATE_AGAIN": "Generate Again",
+        "INFO_SEED": "Tap and swipe over this area!",
+        "INFO_SEED_FINISHED": "Seed collected!",
+        "INFO_STEP_ONE": "First, create a random seed for the generation of your passphrase!",
+        "INFO_STEP_TWO": "Now you have to memorize all 12 words of your passphrase in the right order!",
+        "INFO_STEP_TWO_ACTION": "Write down the following words separated by space and keep them secret!",
+        "INFO_STEP_THREE": "Please reenter the words of your passphrase!",
+        "INFO_STEP_THREE_ACTION": "Write down word #{{value}} and select it!",
+        "INFO_STEP_FOUR": "Please set a six-digit pin code for your account. The pin code is used to approve outgoing transactions.",
+        "PIN_INPUT_HINT": "PIN",
+        "POSSIBILITY_INPUT_HINT": "Word #{{value}}",
+        "NEXT": "Next"
     },
     "IMPORT" : {
         "ACTIVE_ACCOUNT": "Active Account",
-        "ACTIVE_ACCOUNT_DESCRIPTION": "An active account offers full functionaility. You can send and receive Burstcoins. In addition, you can check your balance and see the history of your transactions.",
+        "ACTIVE_ACCOUNT_DESCRIPTION": "An active account offers full functionality. You can send and receive Burstcoins. In addition, you can check your balance and see the history of your transactions.",
         "ACTIVE_ACCOUNT_INPUT_HINT": "Passphrase",
         "ACTIVE_ACCOUNT_PIN_INFO": "Please set a six-digit pin code for your account. The pin code is used to approve outgoing transactions.",
         "DONE": "Done",
@@ -14,8 +24,16 @@
         "INFO": "Import an active account by entering its passphrase! Otherwise, import an offline account by entering its Burstcoin address!",
         "NEXT": "Next",
         "OFFLINE_ACCOUNT": "Offline Account",
-        "OFFLINE_ACCOUNT_DESCRIPTION": "An offline account offers the same functionaility than an active account, except you cannot send Burstcoins to another address.",
+        "OFFLINE_ACCOUNT_DESCRIPTION": "An offline account offers the same functionality than an active account, except you cannot send Burstcoins to another address.",
         "OFFLINE_ACCOUNT_INPUT_HINT": "BURST-XXXX-XXXX-XXXX-XXXXX",
-        "PIN_INPUT_HINT": "PIN"
+        "PIN_INPUT_HINT": "PIN",
+        "SHOW" : {
+            "QUESTION": "Is this your Burst address?"
+        }
+    },
+    "START" : {
+        "CREATE": "Create",
+        "IMPORT": "Import",
+        "INFO": "No account created yet! Choose to import an existing account or create a new one!"
     }
 }

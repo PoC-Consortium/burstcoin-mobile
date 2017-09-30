@@ -15,10 +15,10 @@
             <StackLayout *ngIf="step != 0" class="info-container" orientation="vertical">
                 <StackLayout orientation="vertical">
                     <Label *ngIf="step != 0" class="top text-view-label fa" text="&#xf05a;"></Label>
-                    <Label *ngIf="step == 1" class="bottom" textWrap="true" text="First, create a random seed for the generation of your passphrase!"></Label>
-                    <Label *ngIf="step == 2" class="bottom" textWrap="true" text="Now you have to memorize all 12 words of your passphrase in the right order!"></Label>
-                    <Label *ngIf="step == 3" class="bottom" textWrap="true" text="Please reenter the words of your passphrase!"></Label>
-                    <Label *ngIf="step == 4" class="bottom" textWrap="true" text="Please set a six-digit pin code for your account. The pin code is used to approve outgoing transactions."></Label>
+                    <Label *ngIf="step == 1" class="bottom" textWrap="true" [text]="'CREATE.INFO_STEP_ONE' | translate"></Label>
+                    <Label *ngIf="step == 2" class="bottom" textWrap="true" [text]="'CREATE.INFO_STEP_TWO' | translate"></Label>
+                    <Label *ngIf="step == 3" class="bottom" textWrap="true" [text]="'CREATE.INFO_STEP_THREE' | translate"></Label>
+                    <Label *ngIf="step == 4" class="bottom" textWrap="true" [text]="'CREATE.INFO_STEP_FOUR' | translate"></Label>
                 </StackLayout>
             </StackLayout>
 
@@ -28,46 +28,45 @@
 
             <StackLayout *ngIf="step == 1" style="padding: 0px;" class="body-container m-t-10" orientation="vertical">
                 <StackLayout *ngIf="seed.length < seedLimit" (touch)="onTouch($event)" class="seed-area" orientation="vertical">
-                    <Label class="font-weight-bold" text="Tap and swipe over this area!"></Label>
+                    <Label class="font-weight-bold" [text]="'CREATE.INFO_SEED' | translate"></Label>
                     <StackLayout class="seed-progress" orientation="vertical">
                         <Progress [value]="seed.length" [maxValue]="seedLimit" class="m-20"></Progress>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout *ngIf="seed.length >= seedLimit">
-                    <Label class="font-weight-bold solo" text="Seed collected!"></Label>
-                    <Button class="btn btn-primary btn-active action-button fa" [isEnabled]="seed.length >= seedLimit" text="Next &#xf18e;" (tap)="onTapSeedNext($event)"></Button>
+                    <Label class="font-weight-bold solo" [text]="'CREATE.INFO_SEED_FINISHED' | translate"></Label>
+                    <Button class="btn btn-primary btn-active action-button fa" [isEnabled]="seed.length >= seedLimit" [text]="('CREATE.NEXT' | translate) + ' &#xf18e;'" (tap)="onTapSeedNext($event)"></Button>
                 </StackLayout>
             </StackLayout>
 
             <StackLayout *ngIf="step == 2">
                 <StackLayout class="body-container" orientation="vertical">
-                    <Label class="top" textWrap="true" text="Write down the following words separated by space and keep them secret!"></Label>
+                    <Label class="top" textWrap="true" [text]="'CREATE.INFO_STEP_TWO_ACTION' | translate"></Label>
                     <Label class="chip" [text]="passPhrase[word]"></Label>
-                    <Button class="btn btn-primary btn-active action-button fa" text="Next &#xf18e;" (tap)="onTapNext($event)"></Button>
+                    <Button class="btn btn-primary btn-active action-button fa" [text]="('CREATE.NEXT' | translate) + ' &#xf18e;'" (tap)="onTapNext($event)"></Button>
                 </StackLayout>
             </StackLayout>
 
             <StackLayout *ngIf="step == 3" class="body-container m-b-15" orientation="vertical">
-                <Label class="solo" text="Write down word #{{ word + 1 }} and select it!"></Label>
+                <Label class="solo" [text]="'CREATE.INFO_STEP_THREE_ACTION' | translate:wordnumber"></Label>
                 <StackLayout class="possibilities" orientation="horizontal">
                     <Button *ngFor="let possibility of retypePassPhrase" class="btn btn-primary btn-active possibility-button" [text]="possibility" (tap)="onTapPossibility($event)"></Button>
                 </StackLayout>
-                <TextField class="input" [text]="try" (textChange)="onChange($event)"></TextField>
+                <TextField class="input" [text]="try" [hint]="'CREATE.POSSIBILITY_INPUT_HINT' | translate:wordnumber" (textChange)="onChange($event)"></TextField>
             </StackLayout>
 
             <StackLayout *ngIf="step == 4" orientation="vertical">
                 <StackLayout class="body-container" orientation="vertical">
-                    <Label class="text-view-label fa top" text="&#xf292; PIN"></Label>
-                    <TextField class="input" [(ngModel)]="pin" keyboardType="number" returnKeyType="done"></TextField>
+                    <TextField class="input" [(ngModel)]="pin" [hint]="'CREATE.PIN_INPUT_HINT' | translate" keyboardType="number" returnKeyType="done"></TextField>
                 </StackLayout>
                 <StackLayout orientation="vertical">
-                    <Button class="btn btn-primary btn-active action-button fa" text="Done &#xf00c;" (tap)="onTapDone($event)"></Button>
+                    <Button class="btn btn-primary btn-active action-button fa" [text]="('CREATE.DONE' | translate) + ' &#xf00c;'" (tap)="onTapDone($event)"></Button>
                 </StackLayout>
             </StackLayout>
 
             <StackLayout *ngIf="step != 0 && step != 1" class="progress-bottom" orientation="vertical">
                 <StackLayout *ngIf="step == 2 || step == 3">
-                    <Button class="generate-again-button btn btn-primary btn-active fa" text="Generate Again &#xf021;" (tap)="onTapGenerateAgain($event)"></Button>
+                    <Button class="generate-again-button btn btn-primary btn-active fa" [text]="('CREATE.GENERATE_AGAIN' | translate) + ' &#xf021;'" (tap)="onTapGenerateAgain($event)"></Button>
                 </StackLayout>
                 <StackLayout *ngIf="step != 3 && step != 2" class="bottom-filler"></StackLayout>
                 <Progress class="m-20 progress-bar" *ngIf="step > 0" [value]="step - 1" maxValue="3"></Progress>
