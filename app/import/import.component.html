@@ -15,7 +15,7 @@
             <StackLayout class="info-container" orientation="vertical">
                 <StackLayout orientation="vertical">
                     <Label class="top text-view-label fa" text="&#xf05a;"></Label>
-                    <Label class="bottom" textWrap="true" text="Import an active account by entering its passphrase! Otherwise, import an offline account by entering its Burstcoin address!"></Label>
+                    <Label class="bottom" textWrap="true" [text]="'IMPORT.INFO' | translate"></Label>
                 </StackLayout>
             </StackLayout>
 
@@ -25,29 +25,32 @@
 
             <StackLayout *ngIf="step == 1">
                 <StackLayout class="body-container" orientation="vertical">
-                    <Label class="h3 toggle-label" textWrap="true" [text]="state"></Label>
+                    <Label *ngIf="active" class="h3 toggle-label" textWrap="true" [text]="'IMPORT.ACTIVE_ACCOUNT' | translate"></Label>
+                    <Label *ngIf="!active" class="h3 toggle-label" textWrap="true" [text]="'IMPORT.OFFLINE_ACCOUNT' | translate"></Label>
                     <StackLayout style="width: 100%;" class="info-container" orientation="vertical">
                         <StackLayout orientation="vertical">
-                            <Label class="solo" textWrap="true" [text]="description"></Label>
+                            <Label *ngIf="active" class="solo" textWrap="true" [text]="'IMPORT.ACTIVE_ACCOUNT_DESCRIPTION' | translate"></Label>
+                            <Label *ngIf="!active" class="solo" textWrap="true" [text]="'IMPORT.OFFLINE_ACCOUNT_DESCRIPTION' | translate"></Label>
                         </StackLayout>
                     </StackLayout>
 
                     <Switch class="m-10 toggle-switch" checked="true" (checkedChange)="onChecked($event)"></Switch>
-                    <TextField class="input" [hint]="hint" [(ngModel)]="input" (returnPress)="formatAddress()"></TextField>
+                    <TextField *ngIf="active" class="input" [hint]="'IMPORT.ACTIVE_ACCOUNT_INPUT_HINT' | translate" [(ngModel)]="activeInput"></TextField>
+                    <TextField *ngIf="!active" class="input" [hint]="'IMPORT.OFFLINE_ACCOUNT_INPUT_HINT' | translate" [(ngModel)]="offlineInput" (returnPress)="formatAddress()"></TextField>
                 </StackLayout>
                 <StackLayout orientation="vertical">
-                    <Button *ngIf="active == true" class="btn btn-primary btn-active action-button fa" text="Next &#xf18e;" (tap)="onTapNext($event)"></Button>
-                    <Button *ngIf="active == false" class="btn btn-primary btn-active action-button fa" text="Import &#xf019;" (tap)="onTapImport($event)"></Button>
+                    <Button *ngIf="active" class="btn btn-primary btn-active action-button fa" [text]="('IMPORT.NEXT' | translate) + ' &#xf18e;'" (tap)="onTapNext($event)"></Button>
+                    <Button *ngIf="!active" class="btn btn-primary btn-active action-button fa" [text]="('IMPORT.IMPORT' | translate) + ' &#xf019;'" (tap)="onTapImport($event)"></Button>
                 </StackLayout>
             </StackLayout>
 
             <StackLayout *ngIf="step == 2">
                 <StackLayout class="info-container" orientation="vertical">
-                    <Label textWrap="true" class="solo" text="Please set a six-digit pin code for your account. The pin code is used to approve outgoing transactions."></Label>
+                    <Label textWrap="true" class="solo" [text]="'IMPORT.ACTIVE_ACCOUNT_PIN_INFO' | translate"></Label>
                 </StackLayout>
                 <StackLayout class="body-container" orientation="vertical">
-                    <TextField class="input" [(ngModel)]="pin" hint="PIN" keyboardType="number" returnKeyType="done"></TextField>
-                    <Button class="btn btn-primary btn-active action-button fa" text="Done &#xf05d;" (tap)="onTapDone($event)"></Button>
+                    <TextField class="input" [(ngModel)]="pin" [hint]="'IMPORT.PIN_INPUT_HINT' | translate" keyboardType="number" returnKeyType="done"></TextField>
+                    <Button class="btn btn-primary btn-active action-button fa" [text]="('IMPORT.DONE' | translate) + ' &#xf05d;'" (tap)="onTapDone($event)"></Button>
                 </StackLayout>
             </StackLayout>
         </StackLayout>

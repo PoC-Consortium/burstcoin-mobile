@@ -1,0 +1,7 @@
+{
+    "START" : {
+        "CREATE": "Erstellen",
+        "IMPORT": "Importieren",
+        "INFO": "Keine Account wurde bisher erstellt! Importiere einen bestehenden Account oder erstelle einen Neuen!"
+    }
+}

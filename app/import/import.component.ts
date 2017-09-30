@@ -14,12 +14,12 @@ import { ShowComponent } from "./show/show.component";
 })
 export class ImportComponent implements OnInit {
     step: number;
-    input: string;
+    activeInput: string;
+    offlineInput: string;
     state: string;
     hint: string;
     active: boolean;
     pin: string;
-    description: string;
 
     constructor(
         private cryptoService: CryptoService,
@@ -30,11 +30,10 @@ export class ImportComponent implements OnInit {
         private router: RouterExtensions
     ) {
         this.step = 1;
-        this.input = "";
-        this.state = "Active Account";
+        this.activeInput = "";
+        this.offlineInput = "";
         this.hint = "Passphrase";
         this.active = true;
-        this.description = "An active account offers full functionaility. You can send and receive Burstcoins. In addition, you can check your balance and see the history of your transactions.";
     }
 
     public ngOnInit() {
@@ -44,23 +43,17 @@ export class ImportComponent implements OnInit {
     public onChecked(args) {
         let toggle = <Switch>args.object;
         if (toggle.checked) {
-            this.state = "Active Account";
-            this.hint = "Passphrase";
             this.active = true;
-            this.description = "An active account offers full functionaility. You can send and receive Burstcoins. In addition, you can check your balance and see the history of your transactions.";
         } else {
-            this.state = "Offline Account";
-            this.hint = "BURST-XXXX-XXXX-XXXX-XXXXX";
             this.active = false;
-            this.description = "An offline account offers the same functionaility than an active account, except you cannot send Burstcoins to another address.";
         }
     }
 
     public onTapImport(e) {
-        if (this.input.length > 0) {
-            if (this.accountService.isBurstcoinAddress(this.input)) {
+        if (this.offlineInput.length > 0) {
+            if (this.accountService.isBurstcoinAddress(this.offlineInput)) {
                 this.step = 0;
-                this.accountService.createOfflineAccount(this.input)
+                this.accountService.createOfflineAccount(this.offlineInput)
                     .then(account => {
                         this.accountService.selectAccount(account)
                             .then(account => {
@@ -81,10 +74,10 @@ export class ImportComponent implements OnInit {
 
 
     public onTapNext() {
-        if (this.input.length > 0) {
+        if (this.activeInput.length > 0) {
             if (this.active) {
                 this.step = 0;
-                this.cryptoService.generateMasterPublicAndPrivateKey(this.input)
+                this.cryptoService.generateMasterPublicAndPrivateKey(this.activeInput)
                     .then(keypair => {
                         this.cryptoService.getAccountIdFromPublicKey(keypair.publicKey)
                             .then(id => {
@@ -116,7 +109,7 @@ export class ImportComponent implements OnInit {
     public onTapDone() {
         if (this.accountService.isPin(this.pin)) {
             this.step = 0;
-            this.accountService.createActiveAccount(this.input, this.pin)
+            this.accountService.createActiveAccount(this.activeInput, this.pin)
                 .then(account => {
                     this.accountService.selectAccount(account)
                         .then(account => {
@@ -133,9 +126,7 @@ export class ImportComponent implements OnInit {
     }
 
     public formatAddress() {
-        if (!this.active) {
-            this.input = this.input.toUpperCase();
-        }
+        this.offlineInput = this.offlineInput.toUpperCase();
     }
 
 }

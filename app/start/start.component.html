@@ -15,8 +15,8 @@
                 </StackLayout>
             </StackLayout>
             <StackLayout class="m-t-15" orientation="vertical">
-                <Button class="btn btn-primary btn-active action-button fa" text="Import &#xf019;" [nsRouterLink]="['/import']"></Button>
-                <Button class="btn btn-primary btn-active action-button fa" text="Create &#xf067;" [nsRouterLink]="['/create']"></Button>
+                <Button class="btn btn-primary btn-active action-button fa" [text]="('START.IMPORT' | translate) + ' &#xf019;'" [nsRouterLink]="['/import']"></Button>
+                <Button class="btn btn-primary btn-active action-button fa" [text]="('START.CREATE' | translate) + ' &#xf067;'" [nsRouterLink]="['/create']"></Button>
             </StackLayout>
         </StackLayout>
     </StackLayout>

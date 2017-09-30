@@ -1,5 +1,21 @@
 {
     "START" : {
+        "CREATE": "Create",
+        "IMPORT": "Import",
         "INFO": "No account created yet! Choose to import an existing account or create a new one!"
+    },
+    "IMPORT" : {
+        "ACTIVE_ACCOUNT": "Active Account",
+        "ACTIVE_ACCOUNT_DESCRIPTION": "An active account offers full functionaility. You can send and receive Burstcoins. In addition, you can check your balance and see the history of your transactions.",
+        "ACTIVE_ACCOUNT_INPUT_HINT": "Passphrase",
+        "ACTIVE_ACCOUNT_PIN_INFO": "Please set a six-digit pin code for your account. The pin code is used to approve outgoing transactions.",
+        "DONE": "Done",
+        "IMPORT": "Import",
+        "INFO": "Import an active account by entering its passphrase! Otherwise, import an offline account by entering its Burstcoin address!",
+        "NEXT": "Next",
+        "OFFLINE_ACCOUNT": "Offline Account",
+        "OFFLINE_ACCOUNT_DESCRIPTION": "An offline account offers the same functionaility than an active account, except you cannot send Burstcoins to another address.",
+        "OFFLINE_ACCOUNT_INPUT_HINT": "BURST-XXXX-XXXX-XXXX-XXXXX",
+        "PIN_INPUT_HINT": "PIN"
     }
 }
