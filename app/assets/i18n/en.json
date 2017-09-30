@@ -1,5 +1,6 @@
 {
     "CREATE": {
+        "ACTION_BAR_TITLE": "Create New Account",
         "DONE": "Done",
         "GENERATE_AGAIN": "Generate Again",
         "INFO_SEED": "Tap and swipe over this area!",
@@ -15,6 +16,7 @@
         "NEXT": "Next"
     },
     "IMPORT" : {
+        "ACTION_BAR_TITLE": "Import Existing Account",
         "ACTIVE_ACCOUNT": "Active Account",
         "ACTIVE_ACCOUNT_DESCRIPTION": "An active account offers full functionality. You can send and receive Burstcoins. In addition, you can check your balance and see the history of your transactions.",
         "ACTIVE_ACCOUNT_INPUT_HINT": "Passphrase",
