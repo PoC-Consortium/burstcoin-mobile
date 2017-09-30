@@ -27,6 +27,7 @@ export class SettingsComponent implements OnInit {
     constructor(
         private accountService: AccountService,
         private databaseService: DatabaseService,
+        private marketService: MarketService,
         private modalDialogService: ModalDialogService,
         private notificationService: NotificationService,
         private vcRef: ViewContainerRef
@@ -75,8 +76,13 @@ export class SettingsComponent implements OnInit {
                     this.settings.currency = currency;
                     this.databaseService.saveSettings(this.settings)
                         .then(settings => {
-                            console.log(JSON.stringify(settings));
-                            this.notificationService.info("Currency successfully updated!")
+                            this.marketService.updateCurrency()
+                                .then(currency => {
+                                    this.notificationService.info("Currency successfully updated!")
+                                })
+                                .catch(error => {
+                                    this.notificationService.info("Currency update failed!")
+                                })
                         })
                         .catch(error => {
                             this.notificationService.info("Currency update failed!")

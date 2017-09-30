@@ -37,14 +37,13 @@ export class DatabaseService extends Database {
             settings.insert(new Settings());
         }
         this.database.saveDatabase();
+        this.setReady(true);
         this.getSettings()
             .then(s => {
                 this.setSettings(s);
-                this.setReady(true);
             })
             .catch(error => {
                 this.setSettings(new Settings());
-                this.setReady(true);
             })
     }
 

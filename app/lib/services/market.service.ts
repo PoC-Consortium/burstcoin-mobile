@@ -3,6 +3,7 @@ import { Http, Headers, RequestOptions, Response, URLSearchParams } from "@angul
 import { Observable, BehaviorSubject } from 'rxjs/Rx';
 import { Currency, HttpError } from "../model";
 import { NoConnectionError } from "../model/error";
+import { DatabaseService } from "./";
 
 @Injectable()
 export class MarketService {
@@ -10,7 +11,10 @@ export class MarketService {
     public currency: BehaviorSubject<any> = new BehaviorSubject(undefined);
     private timeout: number = 10000; // 10 seconds
 
-    constructor(private http: Http) {
+    constructor(
+        private databaseService: DatabaseService,
+        private http: Http
+    ) {
         this.updateCurrency().catch(error => {});
     }
 
@@ -22,12 +26,13 @@ export class MarketService {
     * Get Currency Data from coinmarketcap
     * TODO Provide interface, for easy swap of currency data provider
     */
-    public updateCurrency(currency: string = undefined): Promise<Currency> {
+    public updateCurrency(): Promise<Currency> {
         return new Promise((resolve, reject) => {
             let params: URLSearchParams = new URLSearchParams();
             let requestOptions = this.getRequestOptions();
-            if (currency != undefined) {
-                currency = currency.toLowerCase();
+            let currency: string;
+            if (this.databaseService.settings.value.currency != undefined) {
+                currency = this.databaseService.settings.value.currency;
                 params.set("convert", currency);
                 requestOptions.params = params;
             }
@@ -69,10 +74,24 @@ export class MarketService {
 
     public getPriceFiatCurrency(coins: number, decimals: number = 8) : string {
         if (this.currency.value != undefined) {
-            if (this.currency.value.currency != "USD") {
-                return (coins * this.currency.value.priceCur).toFixed(decimals) + " " + this.currency.value.currency.toUpperCase();
-            } else {
-                return (coins * this.currency.value.priceUSD).toFixed(decimals) + " $" ;
+            switch (this.currency.value.currency) {
+                case "USD":
+                    return (coins * this.currency.value.priceCur).toFixed(decimals) + " $" ;
+                case "EUR":
+                    return (coins * this.currency.value.priceCur).toFixed(decimals) + " €" ;
+                case "CNY":
+                case "JPY":
+                    return (coins * this.currency.value.priceCur).toFixed(decimals) + " ¥" ;
+                case "GBP":
+                    return (coins * this.currency.value.priceCur).toFixed(decimals) + " £" ;
+                case "CAD":
+                    return (coins * this.currency.value.priceCur).toFixed(decimals) + " C$" ;
+                case "RUB":
+                    return (coins * this.currency.value.priceCur).toFixed(decimals) + " ₽" ;
+                case "INR":
+                    return (coins * this.currency.value.priceCur).toFixed(decimals) + " ₹" ;
+                default:
+                    return (coins * this.currency.value.priceCur).toFixed(decimals) + " " + this.currency.value.currency.toUpperCase();
             }
         } else {
             return "...";

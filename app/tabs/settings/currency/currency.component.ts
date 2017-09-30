@@ -11,7 +11,7 @@ import { DatabaseService } from "../../../lib/services";
 export class CurrencyComponent implements OnInit {
 
     picked: string;
-    currencies: string[] = ["CAD", "CHF", "CNY", "EUR", "GBP", "JPY", "RUB", "USD"];
+    currencies: string[] = ["CAD", "CHF", "CNY", "EUR", "GBP", "INR", "JPY", "RUB", "USD"];
     index: number;
 
     constructor(

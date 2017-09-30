@@ -35,8 +35,8 @@ export class Currency {
         this.percentChange24h = data.percent_change_24h || 0;
         this.percentChange7d = data.percent_change_7d || 0;
         this.lastUpdated = data.last_updated || 0;
-        this.currency = data.currency != undefined ? data.currency.toLowerCase() : "USD";
-        this.priceCur = data["price_" + this.currency] || "";
+        this.currency = data.currency != undefined ? data.currency : "USD";
+        this.priceCur = data["price_" + this.currency.toLowerCase()] || "";
         this.volume24hCur = data["24h_volume_" + this.currency] || "";
         this.marketCapCur = data["market_cap_" + this.currency] || "";
     }
