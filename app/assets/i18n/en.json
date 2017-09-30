@@ -35,6 +35,7 @@
     },
     "TABS": {
         "ACCOUNTS": {
+            "BALANCE": "Balance",
             "TITLE": "Accounts"
         },
         "BALANCE": {
@@ -49,6 +50,14 @@
         "SETTINGS": {
             "TITLE": "Settings"
         }
+    },
+    "SEND": {
+        "ACCEPT": "Accept",
+        "AMOUNT": "Amount",
+        "BALANCE": "Balance",
+        "FEE": "Fee",
+        "RECIPIENT": "Recipient",
+        "VERIFY": "Verify"
     },
     "START" : {
         "CREATE": "Create",
