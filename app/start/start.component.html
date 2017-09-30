@@ -11,7 +11,7 @@
         <StackLayout *ngIf="this.loading == false">
             <StackLayout class="info-container fet" orientation="vertical">
                 <StackLayout orientation="vertical">
-                    <Label class="solo" textWrap="true" text="No account created yet! Choose to import an existing account or create a new one!"></Label>
+                    <Label class="solo" textWrap="true" [text]="'START.INFO' | translate"></Label>
                 </StackLayout>
             </StackLayout>
             <StackLayout class="m-t-15" orientation="vertical">

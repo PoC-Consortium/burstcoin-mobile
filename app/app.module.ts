@@ -6,6 +6,13 @@ import { AppRoutingModule } from "./app.routing";
 import { AppComponent } from "./app.component";
 import { SharedModule } from "./lib/shared.module";
 
+import { Http } from '@angular/http';
+import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate';
+
+export function createTranslateLoader(http: Http) {
+    return new TranslateStaticLoader(http, '/assets/i18n', '.json');
+}
+
 @NgModule({
     bootstrap: [
         AppComponent
@@ -13,7 +20,12 @@ import { SharedModule } from "./lib/shared.module";
     imports: [
         NativeScriptModule,
         AppRoutingModule,
-        SharedModule.forRoot()
+        SharedModule.forRoot(),
+        TranslateModule.forRoot({
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [Http]
+        })
     ],
     declarations: [
         AppComponent

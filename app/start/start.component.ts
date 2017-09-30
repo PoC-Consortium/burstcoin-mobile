@@ -13,7 +13,6 @@ import { Page } from "ui/page";
 import { Account } from "../lib/model";
 import { AccountService, DatabaseService, NotificationService } from "../lib/services";
 
-
 @Component({
     selector: "start",
     moduleId: module.id,

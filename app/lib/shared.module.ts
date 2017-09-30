@@ -1,5 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { NativeScriptHttpModule } from "nativescript-angular/http";
+import { TranslateModule } from 'ng2-translate';
 
 import {
     AccountService,
@@ -22,7 +23,7 @@ const SHARED_SERVICES = [
 @NgModule({
   imports:      [ NativeScriptHttpModule ],
   declarations: [ ],
-  exports:      [ ]
+  exports:      [ TranslateModule ]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
