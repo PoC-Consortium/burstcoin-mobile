@@ -9,7 +9,7 @@
             <StackLayout class="hr-light"></StackLayout>
             <Label class="font-weight-bold p-t-10 p-b-10" [text]="address"></Label>
             <StackLayout class="hr-light"></StackLayout>
-            <Label *ngIf="confirmed" class="font-weight-bold p-t-10 p-b-10" [text]="'Balance: ' + balance"></Label>
+            <Label *ngIf="confirmed" class="font-weight-bold p-t-10 p-b-10" [text]="('TABS.BALANCE.BALANCE' | translate) + ': ' + balance"></Label>
             <Label *ngIf="!confirmed" class="font-weight-bold p-t-10 p-b-10 fa" [text]="'Balance: ' + balance + ' &#xf021;'"></Label>
             <StackLayout class="hr-light"></StackLayout>
             <GridLayout class="p-t-10 p-b-10" columns="*,auto,*" rows="auto">
@@ -19,9 +19,9 @@
             </GridLayout>
         </StackLayout>
         <StackLayout orientation="vertical">
-            <Button *ngIf="account?.type == 'active'" class="btn btn-primary btn-active action-button fa" text="Send &#xf08b;" [nsRouterLink]="['/tabs/balance/send']"></Button>
+            <Button *ngIf="account?.type == 'active'" class="btn btn-primary btn-active action-button fa" [text]="('TABS.BALANCE.SEND' | translate) + ' &#xf08b;'" [nsRouterLink]="['/tabs/balance/send']"></Button>
             <!--<Button class="btn btn-primary btn-active action-button" text="Receive" (tap)="onTapReceive($event)"></Button>-->
-            <Button *ngIf="account?.type == 'offline'" class="btn btn-primary btn-active action-button fa" text="Activate &#xf05d;" [nsRouterLink]="['/tabs/accounts/activate']"></Button>
+            <Button *ngIf="account?.type == 'offline'" class="btn btn-primary btn-active action-button fa" [text]="('TABS.BALANCE.ACTIVATE' | translate) + ' &#xf05d;'" [nsRouterLink]="['/tabs/accounts/activate']"></Button>
         </StackLayout>
     </StackLayout>
 </BalanceRefresh>

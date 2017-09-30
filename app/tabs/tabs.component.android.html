@@ -7,16 +7,16 @@
     </ActionBar>
 
     <TabView #tabs (selectedIndexChanged)="onSelectedIndexChanged($event)">
-        <StackLayout class="tab" *tabItem="{title: 'Balance', iconSource: getIconSource('coins')}">
+        <StackLayout class="tab" *tabItem="{title: ('TABS.BALANCE.TITLE' | translate), iconSource: getIconSource('coins')}">
             <balance></balance>
         </StackLayout>
-        <StackLayout class="tab" *tabItem="{title: 'History', iconSource: getIconSource('transactions')}">
+        <StackLayout class="tab" *tabItem="{title: ('TABS.HISTORY.TITLE' | translate), iconSource: getIconSource('transactions')}">
             <transactions></transactions>
         </StackLayout>
-        <StackLayout class="tab" *tabItem="{title: 'Accounts', iconSource: getIconSource('accounts')}">
+        <StackLayout class="tab" *tabItem="{title: ('TABS.ACCOUNTS.TITLE' | translate), iconSource: getIconSource('accounts')}">
             <accounts></accounts>
         </StackLayout>
-        <StackLayout class="tab" *tabItem="{title: 'Settings', iconSource: getIconSource('gears')}">
+        <StackLayout class="tab" *tabItem="{title: ('TABS.SETTINGS.TITLE' | translate), iconSource: getIconSource('gears')}">
             <settings></settings>
         </StackLayout>
     </TabView>

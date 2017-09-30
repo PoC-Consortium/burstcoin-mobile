@@ -33,6 +33,23 @@
             "QUESTION": "Is this your Burst address?"
         }
     },
+    "TABS": {
+        "ACCOUNTS": {
+            "TITLE": "Accounts"
+        },
+        "BALANCE": {
+            "ACTIVATE": "Activate",
+            "BALANCE": "Balance",
+            "SEND": "Send",
+            "TITLE": "Balance"
+        },
+        "HISTORY": {
+            "TITLE": "History"
+        },
+        "SETTINGS": {
+            "TITLE": "Settings"
+        }
+    },
     "START" : {
         "CREATE": "Create",
         "IMPORT": "Import",
