@@ -1,14 +1,14 @@
 import { Component, OnInit, ViewContainerRef } from "@angular/core";
 import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
-import { Label } from "ui/label";
-import { Border } from "ui/border";
+import { TranslateService } from 'ng2-translate';
 
 import { Account, Transaction, Settings } from "../../lib/model";
 
 import { AccountService, DatabaseService, MarketService, NotificationService } from "../../lib/services";
 import { AboutComponent } from "./about/about.component";
 import { CurrencyComponent } from "./currency/currency.component";
+import { LanguageComponent } from "./language/language.component";
 import { NodeComponent } from "./node/node.component";
 import { SupportComponent } from "./support/support.component";
 
@@ -30,6 +30,7 @@ export class SettingsComponent implements OnInit {
         private marketService: MarketService,
         private modalDialogService: ModalDialogService,
         private notificationService: NotificationService,
+        private translateService: TranslateService,
         private vcRef: ViewContainerRef
     ) {
         this.settings = new Settings();
@@ -86,6 +87,29 @@ export class SettingsComponent implements OnInit {
                         })
                         .catch(error => {
                             this.notificationService.info("Currency update failed!")
+                        })
+                }
+            })
+            .catch(error => console.log(JSON.stringify(error)));
+    }
+
+    public onTapLanguage() {
+        const options: ModalDialogOptions = {
+            viewContainerRef: this.vcRef,
+            context: this.settings.currency,
+            fullscreen: false,
+        };
+        this.modalDialogService.showModal(LanguageComponent, options)
+            .then(language => {
+                if (language != undefined && this.settings.language != language) {
+                    this.settings.language = language;
+                    this.databaseService.saveSettings(this.settings)
+                        .then(settings => {
+                            this.translateService.use(language.toLowerCase());
+                            this.notificationService.info("Language successfully updated!")
+                        })
+                        .catch(error => {
+                            this.notificationService.info("Language change failed!")
                         })
                 }
             })

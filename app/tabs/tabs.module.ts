@@ -23,6 +23,7 @@ import { TransactionsComponent } from "./transactions/transactions.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { AboutComponent } from "./settings/about/about.component";
 import { CurrencyComponent } from "./settings/currency/currency.component";
+import { LanguageComponent } from "./settings/language/language.component";
 import { NodeComponent } from "./settings/node/node.component";
 import { SupportComponent } from "./settings/support/support.component";
 
@@ -52,6 +53,7 @@ export function createBarcodeScanner() {
         SettingsComponent,
         AboutComponent,
         CurrencyComponent,
+        LanguageComponent,
         NodeComponent,
         SupportComponent,
         NoteComponent
@@ -67,6 +69,7 @@ export function createBarcodeScanner() {
         AboutComponent,
         AddComponent,
         CurrencyComponent,
+        LanguageComponent,
         NodeComponent,
         NoteComponent,
         RemoveComponent,

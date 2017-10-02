@@ -1,11 +1,14 @@
-<StackLayout orientation="vertical">
-    <StackLayout class="settings-item" orientation="vertical">
-        <GridLayout rows="auto, auto, auto, auto, auto" columns="*">
-            <Button row="0" col="0" class="btn btn-primary fa settings-button" text="&#xf277; Node" (tap)="onTapNode()"></Button>
-            <Button row="1" col="0" class="btn btn-primary fa settings-button" [text]="'&#xf0d6; Currency: ' + settings.currency" (tap)="onTapCurrency($event)"></Button>
-            <Button row="2" col="0" class="btn btn-primary fa settings-button" text="&#xf02d; Documentation" (tap)="onTapDocumentation()"></Button>
-            <Button row="3" col="0" class="btn btn-primary fa settings-button" text="&#xf004; Support" (tap)="onTapSupport()"></Button>
-            <Button row="4" col="0" class="btn btn-primary fa settings-button" text="&#xf05a; About" (tap)="onTapAbout()"></Button>
-        </GridLayout>
+<ScrollView>
+    <StackLayout orientation="vertical">
+        <StackLayout class="settings-item" orientation="vertical">
+            <GridLayout rows="auto, auto, auto, auto, auto, auto" columns="*">
+                <Button row="0" col="0" class="btn btn-primary fa settings-button" [text]="'&#xf1ab; Language: ' + settings.language" (tap)="onTapLanguage()"></Button>
+                <Button row="1" col="0" class="btn btn-primary fa settings-button" [text]="'&#xf0d6; Currency: ' + settings.currency" (tap)="onTapCurrency()"></Button>
+                <Button row="2" col="0" class="btn btn-primary fa settings-button" text="&#xf277; Node" (tap)="onTapNode()"></Button>
+                <Button row="3" col="0" class="btn btn-primary fa settings-button" text="&#xf02d; Documentation" (tap)="onTapDocumentation()"></Button>
+                <Button row="4" col="0" class="btn btn-primary fa settings-button" text="&#xf004; Support" (tap)="onTapSupport()"></Button>
+                <Button row="5" col="0" class="btn btn-primary fa settings-button" text="&#xf05a; About" (tap)="onTapAbout()"></Button>
+            </GridLayout>
+        </StackLayout>
     </StackLayout>
-</StackLayout>
+</ScrollView>
