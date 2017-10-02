@@ -2,9 +2,9 @@
     <StackLayout class="page-content">
         <StackLayout class="modal-container">
             <StackLayout class="body-container">
-                <Label class="solo fa" textWrap="true" text="You like our app? Support us by donating BURST!"></Label>
-                <Button class="btn btn-primary btn-active about-button fa" text="&#xf2b5; Support" (tap)="onTapSupport()"></Button>
-                <Label class="solo fa" textWrap="true" text="We are also happy for non-monetary contributions"></Label>
+                <Label class="solo fa" textWrap="true" [text]="'TABS.SETTINGS.SUPPORT.DONATE' | translate"></Label>
+                <Button class="btn btn-primary btn-active about-button fa" [text]="'&#xf2b5; ' + ('TABS.SETTINGS.SUPPORT.SUPPORT' | translate)" (tap)="onTapSupport()"></Button>
+                <Label class="solo fa" textWrap="true" [text]="'TABS.SETTINGS.SUPPORT.CONTRIBUTION' | translate"></Label>
                 <Button class="btn btn-primary btn-active about-button fa" text="&#xf09b; Github" (tap)="onTapGithub()"></Button>
             </StackLayout>
         </StackLayout>

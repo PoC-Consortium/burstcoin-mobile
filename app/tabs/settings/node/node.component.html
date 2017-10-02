@@ -2,7 +2,7 @@
     <StackLayout class="page-content">
         <StackLayout class="modal-container">
             <StackLayout class="body-container">
-                <Label class="solo fa" textWrap="true" text="The Burst node is used to communicate with the Burst network"></Label>
+                <Label class="solo fa" textWrap="true" [text]="('TABS.SETTINGS.NODE.INFO' | translate)"></Label>
                 <TextField class="input node-address" [(ngModel)]="address" returnKeyType="done"></TextField>
                 <GridLayout rows="auto" columns="*,auto">
                     <Button col="0" class="btn btn-primary btn-active action-button fa" text="&#xf05d;" (tap)="onTapOk()"></Button>

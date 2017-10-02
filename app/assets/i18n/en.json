@@ -48,6 +48,31 @@
             "TITLE": "History"
         },
         "SETTINGS": {
+            "ABOUT": {
+                "ABOUT": "About",
+                "ASSOCIATION": "In Association with",
+                "DEVELOPED": "Developed by",
+                "TWITTER": "Follow us on twitter to get updates on our projects!",
+                "VERSION": "Version"
+            },
+            "CURRENCY": {
+                "CURRENCY": "Currency"
+            },
+            "DOCUMENTATION": {
+                "DOCUMENTATION": "Documentation"
+            },
+            "LANGUAGE": {
+                "LANGUAGE": "Language"
+            },
+            "NODE": {
+                "INFO": "The Burst node is used to communicate with the Burst network",
+                "NODE": "Node"
+            },
+            "SUPPORT": {
+                "CONTRIBUTION": "We are also happy for non-monetary contributions",
+                "DONATE": "You like our app? Support us by donating BURST!",
+                "SUPPORT": "Support"
+            },
             "TITLE": "Settings"
         }
     },
