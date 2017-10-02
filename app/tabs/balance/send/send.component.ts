@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
 import { ActivatedRoute } from "@angular/router";
+import { TranslateService } from 'ng2-translate';
 import { Account, BurstAddress, Transaction } from "../../../lib/model";
 import { AccountService, MarketService, NotificationService } from "../../../lib/services";
 import { BarcodeScanner, ScanOptions } from 'nativescript-barcodescanner';
@@ -28,7 +29,8 @@ export class SendComponent implements OnInit {
         private marketService: MarketService,
         private notificationService: NotificationService,
         private router: RouterExtensions,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private translateService: TranslateService
     ) {
         this.step = 1;
         if (this.route.snapshot.params['address'] != undefined) {
@@ -57,7 +59,9 @@ export class SendComponent implements OnInit {
         this.barcodeScanner.scan(options).then((result) => {
             this.recipient = result.text;
         }, (errorMessage) => {
-            this.notificationService.info("Could not scan QR code!")
+            this.translateService.get('NOTIFICATIONS.ERRORS.QR_CODE').subscribe((res: string) => {
+                this.notificationService.info(res);
+            });
         });
     }
 
@@ -68,16 +72,24 @@ export class SendComponent implements OnInit {
                     if (parseFloat(this.amount.toString()) + parseFloat(this.fee.toString()) <= this.account.balance) {
                         this.step = 2;
                     } else {
-                        this.notificationService.info("Amount and Fee exceed your balance!")
+                        this.translateService.get('NOTIFICATIONS.EXCEED').subscribe((res: string) => {
+                            this.notificationService.info(res);
+                        });
                     }
                 } else {
-                    this.notificationService.info("Please enter a decimal number (atleast 1) as fee!")
+                    this.translateService.get('NOTIFICATIONS.DECIMAL_FEE').subscribe((res: string) => {
+                        this.notificationService.info(res);
+                    });
                 }
             } else {
-                this.notificationService.info("Please enter a decimal number for the amount of BURST you want to send!")
+                this.translateService.get('NOTIFICATIONS.DECIMAL_AMOUNT').subscribe((res: string) => {
+                    this.notificationService.info(res);
+                });
             }
         } else {
-            this.notificationService.info("Please enter a valid Burstcoin address!")
+            this.translateService.get('NOTIFICATIONS.ADDRESS').subscribe((res: string) => {
+                this.notificationService.info(res);
+            });
         }
     }
 
@@ -92,14 +104,18 @@ export class SendComponent implements OnInit {
             transaction.senderPublicKey = account.keypair.publicKey;
             this.accountService.doTransaction(transaction, account.keypair.privateKey, this.pin)
                 .then(transaction => {
-                    this.notificationService.info("Transaction successful!");
+                    this.translateService.get('NOTIFICATIONS.TRANSACTION').subscribe((res: string) => {
+                        this.notificationService.info(res);
+                    });
                     this.router.navigate(['/tabs']);
                 }).catch(error => {
                     this.processing = false;
                     this.notificationService.info(error);
                 })
         } else {
-            this.notificationService.info("Wrong PIN!")
+            this.translateService.get('NOTIFICATIONS.WRONG_PIN').subscribe((res: string) => {
+                this.notificationService.info(res);
+            });
         }
     }
 

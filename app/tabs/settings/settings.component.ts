@@ -79,14 +79,20 @@ export class SettingsComponent implements OnInit {
                         .then(settings => {
                             this.marketService.updateCurrency()
                                 .then(currency => {
-                                    this.notificationService.info("Currency successfully updated!")
+                                    this.translateService.get('NOTIFICATIONS.UPDATE_CURRENCY').subscribe((res: string) => {
+                                        this.notificationService.info(res);
+                                    });
                                 })
                                 .catch(error => {
-                                    this.notificationService.info("Currency update failed!")
+                                    this.translateService.get('NOTIFICATIONS.ERRORS.CURRENCY').subscribe((res: string) => {
+                                        this.notificationService.info(res);
+                                    });
                                 })
                         })
                         .catch(error => {
-                            this.notificationService.info("Currency update failed!")
+                            this.translateService.get('NOTIFICATIONS.ERRORS.CURRENCY').subscribe((res: string) => {
+                                this.notificationService.info(res);
+                            });
                         })
                 }
             })
@@ -106,10 +112,14 @@ export class SettingsComponent implements OnInit {
                     this.databaseService.saveSettings(this.settings)
                         .then(settings => {
                             this.translateService.use(language.toLowerCase());
-                            this.notificationService.info("Language successfully updated!")
+                            this.translateService.get('NOTIFICATIONS.UDPDATE_LANGUAGE').subscribe((res: string) => {
+                                this.notificationService.info(res);
+                            });
                         })
                         .catch(error => {
-                            this.notificationService.info("Language change failed!")
+                            this.translateService.get('NOTIFICATIONS.ERRORS.LANGUAGE').subscribe((res: string) => {
+                                this.notificationService.info(res);
+                            });
                         })
                 }
             })
@@ -133,10 +143,14 @@ export class SettingsComponent implements OnInit {
                     this.databaseService.saveSettings(this.settings)
                         .then(settings => {
                             this.databaseService.setSettings(settings);
-                            this.notificationService.info("Node successfully updated!")
+                            this.translateService.get('NOTIFICATIONS.UPDATE_NODE').subscribe((res: string) => {
+                                this.notificationService.info(res);
+                            });
                         })
                         .catch(error => {
-                            this.notificationService.info("Node update failed!")
+                            this.translateService.get('NOTIFICATIONS.ERRORS.NODE').subscribe((res: string) => {
+                                this.notificationService.info(res);
+                            });
                         })
                 }
             })

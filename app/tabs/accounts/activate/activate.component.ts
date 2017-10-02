@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
+import { TranslateService } from 'ng2-translate';
 import { Account, BurstAddress } from "../../../lib/model";
 import { CryptoService, NotificationService, AccountService } from "../../../lib/services";
 
@@ -16,15 +17,18 @@ export class ActivateComponent implements OnInit {
     pin: string;
     passphrase: string;
     step: number;
+    address;
 
     constructor(
         private accountService: AccountService,
         private cryptoService: CryptoService,
         private notificationService: NotificationService,
-        private router: RouterExtensions
+        private router: RouterExtensions,
+        private translateService: TranslateService
     ) {
         this.step = 1;
         this.passphrase = "";
+        this.address = { value: this.accountService.currentAccount.value.address }
     }
 
     ngOnInit(): void {
@@ -46,25 +50,35 @@ export class ActivateComponent implements OnInit {
                                         this.step = 2;
                                     } else {
                                         this.step = 1;
-                                        this.notificationService.info("Wrong passphrase! The provided passphrase does not generate the public key assigned to your account!")
+                                        this.translateService.get("NOTIFICATIONS.WRONG_PASSPHRASE").subscribe((res: string) => {
+                                            this.notificationService.info(res);
+                                        });
                                     }
                                 })
                                 .catch(error => {
                                     this.step = 1;
-                                    this.notificationService.info("Cannot generate Burst address from account id!")
+                                    this.translateService.get("NOTIFICATIONS.ERRORS.ADDRESS").subscribe((res: string) => {
+                                        this.notificationService.info(res);
+                                    });
                                 })
                         })
                         .catch(error => {
                             this.step = 1;
-                            this.notificationService.info("Cannot generate account id from public key!")
+                            this.translateService.get("NOTIFICATIONS.ERRORS.ACCOUNT_ID").subscribe((res: string) => {
+                                this.notificationService.info(res);
+                            });
                         })
                 })
                 .catch(error => {
                     this.step = 1;
-                    this.notificationService.info("Failed to generate keypair for passphrase!")
+                    this.translateService.get("NOTIFICATIONS.ERRORS.KEYPAIR").subscribe((res: string) => {
+                        this.notificationService.info(res);
+                    });
                 })
         } else {
-            this.notificationService.info("Please enter something!");
+            this.translateService.get("NOTIFICATIONS.ENTER_SOMETHING").subscribe((res: string) => {
+                this.notificationService.info(res);
+            });
         }
     }
 
@@ -83,11 +97,15 @@ export class ActivateComponent implements OnInit {
                         })
                 })
                 .catch(error  => {
-                    this.notificationService.info("Update of account failed!");
+                    this.translateService.get("NOTIFICATIONS.ERRORS.UPDATE").subscribe((res: string) => {
+                        this.notificationService.info(res);
+                    });
                     this.router.navigate['tabs'];
                 })
         } else {
-            this.notificationService.info("Please enter a six-digit number as Pin!");
+            this.translateService.get("NOTIFICATIONS.PIN").subscribe((res: string) => {
+                this.notificationService.info(res);
+            });
         }
     }
 }

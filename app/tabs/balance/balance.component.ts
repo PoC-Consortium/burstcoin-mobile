@@ -5,6 +5,7 @@ import { SwipeGestureEventData } from "ui/gestures";
 import { Label } from "ui/label";
 import { Image } from "ui/image"
 import { registerElement } from "nativescript-angular/element-registry";
+import { TranslateService } from 'ng2-translate';
 import { Account, BurstAddress, Currency } from "../../lib/model";
 import { AccountService, DatabaseService, MarketService, NotificationService, TabsService } from "../../lib/services";
 
@@ -38,7 +39,8 @@ export class BalanceComponent implements OnInit {
         private databaseService: DatabaseService,
         public marketService: MarketService,
         private notificationService: NotificationService,
-        private tabsService: TabsService
+        private tabsService: TabsService,
+        private translateService: TranslateService
     ) {
         this.zx = new ZXing();
         this.confirmed = true;
@@ -67,7 +69,9 @@ export class BalanceComponent implements OnInit {
 
     public onDoubleTapBalance() {
         clipboard.setText(this.account.address);
-        this.notificationService.info('Copied address "' + this.account.address + '" to clipboard!');
+        this.translateService.get('NOTIFICATIONS.COPIED', {value: this.account.address}).subscribe((res: string) => {
+            this.notificationService.info(res);
+        });
     }
 
     public onLongPressBalance() {
@@ -92,12 +96,16 @@ export class BalanceComponent implements OnInit {
                         pullRefresh.refreshing = false;
                     })
                     .catch(error => {
-                        this.notificationService.error(error.message)
+                        this.translateService.get(error.message).subscribe((res: string) => {
+                            this.notificationService.info(res);
+                        });
                         pullRefresh.refreshing = false;
                     });
             })
             .catch(error => {
-                this.notificationService.error(error.message)
+                this.translateService.get(error.message).subscribe((res: string) => {
+                    this.notificationService.info(res);
+                });
                 pullRefresh.refreshing = false;
             })
     }

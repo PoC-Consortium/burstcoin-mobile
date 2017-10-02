@@ -317,7 +317,7 @@ export class AccountService {
     }
 
     public isPin(pin: string): boolean {
-        return /^[0-9]{6}/i.test(pin);
+        return /^[0-9]{6}$/i.test(pin);
     }
 
     public convertStringToNumber(str, value = ".", position = 8) {

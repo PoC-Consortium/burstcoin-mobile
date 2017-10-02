@@ -6,6 +6,7 @@ import { SwipeGestureEventData } from "ui/gestures";
 import { Label } from "ui/label";
 import { Image } from "ui/image";
 import { registerElement } from "nativescript-angular/element-registry";
+import { TranslateService } from 'ng2-translate';
 
 import { Account, BurstAddress, Currency } from "../../lib/model";
 import { NoConnectionError } from "../../lib/model/error";
@@ -35,6 +36,7 @@ export class AccountsComponent implements OnInit {
         private notificationService: NotificationService,
         private router: RouterExtensions,
         private tabsService: TabsService,
+        private translateService: TranslateService,
         private vcRef: ViewContainerRef
     ) {
         this.accounts = [];
@@ -59,7 +61,9 @@ export class AccountsComponent implements OnInit {
     }
 
     public selectAccount(account: Account) {
-        this.notificationService.info("Selected account: " + account.address);
+        this.translateService.get('NOTIFICATIONS.SELECTED', {value: account.address}).subscribe((res: string) => {
+            this.notificationService.info(res);
+        });
         this.accounts.find(a => a.selected).selected = false;
         this.accountService.selectAccount(account)
             .then(account => {
@@ -102,10 +106,14 @@ export class AccountsComponent implements OnInit {
                             this.accountService.selectAccount(this.accounts[0])
                                 .then(selected => {
                                     this.marketService.setCurrency(this.marketService.currency.value);
-                                    this.notificationService.info("Successfully removed account!");
+                                    this.translateService.get("NOTIFICATIONS.REMOVE").subscribe((res: string) => {
+                                        this.notificationService.info(res);
+                                    });
                                 })
                         } else {
-                            this.notificationService.info("Successfully removed account!");
+                            this.translateService.get("NOTIFICATIONS.REMOVE").subscribe((res: string) => {
+                                this.notificationService.info(res);
+                            });
                         }
                     }
                 }
@@ -132,14 +140,18 @@ export class AccountsComponent implements OnInit {
                                 pullRefresh.refreshing = false;
                             })
                             .catch(error => {
-                                this.notificationService.error(error.message)
+                                this.translateService.get(error.message).subscribe((res: string) => {
+                                    this.notificationService.info(res);
+                                });
                                 pullRefresh.refreshing = false;
                             });
                     }
                 })
                 .catch(error => {
                     if (error instanceof NoConnectionError) {
-                        this.notificationService.error(error.message)
+                        this.translateService.get(error.message).subscribe((res: string) => {
+                            this.notificationService.info(res);
+                        });
                         pullRefresh.refreshing = false;
                         return;
                     }
@@ -149,7 +161,9 @@ export class AccountsComponent implements OnInit {
                                 pullRefresh.refreshing = false;
                             })
                             .catch(error => {
-                                this.notificationService.error(error.message)
+                                this.translateService.get(error.message).subscribe((res: string) => {
+                                    this.notificationService.info(res);
+                                });
                                 pullRefresh.refreshing = false;
                             })
                     }

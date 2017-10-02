@@ -17,22 +17,22 @@
             <StackLayout *ngIf="step == 1">
                 <StackLayout class="info-container" orientation="vertical">
                     <Label class="top text-view-label fa" text="&#xf05a;"></Label>
-                    <Label textWrap="true" class="bottom" [text]="'Enter the passphrase of the account ' + accountService.currentAccount.value.address + ' here!'"></Label>
+                    <Label textWrap="true" class="bottom" [text]="'ACCOUNTS.ACTIVATE.ENTER_PASSPHRASE' | translate:address"></Label>
                 </StackLayout>
                 <StackLayout class="body-container m-b-20" orientation="vertical">
-                    <TextField class="input" [(ngModel)]="passphrase" hint="Passphrase" returnKeyType="done"></TextField>
-                    <Button class="btn btn-primary btn-active action-button fa" text="Next &#xf18e;" (tap)="onTapNext($event)"></Button>
+                    <TextField class="input" [(ngModel)]="passphrase" [hint]="'ACCOUNTS.ACTIVATE.PASSPHRASE_INPUT_HINT' | translate" returnKeyType="done"></TextField>
+                    <Button class="btn btn-primary btn-active action-button fa" [text]="('ACCOUNTS.ACTIVATE.NEXT' | translate) + ' &#xf18e;'" (tap)="onTapNext($event)"></Button>
                 </StackLayout>
             </StackLayout>
 
             <StackLayout *ngIf="step == 2">
                 <StackLayout class="info-container" orientation="vertical">
                     <Label class="top text-view-label fa" text="&#xf05a;"></Label>
-                    <Label textWrap="true" class="bottom" text="Set a six-digit PIN code!"></Label>
+                    <Label textWrap="true" class="bottom" [text]="'ACCOUNTS.ACTIVATE.ENTER_PIN' | translate"></Label>
                 </StackLayout>
                 <StackLayout class="body-container m-b-20" orientation="vertical">
-                    <TextField class="input" [(ngModel)]="pin" hint="PIN" keyboardType="number" returnKeyType="done"></TextField>
-                    <Button class="btn btn-primary btn-active action-button fa" text="Done &#xf05d;" (tap)="onTapDone($event)"></Button>
+                    <TextField class="input" [(ngModel)]="pin" [hint]="'ACCOUNTS.ACTIVATE.PIN_INPUT_HINT' | translate" keyboardType="number" returnKeyType="done"></TextField>
+                    <Button class="btn btn-primary btn-active action-button fa" [text]="('ACCOUNTS.ACTIVATE.DONE' | translate) + ' &#xf05d;'" (tap)="onTapDone($event)"></Button>
                 </StackLayout>
             </StackLayout>
         </StackLayout>

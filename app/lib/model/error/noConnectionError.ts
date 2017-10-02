@@ -1,6 +1,6 @@
 
 export class NoConnectionError extends Error {
-    constructor(m: string = "Failed fetching data. Check your internet connection!") {
+    constructor(m: string = "NOTIFICATIONS.ERRORS.CONNECTION") {
         super(m);
 
         Object.setPrototypeOf(this, NoConnectionError.prototype);

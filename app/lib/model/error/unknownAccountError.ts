@@ -1,6 +1,6 @@
 
 export class UnknownAccountError extends Error {
-    constructor(m: string = "Account is still unknown! No transactions yet!") {
+    constructor(m: string = "NOTIFICATIONS.ERRORS.UNKNOWN_ACCOUNT") {
         super(m);
 
         Object.setPrototypeOf(this, UnknownAccountError.prototype);

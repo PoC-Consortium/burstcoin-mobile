@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
 import { ModalDialogParams } from "nativescript-angular/modal-dialog";
 import { Page } from "ui/page";
+import { TranslateService } from 'ng2-translate';
 
 import { Account } from "../../../lib/model";
 import { AccountService, DatabaseService, NotificationService } from "../../../lib/services";
@@ -23,7 +24,8 @@ export class RemoveComponent implements OnInit {
         private params: ModalDialogParams,
         private notificationService: NotificationService,
         private page: Page,
-        private router: RouterExtensions
+        private router: RouterExtensions,
+        private translateService: TranslateService
     ) {
         this.remove = params.context;
         this.page.on("unloaded", () => {
@@ -46,7 +48,9 @@ export class RemoveComponent implements OnInit {
                 this.params.closeCallback(success);
             })
             .catch(error => {
-                this.notificationService.error("Could not remove account!");
+                this.translateService.get("NOTIFICATIONS.ERRORS.REMOVE").subscribe((res: string) => {
+                    this.notificationService.info(res);
+                });
                 this.params.closeCallback(false);
             })
     }

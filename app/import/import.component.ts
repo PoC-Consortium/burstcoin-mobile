@@ -2,6 +2,7 @@ import { Component, OnInit, ViewContainerRef } from "@angular/core";
 import { Switch } from "ui/switch";
 import { RouterExtensions } from "nativescript-angular/router";
 import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
+import { TranslateService } from 'ng2-translate';
 
 import { CryptoService, NotificationService, AccountService } from "../lib/services";
 import { ShowComponent } from "./show/show.component";
@@ -27,7 +28,8 @@ export class ImportComponent implements OnInit {
         private notificationService: NotificationService,
         private vcRef: ViewContainerRef,
         private accountService: AccountService,
-        private router: RouterExtensions
+        private router: RouterExtensions,
+        private translateService: TranslateService
     ) {
         this.step = 1;
         this.activeInput = "";
@@ -65,10 +67,14 @@ export class ImportComponent implements OnInit {
                         this.notificationService.info(error);
                     });
             } else {
-                this.notificationService.info("Please enter a valid Burstcoin address!");
+                this.translateService.get("NOTIFICATIONS.ADDRESS").subscribe((res: string) => {
+                    this.notificationService.info(res);
+                });
             }
         } else {
-            this.notificationService.info("Please enter something!");
+            this.translateService.get("NOTIFICATIONS.ENTER_SOMETHING").subscribe((res: string) => {
+                this.notificationService.info(res);
+            });
         }
     }
 
@@ -102,7 +108,9 @@ export class ImportComponent implements OnInit {
 
                 }
             } else {
-                this.notificationService.info("Please enter something!");
+                this.translateService.get("NOTIFICATIONS.ENTER_SOMETHING").subscribe((res: string) => {
+                    this.notificationService.info(res);
+                });
             }
     }
 
@@ -121,7 +129,9 @@ export class ImportComponent implements OnInit {
                     this.notificationService.info(error);
                 });
         } else {
-            this.notificationService.info("Please enter a six-digit number as Pin!");
+            this.translateService.get("NOTIFICATIONS.PIN").subscribe((res: string) => {
+                this.notificationService.info(res);
+            });
         }
     }
 

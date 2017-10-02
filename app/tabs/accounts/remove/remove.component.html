@@ -3,7 +3,7 @@
         <StackLayout class="modal-container">
             <StackLayout class="body-container">
                 <StackLayout *ngIf="!loading">
-                    <Label class="solo fa" textWrap="true" text="Do you really want to remove this account?"></Label>
+                    <Label class="solo fa" textWrap="true" [text]="'TABS.ACCOUNTS.REMOVE' | translate"></Label>
                     <Label class="bottom font-weight-bold" [text]="remove.address"></Label>
                     <GridLayout rows="auto" columns="*,*">
                         <Button col="0" class="btn btn-primary btn-active fa" text="&#xf00d;" (tap)="onTapNo($event)"></Button>

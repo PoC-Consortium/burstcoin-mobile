@@ -5,6 +5,7 @@ import { Label } from "ui/label";
 import { Border } from "ui/border";
 import { GestureEventData } from "ui/gestures";
 import { registerElement } from "nativescript-angular/element-registry";
+import { TranslateService } from 'ng2-translate';
 
 import { Account, Transaction } from "../../lib/model";
 import { Converter } from "../../lib/util";
@@ -31,7 +32,8 @@ export class TransactionsComponent implements OnInit {
         private databaseService: DatabaseService,
         private marketService: MarketService,
         private notificationService: NotificationService,
-        private accountService: AccountService
+        private accountService: AccountService,
+        private translateService: TranslateService
     ) {
         this.ownId = "";
         this.transactions = [];
@@ -48,7 +50,9 @@ export class TransactionsComponent implements OnInit {
 
     public onDoubleTap(address: string) {
         clipboard.setText(address);
-        this.notificationService.info('Copied address "' + address + '" to clipboard!');
+        this.translateService.get('NOTIFICATIONS.COPIED', {value: address}).subscribe((res: string) => {
+            this.notificationService.info(res);
+        });
     }
 
     public onLongPress(address: string) {
@@ -71,12 +75,16 @@ export class TransactionsComponent implements OnInit {
                         pullRefresh.refreshing = false;
                     })
                     .catch(error => {
-                        this.notificationService.error(error.message)
+                        this.translateService.get(error.message).subscribe((res: string) => {
+                            this.notificationService.info(res);
+                        });
                         pullRefresh.refreshing = false;
                     });
             })
             .catch(error => {
-                this.notificationService.error(error.message)
+                this.translateService.get(error.message).subscribe((res: string) => {
+                    this.notificationService.info(res);
+                });
                 pullRefresh.refreshing = false;
             })
     }

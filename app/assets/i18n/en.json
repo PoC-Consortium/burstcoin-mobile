@@ -35,7 +35,18 @@
     },
     "TABS": {
         "ACCOUNTS": {
+            "ACTIVATE": {
+                "DONE": "Done",
+                "ENTER_PASSPHRASE": "Enter the passphrase of the account {{value}} here!",
+                "ENTER_PIN": "Set a six-digit PIN code!",
+                "PASSPHRASE_INPUT_HINT": "Passphrase",
+                "PIN_INPUT_HINT": "Pin",
+                "NEXT": "Next"
+            },
             "BALANCE": "Balance",
+            "CREATE": "Create",
+            "IMPORT": "Import",
+            "REMOVE": "Do you really want to remove this account?",
             "TITLE": "Accounts"
         },
         "BALANCE": {
@@ -82,11 +93,43 @@
         "BALANCE": "Balance",
         "FEE": "Fee",
         "RECIPIENT": "Recipient",
+        "PIN_INPUT_HINT": "Pin",
         "VERIFY": "Verify"
     },
     "START" : {
         "CREATE": "Create",
         "IMPORT": "Import",
         "INFO": "No account created yet! Choose to import an existing account or create a new one!"
+    },
+    "NOTIFICATIONS" : {
+        "ADDRESS": "Please enter a valid Burstcoin address!",
+        "COPIED": "Copied address {{value}} to clipboard!",
+        "DECIMAL_AMOUNT": "Please enter a decimal number for the amount of BURST you want to send!",
+        "DECIMAL_FEE": "Please enter a decimal number (atleast 1) as fee!",
+        "ENTER_SOMETHING": "Please enter something!",
+        "EXCEED": "Amount and Fee exceed your balance!",
+        "PIN": "Please enter a six-digit number as Pin!",
+        "REMOVE": "Successfully removed account!",
+        "SELECTED": "Selected account: {{value}}",
+        "TRANSACTION": "Transaction successful!",
+        "UPDATE_CURRENCY": "Currency successfully updated!",
+        "UDPDATE_LANGUAGE": "Language successfully updated!",
+        "UPDATE_NODE": "Node successfully updated!",
+        "WRONG_PASSPHRASE": "Wrong passphrase! The provided passphrase does not generate the public key assigned to your account!",
+        "WRONG_PIN": "The provided pin does not match the account's pin",
+        "ERRORS": {
+            "ACCOUNT_ID": "Cannot generate account id from public key!",
+            "ADDRESS": "Cannot generate BURST address from account id!",
+            "CONNECTION": "Failed fetching data. Check your internet connection!",
+            "CURRENCY": "Currency update failed!",
+            "KEYPAIR": "Failed to generate keypair for passphrase!",
+            "LANGUAGE": "Language change failed!",
+            "NODE": "Node update failed!",
+            "QR_CODE": "Could not scan QR code!",
+            "REDIRECT": "Cannot open send BURST page! Current account is not active!",
+            "REMOVE": "Could not remove account!",
+            "UPDATE": "Update of account failed!",
+            "UNKNOWN_ACCOUNT": "Account is still unknown! No transactions yet!"
+        }
     }
 }

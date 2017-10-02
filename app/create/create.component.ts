@@ -8,6 +8,7 @@ import { TouchGestureEventData } from "ui/gestures";
 import { Button } from "ui/button";
 import { TextField } from "ui/text-field";
 import { EventData } from "data/observable";
+import { TranslateService } from 'ng2-translate';
 
 import { AccountService, CryptoService, NotificationService } from "../lib/services";
 import { PassPhraseGenerator } from "../lib/util/crypto";
@@ -44,7 +45,8 @@ export class CreateComponent implements OnInit {
         private accountService: AccountService,
         private cryptoService: CryptoService,
         private notificationService: NotificationService,
-        private router: RouterExtensions
+        private router: RouterExtensions,
+        private translateService: TranslateService
     ) {
         this.step = 1;
         this.seed = [];
@@ -155,7 +157,9 @@ export class CreateComponent implements OnInit {
                     this.router.navigate(['start']);
                 })
         } else {
-            this.notificationService.info("PIN must be a six-digit number!")
+            this.translateService.get("NOTIFICATIONS.PIN").subscribe((res: string) => {
+                this.notificationService.info(res);
+            });
         }
     }
 
