@@ -1,0 +1,135 @@
+{
+    "CREATE": {
+        "ACTION_BAR_TITLE": "Créer un nouveau compte",
+        "DONE": "Terminé",
+        "GENERATE_AGAIN": "Générer à nouveau",
+        "INFO_SEED": "Touchez et balayez cette zone !",
+        "INFO_SEED_FINISHED": "Génération sauvegardée !",
+        "INFO_STEP_ONE": "Pour commencer, générez aléatoirement votre phrase de passe.",
+        "INFO_STEP_TWO": "Maintenant, mémorisez les 12 mots de votre phrase de passe dans le bon ordre.",
+        "INFO_STEP_TWO_ACTION": "Ecrivez et gardez secrets les mots suivants en conservant les espaces.",
+        "INFO_STEP_THREE": "Entrez à nouveau votre suite de mots aléatoires.",
+        "INFO_STEP_THREE_ACTION": "Ecrivez le mot #{{value}} et sélectionnez le.",
+        "INFO_STEP_FOUR": "Définissez un code pin à 6 chiffres pour votre compte. Ce code est utilisé pour approuver vos transactions.",
+        "PIN_INPUT_HINT": "PIN",
+        "POSSIBILITY_INPUT_HINT": "Mot #{{value}}",
+        "NEXT": "Suivant"
+    },
+    "IMPORT" : {
+        "ACTION_BAR_TITLE": "Importer un compte existant",
+        "ACTIVE_ACCOUNT": "Compte Actif",
+        "ACTIVE_ACCOUNT_DESCRIPTION": "Un compte actif comprend toutes les fonctionnalités. Vous pouvez envoyer et recevoir des burstcoins, consulter le solde de votre compte et son historique.",
+        "ACTIVE_ACCOUNT_INPUT_HINT": "Phrase de passe",
+        "ACTIVE_ACCOUNT_PIN_INFO": "Définissez un code pin à 6 chiffres pour votre compte. Ce code est utilisé pour approuver vos transactions.",
+        "DONE": "Terminé",
+        "IMPORT": "Importer",
+        "INFO": "Importez un compte actif en entrant sa phrase de passe. Sinon, importez un compte passif en entrant son adresse Burst.",
+        "NEXT": "Suivant",
+        "OFFLINE_ACCOUNT": "Compte Passif",
+        "OFFLINE_ACCOUNT_DESCRIPTION": "Un compte passif comprend les mêmes fonctionnalités qu'un compte actif, sauf que vous ne pouvez pas envoyer de burstcoins à une autre adresse.",
+        "OFFLINE_ACCOUNT_INPUT_HINT": "BURST-XXXX-XXXX-XXXX-XXXXX",
+        "PIN_INPUT_HINT": "PIN",
+        "SHOW" : {
+            "QUESTION": "Est-ce votre adresse Burst ?"
+        }
+    },
+    "TABS": {
+        "ACCOUNTS": {
+            "ACTIVATE": {
+                "DONE": "Terminé",
+                "ENTER_PASSPHRASE": "Entrez la phrase de passe de votre compte {{value}} !",
+                "ENTER_PIN": "Choisissez un code PIN à 6 chiffres.",
+                "PASSPHRASE_INPUT_HINT": "Phrase de passe",
+                "PIN_INPUT_HINT": "PIN",
+                "NEXT": "Suivant"
+            },
+            "BALANCE": "Solde",
+            "CREATE": "Créer",
+            "IMPORT": "Importer",
+            "REMOVE": "Etes-vous sûr de vouloir supprimer ce compte ?",
+            "TITLE": "Comptes"
+        },
+        "BALANCE": {
+            "ACTIVATE": "Activer",
+            "BALANCE": "Solde",
+            "SEND": "Envoyer",
+            "TITLE": "Solde"
+        },
+        "HISTORY": {
+            "TITLE": "Historique"
+        },
+        "SETTINGS": {
+            "ABOUT": {
+                "ABOUT": "A propos",
+                "ASSOCIATION": "En association avec",
+                "DEVELOPED": "Développé par",
+                "TWITTER": "Suivez nous sur twitter pour rester au courant de nos projet !",
+                "VERSION": "Version"
+            },
+            "CURRENCY": {
+                "CURRENCY": "Monnaie"
+            },
+            "DOCUMENTATION": {
+                "DOCUMENTATION": "Documentation"
+            },
+            "LANGUAGE": {
+                "LANGUAGE": "Langue"
+            },
+            "NODE": {
+                "INFO": "Le serveur est utilisé pour communiquer avec le réseau Burst",
+                "NODE": "Serveur"
+            },
+            "SUPPORT": {
+                "CONTRIBUTION": "Nous apprécions également toutes contributions.",
+                "DONATE": "Vous aimez cette application ? Montrez le avec du BURST !",
+                "SUPPORT": "Soutien"
+            },
+            "TITLE": "Paramètres"
+        }
+    },
+    "SEND": {
+        "ACCEPT": "Valider",
+        "AMOUNT": "Montant",
+        "BALANCE": "Solde",
+        "FEE": "Frais",
+        "RECIPIENT": "Bénéficiaire",
+        "PIN_INPUT_HINT": "Pin",
+        "VERIFY": "Vérifier"
+    },
+    "START" : {
+        "CREATE": "Créer",
+        "IMPORT": "Importer",
+        "INFO": "Pas encore de compte répertorié ! Importez un compte existant ou créez-en un !"
+    },
+    "NOTIFICATIONS" : {
+        "ADDRESS": "Entrez une adresse Burst valide.",
+        "COPIED": "Adresse {{value}} copiée !",
+        "DECIMAL_AMOUNT": "Veuillez entrer le montant de BURST que vous souhaitez envoyer !",
+        "DECIMAL_FEE": "Veuillez entrer les frais de transaction (au moins 1) !",
+        "ENTER_SOMETHING": "Veuillez entrer quelque chose !",
+        "EXCEED": "Montant et Frais dépassent votre solde !",
+        "PIN": "Veuillez entrer un PIN à six chiffres !",
+        "REMOVE": "Le compte a été supprimé !",
+        "SELECTED": "Compte sélectionné : {{value}}",
+        "TRANSACTION": "Transaction validée !",
+        "UPDATE_CURRENCY": "Changement de monnaie enregistré !",
+        "UDPDATE_LANGUAGE": "Changement de langue enregistré !",
+        "UPDATE_NODE": "Changement de serveur enregistré !",
+        "WRONG_PASSPHRASE": "Mauvaise phrase de passe ! Cette phrase de passe ne génère pas la clé publique associée à votre compte !",
+        "WRONG_PIN": "Ce code pin ne correspond pas au pin du compte !",
+        "ERRORS": {
+            "ACCOUNT_ID": "Impossible de générer l'id de compte via une clé publique !",
+            "ADDRESS": "Impossible de générer une adresse Burst via l'id de compte !",
+            "CONNECTION": "Echec de récupération des données. Vérifiez votre connexion !",
+            "CURRENCY": "Echec de modification de monnaie !",
+            "KEYPAIR": "Echec de génération de clé associée à la phrase de passe !",
+            "LANGUAGE": "Echec de modification de langue !",
+            "NODE": "Echec de modification du serveur !",
+            "QR_CODE": "Impossible de trouver le QR code !",
+            "REDIRECT": "Impossible d'ouvrir la page d'envoi ! Le compte n'est pas actif !",
+            "REMOVE": "Echec de suppression du compte !",
+            "UPDATE": "Echec de modification du compte !",
+            "UNKNOWN_ACCOUNT": "Ce compte est inconnu et sans transactions !"
+        }
+    }
+}
