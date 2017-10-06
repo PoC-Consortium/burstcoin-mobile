@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
 import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
+import { LangChangeEvent, TranslateService } from 'ng2-translate';
 import { isAndroid } from "platform";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
 
@@ -29,7 +30,8 @@ export class TabsComponent implements OnInit {
         private router: RouterExtensions,
         private vcRef: ViewContainerRef,
         private accountService: AccountService,
-        private tabsService: TabsService
+        private tabsService: TabsService,
+        private translateService: TranslateService
     ) {
 
     }
@@ -52,6 +54,25 @@ export class TabsComponent implements OnInit {
                 if (index != undefined) {
                     this.tabView.nativeElement.selectedIndex = index;
                 }
+            });
+
+            // listen for language change
+            this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
+                this.translateService.get('TABS.BALANCE.TITLE').subscribe((res: string) => {
+                    this.tabView.nativeElement.items[0].title = res
+                });
+
+                this.translateService.get('TABS.HISTORY.TITLE').subscribe((res: string) => {
+                    this.tabView.nativeElement.items[1].title = res
+                });
+
+                this.translateService.get('TABS.ACCOUNTS.TITLE').subscribe((res: string) => {
+                    this.tabView.nativeElement.items[2].title = res
+                });
+
+                this.translateService.get('TABS.SETTINGS.TITLE').subscribe((res: string) => {
+                    this.tabView.nativeElement.items[3].title = res
+                });
             });
         }
     }
@@ -93,8 +114,8 @@ export class TabsComponent implements OnInit {
             fullscreen: false,
         };
         this.modalDialogService.showModal(NoteComponent, options)
-            .then(node => {})
-            .catch(error => {});
+            .then(node => { })
+            .catch(error => { });
     }
 
 }

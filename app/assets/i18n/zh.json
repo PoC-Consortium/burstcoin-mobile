@@ -1,0 +1,136 @@
+{
+    "CREATE": {
+        "ACTION_BAR_TITLE": "创建新帐户",
+        "DONE": "完成",
+        "GENERATE_AGAIN": "重新产生",
+        "INFO_SEED": "在此区域点击与滑动 !",
+        "INFO_SEED_FINISHED": "收集了种子 !",
+        "INFO_STEP_ONE": "首先，造成随机种子，用以产生你的密码 !",
+        "INFO_STEP_TWO": "你现在需要顺序记住全部的12密码里的词语 !",
+        "INFO_STEP_TWO_ACTION": "写下下列以空格分隔的词语，随后对密码保密 !",
+        "INFO_STEP_THREE": "请重新输入你的密码 !",
+        "INFO_STEP_THREE_ACTION": "写下单词 #{{value}} 然后选择它 !",
+        "INFO_STEP_FOUR": "请设置此应用账户六位数PIN。PIN用于批准向外交易。",
+        "PIN_INPUT_HINT": "PIN",
+        "POSSIBILITY_INPUT_HINT": "单词 #{{value}}",
+        "NEXT": "接下去"
+    },
+    "IMPORT" : {
+        "ACTION_BAR_TITLE": "导入现有帐户",
+        "ACTIVE_ACCOUNT": "活动账户",
+        "ACTIVE_ACCOUNT_DESCRIPTION": "活动账户提供完整功能。 你能发出与得到Burstcoins。此外，还能查余额与看交易历史。",
+        "ACTIVE_ACCOUNT_INPUT_HINT": "密码",
+        "ACTIVE_ACCOUNT_PIN_INFO": "请设置此应用账户六位数PIN。PIN用于批准向外交易。",
+        "DONE": "完成",
+        "IMPORT": "导入",
+        "INFO": "将通过输入活动账户的密码完成导入 ! 否则，将通过输入脱机账户的Burstcoin地址完成导入 !",
+        "NEXT": "接下去",
+        "OFFLINE_ACCOUNT": "脱机账户",
+        "OFFLINE_ACCOUNT_DESCRIPTION": "脱机账户和活动账户唯一不同的是，它不可以用于发送Burstcoins到别的地址。",
+        "OFFLINE_ACCOUNT_INPUT_HINT": "BURST-XXXX-XXXX-XXXX-XXXXX",
+        "PIN_INPUT_HINT": "PIN",
+        "SHOW" : {
+            "QUESTION": "这你的Burst地址吗？"
+        }
+    },
+    "TABS": {
+        "ACCOUNTS": {
+            "ACTIVATE": {
+                "DONE": "完成",
+                "ENTER_PASSPHRASE": "输入账户的密码在 {{value}} 这儿 !",
+                "ENTER_PIN": "设置六位数PIN !",
+                "PASSPHRASE_INPUT_HINT": "密码",
+                "PIN_INPUT_HINT": "Pin",
+                "NEXT": "接下去"
+            },
+            "BALANCE": "余额",
+            "CREATE": "新建",
+            "IMPORT": "导入",
+            "REMOVE": "你确实要删除账户？",
+            "TITLE": "账户"
+        },
+        "BALANCE": {
+            "ACTIVATE": "激活",
+            "BALANCE": "余额",
+            "SEND": "发出",
+            "TITLE": "余额"
+        },
+        "HISTORY": {
+            "TITLE": "历史"
+        },
+        "SETTINGS": {
+            "ABOUT": {
+                "ABOUT": "关于我们",
+                "ASSOCIATION": "合伙人",
+                "DEVELOPED": "软件开发人员",
+                "TWITTER": "为了找到我们项目最新进展，可以在twitter上关注 !",
+                "VERSION": "版本"
+            },
+            "CURRENCY": {
+                "CURRENCY": "货币"
+            },
+            "DOCUMENTATION": {
+                "DOCUMENTATION": "文档"
+            },
+            "LANGUAGE": {
+                "LANGUAGE": "语言"
+            },
+            "NODE": {
+                "INFO": "Burst节点被用来与Burst网路通讯",
+                "NODE": "节点"
+            },
+            "SUPPORT": {
+                "CONTRIBUTION": "我们也为小贡献感到高兴",
+                "DONATE": "享受我们的APP？ 用BURST捐献支持我们 !",
+                "SUPPORT": "支持"
+            },
+            "TITLE": "设置"
+        }
+    },
+    "SEND": {
+        "ACCEPT": "接受",
+        "ACTION_BAR_TITLE": "Send BURST",
+        "AMOUNT": "金额",
+        "BALANCE": "余额",
+        "FEE": "交易费",
+        "RECIPIENT": "接受者",
+        "PIN_INPUT_HINT": "Pin",
+        "VERIFY": "验证"
+    },
+    "START" : {
+        "CREATE": "创新",
+        "IMPORT": "导入",
+        "INFO": "还没账户 ! 选择导入现有账户或者新建账户 !"
+    },
+    "NOTIFICATIONS" : {
+        "ADDRESS": "请输入有效的Burstcoin 地址 !",
+        "COPIED": "制了地址 {{value}} 到剪贴板 !",
+        "DECIMAL_AMOUNT": "请输入小数当作想发出BURST 的金额 !",
+        "DECIMAL_FEE": "请输入小数（至少 1）当作交易费 !",
+        "ENTER_SOMETHING": "请输入 !",
+        "EXCEED": "金额加交易费超过你的余额 !",
+        "PIN": "请输入六位数的Pin !",
+        "REMOVE": "账户已成功删除 !",
+        "SELECTED": "金额： {{value}}",
+        "TRANSACTION": "交易成功 !",
+        "UPDATE_CURRENCY": "货币更新成功 !",
+        "UDPDATE_LANGUAGE": "语言更新成功 !",
+        "UPDATE_NODE": "节点更新成功 !",
+        "WRONG_PASSPHRASE": "密码错了 ! 密码无法产生给予你账户的公钥 !",
+        "WRONG_PIN": "输入的pin与账户的不匹配",
+        "ERRORS": {
+            "ACCOUNT_ID": "公钥不能产生账户ID !",
+            "ADDRESS": "账户ID不能用产生BURST地址 !",
+            "CONNECTION": "检索数据失败。请检查网络连接 !",
+            "CURRENCY": "货币更新失败 !",
+            "KEYPAIR": "为密码产生密钥对失败 !",
+            "LANGUAGE": "更改语言失败 !",
+            "NODE": "更新节点失败 !",
+            "QR_CODE": "扫描QR码失败 !",
+            "REDIRECT": "不能开BURST页 ! 活期账户还未激活 !",
+            "REMOVE": "删除账户失败 !",
+            "UPDATE": "更新账户失败 !",
+            "UNKNOWN_ACCOUNT": "未知账户。还没有交易 !"
+        }
+    }
+}

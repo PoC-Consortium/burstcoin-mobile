@@ -102,7 +102,7 @@ export class SettingsComponent implements OnInit {
     public onTapLanguage() {
         const options: ModalDialogOptions = {
             viewContainerRef: this.vcRef,
-            context: this.settings.currency,
+            context: this.settings.language,
             fullscreen: false,
         };
         this.modalDialogService.showModal(LanguageComponent, options)

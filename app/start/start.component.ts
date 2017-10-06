@@ -1,13 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
-import { isAndroid } from "platform";
-import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
-import { Label } from "ui/label";
-import { Progress } from "ui/progress";
-import { TouchGestureEventData } from "ui/gestures";
-import { Button } from "ui/button";
-import { TextField } from "ui/text-field";
-import { EventData } from "data/observable";
+import { TranslateService } from 'ng2-translate';
+import { device } from "platform";
 import { Page } from "ui/page";
 
 import { Account } from "../lib/model";
@@ -28,17 +22,19 @@ export class StartComponent implements OnInit {
         private databaseService: DatabaseService,
         private notificationService: NotificationService,
         private page: Page,
-        private router: RouterExtensions
+        private router: RouterExtensions,
+        private translateService: TranslateService
     ) {
         this.page.actionBarHidden = true;
         this.databaseService.ready.subscribe((init: boolean) => {
             this.loadSelectedAccount(init)
+            this.setLanguage(init);
         });
         // TODO: show initial loading
         this.loading = true;
     }
 
-    private loadSelectedAccount(init) {
+    private loadSelectedAccount(init: boolean) {
         if (init == true) {
             // get selected account from database
             this.databaseService.getSelectedAccount()
@@ -53,6 +49,19 @@ export class StartComponent implements OnInit {
             this.loading = false;
         }
     }
+
+    private setLanguage(init: boolean) {
+        // fallback language
+        this.translateService.setDefaultLang('en');
+        if (init == true) {
+            this.databaseService.getSettings().then(settings => {
+                this.translateService.use(settings.language);
+            })
+        } else {
+            this.translateService.use(device.language);
+        }
+    }
+
 
     public ngOnInit() {
 
