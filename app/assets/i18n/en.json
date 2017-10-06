@@ -89,6 +89,7 @@
     },
     "SEND": {
         "ACCEPT": "Accept",
+        "ACTION_BAR_TITLE": "Send BURST",
         "AMOUNT": "Amount",
         "BALANCE": "Balance",
         "FEE": "Fee",

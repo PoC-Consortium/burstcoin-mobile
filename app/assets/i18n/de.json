@@ -89,6 +89,7 @@
     },
     "SEND": {
         "ACCEPT": "Akzeptieren",
+        "ACTION_BAR_TITLE": "BURST senden",
         "AMOUNT": "Betrag",
         "BALANCE": "Saldo",
         "FEE": "Gebühr",

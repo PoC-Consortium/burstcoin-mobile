@@ -84,11 +84,12 @@
                 "DONATE": "Vous aimez cette application ? Montrez le avec du BURST !",
                 "SUPPORT": "Soutien"
             },
-            "TITLE": "Paramètres"
+            "TITLE": "Réglages"
         }
     },
     "SEND": {
         "ACCEPT": "Valider",
+        "ACTION_BAR_TITLE": "Send BURST",
         "AMOUNT": "Montant",
         "BALANCE": "Solde",
         "FEE": "Frais",
