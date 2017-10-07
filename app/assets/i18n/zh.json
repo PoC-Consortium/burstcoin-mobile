@@ -89,7 +89,7 @@
     },
     "SEND": {
         "ACCEPT": "接受",
-        "ACTION_BAR_TITLE": "Send BURST",
+        "ACTION_BAR_TITLE": "发 BURST",
         "AMOUNT": "金额",
         "BALANCE": "余额",
         "FEE": "交易费",

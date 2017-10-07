@@ -111,7 +111,7 @@
         "EXCEED": "Betrag und Gebühr überschreiten deinen Saldo !",
         "PIN": "Gebe eine sechstellige Zahl als Pin Code ein !",
         "REMOVE": "Konto erfolgreich entfernt !",
-        "SELECTED": "Konto {{value}} ausgewählt",
+        "SELECTED": "Konto ausgewählt: {{value}}",
         "TRANSACTION": "Transaktion erfolgreich !",
         "UPDATE_CURRENCY": "Währung erfolgreich aktualisiert !",
         "UDPDATE_LANGUAGE": "Sprache erfolgreich aktualisiert !",
