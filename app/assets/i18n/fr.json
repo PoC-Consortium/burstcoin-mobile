@@ -36,6 +36,7 @@
     "TABS": {
         "ACCOUNTS": {
             "ACTIVATE": {
+                "ACTION_BAR_TITLE": "Activer le compte",
                 "DONE": "Terminé",
                 "ENTER_PASSPHRASE": "Entrez la phrase de passe de votre compte {{value}} !",
                 "ENTER_PIN": "Choisissez un code PIN à 6 chiffres.",

@@ -8,7 +8,7 @@
         "INFO_STEP_ONE": "Erzeuge einen zufälligen Seed für die Generierung einer Passphrase !",
         "INFO_STEP_TWO": "Sichere alle 12 Wörter deiner Passphrase in der richtigen Reihenfolge",
         "INFO_STEP_TWO_ACTION": "Schreibe die folgenden Wörter, getrennt durch ein Leerzeichen, auf und halte sie geheim !",
-        "INFO_STEP_THREE": "Gebe nun jedes Wort deiner Passphrase nacheinander ein !",
+        "INFO_STEP_THREE": "Bitte gebe nun jedes Wort deiner Passphrase nacheinander ein !",
         "INFO_STEP_THREE_ACTION": "Tippe das Wort an der Stelle #{{value}} ein und wähle es aus !",
         "INFO_STEP_FOUR": "Setze einen sechsstelligen Pin Code für dein Konto. Der Pin Code wird benutzt um ausgehende Transaktionen zu bestätigen.",
         "PIN_INPUT_HINT": "PIN",
@@ -36,8 +36,9 @@
     "TABS": {
         "ACCOUNTS": {
             "ACTIVATE": {
+                "ACTION_BAR_TITLE": "Account aktivieren",
                 "DONE": "Fertig",
-                "ENTER_PASSPHRASE": "Gebe die Passphrase des Kontos {{value}} ein !",
+                "ENTER_PASSPHRASE": "Bitte gebe die Passphrase des Kontos {{value}} ein !",
                 "ENTER_PIN": "Setze einen sechsstelligen PIN code !",
                 "PASSPHRASE_INPUT_HINT": "Passphrase",
                 "PIN_INPUT_HINT": "PIN",
@@ -103,20 +104,20 @@
         "INFO": "Kein Konto wurde bisher erstellt ! Importiere ein bestehendes Konto oder erstelle einen Neuen !"
     },
     "NOTIFICATIONS" : {
-        "ADDRESS": "Gebe eine gültige Burst Adresse ein !",
+        "ADDRESS": "Bitte gebe eine gültige Burst Adresse ein !",
         "COPIED": "{{value}} in die Zwischenablage kopiert !",
-        "DECIMAL_AMOUNT": "Gebe den gewünschten Betrag an Burstcoins als Dezimalzahl ein !",
-        "DECIMAL_FEE": "Gebe eine Gebühr von mindestens 1 Burstcoin ein !",
+        "DECIMAL_AMOUNT": "Bitte gebe den gewünschten Betrag an Burstcoins als Dezimalzahl ein !",
+        "DECIMAL_FEE": "Bitte gebe eine Gebühr von mindestens 1 Burstcoin ein !",
         "ENTER_SOMETHING": "Eingabe ist leer !",
         "EXCEED": "Betrag und Gebühr überschreiten deinen Saldo !",
-        "PIN": "Gebe eine sechstellige Zahl als Pin Code ein !",
+        "PIN": "Bitte gebe eine sechstellige Zahl als Pin Code ein !",
         "REMOVE": "Konto erfolgreich entfernt !",
         "SELECTED": "Konto ausgewählt: {{value}}",
         "TRANSACTION": "Transaktion erfolgreich !",
         "UPDATE_CURRENCY": "Währung erfolgreich aktualisiert !",
         "UDPDATE_LANGUAGE": "Sprache erfolgreich aktualisiert !",
         "UPDATE_NODE": "Endpunkt erfolgreich aktualisiert !",
-        "WRONG_PASSPHRASE": "Falsche Passphrase ! Die eingegebene Passphrase passt nicht zum öffentlichen Schlüssel deines Kontos !",
+        "WRONG_PASSPHRASE": "Die eingegebene Passphrase passt nicht zum öffentlichen Schlüssel deines Kontos !",
         "WRONG_PIN": "Der eingegebene Pin Code stimmt nicht mit dem Pin Code des Kontos überein !",
         "ERRORS": {
             "ACCOUNT_ID": "Fehler beim Generieren der Konto Id !",

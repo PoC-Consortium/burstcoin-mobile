@@ -62,7 +62,7 @@ export class BalanceComponent implements OnInit {
         this.account = account;
         // generate qr code image
         this.qrcode = this.zx.createBarcode({ encode: account.address, height: 400, width: 400, format: ZXing.QR_CODE });
-        this.address = account.type == 'offline' ? account.address + " (" + account.type + ")" : account.address;
+        this.address = account.address;
         this.balance = this.marketService.getPriceBurstcoin(account.balance);
         this.confirmed = account.balance == account.unconfirmedBalance;
     }

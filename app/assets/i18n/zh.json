@@ -36,6 +36,7 @@
     "TABS": {
         "ACCOUNTS": {
             "ACTIVATE": {
+                "ACTION_BAR_TITLE": "Activate Account",
                 "DONE": "完成",
                 "ENTER_PASSPHRASE": "输入账户的密码在 {{value}} 这儿 !",
                 "ENTER_PIN": "设置六位数PIN !",
