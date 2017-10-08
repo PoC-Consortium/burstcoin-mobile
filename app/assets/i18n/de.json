@@ -101,7 +101,7 @@
     "START" : {
         "CREATE": "Erstellen",
         "IMPORT": "Importieren",
-        "INFO": "Kein Konto wurde bisher erstellt ! Importiere ein bestehendes Konto oder erstelle einen Neuen !"
+        "INFO": "Kein Konto wurde bisher erstellt. Importiere ein bestehendes Konto oder erstelle einen Neuen !"
     },
     "NOTIFICATIONS" : {
         "ADDRESS": "Bitte gebe eine gültige Burst Adresse ein !",
@@ -131,7 +131,7 @@
             "REDIRECT": "Senden von Burstcoin nicht möglich. Ausgewähltes Konto ist kein aktives Konto !",
             "REMOVE": "Fehler beim Entfernen des Kontos !",
             "UPDATE": "Fehler beim Aktualisieren des Kontos !",
-            "UNKNOWN_ACCOUNT": "Konto ist noch unbekannt ! Keine Transaktionen gefunden !"
+            "UNKNOWN_ACCOUNT": "Konto ist noch unbekannt. Keine Transaktionen gefunden !"
         }
     }
 }
