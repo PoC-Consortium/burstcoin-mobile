@@ -130,41 +130,41 @@ export class AccountsComponent implements OnInit {
     }
 
     public refresh(args) {
-        var pullRefresh = args.object;
+        let listView = args.object;
         for (let i = 0; i < this.accounts.length; i++) {
             this.accountService.synchronizeAccount(this.accounts[i])
                 .then(account => {
                     if (i == this.accounts.length - 1) {
                         this.marketService.updateCurrency()
                             .then(currency => {
-                                pullRefresh.refreshing = false;
+                                listView.notifyPullToRefreshFinished();
                             })
                             .catch(error => {
+                                listView.notifyPullToRefreshFinished();
                                 this.translateService.get(error.message).subscribe((res: string) => {
                                     this.notificationService.info(res);
                                 });
-                                pullRefresh.refreshing = false;
                             });
                     }
                 })
                 .catch(error => {
                     if (error instanceof NoConnectionError) {
+                        listView.notifyPullToRefreshFinished();
                         this.translateService.get(error.message).subscribe((res: string) => {
                             this.notificationService.info(res);
                         });
-                        pullRefresh.refreshing = false;
                         return;
                     }
                     if (i == this.accounts.length - 1) {
                         this.marketService.updateCurrency()
                             .then(currency => {
-                                pullRefresh.refreshing = false;
+                                listView.notifyPullToRefreshFinished();
                             })
                             .catch(error => {
+                                listView.notifyPullToRefreshFinished();
                                 this.translateService.get(error.message).subscribe((res: string) => {
                                     this.notificationService.info(res);
                                 });
-                                pullRefresh.refreshing = false;
                             })
                     }
                 })

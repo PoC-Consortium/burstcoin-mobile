@@ -138,7 +138,6 @@ export class CryptoService {
     public verifySignature(signature: string, transactionHex: string, publicKey: string): Promise<boolean> {
         return new Promise((resolve, reject) => {
             let signatureBytes = Converter.convertHexStringToByteArray(signature);
-            let messageBytes = Converter.convertHexStringToByteArray(transactionHex);
             let publicKeyBytes = Converter.convertHexStringToByteArray(publicKey);
             let v = signatureBytes.slice(0, 32);
             let h1 = signatureBytes.slice(32);

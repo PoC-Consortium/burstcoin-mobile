@@ -3,6 +3,7 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { ModalDialogService } from "nativescript-angular/modal-dialog";
 import { BarcodeScanner } from 'nativescript-barcodescanner';
+import { NativeScriptUIListViewModule } from "nativescript-telerik-ui/listview/angular";
 
 import { TabsRoutingModule } from "./tabs.routing";
 import { TabsComponent } from "./tabs.component";
@@ -38,7 +39,8 @@ export function createBarcodeScanner() {
         NativeScriptModule,
         NativeScriptFormsModule,
         SharedModule,
-        TabsRoutingModule
+        TabsRoutingModule,
+        NativeScriptUIListViewModule
     ],
     declarations: [
         TabsComponent,

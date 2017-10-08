@@ -1,10 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { isAndroid } from "platform";
-import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
-import { Label } from "ui/label";
-import { Border } from "ui/border";
+import { ListViewEventData } from "nativescript-telerik-ui/listview";
 import { GestureEventData } from "ui/gestures";
-import { registerElement } from "nativescript-angular/element-registry";
 import { TranslateService } from 'ng2-translate';
 
 import { Account, Transaction } from "../../lib/model";
@@ -14,8 +11,6 @@ import { AccountService, DatabaseService, MarketService, NotificationService } f
 
 import * as SocialShare from "nativescript-social-share";
 let clipboard = require("nativescript-clipboard");
-
-registerElement("TransactionsRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
 
 @Component({
     selector: "transactions",
@@ -64,7 +59,7 @@ export class TransactionsComponent implements OnInit {
     }
 
     public refresh(args) {
-        var pullRefresh = args.object;
+        let listView = args.object;
         let account = this.accountService.currentAccount.value;
         this.accountService.synchronizeAccount(account)
             .then(account => {
@@ -72,20 +67,21 @@ export class TransactionsComponent implements OnInit {
                 this.accountService.setCurrentAccount(account);
                 this.marketService.updateCurrency()
                     .then(currency => {
-                        pullRefresh.refreshing = false;
+                        listView.notifyPullToRefreshFinished();
                     })
                     .catch(error => {
+                        listView.notifyPullToRefreshFinished();
                         this.translateService.get(error.message).subscribe((res: string) => {
                             this.notificationService.info(res);
                         });
-                        pullRefresh.refreshing = false;
                     });
+                listView.notifyPullToRefreshFinished();
             })
             .catch(error => {
                 this.translateService.get(error.message).subscribe((res: string) => {
                     this.notificationService.info(res);
                 });
-                pullRefresh.refreshing = false;
+                listView.notifyPullToRefreshFinished();
             })
     }
 }
