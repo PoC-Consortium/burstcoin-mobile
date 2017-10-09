@@ -18,3 +18,4 @@ report/
 !/app/lib/js/**/*.js
 .nyc_output/
 coverage/
+!webpack.config.js

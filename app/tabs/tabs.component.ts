@@ -72,6 +72,7 @@ export class TabsComponent implements OnInit {
 
                 this.translateService.get('TABS.SETTINGS.TITLE').subscribe((res: string) => {
                     this.tabView.nativeElement.items[3].title = res
+                    this.title = res
                 });
             });
         }

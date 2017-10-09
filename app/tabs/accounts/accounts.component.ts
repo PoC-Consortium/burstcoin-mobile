@@ -5,7 +5,6 @@ import { isAndroid } from "platform";
 import { SwipeGestureEventData } from "ui/gestures";
 import { Label } from "ui/label";
 import { Image } from "ui/image";
-import { registerElement } from "nativescript-angular/element-registry";
 import { TranslateService } from 'ng2-translate';
 
 import { Account, BurstAddress, Currency } from "../../lib/model";
@@ -15,8 +14,6 @@ import { AddComponent } from "./add/add.component";
 import { RemoveComponent } from "./remove/remove.component";
 
 import * as SocialShare from "nativescript-social-share";
-
-registerElement("AccountsRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
 
 @Component({
     selector: "accounts",
