@@ -1,0 +1,135 @@
+{
+    "CREATE": {
+        "ACTION_BAR_TITLE": "Skapa Nytt Konto",
+        "DONE": "Klar",
+        "GENERATE_AGAIN": "Generera igen",
+        "INFO_SEED": "Tryck och svep över detta område.",
+        "INFO_SEED_FINISHED": "seed insamlad.",
+        "INFO_STEP_ONE": "Först, Skapa en slumpad seed för generering av din lösenordsfras.",
+        "INFO_STEP_TWO": "Nu måste du memorera alla 12 ord av din lösenfras i rätt ordning.",
+        "INFO_STEP_TWO_ACTION": "Skriv ner följande ord åtskilda av mellanrum och håll dem hemliga.",
+        "INFO_STEP_THREE": "Vänligen skriv in din lösenordsfras igen.",
+        "INFO_STEP_THREE_ACTION": "Skriv ner ord #{{value}} och välj det.",
+        "INFO_STEP_FOUR": "Ange en sexsiffrig pin-kod för ditt konto. Pin-koden används för att godkänna utgående transaktioner.",
+        "PIN_INPUT_HINT": "PIN",
+        "POSSIBILITY_INPUT_HINT": "Ord #{{value}}",
+        "NEXT": "Nästa"
+    },
+    "IMPORT" : {
+        "ACTION_BAR_TITLE": "Importera befintligt konto",
+        "ACTIVE_ACCOUNT": "Aktivt konto",
+        "ACTIVE_ACCOUNT_DESCRIPTION": "Ett aktivt konto erbjuder full funktionalitet. Du kan skicka och ta emot Burstcoin. Du kan även kontrollera ditt saldo och se historik om dina transaktioner.",
+        "ACTIVE_ACCOUNT_INPUT_HINT": "Lösenordsfras",
+        "ACTIVE_ACCOUNT_PIN_INFO": "Ange en sexsiffrig pin-kod för ditt konto. Pin-koden används för att godkänna utgående transaktioner.",
+        "DONE": "Klar",
+        "IMPORT": "Importera",
+        "INFO": "Importera ett aktivt konto genom att ange lösenorsfrasen. Annars, importera ett off-line konto genom att ange dess Burstcoin adress.",
+        "NEXT": "Nästa",
+        "OFFLINE_ACCOUNT": "Off-line konto",
+        "OFFLINE_ACCOUNT_DESCRIPTION": "Ett off-line konto har samma funktion som ett aktivt konto, förutom att du inte kan skicka Burstcoin till en annan adress.",
+        "OFFLINE_ACCOUNT_INPUT_HINT": "BURST-XXXX-XXXX-XXXX-XXXXX",
+        "PIN_INPUT_HINT": "PIN",
+        "SHOW" : {
+            "QUESTION": "Är detta din Burst adress?"
+        }
+    },
+    "TABS": {
+        "ACCOUNTS": {
+            "ACTIVATE": {
+                "DONE": "Klar",
+                "ENTER_PASSPHRASE": "Ange lösenordsfrasen för kontot {{value}} här.",
+                "ENTER_PIN": "Ange en sexsiffrig pin-kod.",
+                "PASSPHRASE_INPUT_HINT": "Lösenordsfras",
+                "PIN_INPUT_HINT": "Pin",
+                "NEXT": "Nästa"
+            },
+            "BALANCE": "Saldo",
+            "CREATE": "Skapa",
+            "IMPORT": "Importera",
+            "REMOVE": "Vill du verkligen ta bort det här kontot?",
+            "TITLE": "Konton"
+        },
+        "BALANCE": {
+            "ACTIVATE": "Aktivera",
+            "BALANCE": "Saldo",
+            "SEND": "Skicka",
+            "TITLE": "Saldo"
+        },
+        "HISTORY": {
+            "TITLE": "Historik"
+        },
+        "SETTINGS": {
+            "ABOUT": {
+                "ABOUT": "Om",
+                "ASSOCIATION": "I samarbete med",
+                "DEVELOPED": "Utvecklad av",
+                "TWITTER": "Följ oss på twitter för att få uppdateringar om våra projekt.",
+                "VERSION": "Version"
+            },
+            "CURRENCY": {
+                "CURRENCY": "Valuta"
+            },
+            "DOCUMENTATION": {
+                "DOCUMENTATION": "Dokumentation"
+            },
+            "LANGUAGE": {
+                "LANGUAGE": "Språk"
+            },
+            "NODE": {
+                "INFO": "Burst-noden används för att kommunicera med Burstnätverket.",
+                "NODE": "Nod"
+            },
+            "SUPPORT": {
+                "CONTRIBUTION": "Vi uppskattar även icke monetära bidrag",
+                "DONATE": "Gillar du vår app? Stöd oss genom att donera BURST.",
+                "SUPPORT": "Support"
+            },
+            "TITLE": "Inställningar"
+        }
+    },
+    "SEND": {
+        "ACCEPT": "Acceptera",
+        "AMOUNT": "Belopp",
+        "BALANCE": "Saldo",
+        "FEE": "Avgift",
+        "RECIPIENT": "Mottagare",
+        "PIN_INPUT_HINT": "Pin",
+        "VERIFY": "Verifiera"
+    },
+    "START" : {
+        "CREATE": "Skapa",
+        "IMPORT": "Importera",
+        "INFO": "Inget konto skapat än. Välj att importera ett befintligt konto eller skapa ett nytt."
+    },
+    "NOTIFICATIONS" : {
+        "ADDRESS": "Ange en giltig Burstcoin adress.",
+        "COPIED": "Kopierade addressen {{value}} till Urklipp.",
+        "DECIMAL_AMOUNT": "Ange ett decimaltal för hur mycket BURST du vill skicka.",
+        "DECIMAL_FEE": "Ange ett decimaltal (minst 1) som avgift.",
+        "ENTER_SOMETHING": "Vänligen ange något.",
+        "EXCEED": "Belopp och avgift överstiger ditt saldo.",
+        "PIN": "Ange ett sexsiffrigt nummer som Pin.",
+        "REMOVE": "Borttagning av kontot lyckades.",
+        "SELECTED": "Välj konto: {{value}}",
+        "TRANSACTION": "Transaktionen lyckades.",
+        "UPDATE_CURRENCY": "Uppdateringen av valuta lyckades.",
+        "UDPDATE_LANGUAGE": "Uppdateringen av språk lyckades.",
+        "UPDATE_NODE": "Uppdateringen av nod lyckades.",
+        "WRONG_PASSPHRASE": "Fel lösenordsfras. Den angivna lösenordsfrasen genererar inte den offentliga nyckel som tilldelats ditt konto.",
+        "WRONG_PIN": "Den angivna pinkoden matchar inte kontots pinkod.",
+        "ERRORS": {
+            "ACCOUNT_ID": "Kan inte generera konto-ID från den offentliga nyckeln.",
+            "ADDRESS": "Kan inte generera BURST adress från konto ID.",
+            "CONNECTION": "Misslyckades med att hämta data. Kontrollera din internetanslutning.",
+            "CURRENCY": "Valutauppdateringen misslyckades.",
+            "KEYPAIR": "Misslyckades med att skapa nyckelpar för lösenordsfras.",
+            "LANGUAGE": "Språkändring misslyckades.",
+            "NODE": "Noduppdatering misslyckades.",
+            "QR_CODE": "Kunde inte skanna QR kod.",
+            "REDIRECT": "Kan inte öppna 'skicka BURST' sida. Nuvarande konto är inte aktivt.",
+            "REMOVE": "Det gick inte att ta bort konto.",
+            "UPDATE": "Uppdatering av konto misslyckades.",
+            "UNKNOWN_ACCOUNT": "Kontot är fortfarande okänt. Inga transaktioner finns ännu."
+        }
+    }
+}
