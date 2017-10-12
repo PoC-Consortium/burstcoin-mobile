@@ -10,7 +10,7 @@
         "INFO_STEP_TWO_ACTION": "Zapíšte si nasledujúce slová oddelené medzerou a uchovajte si ich na bezpečnom mieste v tajnosti!",
         "INFO_STEP_THREE": "Zadajte prosím znova slová Vašej prístupovej frázy!",
         "INFO_STEP_THREE_ACTION": "Zapíšte slovo #{{value}} a vyberte ho!",
-        "INFO_STEP_FOUR": "Zadajte šesťmiestny pin kód pre svoj účet. PIN kód sa používa na schválenie odchádzajúcich transakcií.",
+        "INFO_STEP_FOUR": "Zadajte šesťmiestny PIN kód pre svoj účet. PIN kód sa používa na schválenie odchádzajúcich transakcií.",
         "PIN_INPUT_HINT": "PIN",
         "POSSIBILITY_INPUT_HINT": "Slovo #{{value}}",
         "NEXT": "Ďalej"
@@ -18,9 +18,9 @@
     "IMPORT": {
         "ACTION_BAR_TITLE": "Import existujúceho účtu",
         "ACTIVE_ACCOUNT": "Aktívny účet",
-        "ACTIVE_ACCOUNT_DESCRIPTION": "Aktívny účet je plne funkčný. Môžete posielať a prijímať Burstcoiny. Okrem toho, môžete si skontrolovať zostatok úctu a zobraziť si históriu transakcií.",
+        "ACTIVE_ACCOUNT_DESCRIPTION": "Aktívny účet je plne funkčný. Môžete posielať a prijímať Burstcoiny. Okrem toho si môžete skontrolovať zostatok účtu a zobraziť históriu transakcií.",
         "ACTIVE_ACCOUNT_INPUT_HINT": "Passphrase",
-        "ACTIVE_ACCOUNT_PIN_INFO": "Zadajte šesťmiestny pin kód pre svoj účet. PIN kód sa používa na schválenie odchádzajúcich transakcií.",
+        "ACTIVE_ACCOUNT_PIN_INFO": "Zadajte šesťmiestny PIN kód pre Váš účet. PIN kód sa používa na schválenie odchádzajúcich transakcií.",
         "DONE": "Hotovo",
         "IMPORT": "Import",
         "INFO": "Pre import aktívneho účtu, zadajte jeho prístupovú frázu! Inak importujte účet, spôsobom offline, zadaním jeho Burstcoin adresy!",
@@ -41,7 +41,7 @@
                 "ENTER_PASSPHRASE": "Sem vložte prístupovú frázu {{value}}!",
                 "ENTER_PIN": "Vložte 6 miestny PIN kód!",
                 "PASSPHRASE_INPUT_HINT": "Prístupová fráza",
-                "PIN_INPUT_HINT": "Pin",
+                "PIN_INPUT_HINT": "PIN",
                 "NEXT": "Ďalej"
             },
             "BALANCE": "Zostatok",
@@ -82,7 +82,7 @@
             },
             "SUPPORT": {
                 "CONTRIBUTION": "Sme radi za vaše nepeňažné príspevky",
-                "DONATE": "Páči sa Vám naša aplikácia? Podporujte nás darovaním BURSTCOINOV!",
+                "DONATE": "Páči sa Vám naša aplikácia? Podporte nás darovaním BURSTCOINOV!",
                 "SUPPORT": "Podpora"
             },
             "TITLE": "Možnosti"
@@ -94,7 +94,7 @@
         "BALANCE": "Zostatok",
         "FEE": "Poplatok",
         "RECIPIENT": "Príjemca",
-        "PIN_INPUT_HINT": "Pin",
+        "PIN_INPUT_HINT": "PIN",
         "VERIFY": "Kontrola"
     },
     "START": {
@@ -109,7 +109,7 @@
         "DECIMAL_FEE": "Zadajte desatinné číslo (viac ako 1) pre poplatok!",
         "ENTER_SOMETHING": "Zadajte niečo!",
         "EXCEED": "Suma + poplatok prekračujú váš zostatok!",
-        "PIN": "Zadajte šesťmiestne číslo pre Pin kód!",
+        "PIN": "Zadajte šesťmiestne číslo pre PIN kód!",
         "REMOVE": "Účet bol úspešne odstránený!",
         "SELECTED": "Vybraný účet: {{value}}",
         "TRANSACTION": "Transakcia bola úspešná!",
@@ -125,7 +125,7 @@
             "CURRENCY": "Aktualizácia meny zlyhala!",
             "KEYPAIR": "Nepodarilo sa vygenerovať kľúče pre prístupovú frázu!",
             "LANGUAGE": "Zmena jazyka sa nepodarila!",
-            "NODE": "Aktualizácia uzla zlyhala!",
+            "NODE": "Aktualizácia uzla zlýhala!",
             "QR_CODE": "Nepodarilo sa naskenovať QR kód!",
             "REDIRECT": "Nemôžem otvoriť stránku pre odoslanie BURSTOV! Účet nie je aktívny!",
             "REMOVE": "Účet sa nepodarilo odstrániť!",
