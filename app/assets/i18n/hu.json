@@ -1,0 +1,135 @@
+{
+    "CREATE": {
+        "ACTION_BAR_TITLE": "Új fiók létrehozása",
+        "DONE": "Kész",
+        "GENERATE_AGAIN": "Újra generál",
+        "INFO_SEED": "Érints meg és húzd az újjad!",
+        "INFO_SEED_FINISHED": "Seed kész!",
+        "INFO_STEP_ONE": "Elõször is, kell egy véletlenszerû seed, hogy jelszót csinálhassunk!",
+        "INFO_STEP_TWO": "S most meg kell jegyezned mind a 12 szót ebben a sorrendben!",
+        "INFO_STEP_TWO_ACTION": "Írd le ezeket a szavakat egy szóközzel elválasztva, és jól õrizd meg!",
+        "INFO_STEP_THREE": "Írd be újra a jelszavad!",
+        "INFO_STEP_THREE_ACTION": "írd le: #{{value}} és jelöld ki!",
+        "INFO_STEP_FOUR": "Adjon meg egy 6 számjegyû PIN-kódot. Ez a PIN-kód hagyja jóvá a kimenõ átutalásokat.",
+        "PIN_INPUT_HINT": "PIN",
+        "POSSIBILITY_INPUT_HINT": "Szó #{{value}}",
+        "NEXT": "Következõ"
+    },
+    "IMPORT" : {
+        "ACTION_BAR_TITLE": "Létezõ fiók importálása",
+        "ACTIVE_ACCOUNT": "Fiók aktiválás",
+        "ACTIVE_ACCOUNT_DESCRIPTION": "Csak egy aktivált fiók rendelkezik teljes funkcionalitással.Küldhet és kaphat BURST coin-t. Azonkívül, megnézheti az egyenlegét, és a múltbéli pénzmozgást.",
+        "ACTIVE_ACCOUNT_INPUT_HINT": "Jelszó",
+        "ACTIVE_ACCOUNT_PIN_INFO": "Adjon meg egy 6 számjegyû PIN-kódot. Ez a kód hagyja jóvá a PIN-kimenõ átutalásokat.",
+        "DONE": "Kész",
+        "IMPORT": "Importál",
+        "INFO": "Importáljon egy aktív fiókot, a jelszó beírásával! Inaktív fiókot  Burstcoin cím beírásával importálhat!",
+        "NEXT": "Következõ/Tovább",
+        "OFFLINE_ACCOUNT": "Inaktív fiók",
+        "OFFLINE_ACCOUNT_DESCRIPTION": "Egy inaktív fiók ugyanazokat a lehetõségeket nyújtja mint egy aktív, de nem utalhat róla.",
+        "OFFLINE_ACCOUNT_INPUT_HINT": "BURST-XXXX-XXXX-XXXX-XXXXX",
+        "PIN_INPUT_HINT": "PIN",
+        "SHOW" : {
+            "QUESTION": "Ez az Ön BURST címe?"
+        }
+    },
+    "TABS": {
+        "ACCOUNTS": {
+            "ACTIVATE": {
+                "DONE": "Kész",
+                "ENTER_PASSPHRASE": "Írja be az ehhez a fiókhoz tartozó: {{value}} jelszót ide! ",
+                "ENTER_PIN": "Állítson be egy 6 számjegyû PIN-kódot",
+                "PASSPHRASE_INPUT_HINT": "Jelszó",
+                "PIN_INPUT_HINT": "PIN",
+                "NEXT": "Következõ"
+            },
+            "BALANCE": "Egyenleg",
+            "CREATE": "Létrehoz",
+            "IMPORT": "Importál",
+            "REMOVE": "El akarja távolítani ezt a fiókot ?",
+            "TITLE": "Fiókok"
+        },
+        "BALANCE": {
+            "ACTIVATE": "Aktivál",
+            "BALANCE": "Egyenleg",
+            "SEND": "Elküld",
+            "TITLE": "Egyenleg"
+        },
+        "HISTORY": {
+            "TITLE": "Történet"
+        },
+        "SETTINGS": {
+            "ABOUT": {
+                "ABOUT": "Rólunk",
+                "ASSOCIATION": "Egyesület",
+                "DEVELOPED": "Fejlesztette",
+                "TWITTER": "Kövessen minket a twitteren hogy értesüljön az újdonságokról",
+                "VERSION": "Verzió"
+            },
+            "CURRENCY": {
+                "CURRENCY": "Pénznem"
+            },
+            "DOCUMENTATION": {
+                "DOCUMENTATION": "Dokumentáció"
+            },
+            "LANGUAGE": {
+                "LANGUAGE": "Nyelv"
+            },
+            "NODE": {
+                "INFO": "A BURST node-on keresztül jön létre a kommunikáció a BURST hálózattal",
+                "NODE": "Node"
+            },
+            "SUPPORT": {
+                "CONTRIBUTION": "Nem csak pénzzel támogathat",
+                "DONATE": "Tetszik ez az applikáció? Támgass minket BURST adománnyal!",
+                "SUPPORT": "Támogatás"
+            },
+            "TITLE": "Beállítások"
+        }
+    },
+    "SEND": {
+        "ACCEPT": "Jóváhagy",
+        "AMOUNT": "Mennyiség",
+        "BALANCE": "Egyenleg",
+        "FEE": "Díj",
+        "RECIPIENT": "Címzett",
+        "PIN_INPUT_HINT": "PIN",
+        "VERIFY": "Megerõsít"
+    },
+    "START" : {
+        "CREATE": "Létrehoz",
+        "IMPORT": "Importál",
+        "INFO": "Még nincsen fiók létrehozva! Válasszon, új fiókot hoz létre, vagy meglezõt használ?"
+    },
+    "NOTIFICATIONS" : {
+        "ADDRESS": "Írjon be egy valós BURST címet!",
+        "COPIED": "Cím : {{value}} vágólapra másolva!",
+        "DECIMAL_AMOUNT": "Írja be számokkal az utalandó mennyiséget!",
+        "DECIMAL_FEE": "Írja be számokkal (minimum 1) az utalás díját!",
+        "ENTER_SOMETHING": "Írjon be valamit!",
+        "EXCEED": "Az összeg és a megbízás díja több mint a rendelkezésre álló mennyiség!",
+        "PIN": "Állítson be egy 6 számjegyû PIN-kódot!",
+        "REMOVE": "Sikeresen törölve",
+        "SELECTED": "A kijelölt fiók: {{value}}",
+        "TRANSACTION": "Sikeres átutalás!",
+        "UPDATE_CURRENCY": "Pénznem sikeresen frissítve!",
+        "UDPDATE_LANGUAGE": "Nyelv sikeresen beállítva!",
+        "UPDATE_NODE": "Node sikeresen frissítve!",
+        "WRONG_PASSPHRASE": "Hibás jelszó!A beírt jelszó nem generál a fiókjának megfelelõ nyilvános kulcsot!",
+        "WRONG_PIN": "Nem egyezik a PIN-kód",
+        "ERRORS": {
+            "ACCOUNT_ID": "A nyilvános kulcsból nem sikerült a fiók ID-t elõállítani!",
+            "ADDRESS": "A BURST cím nem állítható elõ a fiók ID bõl!",
+            "CONNECTION": "Nem sikerült a csatlakkozás, ellenõrizze az internet elérést!",
+            "CURRENCY": "Pénznem frissítése nem sikerült",
+            "KEYPAIR": "Nem sikerült kulcspárt elõállítani a jelszóhoz!",
+            "LANGUAGE": "Nyelv kiválasztás sikertelen",
+            "NODE": "Node frissítés sikertelen!",
+            "QR_CODE": "Nem sikerült beszkennelni a QR kódot!",
+            "REDIRECT": "Nem sikerült a BURST oldal megnyitása, a fiók nem aktív!",
+            "REMOVE": "A fiók eltávolítás sikertelen!",
+            "UPDATE": "A fiók frissítése sikertelen!",
+            "UNKNOWN_ACCOUNT": "Ismeretlen fiók, még nem volt pénzforgalma!"
+        }
+    }
+}
