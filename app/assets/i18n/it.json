@@ -1,0 +1,135 @@
+{
+    "CREATE": {
+        "ACTION_BAR_TITLE": "Crea Un Nuovo Account",
+        "DONE": "Eseguito",
+        "GENERATE_AGAIN": "Rigeneralo",
+        "INFO_SEED": "Tocca e sposta sopra questa area!",
+        "INFO_SEED_FINISHED": "Seed completato!",
+        "INFO_STEP_ONE": "Primo Passo, creazione di un Seed casuale per la generazione della tua passphrase!",
+        "INFO_STEP_TWO": "Secondo Passo, Memorizza tutte le 12 parole della tua passphrase nel corretto ordine!",
+        "INFO_STEP_TWO_ACTION": "Scrivi le seguenti parole separate dallo spazio e tienile segrete!",
+        "INFO_STEP_THREE": "Terzo Passo, Riscrivi le parole della tua passphrase!",
+        "INFO_STEP_THREE_ACTION": "Scrivi la parola #{{value}} e selezionala!",
+        "INFO_STEP_FOUR": "Quarto Passo, Imposta un pin code di sei cifre per il tuo Account. Il pin code è usato per approvare le transazioni in uscita.",
+        "PIN_INPUT_HINT": "PIN",
+        "POSSIBILITY_INPUT_HINT": "Parola #{{value}}",
+        "NEXT": "Avanti"
+    },
+    "IMPORT" : {
+        "ACTION_BAR_TITLE": "Importa Un Account Esistente",
+        "ACTIVE_ACCOUNT": "Account Attivo",
+        "ACTIVE_ACCOUNT_DESCRIPTION": "Un Account attivo fornisce complete funzionalità. Puoi Spedire e Ricevere Burstcoins. In aggiunta, puoi controllare il tuo Saldo e vedere lo storico delle transazioni.",
+        "ACTIVE_ACCOUNT_INPUT_HINT": "Passphrase",
+        "ACTIVE_ACCOUNT_PIN_INFO": "Per Favore inserisci le sei cifre del pin code del tuo Account. Il pin code è usato per approvare le transazioni in uscita.",
+        "DONE": "Eseguito",
+        "IMPORT": "Importato",
+        "INFO": "Importa un Account attivo inserendo la sua passphrase! Altrimenti, importa un Account offline inserendo il suo indirizzo Burstcoin!",
+        "NEXT": "Avanti",
+        "OFFLINE_ACCOUNT": "Offline Account",
+        "OFFLINE_ACCOUNT_DESCRIPTION": "Un offline account offre le stesse funzionalità di un Account attivo, senza poter inviare Burstcoins ad un altro indirizzo.",
+        "OFFLINE_ACCOUNT_INPUT_HINT": "BURST-XXXX-XXXX-XXXX-XXXXX",
+        "PIN_INPUT_HINT": "PIN",
+        "SHOW" : {
+            "QUESTION": "E' questo il tuo indirizzo Burst?"
+        }
+    },
+    "TABS": {
+        "ACCOUNTS": {
+            "ACTIVATE": {
+                "DONE": "Eseguito",
+                "ENTER_PASSPHRASE": "Inserisci la passphrase per il tuo Account {{value}} qui!",
+                "ENTER_PIN": "Imposta un PIN code di sei cifre!",
+                "PASSPHRASE_INPUT_HINT": "Passphrase",
+                "PIN_INPUT_HINT": "Pin",
+                "NEXT": "Avanti"
+            },
+            "BALANCE": "Saldo",
+            "CREATE": "Crea",
+            "IMPORT": "Importa",
+            "REMOVE": "Vuoi veramente rimuovere questo Account?",
+            "TITLE": "Accounts"
+        },
+        "BALANCE": {
+            "ACTIVATE": "Attivazione",
+            "BALANCE": "Saldo",
+            "SEND": "Invia",
+            "TITLE": "Saldo"
+        },
+        "HISTORY": {
+            "TITLE": "Storico"
+        },
+        "SETTINGS": {
+            "ABOUT": {
+                "ABOUT": "Informazioni",
+                "ASSOCIATION": "In Associazione con",
+                "DEVELOPED": "Sviluppato da",
+                "TWITTER": "Seguici su twitter per ricevere aggiornamenti sul nostri progetti!",
+                "VERSION": "Versione"
+            },
+            "CURRENCY": {
+                "CURRENCY": "Valuta"
+            },
+            "DOCUMENTATION": {
+                "DOCUMENTATION": "Documentazione"
+            },
+            "LANGUAGE": {
+                "LANGUAGE": "Lingua"
+            },
+            "NODE": {
+                "INFO": "Un nodo Burst è usato per comunicare con la rete Burst",
+                "NODE": "Nodo"
+            },
+            "SUPPORT": {
+                "CONTRIBUTION": "Apprezziamo anche i contributi non economici",
+                "DONATE": "Ti piace la nostra app? Supportaci tramite una donazione in BURST!",
+                "SUPPORT": "Supporto"
+            },
+            "TITLE": "Impostazioni"
+        }
+    },
+    "SEND": {
+        "ACCEPT": "Accetto",
+        "AMOUNT": "Importo",
+        "BALANCE": "Saldo",
+        "FEE": "Tassa",
+        "RECIPIENT": "Destinatario",
+        "PIN_INPUT_HINT": "Pin",
+        "VERIFY": "Verifica"
+    },
+    "START" : {
+        "CREATE": "Crea",
+        "IMPORT": "Importa",
+        "INFO": "Nessun Account creato! Seleziona un Account esistente per importarlo o creane uno nuovo!"
+    },
+    "NOTIFICATIONS" : {
+        "ADDRESS": "Inserisci un indirizzo Burstcoin valido!",
+        "COPIED": "Copia l'indirizzo {{value}} nella clipboard!",
+        "DECIMAL_AMOUNT": "Inserisci un numero decimale per il totale di BURST che vuoi inviare!",
+        "DECIMAL_FEE": "Inserisci un numero decimale (almeno 1) come Tassa!",
+        "ENTER_SOMETHING": "Prego inserisci qualcosa!",
+        "EXCEED": "L'importo e le Tasse superano il tuo Saldo!",
+        "PIN": "Inserisci il Pin code di sei cifre!",
+        "REMOVE": "Account rimosso con successo!",
+        "SELECTED": "Account selezionato: {{value}}",
+        "TRANSACTION": "Transazione completata con successo!",
+        "UPDATE_CURRENCY": "Valuta aggiornata con successo!",
+        "UDPDATE_LANGUAGE": "Lingua aggiornata con successo!",
+        "UPDATE_NODE": "Nodo aggiornato con successo!",
+        "WRONG_PASSPHRASE": "Passphrase Errata! La passphrase fornita non ha una chiave pubblica associata con il tuo account!",
+        "WRONG_PIN": "Il pin fornito non corrisponde con il pin dell'Account",
+        "ERRORS": {
+            "ACCOUNT_ID": "Non posso generare un Account ID dalla public key!",
+            "ADDRESS": "Non posso generare un indirizzo BURST dall'Account ID!",
+            "CONNECTION": "Recupero dati fallito. Controlla la tua connessione Internet!",
+            "CURRENCY": "Aggiornamento Valuta fallito!",
+            "KEYPAIR": "Generazione della coppia di chiavi per la passphrase fallito!",
+            "LANGUAGE": "Cambio Lingua fallito!",
+            "NODE": "Aggiornamento Node fallito!",
+            "QR_CODE": "Scansione del QR code fallita!",
+            "REDIRECT": "Non posso aprire la pagina per l'invio dei BURST! L'attuale Account non è attivo!",
+            "REMOVE": "Non posso rimuovere lAccount!",
+            "UPDATE": "Aggiornamento Account fallito!",
+            "UNKNOWN_ACCOUNT": "l'Account è ancora sconosciuto! Ancora nessuna transazione!"
+        }
+    }
+}
