@@ -72,7 +72,7 @@ export class MarketService {
         }
     }
 
-    public getPriceFiatCurrency(coins: number, decimals: number = 8) : string {
+    public getPriceFiatCurrency(coins: number, decimals: number = 2) : string {
         if (this.currency.value != undefined) {
             switch (this.currency.value.currency) {
                 case "AUD":

@@ -23,8 +23,8 @@ import * as utils from "utils/utils";
 export class SettingsComponent implements OnInit {
 
     settings: Settings;
-    languageNames: string[] = ["Deutsch", "English", "Français", "Pу́сский", "Slovensky", "中文"]
-    languages: string[] = ["de", "en", "fr", "ru", "sk", "zh"]
+    languageNames: string[] = ["Deutsch", "English", "Français", "Magyar", "Polskie", "Pу́сский", "Slovensky", "Svenska", "中文"]
+    languages: string[] = ["de", "en", "fr", "hu", "pl", "ru", "sk", "sv", "zh"]
 
     constructor(
         private accountService: AccountService,

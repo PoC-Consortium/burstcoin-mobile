@@ -90,7 +90,7 @@
     },
     "SEND": {
         "ACCEPT": "Принять",
-        "ACTION_BAR_TITLE": "Послать BURST",
+        "ACTION_BAR_TITLE": "Перевести BURST",
         "AMOUNT": "Сумма",
         "BALANCE": "Баланс",
         "FEE": "Комиссия",

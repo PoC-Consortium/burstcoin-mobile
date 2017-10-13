@@ -6,7 +6,6 @@ import { TranslateService } from 'ng2-translate';
 import { Account, BurstAddress, Currency } from "../../lib/model";
 import { AccountService, DatabaseService, MarketService, NotificationService, TabsService } from "../../lib/services";
 
-
 import * as SocialShare from "nativescript-social-share";
 
 let clipboard = require("nativescript-clipboard");

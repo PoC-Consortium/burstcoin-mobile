@@ -11,7 +11,7 @@ export class Settings {
     constructor(data: any = {}) {
         this.id = "settings";
         this.currency = data.currency || "USD";
-        this.language = data.language || device.language;
+        this.language = data.language || device.language || "en";
         this.node = data.node || "https://wallet.burst.cryptoguru.org:8125/burst";
         this.version = data.version || "";
         this.theme = data.theme || "light";
