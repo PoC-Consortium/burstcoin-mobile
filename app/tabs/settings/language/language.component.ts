@@ -11,8 +11,8 @@ import { DatabaseService } from "../../../lib/services";
 export class LanguageComponent implements OnInit {
 
     picked: string;
-    languageNames: string[] = ["Deutsch", "English", "Français", "Magyar", "Polski", "Pу́сский", "Slovensky", "Svenska", "中文"]
-    languages: string[] = ["de", "en", "fr", "hu", "pl", "ru", "sk", "sv", "zh"]
+    languageNames: string[] = ["Deutsch", "English", "Français", "Italiano", "Magyar", "Polski", "Pу́сский", "Slovensky", "Svenska", "中文"]
+    languages: string[] = ["de", "en", "fr", "it", "hu", "pl", "ru", "sk", "sv", "zh"]
     index: number;
 
     constructor(
