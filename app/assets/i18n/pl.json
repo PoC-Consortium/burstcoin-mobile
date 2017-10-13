@@ -1,0 +1,135 @@
+{
+    "CREATE": {
+        "ACTION_BAR_TITLE": "Stwórz nowe konto",
+        "DONE": "Ukończono",
+        "GENERATE_AGAIN": "Utwórz ponownie",
+        "INFO_SEED": "Naciśnij i przesuń w tym miejscu!",
+        "INFO_SEED_FINISHED": "Ziarno pobrane!",
+        "INFO_STEP_ONE": "Najpierw utwórz losowe ziarno do generacji Twojego hasła!",
+        "INFO_STEP_TWO": "Teraz musisz zapamiętać wszystkie 12 słów hasła w poprawnej kolejności!",
+        "INFO_STEP_TWO_ACTION": "Zapisz podane słowa i zachowaj je w sekrecie!",
+        "INFO_STEP_THREE": "Wprowadź ponownie swoje hasło!",
+        "INFO_STEP_THREE_ACTION": "Wpisz słowo #{{value}} i wybierz!",
+        "INFO_STEP_FOUR": "Ustal sześciocyfrowy pin dla twojego konta. Pin służy weryfikacji wychodzących transakcji.",
+        "PIN_INPUT_HINT": "PIN",
+        "POSSIBILITY_INPUT_HINT": "Słowo #{{value}}",
+        "NEXT": "Dalej"
+    },
+    "IMPORT" : {
+        "ACTION_BAR_TITLE": "Zaimportuj istniejące konto",
+        "ACTIVE_ACCOUNT": "Portfel Online",
+        "ACTIVE_ACCOUNT_DESCRIPTION": "Portfel online oferuje pełną funkcjonalność. Możesz wysyłać i odbierać Burstcoin oraz sprawdzać stan konta i przeglądać poprzednie transakcje.",
+        "ACTIVE_ACCOUNT_INPUT_HINT": "Hasło",
+        "ACTIVE_ACCOUNT_PIN_INFO": "Ustal sześciocyfrowy pin dla twojego konta. Pin służy weryfikacji wychodzących transakcji.",
+        "DONE": "Dalej",
+        "IMPORT": "Importuj",
+        "INFO": "Importuj portfel online wprowadzając hasło! W innym wypadku wpisz adres Burstcoin aby wyświetlić portfel offline!",
+        "NEXT": "Dalej",
+        "OFFLINE_ACCOUNT": "Portfel Offline",
+        "OFFLINE_ACCOUNT_DESCRIPTION": "Portfel online oferuje te same funkcje co Online, za wyjątkiem możliwości wysyłania Burstcoin.",
+        "OFFLINE_ACCOUNT_INPUT_HINT": "BURST-XXXX-XXXX-XXXX-XXXXX",
+        "PIN_INPUT_HINT": "PIN",
+        "SHOW" : {
+            "QUESTION": "Czy to twój adres Burst?"
+        }
+    },
+    "TABS": {
+        "ACCOUNTS": {
+            "ACTIVATE": {
+                "DONE": "Gotowe",
+                "ENTER_PASSPHRASE": "Wpisz hasło {{value}} tutak!",
+                "ENTER_PIN": "Wpisz sześciocyfrowy PIN!",
+                "PASSPHRASE_INPUT_HINT": "Hasło",
+                "PIN_INPUT_HINT": "Pin",
+                "NEXT": "Dalej"
+            },
+            "BALANCE": "Stan konta",
+            "CREATE": "Utwórz",
+            "IMPORT": "Importuj",
+            "REMOVE": "Na pewno chcesz usunąć te konto?",
+            "TITLE": "Konta"
+        },
+        "BALANCE": {
+            "ACTIVATE": "Aktywuj",
+            "BALANCE": "Stan konta",
+            "SEND": "Wyślij",
+            "TITLE": "Stan konta"
+        },
+        "HISTORY": {
+            "TITLE": "Historia"
+        },
+        "SETTINGS": {
+            "ABOUT": {
+                "ABOUT": "O nas",
+                "ASSOCIATION": "We współpracy z",
+                "DEVELOPED": "Opracowane przez",
+                "TWITTER": "Śledź nas na Twitter i bądź zawsze na bieżąco!",
+                "VERSION": "Wersja"
+            },
+            "CURRENCY": {
+                "CURRENCY": "Waluta"
+            },
+            "DOCUMENTATION": {
+                "DOCUMENTATION": "Dokumentacja"
+            },
+            "LANGUAGE": {
+                "LANGUAGE": "Język"
+            },
+            "NODE": {
+                "INFO": "Węzeł Burst używany jest do komunikacji w sieci Burst.",
+                "NODE": "Węzeł"
+            },
+            "SUPPORT": {
+                "CONTRIBUTION": "Doceniamy wsparcie niefinansowe",
+                "DONATE": "Podoba Ci się nasza apka? Wspomóż nas wysyłając BURST!",
+                "SUPPORT": "Pomoc"
+            },
+            "TITLE": "Ustawienia"
+        }
+    },
+    "SEND": {
+        "ACCEPT": "Akceptuj",
+        "AMOUNT": "Kwota",
+        "BALANCE": "Stan konta",
+        "FEE": "Opłata",
+        "RECIPIENT": "Odbiorca",
+        "PIN_INPUT_HINT": "Pin",
+        "VERIFY": "Potwierdź"
+    },
+    "START" : {
+        "CREATE": "Stwórz",
+        "IMPORT": "Importuj",
+        "INFO": "Brak stworzonych kont! Importuj istniejące bądź utwórz nowe konto!"
+    },
+    "NOTIFICATIONS" : {
+        "ADDRESS": "Wprowadź poprawny adres Burst!",
+        "COPIED": "Skopiowano adres {{value}} do schowka!",
+        "DECIMAL_AMOUNT": "Wprowadź liczbę po przecinku BURST które chcesz przesłać!",
+        "DECIMAL_FEE": "Wprowadź liczbę po przecinku (co najmniej 1) jako opłatę!",
+        "ENTER_SOMETHING": "Wprowadź coś!",
+        "EXCEED": "Kwota i opłata przewyższają twój stan konta!",
+        "PIN": "Wprowadź sześciocyfrowy Pin!",
+        "REMOVE": "Pomyślnie usunięto konto!",
+        "SELECTED": "Wybrane konto: {{value}}",
+        "TRANSACTION": "Transakcja pomyślna!",
+        "UPDATE_CURRENCY": "Waluta pomyślnie zaktualizowana!",
+        "UDPDATE_LANGUAGE": "Język pomyślnie zaktualizowany!",
+        "UPDATE_NODE": "Węzeł pomyślnie zaktualizowany!",
+        "WRONG_PASSPHRASE": "Złe hasło! Wpisane hasło nie pasuje do klucza publicznego twojego konta!",
+        "WRONG_PIN": "Podany PIN nie zgadza się z podanym przy zakładaniu konta",
+        "ERRORS": {
+            "ACCOUNT_ID": "Nie można wygenerować id konta z klucza publicznego!",
+            "ADDRESS": "Nie można wygenerować adresu BURST z id konta!",
+            "CONNECTION": "Błąd pobierania danych. Sprawdź połączenie!",
+            "CURRENCY": "Aktualizacja waluty nie powiodła się!",
+            "KEYPAIR": "Wygenerowanie pary kluczy dla hasła zakończono błędem",
+            "LANGUAGE": "Zmiana języka niepomyślna!",
+            "NODE": "Aktualizacja węzła nie powiodła się!",
+            "QR_CODE": "Nie można zeskanować kodu QR!",
+            "REDIRECT": "Nie można otworzyć strony wysyłania. Obecne konto jest nieaktywne!",
+            "REMOVE": "Nie można usunąć konta!",
+            "UPDATE": "Aktualizacja konta niepomyślna!",
+            "UNKNOWN_ACCOUNT": "Konto ciągle nieznane. Brak transakcji!"
+        }
+    }
+}
