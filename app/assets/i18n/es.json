@@ -1,0 +1,135 @@
+{
+    "CREATE": {
+        "ACTION_BAR_TITLE": "Crear nueva cuenta",
+        "DONE": "Listo",
+        "GENERATE_AGAIN": "Generar de nuevo",
+        "INFO_SEED": "Presiona y desliza aquí!",
+        "INFO_SEED_FINISHED": "Generador recibido!",
+        "INFO_STEP_ONE": "Primero crea un generador aleatorio para tu contraseña.",
+        "INFO_STEP_TWO": "Ahora guarda o memoriza las 12 palabras de tu contraseña en este orden.",
+        "INFO_STEP_TWO_ACTION": "Apunta las palabras, separadas por espacios, y mantenlas en secreto.",
+        "INFO_STEP_THREE": "Please reenter the words of your passphrase!",
+        "INFO_STEP_THREE_ACTION": "Apunta #{{value}} and elígela.",
+        "INFO_STEP_FOUR": "Elige un nip de 6 dígitos para la cuenta. Este se utiliza para aprobar transacciones salientes.",
+        "PIN_INPUT_HINT": "NIP",
+        "POSSIBILITY_INPUT_HINT": "Palabra #{{value}}",
+        "NEXT": "Adelante"
+    },
+    "IMPORT" : {
+        "ACTION_BAR_TITLE": "Importar cuenta existente",
+        "ACTIVE_ACCOUNT": "Cuenta activa",
+        "ACTIVE_ACCOUNT_DESCRIPTION": "Una cuenta activa tiene funcionalidad completa. Puede enviar y receiver BurstCoins. También puede revisar el balance y ver el historial de transacciones.",
+        "ACTIVE_ACCOUNT_INPUT_HINT": "Contraseña",
+        "ACTIVE_ACCOUNT_PIN_INFO": "Elige un nip de 6 dígitos para la cuenta. Este se utiliza para aprobar transacciones salientes.",
+        "DONE": "Listo",
+        "IMPORT": "Importar",
+        "INFO": "Importa una cuenta existente usando su contraseña! Si no, importa una contraseña offline usando la dirección BurstCoin.",
+        "NEXT": "Adelante",
+        "OFFLINE_ACCOUNT": "Cuenta Offline",
+        "OFFLINE_ACCOUNT_DESCRIPTION": "Una cuenta offline tiene la misma funcionalidad de una cuenta online, excepto que no puede enviar BurstCoin a otras cuentas.",
+        "OFFLINE_ACCOUNT_INPUT_HINT": "BURST-XXXX-XXXX-XXXX-XXXXX",
+        "PIN_INPUT_HINT": "NIP",
+        "SHOW" : {
+            "QUESTION": "Es ésta tu dirección Burst?"
+        }
+    },
+    "TABS": {
+        "ACCOUNTS": {
+            "ACTIVATE": {
+                "DONE": "Listo",
+                "ENTER_PASSPHRASE": "Introduce la contraseña de la cuenta {{value}}.",
+                "ENTER_PIN": "Introduce el NIP de 6 dígitos.",
+                "PASSPHRASE_INPUT_HINT": "Contraseña",
+                "PIN_INPUT_HINT": "NIP",
+                "NEXT": "Adelante"
+            },
+            "BALANCE": "Balance",
+            "CREATE": "Crear",
+            "IMPORT": "Importar",
+            "REMOVE": "Realmente quiere eliminar esta cuenta?",
+            "TITLE": "Cuentas"
+        },
+        "BALANCE": {
+            "ACTIVATE": "Activar",
+            "BALANCE": "Balance",
+            "SEND": "Enviar",
+            "TITLE": "Balance"
+        },
+        "HISTORY": {
+            "TITLE": "Historial"
+        },
+        "SETTINGS": {
+            "ABOUT": {
+                "ABOUT": "Info",
+                "ASSOCIATION": "En asociación con",
+                "DEVELOPED": "Desarrollado por",
+                "TWITTER": "Síguenos en Twitter para tener updates del proyecto",
+                "VERSION": "Versión"
+            },
+            "CURRENCY": {
+                "CURRENCY": "Divisa"
+            },
+            "DOCUMENTATION": {
+                "DOCUMENTATION": "Documentación"
+            },
+            "LANGUAGE": {
+                "LANGUAGE": "Idioma"
+            },
+            "NODE": {
+                "INFO": "El nodo Burst se utiliza para comunicarse con la red Burst",
+                "NODE": "Nodo"
+            },
+            "SUPPORT": {
+                "CONTRIBUTION": "También apreciamos colaboración no-monetaria.",
+                "DONATE": "¿Te gusta este app? Apóyanos donando Burst.",
+                "SUPPORT": "Ayuda"
+            },
+            "TITLE": "Ajustes"
+        }
+    },
+    "SEND": {
+        "ACCEPT": "Aceptar",
+        "AMOUNT": "Monto",
+        "BALANCE": "Balance",
+        "FEE": "Comisión",
+        "RECIPIENT": "Destinatario",
+        "PIN_INPUT_HINT": "NIP",
+        "VERIFY": "Verificar"
+    },
+    "START" : {
+        "CREATE": "Crear",
+        "IMPORT": "Importar",
+        "INFO": "No hay cuentas creadas. Elige crear una nueva cuenta o importa una existente."
+    },
+    "NOTIFICATIONS" : {
+        "ADDRESS": "Introducir una dirección válida",
+        "COPIED": "La dirección {{value}} due copiada.",
+        "DECIMAL_AMOUNT": "Introduce, usando decimales, la cantidad de BURST por enviar.",
+        "DECIMAL_FEE": "Introduce la comisión (mín. 1) por utilizar.",
+        "ENTER_SOMETHING": "Campo vacío",
+        "EXCEED": "La cantidad y la comisión los fondos.",
+        "PIN": "Introduce un NIP de 6 dígitos.",
+        "REMOVE": "Cuenta eliminada exitosamente.",
+        "SELECTED": "Cuenta seleccionada: {{value}}",
+        "TRANSACTION": "Transacción exitosa.",
+        "UPDATE_CURRENCY": "Divisa actualizada exitosamente.",
+        "UDPDATE_LANGUAGE": "Idioma actualizado exitosamente.",
+        "UPDATE_NODE": "Nodo actualizado exitosamente.",
+        "WRONG_PASSPHRASE": "Contraseña incorrecta. Las palabras introducidas no generan la contraseña pública correcta.",
+        "WRONG_PIN": "El nip introducido no es el correcto.",
+        "ERRORS": {
+            "ACCOUNT_ID": "No es posible generar un id de una contraseña pública.",
+            "ADDRESS": "No es posible generar una cuenta de un id.",
+            "CONNECTION": "No es posible descargar datos.",
+            "CURRENCY": "No fue posible cambiar la divisa.",
+            "KEYPAIR": "Error al generar la contraseña.",
+            "LANGUAGE": "Error al cambiar de idioma.",
+            "NODE": "Error al actualizar el nodo.",
+            "QR_CODE": "No fue posible escapar el código.",
+            "REDIRECT": "No es posible abrir la vista de envío. Esta cuenta no esta activa.",
+            "REMOVE": "Eliminación fallida.",
+            "UPDATE": "Actualización fallida.",
+            "UNKNOWN_ACCOUNT": "Cuenta desconocida. No hay transacciones registradas."
+        }
+    }
+}
