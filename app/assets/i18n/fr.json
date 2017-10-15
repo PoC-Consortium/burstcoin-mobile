@@ -3,8 +3,8 @@
         "ACTION_BAR_TITLE": "Créer un nouveau compte",
         "DONE": "Terminé",
         "GENERATE_AGAIN": "Générer à nouveau",
-        "INFO_SEED": "Touchez et balayez cette zone !",
-        "INFO_SEED_FINISHED": "Génération sauvegardée !",
+        "INFO_SEED": "Touchez et balayez cette zone.",
+        "INFO_SEED_FINISHED": "Génération sauvegardée.",
         "INFO_STEP_ONE": "Pour commencer, générez aléatoirement votre phrase de passe.",
         "INFO_STEP_TWO": "Maintenant, mémorisez les 12 mots de votre phrase de passe dans le bon ordre.",
         "INFO_STEP_TWO_ACTION": "Ecrivez et gardez secrets les mots suivants en conservant les espaces.",
@@ -38,7 +38,7 @@
             "ACTIVATE": {
                 "ACTION_BAR_TITLE": "Activer le compte",
                 "DONE": "Terminé",
-                "ENTER_PASSPHRASE": "Entrez la phrase de passe de votre compte {{value}} !",
+                "ENTER_PASSPHRASE": "Entrez la phrase de passe de votre compte {{value}}.",
                 "ENTER_PIN": "Choisissez un code PIN à 6 chiffres.",
                 "PASSPHRASE_INPUT_HINT": "Phrase de passe",
                 "PIN_INPUT_HINT": "PIN",
@@ -64,7 +64,7 @@
                 "ABOUT": "A propos",
                 "ASSOCIATION": "En association avec",
                 "DEVELOPED": "Développé par",
-                "TWITTER": "Suivez nous sur twitter pour rester au courant de nos projet !",
+                "TWITTER": "Suivez nous sur twitter pour rester au courant de nos projet!",
                 "VERSION": "Version"
             },
             "CURRENCY": {
@@ -82,7 +82,7 @@
             },
             "SUPPORT": {
                 "CONTRIBUTION": "Nous apprécions également toutes contributions.",
-                "DONATE": "Vous aimez cette application ? Montrez le avec du BURST !",
+                "DONATE": "Vous aimez cette application ? Montrez le avec du BURST!",
                 "SUPPORT": "Soutien"
             },
             "TITLE": "Réglages"
@@ -101,37 +101,37 @@
     "START" : {
         "CREATE": "Créer",
         "IMPORT": "Importer",
-        "INFO": "Pas encore de compte répertorié ! Importez un compte existant ou créez-en un !"
+        "INFO": "Pas encore de compte répertorié. Importez un compte existant ou créez-en un!"
     },
     "NOTIFICATIONS" : {
         "ADDRESS": "Entrez une adresse Burst valide.",
-        "COPIED": "Adresse {{value}} copiée !",
-        "DECIMAL_AMOUNT": "Veuillez entrer le montant de BURST que vous souhaitez envoyer !",
-        "DECIMAL_FEE": "Veuillez entrer les frais de transaction (au moins 1) !",
-        "ENTER_SOMETHING": "Veuillez entrer quelque chose !",
-        "EXCEED": "Montant et Frais dépassent votre solde !",
-        "PIN": "Veuillez entrer un PIN à six chiffres !",
-        "REMOVE": "Le compte a été supprimé !",
+        "COPIED": "Adresse {{value}} copiée!",
+        "DECIMAL_AMOUNT": "Veuillez entrer le montant de BURST que vous souhaitez envoyer!",
+        "DECIMAL_FEE": "Veuillez entrer les frais de transaction (au moins 1)!",
+        "ENTER_SOMETHING": "Veuillez entrer quelque chose!",
+        "EXCEED": "Montant et Frais dépassent votre solde!",
+        "PIN": "Veuillez entrer un PIN à six chiffres!",
+        "REMOVE": "Le compte a été supprimé!",
         "SELECTED": "Compte sélectionné : {{value}}",
-        "TRANSACTION": "Transaction validée !",
-        "UPDATE_CURRENCY": "Changement de monnaie enregistré !",
-        "UDPDATE_LANGUAGE": "Changement de langue enregistré !",
-        "UPDATE_NODE": "Changement de serveur enregistré !",
-        "WRONG_PASSPHRASE": "Mauvaise phrase de passe ! Cette phrase de passe ne génère pas la clé publique associée à votre compte !",
-        "WRONG_PIN": "Ce code pin ne correspond pas au pin du compte !",
+        "TRANSACTION": "Transaction validée!",
+        "UPDATE_CURRENCY": "Changement de monnaie enregistré!",
+        "UDPDATE_LANGUAGE": "Changement de langue enregistré!",
+        "UPDATE_NODE": "Changement de serveur enregistré!",
+        "WRONG_PASSPHRASE": "Mauvaise phrase de passe! Cette phrase de passe ne génère pas la clé publique associée à votre compte!",
+        "WRONG_PIN": "Ce code pin ne correspond pas au pin du compte!",
         "ERRORS": {
-            "ACCOUNT_ID": "Impossible de générer l'id de compte via une clé publique !",
-            "ADDRESS": "Impossible de générer une adresse Burst via l'id de compte !",
-            "CONNECTION": "Echec de récupération des données. Vérifiez votre connexion !",
-            "CURRENCY": "Echec de modification de monnaie !",
-            "KEYPAIR": "Echec de génération de clé associée à la phrase de passe !",
-            "LANGUAGE": "Echec de modification de langue !",
-            "NODE": "Echec de modification du serveur !",
-            "QR_CODE": "Impossible de trouver le QR code !",
-            "REDIRECT": "Impossible d'ouvrir la page d'envoi ! Le compte n'est pas actif !",
-            "REMOVE": "Echec de suppression du compte !",
-            "UPDATE": "Echec de modification du compte !",
-            "UNKNOWN_ACCOUNT": "Ce compte est inconnu et sans transactions !"
+            "ACCOUNT_ID": "Impossible de générer l'id de compte via une clé publique!",
+            "ADDRESS": "Impossible de générer une adresse Burst via l'id de compte!",
+            "CONNECTION": "Echec de récupération des données. Vérifiez votre connexion!",
+            "CURRENCY": "Echec de modification de monnaie!",
+            "KEYPAIR": "Echec de génération de clé associée à la phrase de passe!",
+            "LANGUAGE": "Echec de modification de langue!",
+            "NODE": "Echec de modification du serveur!",
+            "QR_CODE": "Impossible de trouver le QR code!",
+            "REDIRECT": "Impossible d'ouvrir la page d'envoi! Le compte n'est pas actif!",
+            "REMOVE": "Echec de suppression du compte!",
+            "UPDATE": "Echec de modification du compte!",
+            "UNKNOWN_ACCOUNT": "Ce compte est inconnu et sans transactions!"
         }
     }
 }

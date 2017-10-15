@@ -3,13 +3,13 @@
         "ACTION_BAR_TITLE": "Vytvoriť nový účet",
         "DONE": "Hotovo",
         "GENERATE_AGAIN": "Znova vygenerovať",
-        "INFO_SEED": "Ťuknite a posuňte prstom po oblasti!",
+        "INFO_SEED": "Ťuknite a posuňte prstom po oblasti.",
         "INFO_SEED_FINISHED": "Vzorky zozbierané!",
-        "INFO_STEP_ONE": "Najskôr vytvorte náhodné vzorky pre vygenerovanie Vašej prístupovej frázy!",
-        "INFO_STEP_TWO": "Teraz si musíte zapamätať všetkých 12 slov Vašej prístupovej frázy a v správnom poradí!",
-        "INFO_STEP_TWO_ACTION": "Zapíšte si nasledujúce slová oddelené medzerou a uchovajte si ich na bezpečnom mieste v tajnosti!",
-        "INFO_STEP_THREE": "Zadajte prosím znova slová Vašej prístupovej frázy!",
-        "INFO_STEP_THREE_ACTION": "Zapíšte slovo #{{value}} a vyberte ho!",
+        "INFO_STEP_ONE": "Najskôr vytvorte náhodné vzorky pre vygenerovanie Vašej prístupovej frázy.",
+        "INFO_STEP_TWO": "Teraz si musíte zapamätať všetkých 12 slov Vašej prístupovej frázy a v správnom poradí.",
+        "INFO_STEP_TWO_ACTION": "Zapíšte si nasledujúce slová oddelené medzerou a uchovajte si ich na bezpečnom mieste v tajnosti.",
+        "INFO_STEP_THREE": "Zadajte prosím znova slová Vašej prístupovej frázy.",
+        "INFO_STEP_THREE_ACTION": "Zapíšte slovo #{{value}} a vyberte ho.",
         "INFO_STEP_FOUR": "Zadajte šesťmiestny PIN kód pre svoj účet. PIN kód sa používa na schválenie odchádzajúcich transakcií.",
         "PIN_INPUT_HINT": "PIN",
         "POSSIBILITY_INPUT_HINT": "Slovo #{{value}}",
@@ -23,7 +23,7 @@
         "ACTIVE_ACCOUNT_PIN_INFO": "Zadajte šesťmiestny PIN kód pre Váš účet. PIN kód sa používa na schválenie odchádzajúcich transakcií.",
         "DONE": "Hotovo",
         "IMPORT": "Import",
-        "INFO": "Pre import aktívneho účtu, zadajte jeho prístupovú frázu! Inak importujte účet, spôsobom offline, zadaním jeho Burstcoin adresy!",
+        "INFO": "Pre import aktívneho účtu, zadajte jeho prístupovú frázu. Inak importujte účet, spôsobom offline, zadaním jeho Burstcoin adresy.",
         "NEXT": "Ďalej",
         "OFFLINE_ACCOUNT": "Offline účet",
         "OFFLINE_ACCOUNT_DESCRIPTION": "Účet v režime offline ponúka rovnaké funkcie ako aktívny účet, okrem odosielania Burstcoinov na iný účet.",
@@ -38,8 +38,8 @@
             "ACTIVATE": {
                 "ACTION_BAR_TITLE": "Aktivovať účet",
                 "DONE": "Hotovo",
-                "ENTER_PASSPHRASE": "Sem vložte prístupovú frázu {{value}}!",
-                "ENTER_PIN": "Vložte 6 miestny PIN kód!",
+                "ENTER_PASSPHRASE": "Sem vložte prístupovú frázu {{value}}.",
+                "ENTER_PIN": "Vložte 6 miestny PIN kód.",
                 "PASSPHRASE_INPUT_HINT": "Prístupová fráza",
                 "PIN_INPUT_HINT": "PIN",
                 "NEXT": "Ďalej"
@@ -64,7 +64,7 @@
                 "ABOUT": "O",
                 "ASSOCIATION": "V asociácii s",
                 "DEVELOPED": "Vyvinutý",
-                "TWITTER": "Sledujte náš Twitter a získajte aktuálne informácie o našich projektoch!",
+                "TWITTER": "Sledujte náš Twitter a získajte aktuálne informácie o našich projektoch.",
                 "VERSION": "Verzia"
             },
             "CURRENCY": {
@@ -100,7 +100,7 @@
     "START": {
         "CREATE": "Vytvoriť",
         "IMPORT": "Import",
-        "INFO": "Zatiaľ nebol vytvorený účet! Vyberte, či chcete importovať existujúci účet alebo vytvoriť nový účet!"
+        "INFO": "Zatiaľ nebol vytvorený účet. Vyberte, či chcete importovať existujúci účet alebo vytvoriť nový účet!"
     },
     "NOTIFICATIONS": {
         "ADDRESS": "Zadajte platnú Burstcoin adresu!",

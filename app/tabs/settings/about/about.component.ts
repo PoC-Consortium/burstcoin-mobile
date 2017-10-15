@@ -12,7 +12,7 @@ import * as utils from "utils/utils";
 })
 export class AboutComponent implements OnInit {
 
-    public version: string = "0.1.1";
+    public version: string = "0.1.2";
 
     constructor(private params: ModalDialogParams, private page: Page) {
         this.page.on("unloaded", () => {

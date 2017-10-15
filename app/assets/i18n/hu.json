@@ -3,13 +3,13 @@
         "ACTION_BAR_TITLE": "Új fiók létrehozása",
         "DONE": "Kész",
         "GENERATE_AGAIN": "Újra generál",
-        "INFO_SEED": "Érints meg és húzd az újjad!",
-        "INFO_SEED_FINISHED": "Seed kész!",
-        "INFO_STEP_ONE": "Elõször is, kell egy véletlenszerû seed, hogy jelszót csinálhassunk!",
-        "INFO_STEP_TWO": "S most meg kell jegyezned mind a 12 szót ebben a sorrendben!",
-        "INFO_STEP_TWO_ACTION": "Írd le ezeket a szavakat egy szóközzel elválasztva, és jól õrizd meg!",
-        "INFO_STEP_THREE": "Írd be újra a jelszavad!",
-        "INFO_STEP_THREE_ACTION": "írd le: #{{value}} és jelöld ki!",
+        "INFO_SEED": "Érints meg és húzd az újjad.",
+        "INFO_SEED_FINISHED": "Seed kész.",
+        "INFO_STEP_ONE": "Elõször is, kell egy véletlenszerû seed, hogy jelszót csinálhassunk.",
+        "INFO_STEP_TWO": "S most meg kell jegyezned mind a 12 szót ebben a sorrendben.",
+        "INFO_STEP_TWO_ACTION": "Írd le ezeket a szavakat egy szóközzel elválasztva, és jól õrizd meg.",
+        "INFO_STEP_THREE": "Írd be újra a jelszavad.",
+        "INFO_STEP_THREE_ACTION": "írd le: #{{value}} és jelöld ki.",
         "INFO_STEP_FOUR": "Adjon meg egy 6 számjegyû PIN-kódot. Ez a PIN-kód hagyja jóvá a kimenõ átutalásokat.",
         "PIN_INPUT_HINT": "PIN",
         "POSSIBILITY_INPUT_HINT": "Szó #{{value}}",
@@ -23,7 +23,7 @@
         "ACTIVE_ACCOUNT_PIN_INFO": "Adjon meg egy 6 számjegyû PIN-kódot. Ez a kód hagyja jóvá a PIN-kimenõ átutalásokat.",
         "DONE": "Kész",
         "IMPORT": "Importál",
-        "INFO": "Importáljon egy aktív fiókot, a jelszó beírásával! Inaktív fiókot  Burstcoin cím beírásával importálhat!",
+        "INFO": "Importáljon egy aktív fiókot, a jelszó beírásával. Inaktív fiókot  Burstcoin cím beírásával importálhat.",
         "NEXT": "Következõ/Tovább",
         "OFFLINE_ACCOUNT": "Inaktív fiók",
         "OFFLINE_ACCOUNT_DESCRIPTION": "Egy inaktív fiók ugyanazokat a lehetõségeket nyújtja mint egy aktív, de nem utalhat róla.",
@@ -37,7 +37,7 @@
         "ACCOUNTS": {
             "ACTIVATE": {
                 "DONE": "Kész",
-                "ENTER_PASSPHRASE": "Írja be az ehhez a fiókhoz tartozó: {{value}} jelszót ide! ",
+                "ENTER_PASSPHRASE": "Írja be az ehhez a fiókhoz tartozó: {{value}} jelszót ide. ",
                 "ENTER_PIN": "Állítson be egy 6 számjegyû PIN-kódot",
                 "PASSPHRASE_INPUT_HINT": "Jelszó",
                 "PIN_INPUT_HINT": "PIN",
@@ -99,7 +99,7 @@
     "START" : {
         "CREATE": "Létrehoz",
         "IMPORT": "Importál",
-        "INFO": "Még nincsen fiók létrehozva! Válasszon, új fiókot hoz létre, vagy meglezõt használ?"
+        "INFO": "Még nincsen fiók létrehozva. Válasszon, új fiókot hoz létre, vagy meglezõt használ?"
     },
     "NOTIFICATIONS" : {
         "ADDRESS": "Írjon be egy valós BURST címet!",
