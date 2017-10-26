@@ -14,8 +14,7 @@
                     <Label col="1" row="3" class="fa text-center p-t-2 p-l-5 p-r-5" text="&#xf0ec;"></Label>
                     <Label col="0" row="3" class="text-right" [text]="marketService.getPriceBTC(item.balance)"></Label>
                     <Label col="2" row="3" class="text-left" [text]="marketService.getPriceFiatCurrency(item.balance)"></Label>
-
-                    <Button col="5" row="2" rowspan="2" style="margin: 2" class="btn btn-primary btn-active icon-button fa text-center" text="&#xf00d;" (tap)="onTapRemoveAccount(item)"></Button>
+                    <Button col="5" row="2" rowspan="2" style="margin: 2; padding:5" class="btn btn-primary btn-active remove-button fa text-center" text="&#xf00d;" (tap)="onTapRemoveAccount(item)"></Button>
                 </GridLayout>
                 <Button *ngIf="i == accounts.length - 1" class="btn btn-primary btn-active icon-button fa text-center" text="&#xf067;" (tap)="onTapAddAccount()"></Button>
             </StackLayout>

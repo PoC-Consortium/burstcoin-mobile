@@ -1,0 +1,25 @@
+@import '../../app-variables';
+
+.icon-button {
+    width: 50;
+    height: 50;
+}
+
+.remove-button {
+    width: 30;
+    height: 30;
+}
+
+.balance {
+    vertical-align: middle;
+}
+
+.active-indicator {
+    vertical-align: middle;
+    padding-left: 10;
+}
+
+.select-indicator {
+    vertical-align: top;
+    padding-top: 5;
+}

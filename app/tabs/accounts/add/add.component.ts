@@ -36,4 +36,8 @@ export class AddComponent implements OnInit {
         this.params.closeCallback();
         this.router.navigate(['/create']);
     }
+
+    public onTapNo() {
+        this.params.closeCallback();
+    }
 }
