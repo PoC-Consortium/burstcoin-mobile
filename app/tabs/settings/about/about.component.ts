@@ -27,4 +27,8 @@ export class AboutComponent implements OnInit {
     public onTapTwitter() {
         utils.openUrl("https://twitter.com/PoC_Consortium")
     }
+
+    public onTapNo() {
+        this.params.closeCallback();
+    }
 }

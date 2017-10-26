@@ -1,0 +1,13 @@
+<StackLayout class="modal-view-style">
+    <StackLayout class="page-content">
+        <StackLayout class="modal-container">
+            <StackLayout class="body-container">
+                <Label class="solo fa" textWrap="true" [text]="'TABS.SETTINGS.SUPPORT.DONATE' | translate"></Label>
+                <Button class="btn btn-primary btn-active about-button fa" [text]="'&#xf2b5; ' + ('TABS.SETTINGS.SUPPORT.SUPPORT' | translate)" (tap)="onTapSupport()"></Button>
+                <Label class="solo fa" textWrap="true" [text]="'TABS.SETTINGS.SUPPORT.CONTRIBUTION' | translate"></Label>
+                <Button class="btn btn-primary btn-active about-button fa" text="&#xf09b; Github" (tap)="onTapGithub()"></Button>
+                <Button class="icon-button btn btn-primary btn-active fa text-center" text="&#xf00d;" (tap)=onTapNo()></Button>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</StackLayout>
