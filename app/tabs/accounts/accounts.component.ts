@@ -6,6 +6,7 @@ import { SwipeGestureEventData } from "ui/gestures";
 import { Label } from "ui/label";
 import { Image } from "ui/image";
 import { TranslateService } from 'ng2-translate';
+import { isIOS } from 'platform';
 
 import { Account, BurstAddress, Currency } from "../../lib/model";
 import { NoConnectionError } from "../../lib/model/error";

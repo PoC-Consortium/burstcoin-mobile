@@ -10,8 +10,7 @@
                     <StackLayout class="hr-light"></StackLayout>
                     <Label class="p-t-10 p-b-10" [text]="address"></Label>
                     <StackLayout class="hr-light"></StackLayout>
-                    <Label *ngIf="confirmed" class="p-t-10 p-b-10" [text]="'Balance: ' + balance"></Label>
-                    <Label *ngIf="!confirmed" class="p-t-10 p-b-10 fa" [text]="'Balance: ' + balance + ' &#xf021;'"></Label>
+                    <Label class="p-t-10 p-b-10" [text]="'Balance: ' + balance"></Label>
                     <StackLayout class="hr-light"></StackLayout>
                     <Label class="text-center fa p-t-10 p-b-10" [text]="marketService.getPriceBTC(account.balance) + '  &#xf0ec;  ' + marketService.getPriceFiatCurrency(account.balance)"></Label>
                 </StackLayout>

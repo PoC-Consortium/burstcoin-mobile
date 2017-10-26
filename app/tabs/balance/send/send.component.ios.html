@@ -15,7 +15,7 @@
                 <GridLayout class="text-left m-t-10" columns="*7, *2" rows="auto, auto">
                     <Label col="0" row="0" class="p-t-5 p-b-5 big-label fa" text="&#xf2bc; Recipient"></Label>
                     <TextField col="0" row="1" class="input recipient-input" [(ngModel)]="recipient" (returnPress)="formatRecipient()"></TextField>
-                    <Button col="1" row="0" rowspan="2" class="scan-button btn btn-primary btn-active fa text-center" text="&#xf083;" (tap)=onTapScan($event)></Button>
+                    <Button col="1" row="0" rowspan="2" class="icon-button btn btn-primary btn-active fa text-center" text="&#xf083;" (tap)=onTapScan($event)></Button>
                 </GridLayout>
                 <StackLayout class="hr-light m-t-10 m-b-10"></StackLayout>
                 <GridLayout class="text-left m-b-10" columns="100, auto, 70, *" rows="auto, auto">
