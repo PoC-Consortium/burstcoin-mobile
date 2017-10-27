@@ -1,0 +1,21 @@
+@import '../app-variables';
+
+.toggle-label {
+    horizontal-align: center;
+    text-align: center;
+}
+
+.toggle-switch {
+    horizontal-align: center;
+    text-align: center;
+    color: $background-dark;
+}
+
+.input-paad {
+    margin-top: 20;
+    margin-bottom: 10;
+}
+
+.input-pin {
+    margin-bottom: 15;
+}

@@ -1,5 +1,5 @@
 <GridLayout rows="*">
-    <RadListView row="0" [items]="[0]" pullToRefresh="true" (pullToRefreshInitiated)="refresh($event)">
+    <RadListView #radListView row="0" [items]="[0]" pullToRefresh="true" (pullToRefreshInitiated)="refresh($event)">
         <ng-template tkListItemTemplate let-item="item" let-i="index">
             <StackLayout orientation="vertical">
                 <StackLayout (doubleTap)="onDoubleTapBalance()" (longPress)="onLongPressBalance()" (swipe)="onSwipeBalance($event)" class="balance-container" orientation="vertical">
@@ -10,7 +10,8 @@
                     <StackLayout class="hr-light"></StackLayout>
                     <Label class="p-t-10 p-b-10" [text]="address"></Label>
                     <StackLayout class="hr-light"></StackLayout>
-                    <Label class="p-t-10 p-b-10" [text]="'Balance: ' + balance"></Label>
+                    <Label [visibility]="confirmed ? 'visible' : 'collapse'" class="p-t-10 p-b-10" [text]="('TABS.BALANCE.BALANCE' | translate) + ': ' + balance"></Label>
+                    <Label [visibility]="!confirmed ? 'visible' : 'collapse'" class="p-t-10 p-b-10 fa" [text]="'Balance: ' + balance + ' &#xf021;'"></Label>
                     <StackLayout class="hr-light"></StackLayout>
                     <Label class="text-center fa p-t-10 p-b-10" [text]="marketService.getPriceBTC(account.balance) + '  &#xf0ec;  ' + marketService.getPriceFiatCurrency(account.balance)"></Label>
                 </StackLayout>
