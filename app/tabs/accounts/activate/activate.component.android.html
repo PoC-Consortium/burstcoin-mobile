@@ -32,7 +32,7 @@
                 </StackLayout>
                 <StackLayout class="body-container m-b-20" orientation="vertical">
                     <TextField class="input" [(ngModel)]="pin" [hint]="'TABS.ACCOUNTS.ACTIVATE.PIN_INPUT_HINT' | translate" keyboardType="number" returnKeyType="done"></TextField>
-                    <Button class="btn btn-primary btn-active action-button fa" [text]="('TABS.ACCOUNTS.ACTIVATE.DONE' | translate) + ' &#xf05d;'" (tap)="onTapDone($event)"></Button>
+                    <Button class="btn btn-primary btn-active action-button fa" [text]="('TABS.ACCOUNTS.ACTIVATE.DONE' | translate) + ' &#xf05d;'" (tap)="onTapDone()"></Button>
                 </StackLayout>
             </StackLayout>
         </StackLayout>
