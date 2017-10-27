@@ -1,5 +1,5 @@
 <GridLayout rows="*">
-    <RadListView row="0" [items]="transactions" pullToRefresh="true" (pullToRefreshInitiated)="refresh($event)" separatorColor="transparent">
+    <RadListView row="0" [items]="transactions" (swipe)="onSwipeItem($event)" pullToRefresh="true" (pullToRefreshInitiated)="refresh($event)" separatorColor="transparent">
         <ng-template tkListItemTemplate let-item="item" let-i="index">
             <StackLayout>
                 <GridLayout *ngIf="item.recipientId == ownId" (doubleTap)="onDoubleTap(item.senderAddress)" (longPress)="onLongPress(item.senderAddress)" class="m-x-auto list-item" columns="auto, auto, auto, *, auto" rows="auto, auto, auto">

@@ -1,0 +1,14 @@
+<ScrollView>
+    <StackLayout orientation="vertical" (swipe)="onSwipeItem($event)">
+        <StackLayout class="settings-item" orientation="vertical">
+            <GridLayout rows="auto, auto, auto, auto, auto, auto" columns="*">
+                <Button row="0" col="0" class="btn btn-primary fa settings-button" [text]="'&#xf1ab; ' + ('TABS.SETTINGS.LANGUAGE.LANGUAGE' | translate) + ': ' + languageNames[languages.indexOf(settings.language)]" (tap)="onTapLanguage()"></Button>
+                <Button row="1" col="0" class="btn btn-primary fa settings-button" [text]="'&#xf0d6; ' + ('TABS.SETTINGS.CURRENCY.CURRENCY' | translate) + ': ' + settings.currency" (tap)="onTapCurrency()"></Button>
+                <Button row="2" col="0" class="btn btn-primary fa settings-button" [text]="'&#xf277; ' + ('TABS.SETTINGS.NODE.NODE' | translate)" (tap)="onTapNode()"></Button>
+                <Button row="3" col="0" class="btn btn-primary fa settings-button" [text]="'&#xf02d; ' + ('TABS.SETTINGS.DOCUMENTATION.DOCUMENTATION' | translate)" (tap)="onTapDocumentation()"></Button>
+                <Button row="4" col="0" class="btn btn-primary fa settings-button" [text]="'&#xf004; ' + ('TABS.SETTINGS.SUPPORT.SUPPORT' | translate)" (tap)="onTapSupport()"></Button>
+                <Button row="5" col="0" class="btn btn-primary fa settings-button" [text]="'&#xf05a; ' + ('TABS.SETTINGS.ABOUT.ABOUT' | translate)" (tap)="onTapAbout()"></Button>
+            </GridLayout>
+        </StackLayout>
+    </StackLayout>
+</ScrollView>

@@ -1,13 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { isAndroid } from "platform";
 import { ListViewEventData } from "nativescript-telerik-ui/listview";
-import { GestureEventData } from "ui/gestures";
+import { GestureEventData, SwipeGestureEventData } from "ui/gestures";
 import { TranslateService } from 'ng2-translate';
 
 import { Account, Transaction } from "../../lib/model";
 import { Converter } from "../../lib/util";
 
-import { AccountService, DatabaseService, MarketService, NotificationService } from "../../lib/services";
+import { AccountService, DatabaseService, MarketService, NotificationService, TabsService } from "../../lib/services";
 
 import * as SocialShare from "nativescript-social-share";
 let clipboard = require("nativescript-clipboard");
@@ -28,6 +28,7 @@ export class TransactionsComponent implements OnInit {
         private marketService: MarketService,
         private notificationService: NotificationService,
         private accountService: AccountService,
+        private tabsService: TabsService,
         private translateService: TranslateService
     ) {
         this.ownId = "";
@@ -56,6 +57,14 @@ export class TransactionsComponent implements OnInit {
 
     public convertTimestamp(timestamp: number) {
         return Converter.convertTimestampToDateString(timestamp);
+    }
+
+    public onSwipeItem(args: SwipeGestureEventData) {
+        if (args.direction == 1) {
+            this.tabsService.changeTab(0);
+        } else if (args.direction == 2) {
+            this.tabsService.changeTab(2);
+        }
     }
 
     public refresh(args) {
