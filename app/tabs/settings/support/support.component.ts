@@ -49,4 +49,8 @@ export class SupportComponent implements OnInit {
     public onTapGithub() {
         utils.openUrl("https://github.com/cgebe/burstcoin-wallet/issues");
     }
+
+    public onTapNo() {
+        this.params.closeCallback();
+    }
 }

@@ -38,4 +38,8 @@ export class LanguageComponent implements OnInit {
     public onTapOk() {
         this.params.closeCallback(this.picked);
     }
+
+    public onTapNo() {
+        this.params.closeCallback();
+    }
 }

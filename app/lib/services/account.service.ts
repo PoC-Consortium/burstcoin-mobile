@@ -101,7 +101,6 @@ export class AccountService {
                             account.type = "active";
                             return this.databaseService.saveAccount(account)
                                 .then(account => {
-                                    this.notificationService.info(JSON.stringify(account));
                                     resolve(account);
                                 });
                         })

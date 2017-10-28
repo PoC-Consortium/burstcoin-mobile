@@ -1,0 +1,19 @@
+<StackLayout class="modal-view-style">
+    <StackLayout class="page-content">
+        <StackLayout class="modal-container">
+            <StackLayout class="body-container">
+                <Label class="solo fa" textWrap="true" [text]="('TABS.SETTINGS.ABOUT.VERSION' | translate) + ': ' + version"></Label>
+                <Label class="solo fa" textWrap="true" [text]="'TABS.SETTINGS.ABOUT.TWITTER' | translate"></Label>
+                <Button class="btn btn-primary btn-active about-button fa" text="&#xf099; PoC Consortium" (tap)="onTapTwitter()"></Button>
+                <Label class="solo fa" textWrap="true" [text]="'TABS.SETTINGS.ABOUT.DEVELOPED' | translate"></Label>
+                <Image class="dev-logo p-b-10" src="res://icewavelogo"></Image>
+                <Label class="solo fa" textWrap="true" [text]="'TABS.SETTINGS.ABOUT.ASSOCIATION' | translate"></Label>
+                <GridLayout class="p-l-20 p-r-20 m-b-15" rows="auto" columns="*,*">
+                    <Image col="0" class="logo-tiny text-center" src="res://poclogo"></Image>
+                    <Image col="1" class="logo-tiny text-center" src="res://cglogo"></Image>
+                </GridLayout>
+                <Button class="icon-button btn btn-primary btn-active fa text-center" text="&#xf00d;" (tap)=onTapNo()></Button>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</StackLayout>

@@ -1,6 +1,6 @@
 
 // Start custom common variables
-@import 'app-variables';
+@import 'app-ios-variables';
 // End custom common variables
 
 // Import the theme’s main ruleset.
@@ -47,6 +47,14 @@ Page {
     border-radius: $default-border;
 }
 
+.btn.primary:focus {
+    color: $white;
+}
+
+.btn.primary:active {
+    color: $white;
+}
+
 .action-button {
     width: 70%;
     height: $btn-height;
@@ -76,6 +84,16 @@ Page {
 // Font icon class
 .fa {
    font-family: "FontAwesome";
+}
+
+.modal-container {
+    height:100%;
+    vertical-align: middle;
+}
+
+.icon-button {
+    height: 40;
+    width: 40;
 }
 // Common page class
 .page-content {

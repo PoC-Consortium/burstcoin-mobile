@@ -1,6 +1,6 @@
-<TransactionsRefresh (refresh)="refresh($event)">
-    <ListView [items]="transactions" separatorColor="transparent">
-        <ng-template let-item="item" let-i="index">
+<GridLayout rows="*">
+    <RadListView row="0" [items]="transactions" (swipe)="onSwipeItem($event)" pullToRefresh="true" (pullToRefreshInitiated)="refresh($event)" separatorColor="transparent">
+        <ng-template tkListItemTemplate let-item="item" let-i="index">
             <StackLayout>
                 <GridLayout *ngIf="item.recipientId == ownId" (doubleTap)="onDoubleTap(item.senderAddress)" (longPress)="onLongPress(item.senderAddress)" class="m-x-auto list-item" columns="auto, auto, auto, *, auto" rows="auto, auto, auto">
                     <Label col="0" row="0" colspan="3" class="font-weight-italic fa p-b-5 amount" [text]="item.amountNQT + ' BURST / ' + marketService.getPriceFiatCurrency(item.amountNQT, 2)"></Label>
@@ -23,6 +23,6 @@
                     <Label *ngIf="!item.confirmed" col="4" row="2" class="fa unconfirmed-indicator p-b-5 text-right" text="&#xf021;"></Label>
                 </GridLayout>
             </StackLayout>
-        </ng-template>
-    </ListView>
-</TransactionsRefresh>
+            </ng-template>
+        </RadListView>
+</GridLayout>

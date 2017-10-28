@@ -1,10 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
 import { SwipeGestureEventData } from "ui/gestures";
 import { Image } from "ui/image"
 import { TranslateService } from 'ng2-translate';
 import { Account, BurstAddress, Currency } from "../../lib/model";
 import { AccountService, DatabaseService, MarketService, NotificationService, TabsService } from "../../lib/services";
+import { RadListViewComponent } from "nativescript-telerik-ui/listview/angular";
 
 import * as SocialShare from "nativescript-social-share";
 
@@ -27,6 +28,8 @@ export class BalanceComponent implements OnInit {
     qrcode: Image;
     zx: any;
 
+    @ViewChild('radListView') radListView: RadListViewComponent;
+
     constructor(
         private accountService: AccountService,
         private databaseService: DatabaseService,
@@ -47,6 +50,7 @@ export class BalanceComponent implements OnInit {
                 this.update(account);
                 // reset
                 this.loading = false;
+                this.radListView.listView.notifyPullToRefreshFinished(); // workaround https://github.com/NativeScript/nativescript-angular/issues/872
             }
         });
     }

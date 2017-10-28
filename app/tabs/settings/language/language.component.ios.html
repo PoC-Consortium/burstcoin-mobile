@@ -1,0 +1,11 @@
+<StackLayout class="modal-view-style">
+    <StackLayout class="page-content">
+        <StackLayout class="modal-container">
+            <StackLayout class="body-container">
+                <Label class="solo fa" textWrap="true" [text]="'&#xf1ab; ' + ('TABS.SETTINGS.LANGUAGE.LANGUAGE' | translate)"></Label>
+                <ListPicker [items]="languageNames" [selectedIndex]="index" (selectedIndexChange)="selectedIndexChanged($event)" class="p-5"></ListPicker>
+                <Button class="btn btn-primary btn-active action-button fa" text="&#xf05d;" (tap)="onTapOk()"></Button>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</StackLayout>

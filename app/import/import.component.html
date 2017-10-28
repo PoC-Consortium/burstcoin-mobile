@@ -35,8 +35,8 @@
                     </StackLayout>
 
                     <Switch class="m-10 toggle-switch" checked="true" (checkedChange)="onChecked($event)"></Switch>
-                    <TextField *ngIf="active" class="input" [hint]="'IMPORT.ACTIVE_ACCOUNT_INPUT_HINT' | translate" [(ngModel)]="activeInput"></TextField>
-                    <TextField *ngIf="!active" class="input" [hint]="'IMPORT.OFFLINE_ACCOUNT_INPUT_HINT' | translate" [(ngModel)]="offlineInput" (returnPress)="formatAddress()"></TextField>
+                    <TextField *ngIf="active" class="input input-paad" [hint]="'IMPORT.ACTIVE_ACCOUNT_INPUT_HINT' | translate" [(ngModel)]="activeInput"></TextField>
+                    <TextField *ngIf="!active" class="input input-paad" [hint]="'IMPORT.OFFLINE_ACCOUNT_INPUT_HINT' | translate" [(ngModel)]="offlineInput" (returnPress)="formatAddress()"></TextField>
                 </StackLayout>
                 <StackLayout orientation="vertical">
                     <Button *ngIf="active" class="btn btn-primary btn-active action-button fa" [text]="('IMPORT.NEXT' | translate) + ' &#xf18e;'" (tap)="onTapNext($event)"></Button>
@@ -49,7 +49,7 @@
                     <Label textWrap="true" class="solo" [text]="'IMPORT.ACTIVE_ACCOUNT_PIN_INFO' | translate"></Label>
                 </StackLayout>
                 <StackLayout class="body-container" orientation="vertical">
-                    <TextField class="input" [(ngModel)]="pin" [hint]="'IMPORT.PIN_INPUT_HINT' | translate" keyboardType="number" returnKeyType="done"></TextField>
+                    <TextField class="input input-pin" [(ngModel)]="pin" [hint]="'IMPORT.PIN_INPUT_HINT' | translate" keyboardType="number" returnKeyType="done"></TextField>
                     <Button class="btn btn-primary btn-active action-button fa" [text]="('IMPORT.DONE' | translate) + ' &#xf05d;'" (tap)="onTapDone($event)"></Button>
                 </StackLayout>
             </StackLayout>

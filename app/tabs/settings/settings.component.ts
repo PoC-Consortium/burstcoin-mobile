@@ -2,10 +2,11 @@ import { Component, OnInit, ViewContainerRef } from "@angular/core";
 import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
 import { TranslateService } from 'ng2-translate';
+import { SwipeGestureEventData } from "ui/gestures";
 
 import { Account, Transaction, Settings } from "../../lib/model";
 
-import { AccountService, DatabaseService, MarketService, NotificationService } from "../../lib/services";
+import { AccountService, DatabaseService, MarketService, NotificationService, TabsService } from "../../lib/services";
 import { AboutComponent } from "./about/about.component";
 import { CurrencyComponent } from "./currency/currency.component";
 import { LanguageComponent } from "./language/language.component";
@@ -32,6 +33,7 @@ export class SettingsComponent implements OnInit {
         private marketService: MarketService,
         private modalDialogService: ModalDialogService,
         private notificationService: NotificationService,
+        private tabsService: TabsService,
         private translateService: TranslateService,
         private vcRef: ViewContainerRef
     ) {
@@ -130,6 +132,12 @@ export class SettingsComponent implements OnInit {
 
     public onTapDocumentation() {
         utils.openUrl("https://cgebe.github.io/burstcoin-wallet/");
+    }
+
+    public onSwipeItem(args: SwipeGestureEventData) {
+        if (args.direction == 1) {
+            this.tabsService.changeTab(2);
+        }
     }
 
     public onTapNode() {
