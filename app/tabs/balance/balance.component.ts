@@ -6,6 +6,7 @@ import { TranslateService } from 'ng2-translate';
 import { Account, BurstAddress, Currency } from "../../lib/model";
 import { AccountService, DatabaseService, MarketService, NotificationService, TabsService } from "../../lib/services";
 import { RadListViewComponent } from "nativescript-telerik-ui/listview/angular";
+import { isIOS } from "platform";
 
 import * as SocialShare from "nativescript-social-share";
 
@@ -50,7 +51,10 @@ export class BalanceComponent implements OnInit {
                 this.update(account);
                 // reset
                 this.loading = false;
-                this.radListView.listView.notifyPullToRefreshFinished(); // workaround https://github.com/NativeScript/nativescript-angular/issues/872
+                if (isIOS) {
+                    this.radListView.listView.notifyPullToRefreshFinished(); // workaround https://github.com/NativeScript/nativescript-angular/issues/872
+                }
+
             }
         });
     }

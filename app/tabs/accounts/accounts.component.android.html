@@ -1,4 +1,4 @@
-<RadListView [items]="accounts" pullToRefresh="true" (pullToRefreshInitiated)="refresh($event)" separatorColor="transparent">
+<RadListView #radListView [items]="accounts" pullToRefresh="true" (pullToRefreshInitiated)="refresh($event)" separatorColor="transparent">
     <ng-template let-item="item" let-i="index">
         <StackLayout>
             <GridLayout (tap)="selectAccount(item)" (longPress)="onLongPress(item.address)" (swipe)="onSwipeItem($event)" class="list-item" columns="auto, auto, auto, auto *, auto" rows="auto, auto, auto, auto">

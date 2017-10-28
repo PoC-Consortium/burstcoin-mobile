@@ -7,6 +7,7 @@ import { Label } from "ui/label";
 import { Image } from "ui/image";
 import { TranslateService } from 'ng2-translate';
 import { RadListViewComponent } from "nativescript-telerik-ui/listview/angular";
+import { isIOS } from "platform";
 
 import { Account, BurstAddress, Currency } from "../../lib/model";
 import { NoConnectionError } from "../../lib/model/error";
@@ -67,7 +68,9 @@ export class AccountsComponent implements OnInit {
         this.accountService.selectAccount(account)
             .then(account => {
                 this.marketService.setCurrency(this.marketService.currency.value);
-                this.radListView.listView.notifyPullToRefreshFinished(); // workaround https://github.com/NativeScript/nativescript-angular/issues/872
+                if (isIOS) {
+                    this.radListView.listView.notifyPullToRefreshFinished(); // workaround https://github.com/NativeScript/nativescript-angular/issues/872
+                }
             })
     }
 

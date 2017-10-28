@@ -33,7 +33,7 @@ export class ActivateComponent implements OnInit {
 
     ngOnInit(): void {
         if (this.accountService.currentAccount.value.active) {
-            this.router.navigate(['tabs']);
+            this.router.navigateByUrl('tabs')
         }
     }
 
@@ -89,18 +89,18 @@ export class ActivateComponent implements OnInit {
                     this.accountService.synchronizeAccount(this.accountService.currentAccount.value)
                         .then(account => {
                             this.accountService.setCurrentAccount(account);
-                            this.router.navigate['tabs'];
+                            this.router.navigateByUrl('tabs')
                         })
                         .catch(error  => {
                             this.accountService.setCurrentAccount(account);
-                            this.router.navigate['tabs'];
+                            this.router.navigateByUrl('tabs')
                         })
                 })
                 .catch(error  => {
                     this.translateService.get("NOTIFICATIONS.ERRORS.UPDATE").subscribe((res: string) => {
                         this.notificationService.info(res);
                     });
-                    this.router.navigate['tabs'];
+                    this.router.navigateByUrl('tabs')
                 })
         } else {
             this.translateService.get("NOTIFICATIONS.PIN").subscribe((res: string) => {
