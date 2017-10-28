@@ -12,7 +12,7 @@ const { AotPlugin } = require("@ngtools/webpack");
 
 const ngToolsWebpackOptions = { tsConfigPath: "tsconfig.aot.json" };
 
-const mainSheet = `app.css`;
+const mainSheet = `app.android.css`;
 
 module.exports = env => {
     const platform = getPlatform(env);
