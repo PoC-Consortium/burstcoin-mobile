@@ -47,6 +47,14 @@ Page {
     border-radius: $default-border;
 }
 
+.btn.primary:focus {
+    color: $white;
+}
+
+.btn.primary:active {
+    color: $white;
+}
+
 .action-button {
     width: 70%;
     height: $btn-height;
