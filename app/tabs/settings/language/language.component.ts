@@ -12,7 +12,7 @@ export class LanguageComponent implements OnInit {
 
     picked: string;
     languageNames: string[] = ["Deutsch", "Ελληνικά", "English", "Español", "Français", "हिन्दी", "Italiano", "한국어", "Magyar", "Polski", "Pу́сский", "Slovensky", "Svenska", "தமிழ", "中文"]
-    languages: string[] = ["de", "el", "en", "es", "fr", "hi", "it", "kr", "hu", "pl", "ru", "sk", "sv", "ta", "zh"]
+    languages: string[] = ["de", "el", "en", "es", "fr", "hi", "it", "ko", "hu", "pl", "ru", "sk", "sv", "ta", "zh"]
     index: number;
 
     constructor(
