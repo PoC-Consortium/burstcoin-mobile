@@ -47,7 +47,7 @@ export class SupportComponent implements OnInit {
     }
 
     public onTapGithub() {
-        utils.openUrl("https://github.com/cgebe/burstcoin-wallet/issues");
+        utils.openUrl("https://github.com/poc-consortium/burstcoin-mobile/issues");
     }
 
     public onTapNo() {
