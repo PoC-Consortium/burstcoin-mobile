@@ -1,21 +1,27 @@
-const { resolve, join  } = require("path");
+const {resolve,join} = require("path");
+
+const fs = require('fs');
 
 const webpack = require("webpack");
 const nsWebpack = require("nativescript-dev-webpack");
 const nativescriptTarget = require("nativescript-dev-webpack/nativescript-target");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
-const { NativeScriptWorkerPlugin } = require("nativescript-worker-loader/NativeScriptWorkerPlugin");
+const {BundleAnalyzerPlugin} = require("webpack-bundle-analyzer");
+const {NativeScriptWorkerPlugin} = require("nativescript-worker-loader/NativeScriptWorkerPlugin");
 
-const { AotPlugin } = require("@ngtools/webpack");
+const {AotPlugin} = require("@ngtools/webpack");
 
-const ngToolsWebpackOptions = { tsConfigPath: "tsconfig.aot.json" };
+const ngToolsWebpackOptions = {
+    tsConfigPath: "tsconfig.aot.json"
+};
 
-const mainSheet = `app.android.css`;
+let mainSheet = '';
 
 module.exports = env => {
     const platform = getPlatform(env);
+
+    mainSheet = getMainSheet(platform);
 
     // Default destination inside platforms/<platform>/...
     const path = resolve(nsWebpack.getAppPath(platform));
@@ -65,7 +71,9 @@ module.exports = env => {
             "setImmediate": false,
             "fs": "empty",
         },
-        module: { rules },
+        module: {
+            rules
+        },
         plugins,
     };
 
@@ -75,7 +83,9 @@ module.exports = env => {
             projectRoot: __dirname,
             webpackConfig: config,
             targetArchs: ["arm", "arm64", "ia32"],
-            tnsJavaClassesOptions: { packages: ["tns-core-modules" ] },
+            tnsJavaClassesOptions: {
+                packages: ["tns-core-modules"]
+            },
             useLibs: false
         }));
     }
@@ -83,16 +93,22 @@ module.exports = env => {
     return config;
 };
 
+function getMainSheet(platform) {
+    const mainSheet = `app.${platform}.css`;
+    return fs.existsSync(join(__dirname, 'app', mainSheet)) ?
+        mainSheet : 'app.css';
+}
 
 function getPlatform(env) {
     return env.android ? "android" :
         env.ios ? "ios" :
-        () => { throw new Error("You need to provide a target platform!") };
+        () => {
+            throw new Error("You need to provide a target platform!")
+        };
 }
 
 function getRules() {
-    return [
-        {
+    return [{
             test: /\.html$|\.xml$/,
             use: [
                 "raw-loader",
@@ -101,14 +117,17 @@ function getRules() {
         // Root stylesheet gets extracted with bundled dependencies
         {
             test: new RegExp(mainSheet),
-            use: ExtractTextPlugin.extract([
-                {
+            use: ExtractTextPlugin.extract([{
                     loader: "resolve-url-loader",
-                    options: { silent: true },
+                    options: {
+                        silent: true
+                    },
                 },
                 {
                     loader: "nativescript-css-loader",
-                    options: { minimize: false }
+                    options: {
+                        minimize: false
+                    }
                 },
                 "nativescript-dev-webpack/platform-css-loader",
             ]),
@@ -135,8 +154,9 @@ function getRules() {
         // Compile TypeScript files with ahead-of-time compiler.
         {
             test: /.ts$/,
-            use: [
-                { loader: "nativescript-dev-webpack/tns-aot-loader" },
+            use: [{
+                    loader: "nativescript-dev-webpack/tns-aot-loader"
+                },
                 {
                     loader: "@ngtools/webpack",
                     options: ngToolsWebpackOptions,
@@ -162,15 +182,30 @@ function getPlugins(platform, env) {
         }),
 
         // Copy assets to out dir. Add your own globs as needed.
-        new CopyWebpackPlugin([
-            { from: mainSheet },
-            { from: "css/**" },
-            { from: "fonts/**" },
-            { from: "**/*.jpg" },
-            { from: "**/*.png" },
-            { from: "**/*.xml" },
-            { from: "assets/**" },
-        ], { ignore: ["App_Resources/**"] }),
+        new CopyWebpackPlugin([{
+                from: mainSheet
+            },
+            {
+                from: "css/**"
+            },
+            {
+                from: "fonts/**"
+            },
+            {
+                from: "**/*.jpg"
+            },
+            {
+                from: "**/*.png"
+            },
+            {
+                from: "**/*.xml"
+            },
+            {
+                from: "assets/**"
+            },
+        ], {
+            ignore: ["App_Resources/**"]
+        }),
 
         // Generate a bundle starter script and activate it in package.json
         new nsWebpack.GenerateBundleStarterPlugin([
@@ -208,12 +243,16 @@ function getPlugins(platform, env) {
     ];
 
     if (env.uglify) {
-        plugins.push(new webpack.LoaderOptionsPlugin({ minimize: true }));
+        plugins.push(new webpack.LoaderOptionsPlugin({
+            minimize: true
+        }));
 
         // Work around an Android issue by setting compress = false
         const compress = platform !== "android";
         plugins.push(new webpack.optimize.UglifyJsPlugin({
-            mangle: { except: nsWebpack.uglifyMangleExcludes },
+            mangle: {
+                except: nsWebpack.uglifyMangleExcludes
+            },
             compress,
         }));
     }
