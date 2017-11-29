@@ -131,7 +131,7 @@ export class SettingsComponent implements OnInit {
     }
 
     public onTapDocumentation() {
-        utils.openUrl("https://poc-consortium.github.io/burstcoin-mobile/");
+        utils.openUrl("https://poc-consortium.github.io/burstcoin-mobile-doc/");
     }
 
     public onSwipeItem(args: SwipeGestureEventData) {

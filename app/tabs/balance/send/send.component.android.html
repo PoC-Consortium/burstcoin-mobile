@@ -52,9 +52,6 @@
                 <StackLayout class="hr-light"></StackLayout>
             </StackLayout>
             <StackLayout *ngIf="!processing">
-                <StackLayout class="info-container" orientation="vertical">
-                    <Label textWrap="true" class="solo" text="Enter your pin code!"></Label>
-                </StackLayout>
                 <StackLayout class="body-container m-b-5" orientation="vertical">
                     <TextField class="input" [(ngModel)]="pin" [hint]="'SEND.PIN_INPUT_HINT' | translate" keyboardType="number" returnKeyType="done"></TextField>
                 </StackLayout>
