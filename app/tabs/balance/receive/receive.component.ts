@@ -1,3 +1,7 @@
+/*
+    Copyright 2017 icewave.org
+*/
+
 import { Component, OnInit, ViewChild } from "@angular/core";
 
 @Component({

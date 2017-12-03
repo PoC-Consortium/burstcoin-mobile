@@ -1,3 +1,7 @@
+/*
+    Copyright 2017 icewave.org
+*/
+
 import { Component, OnInit } from "@angular/core";
 import { isAndroid } from "platform";
 import { ListViewEventData } from "nativescript-telerik-ui/listview";

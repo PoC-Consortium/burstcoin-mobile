@@ -1,3 +1,7 @@
+/*
+    Copyright 2017 icewave.org
+*/
+
 export class HttpError {
     public status: number;
     public error: string;

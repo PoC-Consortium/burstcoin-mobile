@@ -1,3 +1,7 @@
+/*
+    Copyright 2017 icewave.org
+*/
+
 import { NgModule } from "@angular/core";
 import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "nativescript-angular/router";

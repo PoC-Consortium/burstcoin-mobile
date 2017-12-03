@@ -1,3 +1,7 @@
+/*
+    Copyright 2017 icewave.org
+*/
+
 import { Component, OnInit, NgModule } from "@angular/core";
 import { ModalDialogParams } from "nativescript-angular/modal-dialog";
 import { Page } from "ui/page";
@@ -12,7 +16,7 @@ import * as utils from "utils/utils";
 })
 export class AboutComponent implements OnInit {
 
-    public version: string = "0.1.3";
+    public version: string = "0.1.4";
 
     constructor(private params: ModalDialogParams, private page: Page) {
         this.page.on("unloaded", () => {

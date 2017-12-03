@@ -1,3 +1,7 @@
+/*
+    Copyright 2017 icewave.org
+*/
+
 require("./vendor-platform");
 
 require("reflect-metadata");

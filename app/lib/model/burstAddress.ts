@@ -1,5 +1,5 @@
 /*
-    Burst Address class @author cgebe
+    Copyright 2017 icewave.org
 */
 
 let BN = require('bn.js');

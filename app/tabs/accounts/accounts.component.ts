@@ -1,3 +1,7 @@
+/*
+    Copyright 2017 icewave.org
+*/
+
 import { Component, OnInit, ViewContainerRef, ViewChild } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
 import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";

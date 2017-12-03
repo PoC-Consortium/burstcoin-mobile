@@ -1,3 +1,7 @@
+/*
+    Copyright 2017 icewave.org
+*/
+
 let seedrandom = require('seedrandom');
 
 export class PassPhraseGenerator {

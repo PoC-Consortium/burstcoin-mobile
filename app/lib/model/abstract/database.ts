@@ -1,3 +1,7 @@
+/*
+    Copyright 2017 icewave.org
+*/
+
 import { Account } from "../";
 
 export abstract class Database {

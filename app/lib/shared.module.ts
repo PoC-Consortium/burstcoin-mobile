@@ -1,3 +1,7 @@
+/*
+    Copyright 2017 icewave.org
+*/
+
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { TranslateModule } from 'ng2-translate';

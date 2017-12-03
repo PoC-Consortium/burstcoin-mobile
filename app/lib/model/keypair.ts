@@ -1,3 +1,6 @@
+/*
+    Copyright 2017 icewave.org
+*/
 
 export class Keypair {
     public privateKey: string;

@@ -1,3 +1,7 @@
+/*
+    Copyright 2017 icewave.org
+*/
+
 let BN = require('bn.js');
 let CryptoJS = require("crypto-js");
 

@@ -1,3 +1,7 @@
+/*
+    Copyright 2017 icewave.org
+*/
+
 import { Component, OnInit, NgModule } from "@angular/core";
 import { ModalDialogParams } from "nativescript-angular/modal-dialog";
 import { RouterExtensions } from "nativescript-angular/router";

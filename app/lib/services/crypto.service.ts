@@ -1,3 +1,7 @@
+/*
+    Copyright 2017 icewave.org
+*/
+
 import { Injectable } from '@angular/core';
 import { Converter } from "../util";
 import { PassPhraseGenerator, ECKCDSA } from "../util/crypto";

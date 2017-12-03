@@ -1,3 +1,7 @@
+/*
+    Copyright 2017 icewave.org
+*/
+
 import { Keypair } from "./keypair";
 import { Transaction } from "./transaction";
 

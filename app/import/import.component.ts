@@ -1,3 +1,7 @@
+/*
+    Copyright 2017 icewave.org
+*/
+
 import { Component, OnInit, ViewContainerRef } from "@angular/core";
 import { Switch } from "ui/switch";
 import { RouterExtensions } from "nativescript-angular/router";

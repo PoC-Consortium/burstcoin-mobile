@@ -1,3 +1,7 @@
+/*
+    Copyright 2017 icewave.org
+*/
+
 require("application");
 if (!global["__snapshot"]) {
     // In case snapshot generation is enabled these modules will get into the bundle
