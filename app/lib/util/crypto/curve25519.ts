@@ -2,7 +2,7 @@
     Copyright 2017 icewave.org
 */
 /*
- * Ported to TypeScript 2.4.2 (https://github.com/Microsoft/TypeScript/issues/18158) 09/02/17.
+ * Ported to TypeScript 2.4.2 (https://github.com/Microsoft/TypeScript/issues/18158) 09/02/17. @author cgb
  * Ported to JavaScript from Java 07/01/14.
  * Ported from C to Java by Dmitry Skiba [sahn0], 23/02/08.
  * Original: http://cds.xs4all.nl:8081/ecdh/
