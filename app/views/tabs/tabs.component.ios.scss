@@ -1,0 +1,19 @@
+@import '../../app-ios-variables';
+
+// Place any CSS rules you want to apply only on IOS here
+TabView {
+    tab-text-color: $default-text;
+    selected-tab-text-color: $background-dark;
+    android-selected-tab-text-color: $background-dark;
+    android-selected-tab-highlight-color: $background-dark;
+    font-size: 10;
+}
+
+
+.tab-view-item {
+    background-color: $background-light;
+}
+
+.tab {
+    font-size: 14;
+}

@@ -1,0 +1,11 @@
+@import '../../../../app-variables';
+
+.reset-button {
+    height: $btn-height;
+    width: $btn-height;
+    margin: 2;
+}
+
+.node-address {
+    font-size: 14;
+}

@@ -1,0 +1,12 @@
+<ActionBar class="action-bar">
+    <StackLayout orientation="horizontal">
+        <Image class="logo-tiny m-r-15" src="res://logo"></Image>
+        <Label class="action-bar-title" [text]="'SEND.ACTION_BAR_TITLE' | translate"></Label>
+    </StackLayout>
+</ActionBar>
+
+<StackLayout class="page-content" orientation="vertical">
+    <StackLayout class="container">
+        <router-outlet></router-outlet>
+    </StackLayout>
+</StackLayout>

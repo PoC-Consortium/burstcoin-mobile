@@ -8,10 +8,12 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
 
 const routes: Routes = [
     { path: "", redirectTo: "start", pathMatch: "full" },
-    { path: "create", loadChildren: "./create/create.module#CreateModule" },
-    { path: "start", loadChildren: "./start/start.module#StartModule" },
-    { path: "import", loadChildren: "./import/import.module#ImportModule" },
-    { path: "tabs", loadChildren: "./tabs/tabs.module#TabsModule" }
+    { path: "activate", loadChildren: "./views/activate/activate.module#ActivateModule" },
+    { path: "create", loadChildren: "./views/create/create.module#CreateModule" },
+    { path: "start", loadChildren: "./views/start/start.module#StartModule" },
+    { path: "import", loadChildren: "./views/import/import.module#ImportModule" },
+    { path: "send", loadChildren: "../views/send/send.module#SendModule"},
+    { path: "tabs", loadChildren: "./views/tabs/tabs.module#TabsModule" }
 ];
 
 @NgModule({
