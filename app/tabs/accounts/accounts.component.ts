@@ -10,7 +10,7 @@ import { SwipeGestureEventData } from "ui/gestures";
 import { Label } from "ui/label";
 import { Image } from "ui/image";
 import { TranslateService } from 'ng2-translate';
-import { RadListViewComponent } from "nativescript-telerik-ui/listview/angular";
+import { RadListViewComponent } from "nativescript-pro-ui/listview/angular";
 import { isIOS } from "platform";
 
 import { Account, BurstAddress, Currency } from "../../lib/model";

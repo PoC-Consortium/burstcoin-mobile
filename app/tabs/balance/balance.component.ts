@@ -9,7 +9,7 @@ import { Image } from "ui/image"
 import { TranslateService } from 'ng2-translate';
 import { Account, BurstAddress, Currency } from "../../lib/model";
 import { AccountService, DatabaseService, MarketService, NotificationService, TabsService } from "../../lib/services";
-import { RadListViewComponent } from "nativescript-telerik-ui/listview/angular";
+import { RadListViewComponent } from "nativescript-pro-ui/listview/angular";
 import { isIOS } from "platform";
 
 import * as SocialShare from "nativescript-social-share";

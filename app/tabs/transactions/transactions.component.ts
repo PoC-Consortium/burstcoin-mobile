@@ -4,7 +4,7 @@
 
 import { Component, OnInit } from "@angular/core";
 import { isAndroid } from "platform";
-import { ListViewEventData } from "nativescript-telerik-ui/listview";
+import { ListViewEventData } from "nativescript-pro-ui/listview";
 import { GestureEventData, SwipeGestureEventData } from "ui/gestures";
 import { TranslateService } from 'ng2-translate';
 
