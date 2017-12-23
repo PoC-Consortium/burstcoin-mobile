@@ -14,6 +14,7 @@ import { Converter } from "../../lib/util";
 import { AccountService, DatabaseService, MarketService, NotificationService, TabsService } from "../../lib/services";
 
 import * as SocialShare from "nativescript-social-share";
+import * as utils from "utils/utils";
 let clipboard = require("nativescript-clipboard");
 
 @Component({
@@ -46,6 +47,10 @@ export class TransactionsComponent implements OnInit {
                 this.ownId = this.accountService.currentAccount.value.id;
             }
         });
+    }
+
+    public onTap(id: string) {
+        utils.openUrl("https://explore.burst.cryptoguru.org/transaction/" + id);
     }
 
     public onDoubleTap(address: string) {

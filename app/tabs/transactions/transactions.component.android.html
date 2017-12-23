@@ -1,7 +1,7 @@
 <RadListView [items]="transactions" pullToRefresh="true" (pullToRefreshInitiated)="refresh($event)" separatorColor="transparent">
     <ng-template tkListItemTemplate let-item="item" let-i="index">
         <StackLayout>
-            <GridLayout *ngIf="item.recipientId == ownId" (doubleTap)="onDoubleTap(item.senderAddress)" (longPress)="onLongPress(item.senderAddress)" class="m-x-auto list-item" columns="auto, auto, auto, *, auto" rows="auto, auto, auto">
+            <GridLayout *ngIf="item.recipientId == ownId" (tap)="onTap(item.id)" (doubleTap)="onDoubleTap(item.senderAddress)" (longPress)="onLongPress(item.senderAddress)" class="m-x-auto list-item" columns="auto, auto, auto, *, auto" rows="auto, auto, auto">
                 <Label col="0" row="0" colspan="3" class="font-weight-italic fa p-b-5 amount" [text]="item.amountNQT + ' BURST / ' + marketService.getPriceFiatCurrency(item.amountNQT, 2)"></Label>
                 <Label col="4" row="0" class="transaction-label-in fa" text="&#xf078;"></Label>
 
@@ -11,7 +11,7 @@
                 <Label *ngIf="item.confirmed" col="4" row="2" class="fa confirmed-indicator p-b-5 text-right" text="&#xf00c;"></Label>
                 <Label *ngIf="!item.confirmed" col="4" row="2" class="fa unconfirmed-indicator p-b-5 text-right" text="&#xf021;"></Label>
             </GridLayout>
-            <GridLayout *ngIf="item.recipientId != ownId" (doubleTap)="onDoubleTap(item.recipientAddress)" (longPress)="onLongPress(item.recipientAddress)" class="m-x-auto list-item" columns="auto, auto, auto, *, auto" rows="auto, auto, auto">
+            <GridLayout *ngIf="item.recipientId != ownId" (tap)="onTap(item.id)" (doubleTap)="onDoubleTap(item.recipientAddress)" (longPress)="onLongPress(item.recipientAddress)" class="m-x-auto list-item" columns="auto, auto, auto, *, auto" rows="auto, auto, auto">
                 <Label col="0" row="0" colspan="3" class="font-weight-italic fa p-b-5 amount" [text]="item.amountNQT + ' BURST / ' + marketService.getPriceFiatCurrency(item.amountNQT, 2)"></Label>
                 <Label col="4" row="0" class="transaction-label-out fa" text="&#xf077;"></Label>
 
