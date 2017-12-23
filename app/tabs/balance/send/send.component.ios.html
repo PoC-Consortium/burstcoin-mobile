@@ -53,7 +53,7 @@
             </StackLayout>
             <StackLayout *ngIf="!processing">
                 <StackLayout class="body-container m-b-5" orientation="vertical">
-                    <TextField class="input" [(ngModel)]="pin" hint="PIN" keyboardType="number" returnKeyType="done"></TextField>
+                    <TextField class="input" [(ngModel)]="pin" hint="PIN" keyboardType="number" returnKeyType="done" secure="true"></TextField>
                 </StackLayout>
                 <StackLayout class="m-b-20" orientation="vertical">
                     <Button class="btn btn-primary btn-active action-button fa" text="Accept &#xf05d;" (tap)="onTapAccept($event)"></Button>

@@ -49,7 +49,7 @@
                     <Label textWrap="true" class="solo" [text]="'IMPORT.ACTIVE_ACCOUNT_PIN_INFO' | translate"></Label>
                 </StackLayout>
                 <StackLayout class="body-container" orientation="vertical">
-                    <TextField class="input input-pin" [(ngModel)]="pin" [hint]="'IMPORT.PIN_INPUT_HINT' | translate" keyboardType="number" returnKeyType="done"></TextField>
+                    <TextField class="input input-pin" [(ngModel)]="pin" [hint]="'IMPORT.PIN_INPUT_HINT' | translate" keyboardType="number" returnKeyType="done" secure="true"></TextField>
                     <Button class="btn btn-primary btn-active action-button fa" [text]="('IMPORT.DONE' | translate) + ' &#xf05d;'" (tap)="onTapDone($event)"></Button>
                 </StackLayout>
             </StackLayout>
