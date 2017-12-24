@@ -18,6 +18,8 @@ import { SendService } from "../send.service";
 
 import { ContactComponent } from "./contact/contact.component"
 
+let clipboard = require("nativescript-clipboard");
+
 @Component({
     moduleId: module.id,
     selector: "input",
@@ -114,6 +116,14 @@ export class InputComponent implements OnInit {
 
     public onTapContacts() {
         this.drawer.showDrawer();
+    }
+
+    public onDoubleTapRecipient() {
+        clipboard.getText().then(text => {
+            if (this.accountService.isBurstcoinAddress(text)) {
+                this.recipientParts = this.accountService.splitBurstAddress(text)
+            }
+        })
     }
 
     public onTapRemoveContact(index: number) {

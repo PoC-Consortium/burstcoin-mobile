@@ -25,16 +25,16 @@
                 </GridLayout>
                 <StackLayout class="hr-light"></StackLayout>
                 <GridLayout class="text-left m-t-10" columns="auto, 4*, auto, 4*, auto, 4*, auto, 5*" rows="auto, auto">
-                    <Label col="0" colspan="3" row="0" class="p-t-5 p-b-5 big-label fa" [text]="'&#xf2bc; ' + ('SEND.RECIPIENT' | translate)"></Label>
+                    <Label (doubleTap)="onDoubleTapRecipient()" col="0" colspan="3" row="0" class="p-t-5 p-b-5 big-label fa" [text]="'&#xf2bc; ' + ('SEND.RECIPIENT' | translate)"></Label>
 
                     <Label col="0" row="1" class="big-label fa" text="BURST-"></Label>
-                    <TextField col="1" row="1" class="input recipient-input" [(ngModel)]="recipientParts[0]" (returnPress)="formatRecipient()" returnKeyType="next"></TextField>
+                    <TextField col="1" row="1" class="input recipient-input" [(ngModel)]="recipientParts[0]" (returnPress)="formatRecipient()" maxLength="4" returnKeyType="next"></TextField>
                     <Label col="2" row="1" class="big-label fa" text="-"></Label>
-                    <TextField col="3" row="1" class="input recipient-input" [(ngModel)]="recipientParts[1]" (returnPress)="formatRecipient()" returnKeyType="next"></TextField>
+                    <TextField col="3" row="1" class="input recipient-input" [(ngModel)]="recipientParts[1]" (returnPress)="formatRecipient()" maxLength="4" returnKeyType="next"></TextField>
                     <Label col="4" row="1" class="big-label fa" text="-"></Label>
-                    <TextField col="5" row="1" class="input recipient-input" [(ngModel)]="recipientParts[2]" (returnPress)="formatRecipient()" returnKeyType="next"></TextField>
+                    <TextField col="5" row="1" class="input recipient-input" [(ngModel)]="recipientParts[2]" (returnPress)="formatRecipient()" maxLength="4" returnKeyType="next"></TextField>
                     <Label col="6" row="1" class="big-label fa" text="-"></Label>
-                    <TextField col="7" row="1" class="input recipient-input" [(ngModel)]="recipientParts[3]" (returnPress)="formatRecipient()" returnKeyType="next"></TextField>
+                    <TextField col="7" row="1" class="input recipient-input" [(ngModel)]="recipientParts[3]" (returnPress)="formatRecipient()" maxLength="5" returnKeyType="next"></TextField>
                 </GridLayout>
                 <StackLayout class="hr-light m-t-10 m-b-10"></StackLayout>
                 <GridLayout class="text-left m-b-10" columns="100, auto, 70, *" rows="auto, auto">

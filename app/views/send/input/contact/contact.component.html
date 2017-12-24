@@ -5,13 +5,13 @@
                 <Label class="solo fa" textWrap="true" [text]="'&#xf067; ' + ('SEND.ADD_CONTACT' | translate)"></Label>
                 <GridLayout class="text-left m-t-10" columns="auto, 4*, auto, 4*, auto, 4*, auto, 5*" rows="auto">
                     <Label col="0" row="1" class="vertical-center" text="BURST-"></Label>
-                    <TextField col="1" row="1" class="input" [(ngModel)]="addressParts[0]" (returnPress)="formatAddress()" returnKeyType="next"></TextField>
+                    <TextField col="1" row="1" class="input" [(ngModel)]="addressParts[0]" (returnPress)="formatAddress()" maxLength="4" returnKeyType="next"></TextField>
                     <Label col="2" row="1" class="vertical-center" text="-"></Label>
-                    <TextField col="3" row="1" class="input" [(ngModel)]="addressParts[1]" (returnPress)="formatAddress()" returnKeyType="next"></TextField>
+                    <TextField col="3" row="1" class="input" [(ngModel)]="addressParts[1]" (returnPress)="formatAddress()" maxLength="4" returnKeyType="next"></TextField>
                     <Label col="4" row="1" class="vertical-center" text="-"></Label>
-                    <TextField col="5" row="1" class="input" [(ngModel)]="addressParts[2]" (returnPress)="formatAddress()" returnKeyType="next"></TextField>
+                    <TextField col="5" row="1" class="input" [(ngModel)]="addressParts[2]" (returnPress)="formatAddress()" maxLength="4" returnKeyType="next"></TextField>
                     <Label col="6" row="1" class="vertical-center" text="-"></Label>
-                    <TextField col="7" row="1" class="input" [(ngModel)]="addressParts[3]" (returnPress)="formatAddress()" returnKeyType="done"></TextField>
+                    <TextField col="7" row="1" class="input" [(ngModel)]="addressParts[3]" (returnPress)="formatAddress()" maxLength="5" returnKeyType="done"></TextField>
                 </GridLayout>
                 <Button class="btn btn-primary btn-active action-button fa" text="&#xf05d;" (tap)="onTapOk()"></Button>
             </StackLayout>
