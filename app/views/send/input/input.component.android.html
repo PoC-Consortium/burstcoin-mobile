@@ -1,19 +1,16 @@
 <RadSideDrawer drawerLocation="left" tkExampleTitle tkToggleNavButton>
     <StackLayout tkDrawerContent class="sideStackLayout">
         <StackLayout class="sideTitleStackLayout">
-            <Label text="Navigation Menu"></Label>
+            <Label class="p-t-5 p-b-5 big-label fa" [text]="'&#xf2b9; ' + ('SEND.CONTACTS' | translate)"></Label>
         </StackLayout>
-        <StackLayout class="sideStackLayout">
-            <Label text="Primary" class="sideLabel sideLightGrayLabel"></Label>
-            <Label text="Social" class="sideLabel"></Label>
-            <Label text="Promotions" class="sideLabel"></Label>
-            <Label text="Labels" class="sideLabel sideLightGrayLabel"></Label>
-            <Label text="Important" class="sideLabel"></Label>
-            <Label text="Starred" class="sideLabel"></Label>
-            <Label text="Sent Mail" class="sideLabel"></Label>
-            <Label text="Drafts" class="sideLabel"></Label>
-        </StackLayout>
-        <Label text="Close Drawer" color="lightgray" padding="10" style="horizontal-align: center" (tap)="onCloseDrawerTap()"></Label>
+        <ListView [items]="account.contacts" (itemTap)="onTapContact($event)" class="list-group">
+            <ng-template let-country="item" let-i="index">
+                <GridLayout class="list-group-item">
+                    <Label [text]="contact.address"></Label>
+                </GridLayout>
+            </ng-template>
+        </ListView>
+        <Button class="btn btn-primary btn-active icon-button fa text-center" text="&#xf067;" (tap)="onTapAddContact()"></Button>
     </StackLayout>
 
     <StackLayout tkMainContent class="page-content" orientation="vertical">

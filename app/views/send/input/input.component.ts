@@ -54,7 +54,6 @@ export class InputComponent implements OnInit {
         this.amount = undefined;
         this.fee = 1;
         this.total = 1;
-
     }
 
     ngOnInit(): void {
@@ -68,6 +67,14 @@ export class InputComponent implements OnInit {
         this.drawer = this.drawerComponent.sideDrawer;
         this.changeDetectionRef.detectChanges();
         this.mainContentText = "SideDrawer for NativeScript can be easily setup in the HTML definition of your page by defining tkDrawerContent and tkMainContent. The component has a default transition and position and also exposes notifications related to changes in its state. Swipe from left to open side drawer.";
+    }
+
+    public onTapAddContact() {
+        console.log("add")
+    }
+
+    public onTapContact(contact: string) {
+        console.log(contact)
     }
 
     public onTapContacts() {

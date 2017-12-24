@@ -1,3 +1,5 @@
+@import '../../../app-variables';
+
 .big-label {
     font-size: 14;
     vertical-align: center;
@@ -33,7 +35,7 @@
 }
 
 .sideStackLayout {
-    background-color: gray;
+    background-color: $background-light;
 }
 
 .sideTitleStackLayout {

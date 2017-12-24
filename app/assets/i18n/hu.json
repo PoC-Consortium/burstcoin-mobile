@@ -91,6 +91,7 @@
         "ACCEPT": "Jóváhagy",
         "AMOUNT": "Mennyiség",
         "BALANCE": "Egyenleg",
+        "CONTACTS": "Contacts",
         "FEE": "Díj",
         "RECIPIENT": "Címzett",
         "PIN_INPUT_HINT": "PIN",
