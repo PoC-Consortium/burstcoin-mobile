@@ -89,6 +89,8 @@
     },
     "SEND": {
         "ACCEPT": "Jóváhagy",
+        "ACTION_BAR_TITLE": "Send BURST",
+        "ADD_CONTACT": "Add new contact",
         "AMOUNT": "Mennyiség",
         "BALANCE": "Egyenleg",
         "CONTACTS": "Contacts",
@@ -105,6 +107,7 @@
     "NOTIFICATIONS" : {
         "ADDRESS": "Írjon be egy valós BURST címet!",
         "COPIED": "Cím : {{value}} vágólapra másolva!",
+        "CONTACT_ADDED": "Contact added successfully!",
         "DECIMAL_AMOUNT": "Írja be számokkal az utalandó mennyiséget!",
         "DECIMAL_FEE": "Írja be számokkal (minimum 1) az utalás díját!",
         "ENTER_SOMETHING": "Írjon be valamit!",
@@ -122,6 +125,7 @@
             "ACCOUNT_ID": "A nyilvános kulcsból nem sikerült a fiók ID-t elõállítani!",
             "ADDRESS": "A BURST cím nem állítható elõ a fiók ID bõl!",
             "CONNECTION": "Nem sikerült a csatlakkozás, ellenõrizze az internet elérést!",
+            "CONTACT":"Failed to add new contact!",
             "CURRENCY": "Pénznem frissítése nem sikerült",
             "KEYPAIR": "Nem sikerült kulcspárt elõállítani a jelszóhoz!",
             "LANGUAGE": "Nyelv kiválasztás sikertelen",

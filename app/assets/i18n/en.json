@@ -91,6 +91,7 @@
     "SEND": {
         "ACCEPT": "Accept",
         "ACTION_BAR_TITLE": "Send BURST",
+        "ADD_CONTACT": "Add new contact",
         "AMOUNT": "Amount",
         "BALANCE": "Balance",
         "CONTACTS": "Contacts",
@@ -107,6 +108,7 @@
     "NOTIFICATIONS" : {
         "ADDRESS": "Please enter a valid Burstcoin address!",
         "COPIED": "Copied address {{value}} to clipboard!",
+        "CONTACT_ADDED": "Contact added successfully!",
         "DECIMAL_AMOUNT": "Please enter a decimal number for the amount of BURST you want to send!",
         "DECIMAL_FEE": "Please enter a decimal number (atleast 1) as fee!",
         "ENTER_SOMETHING": "Please enter something!",
@@ -124,6 +126,7 @@
             "ACCOUNT_ID": "Cannot generate account id from public key!",
             "ADDRESS": "Cannot generate BURST address from account id!",
             "CONNECTION": "Failed fetching data. Check your internet connection!",
+            "CONTACT":"Failed to add new contact!",
             "CURRENCY": "Currency update failed!",
             "KEYPAIR": "Failed to generate keypair for passphrase!",
             "LANGUAGE": "Language change failed!",

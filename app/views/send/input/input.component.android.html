@@ -3,10 +3,11 @@
         <StackLayout class="sideTitleStackLayout">
             <Label class="p-t-5 p-b-5 big-label fa" [text]="'&#xf2b9; ' + ('SEND.CONTACTS' | translate)"></Label>
         </StackLayout>
-        <ListView [items]="account.contacts" (itemTap)="onTapContact($event)" class="list-group">
-            <ng-template let-country="item" let-i="index">
-                <GridLayout class="list-group-item">
-                    <Label [text]="contact.address"></Label>
+        <ListView [items]="settings.contacts" (itemTap)="onTapContact($event)" class="list-group">
+            <ng-template let-contact="item" let-i="index">
+                <GridLayout (tap)="onTapContact(contact)" columns="auto, auto" rows="auto" class="p-5">
+                    <Button col="0" style="margin: 0" class="btn btn-primary btn-active icon-button fa text-center" text="&#xf00d;" (tap)="onTapRemoveContact(i)"></Button>
+                    <Label col="1" class="big-label p-l-5" [text]="contact"></Label>
                 </GridLayout>
             </ng-template>
         </ListView>
@@ -26,20 +27,20 @@
                     <Label col="0" colspan="3" row="0" class="p-t-5 p-b-5 big-label fa" [text]="'&#xf2bc; ' + ('SEND.RECIPIENT' | translate)"></Label>
 
                     <Label col="0" row="1" class="big-label fa" text="BURST-"></Label>
-                    <TextField col="1" row="1" class="input recipient-input" [(ngModel)]="recipientParts[0]" (returnPress)="formatRecipient()"></TextField>
+                    <TextField col="1" row="1" class="input recipient-input" [(ngModel)]="recipientParts[0]" (returnPress)="formatRecipient()" returnKeyType="next"></TextField>
                     <Label col="2" row="1" class="big-label fa" text="-"></Label>
-                    <TextField col="3" row="1" class="input recipient-input" [(ngModel)]="recipientParts[1]" (returnPress)="formatRecipient()"></TextField>
+                    <TextField col="3" row="1" class="input recipient-input" [(ngModel)]="recipientParts[1]" (returnPress)="formatRecipient()" returnKeyType="next"></TextField>
                     <Label col="4" row="1" class="big-label fa" text="-"></Label>
-                    <TextField col="5" row="1" class="input recipient-input" [(ngModel)]="recipientParts[2]" (returnPress)="formatRecipient()"></TextField>
+                    <TextField col="5" row="1" class="input recipient-input" [(ngModel)]="recipientParts[2]" (returnPress)="formatRecipient()" returnKeyType="next"></TextField>
                     <Label col="6" row="1" class="big-label fa" text="-"></Label>
-                    <TextField col="7" row="1" class="input recipient-input" [(ngModel)]="recipientParts[3]" (returnPress)="formatRecipient()"></TextField>
+                    <TextField col="7" row="1" class="input recipient-input" [(ngModel)]="recipientParts[3]" (returnPress)="formatRecipient()" returnKeyType="next"></TextField>
                 </GridLayout>
                 <StackLayout class="hr-light m-t-10 m-b-10"></StackLayout>
                 <GridLayout class="text-left m-b-10" columns="100, auto, 70, *" rows="auto, auto">
                     <Label col="0" row="0" class="p-t-5 p-b-5 big-label fa" [text]="'&#xf0d6; ' + ('SEND.AMOUNT' | translate)"></Label>
-                    <TextField #amountField col="0" row="1" class="input-border number-input" keyboardType="number" [(ngModel)]="amount" (ngModelChange)="calculateTotal('amount')"></TextField>
+                    <TextField #amountField col="0" row="1" class="input-border number-input" keyboardType="number" [(ngModel)]="amount" (ngModelChange)="calculateTotal('amount')" returnKeyType="next"></TextField>
                     <Label col="2" row="0" class="p-t-5 p-b-5 big-label fa" [text]="'&#xf0ec; ' + ('SEND.FEE' | translate)"></Label>
-                    <TextField col="2" row="1" class="input-border number-input" keyboardType="number" [(ngModel)]="fee" (ngModelChange)="calculateTotal('fee')"></TextField>
+                    <TextField col="2" row="1" class="input-border number-input" keyboardType="number" [(ngModel)]="fee" (ngModelChange)="calculateTotal('fee')" returnKeyType="done"></TextField>
                     <Label col="1" row="1" rowspan="2" class="p-10 fa text-center" text="+"></Label>
                     <Label col="3" row="1" rowspan="2" class="p-5 fa text-center" [text]="'= ' + marketService.getPriceFiatCurrency(total)"></Label>
                 </GridLayout>

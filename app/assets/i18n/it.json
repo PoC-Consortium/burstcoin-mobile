@@ -89,6 +89,8 @@
     },
     "SEND": {
         "ACCEPT": "Accetto",
+        "ACTION_BAR_TITLE": "Send BURST",
+        "ADD_CONTACT": "Add new contact",
         "AMOUNT": "Importo",
         "BALANCE": "Saldo",
         "CONTACTS": "Contacts",
@@ -105,6 +107,7 @@
     "NOTIFICATIONS" : {
         "ADDRESS": "Inserisci un indirizzo Burstcoin valido!",
         "COPIED": "Copia l'indirizzo {{value}} nella clipboard!",
+        "CONTACT_ADDED": "Contact added successfully!",
         "DECIMAL_AMOUNT": "Inserisci un numero decimale per il totale di BURST che vuoi inviare!",
         "DECIMAL_FEE": "Inserisci un numero decimale (almeno 1) come Tassa!",
         "ENTER_SOMETHING": "Prego inserisci qualcosa!",
@@ -122,6 +125,7 @@
             "ACCOUNT_ID": "Non posso generare un Account ID dalla public key!",
             "ADDRESS": "Non posso generare un indirizzo BURST dall'Account ID!",
             "CONNECTION": "Recupero dati fallito. Controlla la tua connessione Internet!",
+            "CONTACT":"Failed to add new contact!",
             "CURRENCY": "Aggiornamento Valuta fallito!",
             "KEYPAIR": "Generazione della coppia di chiavi per la passphrase fallito!",
             "LANGUAGE": "Cambio Lingua fallito!",

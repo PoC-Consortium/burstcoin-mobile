@@ -90,6 +90,8 @@
     },
     "SEND": {
         "ACCEPT": "Akceptovať",
+        "ACTION_BAR_TITLE": "Send BURST",
+        "ADD_CONTACT": "Add new contact",
         "AMOUNT": "Čiastka",
         "BALANCE": "Zostatok",
         "CONTACTS": "Contacts",
@@ -106,6 +108,7 @@
     "NOTIFICATIONS": {
         "ADDRESS": "Zadajte platnú Burstcoin adresu!",
         "COPIED": "Kopírovať {{value}} do clipboardu!",
+        "CONTACT_ADDED": "Contact added successfully!",
         "DECIMAL_AMOUNT": "Zadajte desatinné číslo, koľko BURSTCOINOV chcete odoslať!",
         "DECIMAL_FEE": "Zadajte desatinné číslo (viac ako 1) pre poplatok!",
         "ENTER_SOMETHING": "Zadajte niečo!",
@@ -123,6 +126,7 @@
             "ACCOUNT_ID": "Nie je možné vygenerovať z verejného kľúča identifikátor pre účet!",
             "ADDRESS": "Nie je možné vygenerovať z konta id adresu pre BURST!",
             "CONNECTION": "Nepodarilo sa načítať údaje. Skontrolujte pripojenie k internetu!",
+            "CONTACT":"Failed to add new contact!",
             "CURRENCY": "Aktualizácia meny zlyhala!",
             "KEYPAIR": "Nepodarilo sa vygenerovať kľúče pre prístupovú frázu!",
             "LANGUAGE": "Zmena jazyka sa nepodarila!",

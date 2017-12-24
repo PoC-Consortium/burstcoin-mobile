@@ -91,6 +91,7 @@
     "SEND": {
         "ACCEPT": "अंगीकार करना",
         "ACTION_BAR_TITLE": "BURST भेजें",
+        "ADD_CONTACT": "Add new contact",
         "AMOUNT": "रकम",
         "BALANCE": "शेष",
         "CONTACTS": "Contacts",
@@ -107,6 +108,7 @@
     "NOTIFICATIONS" : {
         "ADDRESS": "कृपया एक वैध Burstcoin पता दर्ज करें!",
         "COPIED": "कॉपी किए गए पता {{value}} क्लिपबोर्ड पर!",
+        "CONTACT_ADDED": "Contact added successfully!",
         "DECIMAL_AMOUNT": "आप जिस बड़से भेजना चाहते हैं, उसके लिए दशमलव संख्या दर्ज करें!",
         "DECIMAL_FEE": "कृपया एक दशमलव संख्या (कम से कम 1) शुल्क के रूप में दर्ज करें!",
         "ENTER_SOMETHING": "कृपया कुछ दर्ज करें!",
@@ -124,6 +126,7 @@
             "ACCOUNT_ID": "सार्वजनिक कुंजी से खाता आईडी उत्पन्न नहीं कर सकता!",
             "ADDRESS": "खाता आईडी से BURST पते नहीं उत्पन्न कर सकते हैं!",
             "CONNECTION": "डेटा लाने में विफल हुआ  अपना इंटरनेट संपर्क जांचे!",
+            "CONTACT":"Failed to add new contact!",
             "CURRENCY": "मुद्रा अपडेट विफल हुआ !",
             "KEYPAIR": "पदबंध के लिए कुंजी जोड़ी उत्पन्न करने में विफल हुआ !",
             "LANGUAGE": "भाषा बदलना विफल हुआ !",

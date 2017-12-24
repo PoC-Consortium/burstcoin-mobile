@@ -17,7 +17,6 @@ export class Account {
     pinHash: string;
     keypair: Keypair;
     transactions: Transaction[];
-    contacts: string[];
 
     constructor(data: any = {}) {
         this.id = data.id || undefined;
@@ -36,11 +35,6 @@ export class Account {
             this.transactions = data.transactions;
         } else {
             this.transactions = [];
-        }
-        if (data.contacts != undefined && data.contacts.length > 0) {
-            this.contacts = data.contacts;
-        } else {
-            this.contacts = [];
         }
     }
 }

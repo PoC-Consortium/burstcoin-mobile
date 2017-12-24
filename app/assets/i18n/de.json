@@ -91,9 +91,10 @@
     "SEND": {
         "ACCEPT": "Akzeptieren",
         "ACTION_BAR_TITLE": "BURST senden",
+        "ADD_CONTACT": "Neuen Kontakt hinzufügen",
         "AMOUNT": "Betrag",
         "BALANCE": "Saldo",
-        "CONTACTS": "Contacts",
+        "CONTACTS": "Kontakte",
         "FEE": "Gebühr",
         "RECIPIENT": "Empfänger",
         "PIN_INPUT_HINT": "PIN",
@@ -107,6 +108,7 @@
     "NOTIFICATIONS" : {
         "ADDRESS": "Bitte gebe eine gültige Burst Adresse ein!",
         "COPIED": "{{value}} in die Zwischenablage kopiert!",
+        "CONTACT_ADDED": "Kontakt erfolgreich hinzugefügt",
         "DECIMAL_AMOUNT": "Bitte gebe den gewünschten Betrag an Burstcoins als Dezimalzahl ein!",
         "DECIMAL_FEE": "Bitte gebe eine Gebühr von mindestens 1 Burstcoin ein!",
         "ENTER_SOMETHING": "Eingabe ist leer!",
@@ -122,8 +124,10 @@
         "WRONG_PIN": "Der eingegebene Pin Code stimmt nicht mit dem Pin Code des Kontos überein!",
         "ERRORS": {
             "ACCOUNT_ID": "Fehler beim Generieren der Konto Id!",
+            "ACTION": "Aktion fehlgeschlagen!",
             "ADDRESS": "Fehler beim Generieren der Burst Adresse!",
             "CONNECTION": "Fehler beim Abrufen der Daten. Überprüfe deine Internetverbindung!",
+            "CONTACT":"Fehler beim Hinzufügen des Kontakts!",
             "CURRENCY": "Fehler beim Aktualisieren der Währung!",
             "KEYPAIR": "Fehler beim Generieren des Schlüsselpaars!",
             "LANGUAGE": "Fehler beim Ändern der Sprache!",

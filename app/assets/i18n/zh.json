@@ -91,6 +91,7 @@
     "SEND": {
         "ACCEPT": "接受",
         "ACTION_BAR_TITLE": "发 BURST",
+        "ADD_CONTACT": "Add new contact",
         "AMOUNT": "金额",
         "BALANCE": "余额",
         "CONTACTS": "Contacts",
@@ -107,6 +108,7 @@
     "NOTIFICATIONS" : {
         "ADDRESS": "请输入有效的Burstcoin 地址!",
         "COPIED": "制了地址 {{value}} 到剪贴板!",
+        "CONTACT_ADDED": "Contact added successfully!",
         "DECIMAL_AMOUNT": "请输入小数当作想发出BURST 的金额!",
         "DECIMAL_FEE": "请输入小数（至少 1）当作交易费!",
         "ENTER_SOMETHING": "请输入!",
@@ -124,6 +126,7 @@
             "ACCOUNT_ID": "公钥不能产生账户ID!",
             "ADDRESS": "账户ID不能用产生BURST地址!",
             "CONNECTION": "检索数据失败。请检查网络连接!",
+            "CONTACT":"Failed to add new contact!",
             "CURRENCY": "货币更新失败!",
             "KEYPAIR": "为密码产生密钥对失败!",
             "LANGUAGE": "更改语言失败!",

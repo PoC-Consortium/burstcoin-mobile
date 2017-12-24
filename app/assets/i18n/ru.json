@@ -91,6 +91,7 @@
     "SEND": {
         "ACCEPT": "Принять",
         "ACTION_BAR_TITLE": "Перевести BURST",
+        "ADD_CONTACT": "Add new contact",
         "AMOUNT": "Сумма",
         "BALANCE": "Баланс",
         "CONTACTS": "Contacts",
@@ -107,6 +108,7 @@
     "NOTIFICATIONS" : {
         "ADDRESS": "Пожалуйста, введите верный Burstcoin адрес!",
         "COPIED": "Адрес {{value}} скопирован в буфер обмена!",
+        "CONTACT_ADDED": "Contact added successfully!",
         "DECIMAL_AMOUNT": "Укажите десятичное число суммы BURST для отправки!",
         "DECIMAL_FEE": "Пожалуйста, введите десятично число (мин. 1)!",
         "ENTER_SOMETHING": "Пожалуйста укажите что-то!",
@@ -124,6 +126,7 @@
             "ACCOUNT_ID": "Невозможно сгенерировать ID аккаунта из открытого ключа!",
             "ADDRESS": "Невозможно сгенерировать BURST адрес из ID аккаунта!",
             "CONNECTION": " Не удалось получить данные. Проверьте подключение к Интернету! ",
+            "CONTACT":"Failed to add new contact!",
             "CURRENCY": "Ошибка обновления валюты!",
             "KEYPAIR": " Не удалось создать пару ключей для кодовой фразы!",
             "LANGUAGE": "Ошибка смены языка!",

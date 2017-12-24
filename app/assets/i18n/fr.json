@@ -91,6 +91,7 @@
     "SEND": {
         "ACCEPT": "Valider",
         "ACTION_BAR_TITLE": "Envoyer des BURST",
+        "ADD_CONTACT": "Add new contact",
         "AMOUNT": "Montant",
         "BALANCE": "Solde",
         "CONTACTS": "Contacts",
@@ -107,6 +108,7 @@
     "NOTIFICATIONS" : {
         "ADDRESS": "Entrez une adresse Burst valide.",
         "COPIED": "Adresse {{value}} copiée!",
+        "CONTACT_ADDED": "Contact added successfully!",
         "DECIMAL_AMOUNT": "Veuillez entrer le montant de BURST que vous souhaitez envoyer!",
         "DECIMAL_FEE": "Veuillez entrer les frais de transaction (au moins 1)!",
         "ENTER_SOMETHING": "Veuillez entrer quelque chose!",
@@ -124,6 +126,7 @@
             "ACCOUNT_ID": "Impossible de générer l'id de compte via une clé publique!",
             "ADDRESS": "Impossible de générer une adresse Burst via l'id de compte!",
             "CONNECTION": "Echec de récupération des données. Vérifiez votre connexion!",
+            "CONTACT":"Failed to add new contact!",
             "CURRENCY": "Echec de modification de monnaie!",
             "KEYPAIR": "Echec de génération de clé associée à la phrase de passe!",
             "LANGUAGE": "Echec de modification de langue!",

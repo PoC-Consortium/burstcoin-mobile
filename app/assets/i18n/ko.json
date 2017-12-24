@@ -91,6 +91,7 @@
   "SEND": {
     "ACCEPT": "수락",
     "ACTION_BAR_TITLE": "BURST 전송",
+    "ADD_CONTACT": "Add new contact",
     "AMOUNT": "수량",
     "BALANCE": "잔액",
     "CONTACTS": "Contacts",
@@ -107,6 +108,7 @@
   "NOTIFICATIONS": {
     "ADDRESS": "유효한 Burstcoin 어드레스를 입력하세요!",
     "COPIED": "어드레스 {{value}} 가 클립보드에 복사되었습니다!",
+    "CONTACT_ADDED": "Contact added successfully!",
     "DECIMAL_AMOUNT": "당신이 전송하고자 하는 BURST 수량을 십진법의 숫자로 입력해 주세요!",
     "DECIMAL_FEE": "수수료로 지불할 (적어도 1) 십진법의 숫자를 입력해 주세요!",
     "ENTER_SOMETHING": "임의의 값을 입력하세요!",
@@ -124,6 +126,7 @@
       "ACCOUNT_ID": "공개 키로부터 계정 ID 를 생성할 수 없습니다!",
       "ADDRESS": "계정 ID 로부터 BURST 어드레스를 생성할 수 없습니다!",
       "CONNECTION": "데이터를 불러오는 데 실패했습니다. 인터넷 연결을 확인하십시오!",
+      "CONTACT":"Failed to add new contact!",
       "CURRENCY": "통화 업데이트 실패!",
       "KEYPAIR": "패스프레이즈에 사용되는 키 쌍을 생성하는 데 실패했습니다!",
       "LANGUAGE": "언어 변환에 실패했습니다!",

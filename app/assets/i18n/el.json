@@ -90,6 +90,8 @@
     "SEND": {
         "ACCEPT": "Αποδοχή",
         "AMOUNT": "Ποσό",
+        "ACTION_BAR_TITLE": "Send BURST",
+        "ADD_CONTACT": "Add new contact",
         "BALANCE": "Υπόλοιπο",
         "CONTACTS": "Contacts",
         "FEE": "Προμήθεια",
@@ -105,6 +107,7 @@
     "NOTIFICATIONS" : {
         "ADDRESS": "Παρακαλώ εισάγετε έγκυρη διεύθυνση Burstcoin!",
         "COPIED": "Αντιγράφηκε διεύθυνση {{value}} στο πρόχειρο!",
+        "CONTACT_ADDED": "Contact added successfully!",
         "DECIMAL_AMOUNT": "Παρακαλώ εισάγετε δεκαδικό αριθμό για το ποσό BURST που θέλετε να στείλετε!",
         "DECIMAL_FEE": "Παρακαλω εισάγετε δεκαδικό αριθμό (τουλάχιστον 1) για προμήθεια!",
         "ENTER_SOMETHING": "Παρακαλώ εισάγετε κάτι!",
@@ -122,6 +125,7 @@
             "ACCOUNT_ID": "Δεν είναι δυνατή η δημιουργία αναγνωριστικού λογαριασμού από δημόσιο κλειδί!",
             "ADDRESS": "Δεν είναι δυνατή η δημιουργία διεύθυνσης BURST από τον αναγνωριστικό λογαριασμό!",
             "CONNECTION": "Αποτυχία ανάκτησης δεδομένων. Ελέγξτε τη σύνδεση σας!",
+            "CONTACT":"Failed to add new contact!",
             "CURRENCY": "Αποτυχία ενημέρωσης νομίσματος!",
             "KEYPAIR": "Αποτυχία δημιουργίας keypair για φράση-κλειδί!",
             "LANGUAGE": "Αποτυχία αλλαγής γλώσσας!",

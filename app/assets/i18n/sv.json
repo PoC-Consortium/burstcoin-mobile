@@ -89,6 +89,8 @@
     },
     "SEND": {
         "ACCEPT": "Acceptera",
+        "ACTION_BAR_TITLE": "Send BURST",
+        "ADD_CONTACT": "Add new contact",
         "AMOUNT": "Belopp",
         "BALANCE": "Saldo",
         "CONTACTS": "Contacts",
@@ -105,6 +107,7 @@
     "NOTIFICATIONS" : {
         "ADDRESS": "Ange en giltig Burstcoin adress.",
         "COPIED": "Kopierade addressen {{value}} till Urklipp.",
+        "CONTACT_ADDED": "Contact added successfully!",
         "DECIMAL_AMOUNT": "Ange ett decimaltal för hur mycket BURST du vill skicka.",
         "DECIMAL_FEE": "Ange ett decimaltal (minst 1) som avgift.",
         "ENTER_SOMETHING": "Vänligen ange något.",
@@ -122,6 +125,7 @@
             "ACCOUNT_ID": "Kan inte generera konto-ID från den offentliga nyckeln.",
             "ADDRESS": "Kan inte generera BURST adress från konto ID.",
             "CONNECTION": "Misslyckades med att hämta data. Kontrollera din internetanslutning.",
+            "CONTACT":"Failed to add new contact!",
             "CURRENCY": "Valutauppdateringen misslyckades.",
             "KEYPAIR": "Misslyckades med att skapa nyckelpar för lösenordsfras.",
             "LANGUAGE": "Språkändring misslyckades.",

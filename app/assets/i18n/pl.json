@@ -90,6 +90,8 @@
     "SEND": {
         "ACCEPT": "Akceptuj",
         "AMOUNT": "Kwota",
+        "ACTION_BAR_TITLE": "Send BURST",
+        "ADD_CONTACT": "Add new contact",
         "BALANCE": "Stan konta",
         "CONTACTS": "Contacts",
         "FEE": "Opłata",
@@ -105,6 +107,7 @@
     "NOTIFICATIONS" : {
         "ADDRESS": "Wprowadź poprawny adres Burst!",
         "COPIED": "Skopiowano adres {{value}} do schowka!",
+        "CONTACT_ADDED": "Contact added successfully!",
         "DECIMAL_AMOUNT": "Wprowadź liczbę po przecinku BURST które chcesz przesłać!",
         "DECIMAL_FEE": "Wprowadź liczbę po przecinku (co najmniej 1) jako opłatę!",
         "ENTER_SOMETHING": "Wprowadź coś!",
@@ -122,6 +125,7 @@
             "ACCOUNT_ID": "Nie można wygenerować id konta z klucza publicznego!",
             "ADDRESS": "Nie można wygenerować adresu BURST z id konta!",
             "CONNECTION": "Błąd pobierania danych. Sprawdź połączenie!",
+            "CONTACT":"Failed to add new contact!",
             "CURRENCY": "Aktualizacja waluty nie powiodła się!",
             "KEYPAIR": "Wygenerowanie pary kluczy dla hasła zakończono błędem",
             "LANGUAGE": "Zmiana języka niepomyślna!",

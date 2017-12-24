@@ -189,6 +189,7 @@ export class DatabaseService extends Database {
                         s.node = save.node;
                         s.version = save.version;
                         s.theme = save.theme;
+                        s.contacts = save.contacts;
                     });
                 } else {
                     settings.insert(save);

@@ -6,7 +6,6 @@ import { Component, OnInit, NgModule } from "@angular/core";
 import { TranslateService } from "ng2-translate";
 import { ModalDialogParams } from "nativescript-angular/modal-dialog";
 import { Page } from "ui/page";
-import { Settings } from "../../../../lib/model";
 import { AccountService, NotificationService } from "../../../../lib/services";
 
 // >> passing-parameters
@@ -15,7 +14,7 @@ import { AccountService, NotificationService } from "../../../../lib/services";
     templateUrl: "./contact.component.html",
     styleUrls: ["./contact.component.css"]
 })
-export class ContactComponent implements OnInit {
+export class ContactComponent {
 
     addressParts: string[];
 
@@ -26,14 +25,10 @@ export class ContactComponent implements OnInit {
         private notificationService: NotificationService,
         private translateService: TranslateService
     ) {
-        this.addressParts = [];
+        this.addressParts = ["RFR4", "DQ4V", "XF3Q", "9FD3E"];
         this.page.on("unloaded", () => {
             this.params.closeCallback();
         });
-    }
-
-    ngOnInit() {
-
     }
 
     public onTapOk() {
@@ -48,6 +43,7 @@ export class ContactComponent implements OnInit {
 
     public formatAddress() {
         for (let i = 0; i < this.addressParts.length; i++) {
+            console.log(i)
             this.addressParts[i] = this.addressParts[i].toUpperCase()
         }
     }

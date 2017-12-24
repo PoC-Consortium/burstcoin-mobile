@@ -12,8 +12,8 @@ import { RadSideDrawer } from "nativescript-pro-ui/sidedrawer";
 import { TextField } from "ui/text-field";
 import { BarcodeScanner, ScanOptions } from 'nativescript-barcodescanner';
 
-import { Account, BurstAddress, Transaction } from "../../../lib/model";
-import { AccountService, MarketService, NotificationService } from "../../../lib/services";
+import { Account, BurstAddress, Settings, Transaction } from "../../../lib/model";
+import { AccountService, DatabaseService, MarketService, NotificationService } from "../../../lib/services";
 import { SendService } from "../send.service";
 
 import { ContactComponent } from "./contact/contact.component"
@@ -34,17 +34,20 @@ export class InputComponent implements OnInit {
     total: number;
 
     @ViewChild("amountField")
-    public amountField: TextField;
+    public amountField: ElementRef;
 
     @ViewChild(RadSideDrawerComponent)
     public drawerComponent: RadSideDrawerComponent;
 
     private drawer: RadSideDrawer;
 
+    settings: Settings;
+
     constructor(
         private accountService: AccountService,
         private barcodeScanner: BarcodeScanner,
         private changeDetectionRef: ChangeDetectorRef,
+        private databaseService: DatabaseService,
         private marketService: MarketService,
         private modalDialogService: ModalDialogService,
         private notificationService: NotificationService,
@@ -69,6 +72,11 @@ export class InputComponent implements OnInit {
             this.account = this.accountService.currentAccount.value;
             this.balance = this.marketService.getPriceBurstcoin(this.account.balance);
         }
+
+        if (this.databaseService.settings.value != undefined) {
+            this.settings = this.databaseService.settings.value;
+            console.log(this.settings.contacts)
+        }
     }
 
     ngAfterViewInit() {
@@ -83,31 +91,38 @@ export class InputComponent implements OnInit {
         };
         this.modalDialogService.showModal(ContactComponent, options)
             .then(address => {
-                console.log(address)
-                /*
-                this.databaseService.saveSettings(this.settings)
-                    .then(settings => {
-                        this.databaseService.setSettings(settings);
-                        this.translateService.get('NOTIFICATIONS.UPDATE_NODE').subscribe((res: string) => {
-                            this.notificationService.info(res);
-                        });
-                    })
-                    .catch(error => {
-                        this.translateService.get('NOTIFICATIONS.ERRORS.NODE').subscribe((res: string) => {
-                            this.notificationService.info(res);
-                        });
-                    })
-                    */
+                if (address != undefined) {
+                    this.settings.contacts.push(address);
+                    this.databaseService.saveSettings(this.settings)
+                        .then(settings => {
+                            this.databaseService.setSettings(settings);
+                        })
+                        .catch(error => {
+                            this.translateService.get('NOTIFICATIONS.ERRORS.CONTACT').subscribe((res: string) => {
+                                this.notificationService.info(res);
+                            });
+                        })
+                }
             })
             .catch(error => console.log(JSON.stringify(error)));
     }
 
     public onTapContact(contact: string) {
-        console.log(contact)
+        this.recipientParts = this.accountService.splitBurstAddress(contact)
+        this.drawer.closeDrawer();
+        this.amountField.nativeElement.focus();
     }
 
     public onTapContacts() {
         this.drawer.showDrawer();
+    }
+
+    public onTapRemoveContact(index: number) {
+        this.settings.contacts.splice(index, 1);
+        this.databaseService.saveSettings(this.settings)
+            .then(settings => {
+                this.databaseService.setSettings(settings);
+            })
     }
 
     public onTapScan() {
@@ -116,7 +131,7 @@ export class InputComponent implements OnInit {
         }
         this.barcodeScanner.scan(options).then((result) => {
             this.recipientParts = this.accountService.splitBurstAddress(result.text);
-            this.amountField.focus()
+            this.amountField.nativeElement.focus();
         }, (errorMessage) => {
             this.translateService.get('NOTIFICATIONS.ERRORS.QR_CODE').subscribe((res: string) => {
                 this.notificationService.info(res);

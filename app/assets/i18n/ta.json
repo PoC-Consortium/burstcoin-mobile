@@ -91,6 +91,7 @@
     "SEND": {
         "ACCEPT": "ஏற்க",
         "ACTION_BAR_TITLE": "அனுப்பு BURST",
+        "ADD_CONTACT": "Add new contact",
         "AMOUNT": "தொகை",
         "BALANCE": "இருப்பு",
         "CONTACTS": "Contacts",
@@ -107,6 +108,7 @@
     "NOTIFICATIONS" : {
         "ADDRESS": "செல்லுபடியாகும் Burstcoin முகவரியை உள்ளிடுக!",
         "COPIED": "{{value}} முகவரி நகலெடுக்கப்பட்டது!",
+        "CONTACT_ADDED": "Contact added successfully!",
         "DECIMAL_AMOUNT": "நீங்கள் அனுப்ப விரும்பும் BURST எண்ணை உள்ளிடுக!",
         "DECIMAL_FEE": "ஒரு எண்ணை உள்ளிடவும் (குறைந்தபட்சம் 1) கட்டணமாக!",
         "ENTER_SOMETHING": "எண்ணை உள்ளிடுக!",
@@ -124,6 +126,7 @@
             "ACCOUNT_ID": "public key யிலிருந்து கணக்கை உருவாக்க முடியவில்லை!",
             "ADDRESS": "கணக்கு ஐடியிலிருந்து BURST முகவரியை உருவாக்க முடியவில்லை!",
             "CONNECTION": "தரவைப் பெறுவதில் தோல்வி.உங்கள் இணைய இணைப்பை சரிசெய்யுங்கள்!",
+            "CONTACT":"Failed to add new contact!",
             "CURRENCY": "நாணய மாற்றம் தோல்வி!",
             "KEYPAIR": "கடவுச்சொல்லை உருவாக்க முடியவில்லை!",
             "LANGUAGE": "மொழி மாற்றம் தோல்வியடைந்தது!",
