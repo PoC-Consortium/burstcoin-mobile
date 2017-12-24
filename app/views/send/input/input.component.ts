@@ -75,7 +75,6 @@ export class InputComponent implements OnInit {
 
         if (this.databaseService.settings.value != undefined) {
             this.settings = this.databaseService.settings.value;
-            console.log(this.settings.contacts)
         }
     }
 

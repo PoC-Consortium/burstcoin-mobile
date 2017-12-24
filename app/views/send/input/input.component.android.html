@@ -3,7 +3,7 @@
         <StackLayout class="sideTitleStackLayout">
             <Label class="p-t-5 p-b-5 big-label fa" [text]="'&#xf2b9; ' + ('SEND.CONTACTS' | translate)"></Label>
         </StackLayout>
-        <ListView [items]="settings.contacts" (itemTap)="onTapContact($event)" class="list-group">
+        <ListView [items]="settings.contacts" (itemTap)="onTapContact($event)" class="list-group" separatorColor="transparent">
             <ng-template let-contact="item" let-i="index">
                 <GridLayout (tap)="onTapContact(contact)" columns="auto, auto" rows="auto" class="p-5">
                     <Button col="0" style="margin: 0" class="btn btn-primary btn-active icon-button fa text-center" text="&#xf00d;" (tap)="onTapRemoveContact(i)"></Button>
@@ -18,9 +18,10 @@
         <StackLayout class="container">
             <StackLayout class="body-container" orientation="vertical">
                 <Label class="font-italic huge-label" [text]="('SEND.BALANCE' | translate) + ': ' + balance"></Label>
-                <GridLayout columns="*, auto, auto, *" rows="auto">
+                <GridLayout columns="*, auto, auto, auto, *" rows="auto">
                     <Button col="1" style="margin-right: 0px" class="icon-button btn btn-primary btn-active fa text-center" text="&#xf2b9;" (tap)=onTapContacts($event)></Button>
-                    <Button col="2" style="margin-left: 0px" class="icon-button btn btn-primary btn-active fa text-center" text="&#xf083;" (tap)=onTapScan($event)></Button>
+                    <Button col="2" style="margin-left: 0px; margin-right: 0px" class="icon-button btn btn-primary btn-active fa text-center" text="&#xf0e0;" (tap)=onTapMessage($event)></Button>
+                    <Button col="3" style="margin-left: 0px" class="icon-button btn btn-primary btn-active fa text-center" text="&#xf083;" (tap)=onTapScan($event)></Button>
                 </GridLayout>
                 <StackLayout class="hr-light"></StackLayout>
                 <GridLayout class="text-left m-t-10" columns="auto, 4*, auto, 4*, auto, 4*, auto, 5*" rows="auto, auto">
