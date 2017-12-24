@@ -2,10 +2,11 @@
     Copyright 2017 icewave.org
 */
 
-import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
 import { ActivatedRoute } from "@angular/router";
 import { TranslateService } from "ng2-translate";
+import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
 import { RadSideDrawerComponent, SideDrawerType } from "nativescript-pro-ui/sidedrawer/angular";
 import { RadSideDrawer } from "nativescript-pro-ui/sidedrawer";
 import { TextField } from "ui/text-field";
@@ -14,6 +15,8 @@ import { BarcodeScanner, ScanOptions } from 'nativescript-barcodescanner';
 import { Account, BurstAddress, Transaction } from "../../../lib/model";
 import { AccountService, MarketService, NotificationService } from "../../../lib/services";
 import { SendService } from "../send.service";
+
+import { ContactComponent } from "./contact/contact.component"
 
 @Component({
     moduleId: module.id,
@@ -43,11 +46,13 @@ export class InputComponent implements OnInit {
         private barcodeScanner: BarcodeScanner,
         private changeDetectionRef: ChangeDetectorRef,
         private marketService: MarketService,
+        private modalDialogService: ModalDialogService,
         private notificationService: NotificationService,
         private router: RouterExtensions,
         private route: ActivatedRoute,
         private sendService: SendService,
-        private translateService: TranslateService
+        private translateService: TranslateService,
+        private vcRef: ViewContainerRef
     ) {
         if (this.route.snapshot.params['address'] != undefined) {
             this.recipientParts = this.accountService.splitBurstAddress(this.route.snapshot.params['address']);
@@ -72,7 +77,29 @@ export class InputComponent implements OnInit {
     }
 
     public onTapAddContact() {
-        console.log("add")
+        const options: ModalDialogOptions = {
+            viewContainerRef: this.vcRef,
+            fullscreen: false,
+        };
+        this.modalDialogService.showModal(ContactComponent, options)
+            .then(address => {
+                console.log(address)
+                /*
+                this.databaseService.saveSettings(this.settings)
+                    .then(settings => {
+                        this.databaseService.setSettings(settings);
+                        this.translateService.get('NOTIFICATIONS.UPDATE_NODE').subscribe((res: string) => {
+                            this.notificationService.info(res);
+                        });
+                    })
+                    .catch(error => {
+                        this.translateService.get('NOTIFICATIONS.ERRORS.NODE').subscribe((res: string) => {
+                            this.notificationService.info(res);
+                        });
+                    })
+                    */
+            })
+            .catch(error => console.log(JSON.stringify(error)));
     }
 
     public onTapContact(contact: string) {

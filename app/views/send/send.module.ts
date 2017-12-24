@@ -14,6 +14,7 @@ import { SendService } from "./send.service";
 
 import { SendComponent } from "./send.component";
 import { InputComponent } from "./input/input.component";
+import { ContactComponent } from "./input/contact/contact.component";
 import { VerifyComponent } from "./verify/verify.component";
 
 export function createBarcodeScanner() {
@@ -29,6 +30,7 @@ export function createBarcodeScanner() {
         SendRoutingModule
     ],
     declarations: [
+        ContactComponent,
         InputComponent,
         SendComponent,
         VerifyComponent
@@ -36,6 +38,9 @@ export function createBarcodeScanner() {
     providers: [
         [{provide: BarcodeScanner, useFactory: (createBarcodeScanner)}],
         SendService
+    ],
+    entryComponents: [
+        ContactComponent,
     ],
     schemas: [
         NO_ERRORS_SCHEMA
