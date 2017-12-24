@@ -6,7 +6,6 @@ import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { ModalDialogService } from "nativescript-angular/modal-dialog";
-import { BarcodeScanner } from 'nativescript-barcodescanner';
 import { NativeScriptUIListViewModule } from "nativescript-pro-ui/listview/angular";
 
 import { TabsRoutingModule } from "./tabs.routing";
@@ -29,10 +28,6 @@ import { NodeComponent } from "./settings/node/node.component";
 import { SupportComponent } from "./settings/support/support.component";
 
 import { SharedModule } from "../../lib/shared.module";
-
-export function createBarcodeScanner() {
-  return new BarcodeScanner();
-}
 
 @NgModule({
     imports: [
@@ -58,7 +53,6 @@ export function createBarcodeScanner() {
         SupportComponent
     ],
     providers: [
-        [{provide: BarcodeScanner, useFactory: (createBarcodeScanner)}],
         ModalDialogService
     ],
     schemas: [

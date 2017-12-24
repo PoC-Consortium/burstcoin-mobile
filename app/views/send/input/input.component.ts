@@ -13,9 +13,10 @@ import { AccountService, MarketService, NotificationService } from "../../../lib
 import { SendService } from "../send.service";
 
 @Component({
+    moduleId: module.id,
     selector: "input",
-    templateUrl: "./input.component.html",
-    styleUrls: ["./input.component.css"]
+    styleUrls: ["./input.component.css"],
+    templateUrl: "./input.component.html"
 })
 export class InputComponent implements OnInit {
     account: Account;
@@ -25,7 +26,6 @@ export class InputComponent implements OnInit {
     fee: number;
     pin: string;
     total: number;
-    processing: boolean;
 
     constructor(
         private accountService: AccountService,
@@ -68,13 +68,14 @@ export class InputComponent implements OnInit {
     }
 
     public onTapVerify() {
-        if (this.accountService.isBurstcoinAddress(this.recipient)) {
-            if (this.amount > 0 && !isNaN(Number(this.amount))) {
-                if (this.fee >= 1 && !isNaN(Number(this.fee))) {
-                    if (parseFloat(this.amount.toString()) + parseFloat(this.fee.toString()) <= this.account.balance) {
+        if (this.verifyRecipient()) {
+            if (this.verifyAmount()) {
+                if (this.verifyFee()) {
+                    if (this.verifyTotal()) {
                         this.sendService.setRecipient(this.recipient)
                         this.sendService.setAmount(this.amount)
                         this.sendService.setFee(this.fee)
+                        this.router.navigate(['/send/verify'])
                     } else {
                         this.translateService.get('NOTIFICATIONS.EXCEED').subscribe((res: string) => {
                             this.notificationService.info(res);
@@ -95,6 +96,22 @@ export class InputComponent implements OnInit {
                 this.notificationService.info(res);
             });
         }
+    }
+
+    public verifyRecipient(): boolean {
+        return this.accountService.isBurstcoinAddress(this.recipient)
+    }
+
+    public verifyAmount(): boolean {
+        return this.amount > 0 && !isNaN(Number(this.amount))
+    }
+
+    public verifyFee() {
+        return this.fee >= 1 && !isNaN(Number(this.fee))
+    }
+
+    public verifyTotal(): boolean {
+        return parseFloat(this.amount.toString()) + parseFloat(this.fee.toString()) <= this.account.balance
     }
 
     public verifyInputs(input: string) {

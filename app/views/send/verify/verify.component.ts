@@ -13,10 +13,10 @@ import { BarcodeScanner, ScanOptions } from 'nativescript-barcodescanner';
 import { SendService } from "../send.service";
 
 @Component({
-    selector: "send",
     moduleId: module.id,
-    templateUrl: "./send.component.html",
-    styleUrls: ["./send.component.css"]
+    selector: "verify",
+    styleUrls: ["./verify.component.css"],
+    templateUrl: "./verify.component.html"
 })
 export class VerifyComponent implements OnInit {
     account: Account;

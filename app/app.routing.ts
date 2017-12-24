@@ -12,7 +12,7 @@ const routes: Routes = [
     { path: "create", loadChildren: "./views/create/create.module#CreateModule" },
     { path: "start", loadChildren: "./views/start/start.module#StartModule" },
     { path: "import", loadChildren: "./views/import/import.module#ImportModule" },
-    { path: "send", loadChildren: "../views/send/send.module#SendModule"},
+    { path: "send", loadChildren: "./views/send/send.module#SendModule"},
     { path: "tabs", loadChildren: "./views/tabs/tabs.module#TabsModule" }
 ];
 
