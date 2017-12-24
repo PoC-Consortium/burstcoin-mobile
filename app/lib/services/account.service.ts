@@ -315,6 +315,10 @@ export class AccountService {
         return this.cryptoService.hashSHA256(pin + publicKey);
     }
 
+    public constructBurstAddress(parts: string[]): string {
+        return "BURST-" + parts[0] + "-" + parts[1] + "-" + parts[2] + "-" + parts[3]; 
+    }
+
     public isBurstcoinAddress(address: string): boolean {
         return /^BURST\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{5}/i.test(address) && BurstAddress.isValid(address);
     }

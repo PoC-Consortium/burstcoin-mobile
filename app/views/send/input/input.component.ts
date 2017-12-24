@@ -24,6 +24,7 @@ export class InputComponent implements OnInit {
     account: Account;
     balance: string;
     recipient: string;
+    recipientParts: string[];
     amount: number;
     fee: number;
     pin: string;
@@ -51,6 +52,7 @@ export class InputComponent implements OnInit {
         } else {
             this.recipient = "";
         }
+        this.recipientParts = [];
         this.amount = undefined;
         this.fee = 1;
         this.total = 1;
@@ -126,7 +128,7 @@ export class InputComponent implements OnInit {
     }
 
     public verifyRecipient(): boolean {
-        return this.accountService.isBurstcoinAddress(this.recipient)
+        return this.accountService.isBurstcoinAddress(this.accountService.constructBurstAddress(this.recipientParts))
     }
 
     public verifyAmount(): boolean {
@@ -141,7 +143,7 @@ export class InputComponent implements OnInit {
         return parseFloat(this.amount.toString()) + parseFloat(this.fee.toString()) <= this.account.balance
     }
 
-    public verifyInputs(input: string) {
+    public calculateTotal(input: string) {
         let aNumber;
         let fNumber;
         if (this.amount != undefined) {
@@ -167,6 +169,8 @@ export class InputComponent implements OnInit {
     }
 
     public formatRecipient() {
-        this.recipient = this.recipient.toUpperCase();
+        for (let i = 0; i < this.recipientParts.length; i++) {
+            this.recipientParts[i] = this.recipientParts[i].toUpperCase()
+        }
     }
 }
