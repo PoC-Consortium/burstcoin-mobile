@@ -1,22 +1,63 @@
-<StackLayout class="body-container" orientation="vertical">
-    <Label class="font-italic p-b-15 huge-label" [text]="('SEND.BALANCE' | translate) + ': ' + balance"></Label>
-    <StackLayout class="hr-light"></StackLayout>
-    <GridLayout class="text-left m-t-10" columns="*9, *2" rows="auto, auto">
-        <Label col="0" row="0" class="p-t-5 p-b-5 big-label fa" [text]="'&#xf2bc; ' + ('SEND.RECIPIENT' | translate)"></Label>
-        <TextField col="0" row="1" class="input recipient-input" [(ngModel)]="recipient" (returnPress)="formatRecipient()"></TextField>
-        <Button col="1" row="0" rowspan="2" class="scan-button btn btn-primary btn-active fa text-center" text="&#xf083;" (tap)=onTapScan($event)></Button>
-    </GridLayout>
-    <StackLayout class="hr-light m-t-10 m-b-10"></StackLayout>
-    <GridLayout class="text-left m-b-10" columns="100, auto, 70, *" rows="auto, auto">
-        <Label col="0" row="0" class="p-t-5 p-b-5 big-label fa" [text]="'&#xf0d6; ' + ('SEND.AMOUNT' | translate)"></Label>
-        <TextField col="0" row="1" class="input-border number-input" keyboardType="number" [(ngModel)]="amount"></TextField>
-        <Label col="2" row="0" class="p-t-5 p-b-5 big-label fa" [text]="'&#xf0ec; ' + ('SEND.FEE' | translate)"></Label>
-        <TextField col="2" row="1" class="input-border number-input" keyboardType="number" [(ngModel)]="fee"></TextField>
-        <Label col="1" row="1" rowspan="2" class="p-10 fa text-center" text="+"></Label>
-        <Label col="3" row="1" rowspan="2" class="p-5 fa text-center" [text]="'= ' + marketService.getPriceFiatCurrency(total)"></Label>
-    </GridLayout>
-    <StackLayout class="hr-light"></StackLayout>
-</StackLayout>
-<StackLayout class="m-b-20" orientation="vertical">
-    <Button class="btn btn-primary btn-active action-button fa" [text]="('SEND.VERIFY' | translate) +  ' &#xf132;'" (tap)="onTapVerify($event)"></Button>
-</StackLayout>
+<RadSideDrawer drawerLocation="left" tkExampleTitle tkToggleNavButton>
+    <StackLayout tkDrawerContent class="sideStackLayout">
+        <StackLayout class="sideTitleStackLayout">
+            <Label text="Navigation Menu"></Label>
+        </StackLayout>
+        <StackLayout class="sideStackLayout">
+            <Label text="Primary" class="sideLabel sideLightGrayLabel"></Label>
+            <Label text="Social" class="sideLabel"></Label>
+            <Label text="Promotions" class="sideLabel"></Label>
+            <Label text="Labels" class="sideLabel sideLightGrayLabel"></Label>
+            <Label text="Important" class="sideLabel"></Label>
+            <Label text="Starred" class="sideLabel"></Label>
+            <Label text="Sent Mail" class="sideLabel"></Label>
+            <Label text="Drafts" class="sideLabel"></Label>
+        </StackLayout>
+        <Label text="Close Drawer" color="lightgray" padding="10" style="horizontal-align: center" (tap)="onCloseDrawerTap()"></Label>
+    </StackLayout>
+
+    <StackLayout tkMainContent class="page-content" orientation="vertical">
+        <StackLayout class="container">
+            <StackLayout class="body-container" orientation="vertical">
+                <Label class="font-italic huge-label" [text]="('SEND.BALANCE' | translate) + ': ' + balance"></Label>
+                <GridLayout columns="*, auto, auto, *" rows="auto">
+                    <Button col="1" style="margin-right: 0px" class="icon-button btn btn-primary btn-active fa text-center" text="&#xf2b9;" (tap)=onTapContacts($event)></Button>
+                    <Button col="2" style="margin-left: 0px" class="icon-button btn btn-primary btn-active fa text-center" text="&#xf083;" (tap)=onTapScan($event)></Button>
+                </GridLayout>
+                <StackLayout class="hr-light"></StackLayout>
+                <!--
+                <GridLayout class="text-left m-t-10" columns="*9, *2" rows="auto, auto">
+                    <Label col="0" row="0" class="p-t-5 p-b-5 big-label fa" [text]="'&#xf2bc; ' + ('SEND.RECIPIENT' | translate)"></Label>
+                    <TextField col="0" row="1" class="input recipient-input" [(ngModel)]="recipient" (returnPress)="formatRecipient()"></TextField>
+                    <Button col="1" row="0" rowspan="2" class="scan-button btn btn-primary btn-active fa text-center" text="&#xf083;" (tap)=onTapScan($event)></Button>
+                </GridLayout>
+                --->
+                <GridLayout class="text-left m-t-10" columns="auto, 4*, auto, 4*, auto, 4*, auto, 5*" rows="auto, auto">
+                    <Label col="0" colspan="3" row="0" class="p-t-5 p-b-5 big-label fa" [text]="'&#xf2bc; ' + ('SEND.RECIPIENT' | translate)"></Label>
+
+                    <Label col="0" row="1" class="big-label fa" text="BURST-"></Label>
+                    <TextField col="1" row="1" class="input recipient-input" [(ngModel)]="recipient" (returnPress)="formatRecipient()"></TextField>
+                    <Label col="2" row="1" class="big-label fa" text="-"></Label>
+                    <TextField col="3" row="1" class="input recipient-input" [(ngModel)]="recipient" (returnPress)="formatRecipient()"></TextField>
+                    <Label col="4" row="1" class="big-label fa" text="-"></Label>
+                    <TextField col="5" row="1" class="input recipient-input" [(ngModel)]="recipient" (returnPress)="formatRecipient()"></TextField>
+                    <Label col="6" row="1" class="big-label fa" text="-"></Label>
+                    <TextField col="7" row="1" class="input recipient-input" [(ngModel)]="recipient" (returnPress)="formatRecipient()"></TextField>
+                </GridLayout>
+                <StackLayout class="hr-light m-t-10 m-b-10"></StackLayout>
+                <GridLayout class="text-left m-b-10" columns="100, auto, 70, *" rows="auto, auto">
+                    <Label col="0" row="0" class="p-t-5 p-b-5 big-label fa" [text]="'&#xf0d6; ' + ('SEND.AMOUNT' | translate)"></Label>
+                    <TextField col="0" row="1" class="input-border number-input" keyboardType="number" [(ngModel)]="amount"></TextField>
+                    <Label col="2" row="0" class="p-t-5 p-b-5 big-label fa" [text]="'&#xf0ec; ' + ('SEND.FEE' | translate)"></Label>
+                    <TextField col="2" row="1" class="input-border number-input" keyboardType="number" [(ngModel)]="fee"></TextField>
+                    <Label col="1" row="1" rowspan="2" class="p-10 fa text-center" text="+"></Label>
+                    <Label col="3" row="1" rowspan="2" class="p-5 fa text-center" [text]="'= ' + marketService.getPriceFiatCurrency(total)"></Label>
+                </GridLayout>
+                <StackLayout class="hr-light"></StackLayout>
+            </StackLayout>
+            <StackLayout class="m-b-20" orientation="vertical">
+                <Button class="btn btn-primary btn-active action-button fa" [text]="('SEND.VERIFY' | translate) +  ' &#xf132;'" (tap)="onTapVerify($event)"></Button>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</RadSideDrawer>

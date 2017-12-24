@@ -2,10 +2,12 @@
     Copyright 2017 icewave.org
 */
 
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
 import { ActivatedRoute } from "@angular/router";
 import { TranslateService } from "ng2-translate";
+import { RadSideDrawerComponent, SideDrawerType } from "nativescript-pro-ui/sidedrawer/angular";
+import { RadSideDrawer } from 'nativescript-pro-ui/sidedrawer';
 import { BarcodeScanner, ScanOptions } from 'nativescript-barcodescanner';
 
 import { Account, BurstAddress, Transaction } from "../../../lib/model";
@@ -27,9 +29,15 @@ export class InputComponent implements OnInit {
     pin: string;
     total: number;
 
+    mainContentText: string;
+
+    @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
+    private drawer: RadSideDrawer;
+
     constructor(
         private accountService: AccountService,
         private barcodeScanner: BarcodeScanner,
+        private changeDetectionRef: ChangeDetectorRef,
         private marketService: MarketService,
         private notificationService: NotificationService,
         private router: RouterExtensions,
@@ -37,14 +45,16 @@ export class InputComponent implements OnInit {
         private sendService: SendService,
         private translateService: TranslateService
     ) {
+        // TODO recipient resol
         if (this.route.snapshot.params['address'] != undefined) {
             this.recipient = this.route.snapshot.params['address'];
         } else {
-            this.recipient = "BURST-";
+            this.recipient = "";
         }
         this.amount = undefined;
         this.fee = 1;
         this.total = 1;
+
     }
 
     ngOnInit(): void {
@@ -52,6 +62,16 @@ export class InputComponent implements OnInit {
             this.account = this.accountService.currentAccount.value;
             this.balance = this.marketService.getPriceBurstcoin(this.account.balance);
         }
+    }
+
+    ngAfterViewInit() {
+        this.drawer = this.drawerComponent.sideDrawer;
+        this.changeDetectionRef.detectChanges();
+        this.mainContentText = "SideDrawer for NativeScript can be easily setup in the HTML definition of your page by defining tkDrawerContent and tkMainContent. The component has a default transition and position and also exposes notifications related to changes in its state. Swipe from left to open side drawer.";
+    }
+
+    public onTapContacts() {
+        this.drawer.showDrawer();
     }
 
     public onTapScan() {
