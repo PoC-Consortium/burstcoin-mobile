@@ -7,7 +7,8 @@ import { RouterExtensions } from "nativescript-angular/router";
 import { ActivatedRoute } from "@angular/router";
 import { TranslateService } from "ng2-translate";
 import { RadSideDrawerComponent, SideDrawerType } from "nativescript-pro-ui/sidedrawer/angular";
-import { RadSideDrawer } from 'nativescript-pro-ui/sidedrawer';
+import { RadSideDrawer } from "nativescript-pro-ui/sidedrawer";
+import { TextField } from "ui/text-field";
 import { BarcodeScanner, ScanOptions } from 'nativescript-barcodescanner';
 
 import { Account, BurstAddress, Transaction } from "../../../lib/model";
@@ -23,16 +24,18 @@ import { SendService } from "../send.service";
 export class InputComponent implements OnInit {
     account: Account;
     balance: string;
-    recipient: string;
     recipientParts: string[];
     amount: number;
     fee: number;
     pin: string;
     total: number;
 
-    mainContentText: string;
+    @ViewChild("amountField")
+    public amountField: TextField;
 
-    @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
+    @ViewChild(RadSideDrawerComponent)
+    public drawerComponent: RadSideDrawerComponent;
+
     private drawer: RadSideDrawer;
 
     constructor(
@@ -46,13 +49,11 @@ export class InputComponent implements OnInit {
         private sendService: SendService,
         private translateService: TranslateService
     ) {
-        // TODO recipient resol
         if (this.route.snapshot.params['address'] != undefined) {
-            this.recipient = this.route.snapshot.params['address'];
+            this.recipientParts = this.accountService.splitBurstAddress(this.route.snapshot.params['address']);
         } else {
-            this.recipient = "";
+            this.recipientParts = [];
         }
-        this.recipientParts = [];
         this.amount = undefined;
         this.fee = 1;
         this.total = 1;
@@ -68,7 +69,6 @@ export class InputComponent implements OnInit {
     ngAfterViewInit() {
         this.drawer = this.drawerComponent.sideDrawer;
         this.changeDetectionRef.detectChanges();
-        this.mainContentText = "SideDrawer for NativeScript can be easily setup in the HTML definition of your page by defining tkDrawerContent and tkMainContent. The component has a default transition and position and also exposes notifications related to changes in its state. Swipe from left to open side drawer.";
     }
 
     public onTapAddContact() {
@@ -88,7 +88,8 @@ export class InputComponent implements OnInit {
             formats: "QR_CODE"
         }
         this.barcodeScanner.scan(options).then((result) => {
-            this.recipient = result.text;
+            this.recipientParts = this.accountService.splitBurstAddress(result.text);
+            this.amountField.focus()
         }, (errorMessage) => {
             this.translateService.get('NOTIFICATIONS.ERRORS.QR_CODE').subscribe((res: string) => {
                 this.notificationService.info(res);
@@ -101,7 +102,7 @@ export class InputComponent implements OnInit {
             if (this.verifyAmount()) {
                 if (this.verifyFee()) {
                     if (this.verifyTotal()) {
-                        this.sendService.setRecipient(this.recipient)
+                        this.sendService.setRecipient(this.accountService.constructBurstAddress(this.recipientParts))
                         this.sendService.setAmount(this.amount)
                         this.sendService.setFee(this.fee)
                         this.router.navigate(['/send/verify'])

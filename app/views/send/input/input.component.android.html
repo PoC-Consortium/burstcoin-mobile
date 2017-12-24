@@ -37,7 +37,7 @@
                 <StackLayout class="hr-light m-t-10 m-b-10"></StackLayout>
                 <GridLayout class="text-left m-b-10" columns="100, auto, 70, *" rows="auto, auto">
                     <Label col="0" row="0" class="p-t-5 p-b-5 big-label fa" [text]="'&#xf0d6; ' + ('SEND.AMOUNT' | translate)"></Label>
-                    <TextField col="0" row="1" class="input-border number-input" keyboardType="number" [(ngModel)]="amount" (ngModelChange)="calculateTotal('amount')"></TextField>
+                    <TextField #amountField col="0" row="1" class="input-border number-input" keyboardType="number" [(ngModel)]="amount" (ngModelChange)="calculateTotal('amount')"></TextField>
                     <Label col="2" row="0" class="p-t-5 p-b-5 big-label fa" [text]="'&#xf0ec; ' + ('SEND.FEE' | translate)"></Label>
                     <TextField col="2" row="1" class="input-border number-input" keyboardType="number" [(ngModel)]="fee" (ngModelChange)="calculateTotal('fee')"></TextField>
                     <Label col="1" row="1" rowspan="2" class="p-10 fa text-center" text="+"></Label>

@@ -315,8 +315,14 @@ export class AccountService {
         return this.cryptoService.hashSHA256(pin + publicKey);
     }
 
+    public splitBurstAddress(address: string): string[] {
+        let parts: string[] = address.split("-")
+        parts.shift()
+        return parts
+    }
+
     public constructBurstAddress(parts: string[]): string {
-        return "BURST-" + parts[0] + "-" + parts[1] + "-" + parts[2] + "-" + parts[3]; 
+        return "BURST-" + parts[0] + "-" + parts[1] + "-" + parts[2] + "-" + parts[3];
     }
 
     public isBurstcoinAddress(address: string): boolean {
