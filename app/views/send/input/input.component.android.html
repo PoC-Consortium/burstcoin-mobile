@@ -49,7 +49,11 @@
                 <StackLayout *ngIf="messageEnabled" class="m-t-10">
                     <GridLayout class="text-left m-b-10" columns="auto, *, auto" rows="auto, auto">
                         <Label col="0" row="0" class="p-t-5 p-b-5 big-label fa" [text]="'&#xf0e0; ' + ('SEND.MESSAGE' | translate)"></Label>
-                        <TextView col="0" row="1" colspan="2" class="input-border" [(ngModel)]="message" returnKeyType="done"></TextView>
+                        <ScrollView col="0" row="1" colspan="2">
+                            <StackLayout orientation="vertical" class="scroll-container">
+                                <TextView class="input-border " [(ngModel)]="message" returnKeyType="done"></TextView>
+                            </StackLayout>
+                        </ScrollView>
                         <StackLayout col="2" row="1">
                             <Label *ngIf="encryptionEnabled" class="big-label fa text-center" text="&#xf023;"></Label>
                             <Label *ngIf="!encryptionEnabled" class="big-label fa text-center" text="&#xf09c;"></Label>
