@@ -96,8 +96,9 @@
         "BALANCE": "Solde",
         "CONTACTS": "Contacts",
         "FEE": "Frais",
-        "RECIPIENT": "Bénéficiaire",
+        "MESSAGE": "Message",
         "PIN_INPUT_HINT": "Pin",
+        "RECIPIENT": "Bénéficiaire",
         "VERIFY": "Vérifier"
     },
     "START" : {

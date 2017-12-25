@@ -96,8 +96,9 @@
     "BALANCE": "잔액",
     "CONTACTS": "Contacts",
     "FEE": "수수료",
-    "RECIPIENT": "수령인",
+    "MESSAGE": "Message",
     "PIN_INPUT_HINT": "핀",
+    "RECIPIENT": "수령인",
     "VERIFY": "검증"
   },
   "START": {

@@ -95,8 +95,9 @@
         "BALANCE": "Balance",
         "CONTACTS": "Contacts",
         "FEE": "Comisión",
-        "RECIPIENT": "Destinatario",
+        "MESSAGE": "Message",
         "PIN_INPUT_HINT": "NIP",
+        "RECIPIENT": "Destinatario",
         "VERIFY": "Verificar"
     },
     "START" : {

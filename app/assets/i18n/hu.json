@@ -95,8 +95,9 @@
         "BALANCE": "Egyenleg",
         "CONTACTS": "Contacts",
         "FEE": "Díj",
-        "RECIPIENT": "Címzett",
+        "MESSAGE": "Message",
         "PIN_INPUT_HINT": "PIN",
+        "RECIPIENT": "Címzett",
         "VERIFY": "Megerõsít"
     },
     "START" : {

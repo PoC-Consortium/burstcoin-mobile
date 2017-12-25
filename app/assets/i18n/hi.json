@@ -96,8 +96,9 @@
         "BALANCE": "शेष",
         "CONTACTS": "Contacts",
         "FEE": "फ़ीस",
-        "RECIPIENT": "पानेवाला",
+        "MESSAGE": "Message",
         "PIN_INPUT_HINT": "पिन",
+        "RECIPIENT": "पानेवाला",
         "VERIFY": "जांचना"
     },
     "START" : {

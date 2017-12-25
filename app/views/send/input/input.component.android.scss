@@ -23,6 +23,11 @@
     width: 50;
 }
 
+.selected {
+    color: $background-light;
+    background-color: $background-dark;
+}
+
 .sideStackLayout {
     background-color: $background-light;
 }

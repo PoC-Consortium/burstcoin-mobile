@@ -96,8 +96,9 @@
         "BALANCE": "Zostatok",
         "CONTACTS": "Contacts",
         "FEE": "Poplatok",
-        "RECIPIENT": "Príjemca",
+        "MESSAGE": "Message",
         "PIN_INPUT_HINT": "PIN",
+        "RECIPIENT": "Príjemca",
         "VERIFY": "Kontrola"
     },
     "START": {

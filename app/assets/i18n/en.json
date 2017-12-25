@@ -96,8 +96,9 @@
         "BALANCE": "Balance",
         "CONTACTS": "Contacts",
         "FEE": "Fee",
-        "RECIPIENT": "Recipient",
+        "MESSAGE": "Message",
         "PIN_INPUT_HINT": "Pin",
+        "RECIPIENT": "Recipient",
         "VERIFY": "Verify"
     },
     "START" : {

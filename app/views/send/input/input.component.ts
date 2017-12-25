@@ -9,6 +9,7 @@ import { TranslateService } from "ng2-translate";
 import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
 import { RadSideDrawerComponent, SideDrawerType } from "nativescript-pro-ui/sidedrawer/angular";
 import { RadSideDrawer } from "nativescript-pro-ui/sidedrawer";
+import { Switch } from "ui/switch";
 import { TextField } from "ui/text-field";
 import { BarcodeScanner, ScanOptions } from 'nativescript-barcodescanner';
 
@@ -45,6 +46,10 @@ export class InputComponent implements OnInit {
 
     settings: Settings;
 
+    messageEnabled: boolean
+    message: string
+    encryptionEnabled: boolean
+
     constructor(
         private accountService: AccountService,
         private barcodeScanner: BarcodeScanner,
@@ -67,6 +72,9 @@ export class InputComponent implements OnInit {
         this.amount = undefined;
         this.fee = 1;
         this.total = 1;
+
+        this.messageEnabled = false;
+        this.encryptionEnabled = true;
     }
 
     ngOnInit(): void {
@@ -83,6 +91,15 @@ export class InputComponent implements OnInit {
     ngAfterViewInit() {
         this.drawer = this.drawerComponent.sideDrawer;
         this.changeDetectionRef.detectChanges();
+    }
+
+    public onCheckedEncryption(args) {
+        let encryptionSwitch = <Switch>args.object;
+        if (encryptionSwitch.checked) {
+            this.encryptionEnabled = true
+        } else {
+            this.encryptionEnabled = false
+        }
     }
 
     public onTapAddContact() {
@@ -116,6 +133,10 @@ export class InputComponent implements OnInit {
 
     public onTapContacts() {
         this.drawer.showDrawer();
+    }
+
+    public onTapMessage() {
+        this.messageEnabled = !this.messageEnabled
     }
 
     public onDoubleTapRecipient() {

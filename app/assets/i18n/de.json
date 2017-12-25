@@ -96,8 +96,9 @@
         "BALANCE": "Saldo",
         "CONTACTS": "Kontakte",
         "FEE": "Gebühr",
-        "RECIPIENT": "Empfänger",
+        "MESSAGE": "Nachricht",
         "PIN_INPUT_HINT": "PIN",
+        "RECIPIENT": "Empfänger",
         "VERIFY": "Verifizieren"
     },
     "START" : {

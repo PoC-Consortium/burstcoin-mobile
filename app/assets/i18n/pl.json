@@ -95,8 +95,9 @@
         "BALANCE": "Stan konta",
         "CONTACTS": "Contacts",
         "FEE": "Opłata",
-        "RECIPIENT": "Odbiorca",
+        "MESSAGE": "Message",
         "PIN_INPUT_HINT": "Pin",
+        "RECIPIENT": "Odbiorca",
         "VERIFY": "Potwierdź"
     },
     "START" : {

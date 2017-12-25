@@ -96,8 +96,9 @@
         "BALANCE": "Баланс",
         "CONTACTS": "Contacts",
         "FEE": "Комиссия",
-        "RECIPIENT": "Получатель",
+        "MESSAGE": "Message",
         "PIN_INPUT_HINT": "ПИН",
+        "RECIPIENT": "Получатель",
         "VERIFY": "Подтвердить"
     },
     "START" : {

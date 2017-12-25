@@ -96,8 +96,9 @@
         "BALANCE": "余额",
         "CONTACTS": "Contacts",
         "FEE": "交易费",
-        "RECIPIENT": "接受者",
+        "MESSAGE": "Message",
         "PIN_INPUT_HINT": "Pin",
+        "RECIPIENT": "接受者",
         "VERIFY": "验证"
     },
     "START" : {

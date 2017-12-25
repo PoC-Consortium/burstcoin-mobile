@@ -95,8 +95,9 @@
         "BALANCE": "Saldo",
         "CONTACTS": "Contacts",
         "FEE": "Avgift",
-        "RECIPIENT": "Mottagare",
+        "MESSAGE": "Message",
         "PIN_INPUT_HINT": "Pin",
+        "RECIPIENT": "Mottagare",
         "VERIFY": "Verifiera"
     },
     "START" : {

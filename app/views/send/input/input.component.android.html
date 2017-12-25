@@ -20,7 +20,7 @@
                 <Label class="font-italic huge-label" [text]="('SEND.BALANCE' | translate) + ': ' + balance"></Label>
                 <GridLayout columns="*, auto, auto, auto, *" rows="auto">
                     <Button col="1" style="margin-right: 0px" class="icon-button btn btn-primary btn-active fa text-center" text="&#xf2b9;" (tap)=onTapContacts($event)></Button>
-                    <Button col="2" style="margin-left: 0px; margin-right: 0px" class="icon-button btn btn-primary btn-active fa text-center" text="&#xf0e0;" (tap)=onTapMessage($event)></Button>
+                    <Button col="2" style="margin-left: 0px; margin-right: 0px" [class.selected]="messageEnabled" class="icon-button btn btn-primary btn-active fa text-center" text="&#xf0e0;" (tap)=onTapMessage($event)></Button>
                     <Button col="3" style="margin-left: 0px" class="icon-button btn btn-primary btn-active fa text-center" text="&#xf083;" (tap)=onTapScan($event)></Button>
                 </GridLayout>
                 <StackLayout class="hr-light"></StackLayout>
@@ -46,6 +46,18 @@
                     <Label col="3" row="1" rowspan="2" class="p-5 fa text-center" [text]="'= ' + marketService.getPriceFiatCurrency(total)"></Label>
                 </GridLayout>
                 <StackLayout class="hr-light"></StackLayout>
+                <StackLayout *ngIf="messageEnabled" class="m-t-10">
+                    <GridLayout class="text-left m-b-10" columns="auto, *, auto" rows="auto, auto">
+                        <Label col="0" row="0" class="p-t-5 p-b-5 big-label fa" [text]="'&#xf0e0; ' + ('SEND.MESSAGE' | translate)"></Label>
+                        <TextView col="0" row="1" colspan="2" class="input-border" [(ngModel)]="message" returnKeyType="done"></TextView>
+                        <StackLayout col="2" row="1">
+                            <Label *ngIf="encryptionEnabled" class="big-label fa text-center" text="&#xf023;"></Label>
+                            <Label *ngIf="!encryptionEnabled" class="big-label fa text-center" text="&#xf09c;"></Label>
+                            <Switch class="toggle-switch" checked="true" (checkedChange)="onCheckedEncryption($event)"></Switch>
+                        </StackLayout>
+                    </GridLayout>
+                    <StackLayout class="hr-light"></StackLayout>
+                </StackLayout>
             </StackLayout>
             <StackLayout class="m-b-20" orientation="vertical">
                 <Button class="btn btn-primary btn-active action-button fa" [text]="('SEND.VERIFY' | translate) +  ' &#xf132;'" (tap)="onTapVerify($event)"></Button>
