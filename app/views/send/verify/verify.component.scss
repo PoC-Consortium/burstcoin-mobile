@@ -1,3 +1,5 @@
+@import '../../../app-variables';
+
 
 .big-label {
     font-size: 14;
@@ -5,4 +7,10 @@
 
 .huge-label {
     font-size: 22;
+}
+
+.message {
+    font-size: 14;
+    border: none;
+    background-color: $background-light;
 }

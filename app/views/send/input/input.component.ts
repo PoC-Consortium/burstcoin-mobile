@@ -48,7 +48,7 @@ export class InputComponent implements OnInit {
 
     messageEnabled: boolean
     message: string
-    encryptionEnabled: boolean
+    messageEncrypted: boolean
 
     constructor(
         private accountService: AccountService,
@@ -67,14 +67,15 @@ export class InputComponent implements OnInit {
         if (this.route.snapshot.params['address'] != undefined) {
             this.recipientParts = this.accountService.splitBurstAddress(this.route.snapshot.params['address']);
         } else {
-            this.recipientParts = [];
+            this.recipientParts = this.accountService.splitBurstAddress(this.sendService.getRecipient());
         }
-        this.amount = undefined;
-        this.fee = 1;
-        this.total = 1;
+        this.amount = this.sendService.getAmount() != 0 ? this.sendService.getAmount() : undefined;
+        this.fee = this.sendService.getFee();
+        this.total = this.sendService.getAmount() + this.sendService.getFee();
 
-        this.messageEnabled = false;
-        this.encryptionEnabled = true;
+        this.message = this.sendService.getMessage();
+        this.messageEnabled = this.sendService.getMessageEnabled();
+        this.messageEncrypted = this.sendService.getMessageEncrypted();
     }
 
     ngOnInit(): void {
@@ -96,9 +97,9 @@ export class InputComponent implements OnInit {
     public onCheckedEncryption(args) {
         let encryptionSwitch = <Switch>args.object;
         if (encryptionSwitch.checked) {
-            this.encryptionEnabled = true
+            this.messageEncrypted = true
         } else {
-            this.encryptionEnabled = false
+            this.messageEncrypted = false
         }
     }
 
@@ -177,6 +178,9 @@ export class InputComponent implements OnInit {
                         this.sendService.setRecipient(this.accountService.constructBurstAddress(this.recipientParts))
                         this.sendService.setAmount(this.amount)
                         this.sendService.setFee(this.fee)
+                        this.sendService.setMessageEnabled(this.messageEnabled)
+                        this.sendService.setMessage(this.message)
+                        this.sendService.setMessageEncrypted(this.messageEncrypted)
                         this.router.navigate(['/send/verify'])
                     } else {
                         this.translateService.get('NOTIFICATIONS.EXCEED').subscribe((res: string) => {

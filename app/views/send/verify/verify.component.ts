@@ -19,8 +19,10 @@ import { SendService } from "../send.service";
     templateUrl: "./verify.component.html"
 })
 export class VerifyComponent implements OnInit {
+    balance: string
     account: Account;
     pin: string;
+    total: number;
 
     constructor(
         private accountService: AccountService,
@@ -34,6 +36,12 @@ export class VerifyComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        if (this.accountService.currentAccount.value != undefined) {
+            this.account = this.accountService.currentAccount.value;
+            this.balance = this.marketService.getPriceBurstcoin(this.account.balance);
+        }
+
+        this.total = parseFloat(this.sendService.getAmount().toString()) + parseFloat(this.sendService.getFee().toString());
     }
 
     public onTapAccept() {
@@ -44,6 +52,7 @@ export class VerifyComponent implements OnInit {
                     this.translateService.get('NOTIFICATIONS.TRANSACTION').subscribe((res: string) => {
                         this.notificationService.info(res);
                     });
+                    this.sendService.reset();
                     this.router.navigate(['/tabs']);
                 }).catch(error => {
                     this.notificationService.info(error);
@@ -53,5 +62,9 @@ export class VerifyComponent implements OnInit {
                 this.notificationService.info(res);
             });
         }
+    }
+
+    public onTapBack() {
+        this.router.navigate(['/send/input']);
     }
 }

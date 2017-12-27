@@ -251,6 +251,16 @@ export class AccountService {
             params.set("feeNQT", this.convertNumberToString(transaction.feeNQT));
             params.set("publicKey", transaction.senderPublicKey);
             params.set("deadline", "1440");
+            if (transaction.attachment != undefined) {
+                if (transaction.attachment.messageIsEncrypted) {
+                    params.set("encryptedMessageData", transaction.attachment.message)
+                    params.set("encryptedMessageNonce", transaction.attachment.nonce)
+                    params.set("messageToEncryptIsText", String(transaction.attachment.messageIsText))
+                } else {
+                    params.set("message", transaction.attachment.message)
+                    params.set("messageIsText", String(transaction.attachment.messageIsText))
+                }
+            }
             let requestOptions = this.getRequestOptions();
             requestOptions.params = params;
 
@@ -297,9 +307,10 @@ export class AccountService {
 
                             }).catch(error => reject("Transaction error: Generating signature!"));
                     } else {
+                        console.log(JSON.stringify(response.json()))
                         reject("Transaction error: Generating transaction. Check the recipient!");
                     }
-                }).catch(error => reject("Transaction error: Generating transaction. Check the recipient!"));
+                }).catch(error => { console.log(error); reject("Transaction error: Generating transaction. Check the recipient!")});
         });
     }
 
@@ -318,7 +329,11 @@ export class AccountService {
     public splitBurstAddress(address: string): string[] {
         let parts: string[] = address.split("-")
         parts.shift()
-        return parts
+        if (parts.length == 4) {
+            return parts
+        } else {
+            return []
+        }
     }
 
     public constructBurstAddress(parts: string[]): string {

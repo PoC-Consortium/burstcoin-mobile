@@ -2,6 +2,8 @@
     Copyright 2017 icewave.org
 */
 
+import { Attachment } from "./attachment"
+
 export class Transaction {
     id: string;
 
@@ -31,6 +33,8 @@ export class Transaction {
     blockTimestamp: number;
     timestamp: number;
 
+    attachment: Attachment;
+
     constructor(data: any = {}) {
         this.id = data.transaction || undefined;
         this.senderId = data.sender || undefined;
@@ -57,5 +61,7 @@ export class Transaction {
         this.timestamp = data.timestamp || 0;
         this.height = data.height || 0;
         this.blockTimestamp = data.blockTimestamp || 0;
+
+        this.attachment = data.attachment || undefined;
     }
 }

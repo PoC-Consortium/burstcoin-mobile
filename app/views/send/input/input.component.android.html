@@ -55,9 +55,9 @@
                             </StackLayout>
                         </ScrollView>
                         <StackLayout col="2" row="1">
-                            <Label *ngIf="encryptionEnabled" class="big-label fa text-center" text="&#xf023;"></Label>
-                            <Label *ngIf="!encryptionEnabled" class="big-label fa text-center" text="&#xf09c;"></Label>
-                            <Switch class="toggle-switch" checked="true" (checkedChange)="onCheckedEncryption($event)"></Switch>
+                            <Label *ngIf="messageEncrypted" class="big-label fa text-center" text="&#xf023;"></Label>
+                            <Label *ngIf="!messageEncrypted" class="big-label fa text-center" text="&#xf09c;"></Label>
+                            <Switch class="toggle-switch" [checked]="messageEncrypted" (checkedChange)="onCheckedEncryption($event)"></Switch>
                         </StackLayout>
                     </GridLayout>
                     <StackLayout class="hr-light"></StackLayout>

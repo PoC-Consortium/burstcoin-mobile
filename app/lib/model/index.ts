@@ -1,4 +1,5 @@
 export * from "./account";
+export * from "./attachment";
 export * from "./block";
 export * from "./burstAddress";
 export * from "./currency";

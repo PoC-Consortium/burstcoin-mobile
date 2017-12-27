@@ -1,17 +1,37 @@
-<StackLayout class="body-container" orientation="vertical">
-    <Label class="font-italic p-b-15 huge-label" [text]="('SEND.BALANCE' | translate) + ': ' + balance"></Label>
-    <StackLayout class="hr-light"></StackLayout>
-    <GridLayout class="text-left m-t-10 m-b-10" columns="auto, auto, *" rows="auto, auto, auto">
-        <Label col="0" row="0" class="p-t-5 p-b-5 fa" text="&#xf2bc;  "></Label>
-        <Label col="1" row="0" colspan="2" class="p-t-5 p-b-5 p-l-5 fa" [text]="recipient"></Label>
+<StackLayout class="page-content" orientation="vertical">
+    <StackLayout class="container">
+        <StackLayout class="body-container" orientation="vertical">
+            <Label class="font-italic p-b-15 huge-label" [text]="('SEND.BALANCE' | translate) + ': ' + balance"></Label>
+            <StackLayout class="hr-light"></StackLayout>
+            <StackLayout class="text-left m-t-10 m-b-10">
+                <GridLayout columns="auto, auto, *" rows="auto, auto, auto">
+                    <Label col="0" row="0" class="p-t-5 p-b-5 fa" text="&#xf2bc;  "></Label>
+                    <Label col="1" row="0" colspan="2" class="p-t-5 p-b-5 p-l-5 fa" [text]="sendService.getRecipient()"></Label>
 
-        <Label col="0" row="1" class="p-t-5 p-b-5 fa" text="&#xf0d6;  "></Label>
-        <Label col="1" row="1" class="p-t-5 p-b-5 p-l-5 fa" [text]="amount"></Label>
+                    <Label col="0" row="1" class="p-t-5 p-b-5 fa" text="&#xf0d6;  "></Label>
+                    <Label col="1" row="1" class="p-t-5 p-b-5 p-l-5 fa" [text]="sendService.getAmount()"></Label>
 
-        <Label col="0" row="2" class="p-t-5 p-b-5 fa" text="&#xf0ec;  "></Label>
-        <Label col="1" row="2" class="p-t-5 p-b-5 p-l-5 fa" [text]="fee"></Label>
+                    <Label col="0" row="2" class="p-t-5 p-b-5 fa" text="&#xf0ec;  "></Label>
+                    <Label col="1" row="2" class="p-t-5 p-b-5 p-l-5 fa" [text]="sendService.getFee()"></Label>
 
-        <Label col="2" row="1" rowspan="2" style="vertical-align:middle" class="p-5 p-l-15" [text]="'= ' + marketService.getPriceFiatCurrency(total)"></Label>
-    </GridLayout>
-    <StackLayout class="hr-light"></StackLayout>
+                    <Label col="2" row="1" rowspan="2" style="vertical-align:middle" class="p-5 p-l-15" [text]="'= ' + marketService.getPriceFiatCurrency(total)"></Label>
+                </GridLayout>
+                <GridLayout *ngIf="sendService.getMessageEnabled()" columns="auto, auto, *, auto" rows="auto">
+                    <Label col="0" row="0" class="p-t-5 p-b-5 fa" text="&#xf0e0;  "></Label>
+                    <TextView col="1" row="0" colspan="2" class="message p-t-5 p-b-5 p-l-5 fa" textWrap="true" editable="false" [text]="sendService.getMessage()"></TextView>
+
+                    <Label *ngIf="sendService.getMessageEncrypted()" style="vertical-align: center" col="3" row="0" colspan="2" class="p-t-5 p-b-5 p-l-5 fa" text="&#xf023;"></Label>
+                    <Label *ngIf="!sendService.getMessageEncrypted()" style="vertical-align: center" col="3" row="0" colspan="2" class="p-t-5 p-b-5 p-l-5 fa" text="&#xf09c;"></Label>
+                </GridLayout>
+            </StackLayout>
+            <StackLayout class="hr-light"></StackLayout>
+            <StackLayout class="body-container m-b-5" orientation="vertical">
+                <TextField class="input" [(ngModel)]="pin" [hint]="'SEND.PIN_INPUT_HINT' | translate" keyboardType="number" returnKeyType="done" secure="true"></TextField>
+            </StackLayout>
+            <GridLayout class="m-b-20" columns="*,*" rows="auto">
+                <Button col="0" class="btn btn-primary btn-active action-button fa" [text]="('SEND.BACK' | translate) +  ' &#xf112;'" (tap)="onTapBack($event)"></Button>
+                <Button col="1" class="btn btn-primary btn-active action-button fa" [text]="('SEND.ACCEPT' | translate) +  ' &#xf05d;'" (tap)="onTapAccept($event)"></Button>
+            </GridLayout>
+        </StackLayout>
+    </StackLayout>
 </StackLayout>
