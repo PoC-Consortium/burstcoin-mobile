@@ -109,6 +109,18 @@ export class CryptoService {
     }
 
     /*
+    * Encrypt a note attached to a transaction
+    */
+    public encryptNote(note:string, publicKey: string, encryptedPrivateKey: string, pinHash: string): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.decryptAES(encryptedPrivateKey, pinHash)
+                .then(privateKey => {
+                    //let sharedKey =
+                })
+            })
+    }
+
+    /*
     *
     */
     public hashSHA256(input: string): string {

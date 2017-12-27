@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { Account, Attachment, BurstAddress, Transaction } from "../../lib/model";
-import { AccountService } from "../../lib/services";
+import { AccountService, CryptoService } from "../../lib/services";
 
 @Injectable()
 export class SendService {
@@ -18,7 +18,8 @@ export class SendService {
     private messageEncrypted: boolean;
 
     public constructor(
-        private accountService: AccountService
+        private accountService: AccountService,
+        private cryptoService: CryptoService
     ) {
         this.reset()
     }
@@ -85,18 +86,30 @@ export class SendService {
         return this.messageEncrypted;
     }
 
-    public createTransaction(): Transaction {
-        let transaction = new Transaction()
-        transaction.recipientAddress = this.recipient;
-        transaction.senderPublicKey = this.accountService.currentAccount.value.keypair.publicKey;
-        transaction.amountNQT = this.amount;
-        transaction.feeNQT = this.fee;
-        if (this.messageEnabled) {
-            transaction.attachment = new Attachment();
-            transaction.attachment.message = this.message;
-            transaction.attachment.messageIsEncrypted = this.messageEncrypted
-        }
-        return transaction;
+    public createTransaction(publicKey: string, privateKey:string , pin: string): Promise<Transaction> {
+        return new Promise((resolve, reject) => {
+            let transaction = new Transaction()
+            transaction.recipientAddress = this.recipient;
+            transaction.senderPublicKey = this.accountService.currentAccount.value.keypair.publicKey;
+            transaction.amountNQT = this.amount;
+            transaction.feeNQT = this.fee;
+            if (this.messageEnabled) {
+                transaction.attachment = new Attachment();
+                if (this.messageEncrypted) {
+                    transaction.attachment.messageIsEncrypted = this.messageEncrypted
+                    this.cryptoService.encryptNote(this.message, publicKey, privateKey, this.accountService.hashPinEncryption(pin)).then(encrypted => {
+                        transaction.attachment.message = encrypted.message;
+                        transaction.attachment.nonce = encrypted.nonce;
+                    })
+                } else {
+                    transaction.attachment.message = this.message;
+                    resolve(transaction);
+                }
+            } else {
+                resolve(transaction);
+            }
+        });
+
     }
 
 }

@@ -46,17 +46,18 @@ export class VerifyComponent implements OnInit {
 
     public onTapAccept() {
         if (this.accountService.checkPin(this.pin)) {
-            let transaction = this.sendService.createTransaction();
-            this.accountService.doTransaction(transaction, this.accountService.currentAccount.value.keypair.privateKey, this.pin)
-                .then(transaction => {
-                    this.translateService.get('NOTIFICATIONS.TRANSACTION').subscribe((res: string) => {
-                        this.notificationService.info(res);
-                    });
-                    this.sendService.reset();
-                    this.router.navigate(['/tabs']);
-                }).catch(error => {
-                    this.notificationService.info(error);
-                })
+            this.sendService.createTransaction(this.account.keypair.publicKey, this.account.keypair.privateKey, this.pin).then(transaction => {
+                this.accountService.doTransaction(transaction, this.account.keypair.privateKey, this.pin)
+                    .then(transaction => {
+                        this.translateService.get('NOTIFICATIONS.TRANSACTION').subscribe((res: string) => {
+                            this.notificationService.info(res);
+                        });
+                        this.sendService.reset();
+                        this.router.navigate(['/tabs']);
+                    }).catch(error => {
+                        this.notificationService.info(error);
+                    })
+            }).catch(error => console.log(error))
         } else {
             this.translateService.get('NOTIFICATIONS.WRONG_PIN').subscribe((res: string) => {
                 this.notificationService.info(res);
