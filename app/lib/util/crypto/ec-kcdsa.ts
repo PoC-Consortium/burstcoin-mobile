@@ -209,7 +209,7 @@ export class ECKCDSA {
      * s may be NULL if you don't care
      *
      * WARNING: if s is not NULL, this function has data-dependent timing */
-    public static keygen (k) {
+    public static keygen(k) {
         let P = [];
         let s = [];
         k = k || [];
@@ -217,6 +217,13 @@ export class ECKCDSA {
         Curve25519.core(P, s, k, null);
 
         return { p: P, s: s, k: k };
+    }
+
+    public static sharedkey(privateKey, publicKey) {
+        let P = [];
+        Curve25519.clamp(privateKey);
+        Curve25519.core(P, null, privateKey, publicKey);
+        return P;
     }
 
 }

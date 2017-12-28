@@ -8,7 +8,7 @@ import { TranslateService } from 'ng2-translate';
 import { device } from "platform";
 import { Page } from "ui/page";
 
-import { Account } from "../../lib/model";
+import { Account, BurstAddress } from "../../lib/model";
 import { AccountService, DatabaseService, NotificationService } from "../../lib/services";
 
 @Component({

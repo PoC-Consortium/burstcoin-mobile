@@ -9,6 +9,7 @@ import { BurstAddress, Keypair } from "../model";
 
 let CryptoJS = require("crypto-js");
 let BN = require('bn.js');
+let SecureRandom = require('secure-random');
 
 @Injectable()
 export class CryptoService {
@@ -115,7 +116,26 @@ export class CryptoService {
         return new Promise((resolve, reject) => {
             this.decryptAES(encryptedPrivateKey, pinHash)
                 .then(privateKey => {
-                    //let sharedKey =
+                    // generate shared key
+                    let sharedKey =
+                        ECKCDSA.sharedkey(
+                            Converter.convertHexStringToByteArray(privateKey),
+                            Converter.convertHexStringToByteArray(publicKey)
+                        )
+                    // Create random nonce
+                    let r_nonce = SecureRandom(32, {type: 'Uint8Array'})
+                    // combine
+                    for (let i = 0; i < 32; i++) {
+                        sharedKey[i] ^= r_nonce[i];
+                    }
+                    // hash shared key
+                    let key = CryptoJS.SHA256(Converter.convertByteArrayToWordArray(sharedKey))
+                    // word array to hex
+                    let message = CryptoJS.AES.encrypt(note, key).toString()
+                    // Uint 8 to hex
+                    let nonce = Buffer.from(r_nonce).toString('hex');
+                    // return encrypted pair
+                    resolve({ m: message, n: nonce})
                 })
             })
     }

@@ -1,7 +1,7 @@
 /*
     Copyright 2017 icewave.org
 */
-
+/*
 // Reference mocha-typescript's global definitions:
 /// <reference path="../node_modules/mocha-typescript/globals.d.ts" />
 import 'zone.js';
@@ -82,6 +82,7 @@ class DatabaseServiceSuite {
                 console.log("pk " + this.publicKey + " not found")
             });
     }
-    */
+    
 
 }
+*/
