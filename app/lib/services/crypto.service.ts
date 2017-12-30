@@ -9,7 +9,6 @@ import { BurstAddress, Keypair } from "../model";
 
 let CryptoJS = require("crypto-js");
 let BN = require('bn.js');
-let SecureRandom = require('secure-random');
 
 @Injectable()
 export class CryptoService {
@@ -112,7 +111,7 @@ export class CryptoService {
     /*
     * Encrypt a note attached to a transaction
     */
-    public encryptNote(note:string, publicKey: string, encryptedPrivateKey: string, pinHash: string): Promise<any> {
+    public encryptNote(note: string, publicKey: string, encryptedPrivateKey: string, pinHash: string): Promise<any> {
         return new Promise((resolve, reject) => {
             this.decryptAES(encryptedPrivateKey, pinHash)
                 .then(privateKey => {
@@ -123,22 +122,52 @@ export class CryptoService {
                             Converter.convertHexStringToByteArray(publicKey)
                         )
                     // Create random nonce
-                    let r_nonce = SecureRandom(32, {type: 'Uint8Array'})
+                    let random_bytes = CryptoJS.lib.WordArray.random(32);
+                    let r_nonce = Converter.convertWordArrayToUint8Array(random_bytes);
                     // combine
                     for (let i = 0; i < 32; i++) {
                         sharedKey[i] ^= r_nonce[i];
                     }
                     // hash shared key
                     let key = CryptoJS.SHA256(Converter.convertByteArrayToWordArray(sharedKey))
-                    // word array to hex
-                    let message = CryptoJS.AES.encrypt(note, key).toString()
+                    // ENCRYPT
+                    let message = CryptoJS.AES.encrypt(note, key.toString()).toString()
                     // Uint 8 to hex
-                    let nonce = Buffer.from(r_nonce).toString('hex');
+                    let nonce = random_bytes.toString(CryptoJS.enc.Hex)
                     // return encrypted pair
                     resolve({ m: message, n: nonce})
                 })
             })
     }
+
+    /*
+    * Decrypt a note attached to transaction
+    */
+    public decryptNote(encryptedNote: string, nonce: string, publicKey: string, encryptedPrivateKey: string, pinHash: string): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.decryptAES(encryptedPrivateKey, pinHash)
+                .then(privateKey => {
+                    // generate shared key
+                    let sharedKey =
+                        ECKCDSA.sharedkey(
+                            Converter.convertHexStringToByteArray(privateKey),
+                            Converter.convertHexStringToByteArray(publicKey)
+                        )
+                    // convert nonce to uint8array
+                    let nonce_array = Converter.convertWordArrayToUint8Array(CryptoJS.enc.Hex.parse(nonce));
+                    // combine
+                    for (let i = 0; i < 32; i++) {
+                        sharedKey[i] ^= nonce_array[i];
+                    }
+                    // hash shared key
+                    let key = CryptoJS.SHA256(Converter.convertByteArrayToWordArray(sharedKey))
+                    // DECRYPT
+                    let note = CryptoJS.AES.decrypt(encryptedNote, key.toString()).toString(CryptoJS.enc.Utf8);
+                    // return decrypted note
+                    resolve(note);
+                })
+            })
+        }
 
     /*
     *

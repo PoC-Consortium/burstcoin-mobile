@@ -9,7 +9,7 @@ import { device } from "platform";
 import { Page } from "ui/page";
 
 import { Account, BurstAddress } from "../../lib/model";
-import { AccountService, DatabaseService, NotificationService } from "../../lib/services";
+import { AccountService, CryptoService, DatabaseService, NotificationService } from "../../lib/services";
 
 @Component({
     selector: "start",
@@ -23,6 +23,7 @@ export class StartComponent implements OnInit {
 
     constructor(
         private accountService: AccountService,
+        private cryptoService: CryptoService,
         private databaseService: DatabaseService,
         private notificationService: NotificationService,
         private page: Page,
@@ -44,6 +45,15 @@ export class StartComponent implements OnInit {
             this.databaseService.getSelectedAccount()
                 .then(account => {
                     this.accountService.setCurrentAccount(account);
+                    this.cryptoService.encryptNote("test note", account.keypair.publicKey, account.keypair.privateKey, this.accountService.hashPinEncryption("111111")).then(
+                        keys => {
+                            console.log(keys.m)
+                            console.log(keys.n)
+                            this.cryptoService.decryptNote(keys.m, keys.n, account.keypair.publicKey, account.keypair.privateKey, this.accountService.hashPinEncryption("111111")).then(note => {
+                                console.log(note)
+                            })
+                        }
+                    )
                     this.router.navigate(['tabs'], { clearHistory: true });
                 })
                 .catch(account => {
