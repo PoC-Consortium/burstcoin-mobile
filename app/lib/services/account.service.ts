@@ -47,13 +47,15 @@ export class AccountService {
             account.type = "active";
             return this.cryptoService.generateMasterKeys(passphrase)
                 .then(keys => {
-                    account.keys.publicKey = keys.publicKey;
+                    let keysObject = new Keys();
+                    keysObject.publicKey = keys.publicKey;
                     return this.cryptoService.encryptAES(keys.signPrivateKey, this.hashPinEncryption(pin))
                         .then(encryptedKey => {
-                            account.keys.signPrivateKey = encryptedKey;
+                            keysObject.signPrivateKey = encryptedKey;
                             return this.cryptoService.encryptAES(keys.agreementPrivateKey, this.hashPinEncryption(pin))
                                 .then(encryptedKey => {
-                                    account.keys.agreementPrivateKey = encryptedKey;
+                                    keysObject.agreementPrivateKey = encryptedKey;
+                                    account.keys = keysObject;
                                     account.pinHash = this.hashPinStorage(pin, keys.publicKey);
                                     return this.cryptoService.getAccountIdFromPublicKey(keys.publicKey)
                                         .then(id => {
@@ -101,13 +103,15 @@ export class AccountService {
         return new Promise((resolve, reject) => {
             this.cryptoService.generateMasterKeys(passphrase)
                 .then(keys => {
-                    account.keys.publicKey = keys.publicKey;
+                    let keysObject = new Keys();
+                    keysObject.publicKey = keys.publicKey;
                     return this.cryptoService.encryptAES(keys.signPrivateKey, this.hashPinEncryption(pin))
                         .then(encryptedKey => {
-                            account.keys.signPrivateKey = encryptedKey;
+                            keysObject.signPrivateKey = encryptedKey;
                             return this.cryptoService.encryptAES(keys.agreementPrivateKey, this.hashPinEncryption(pin))
                                 .then(encryptedKey => {
-                                    account.keys.agreementPrivateKey = encryptedKey;
+                                    keysObject.agreementPrivateKey = encryptedKey;
+                                    account.keys = keysObject;
                                     account.pinHash = this.hashPinStorage(pin, keys.publicKey);
                                     account.type = "active";
                                     return this.databaseService.saveAccount(account)
