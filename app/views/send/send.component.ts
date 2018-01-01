@@ -50,6 +50,9 @@ export class SendComponent implements OnInit {
     ngOnInit(): void {
         if (this.accountService.currentAccount.value != undefined) {
             this.account = this.accountService.currentAccount.value;
+            if (this.account.keys == undefined) {
+                this.router.navigate(['/tabs']);
+            }
             this.balance = this.marketService.getPriceBurstcoin(this.account.balance);
         }
     }

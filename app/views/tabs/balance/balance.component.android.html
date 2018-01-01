@@ -15,9 +15,8 @@
                 <Label class="font-weight-bold text-center fa p-t-10 p-b-10" [text]="marketService.getPriceBTC(account.balance) + '  &#xf0ec;  ' + marketService.getPriceFiatCurrency(account.balance)"></Label>
             </StackLayout>
             <StackLayout orientation="vertical">
-                <Button *ngIf="account?.type == 'active'" class="btn btn-primary btn-active action-button fa" [text]="('TABS.BALANCE.SEND' | translate) + ' &#xf08b;'" [nsRouterLink]="['/send']"></Button>
-                <!--<Button class="btn btn-primary btn-active action-button" text="Receive" (tap)="onTapReceive($event)"></Button>-->
-                <Button *ngIf="account?.type == 'offline'" class="btn btn-primary btn-active action-button fa" [text]="('TABS.BALANCE.ACTIVATE' | translate) + ' &#xf05d;'" [nsRouterLink]="['/activate']"></Button>
+                <Button *ngIf="account?.keys != undefined" class="btn btn-primary btn-active action-button fa" [text]="('TABS.BALANCE.SEND' | translate) + ' &#xf08b;'" [nsRouterLink]="['/send']"></Button>
+                <Button *ngIf="account?.keys == undefined" class="btn btn-primary btn-active action-button fa" [text]="('TABS.BALANCE.ACTIVATE' | translate) + ' &#xf05d;'" [nsRouterLink]="['/activate']"></Button>
             </StackLayout>
         </StackLayout>
     </ng-template>

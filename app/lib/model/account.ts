@@ -25,8 +25,8 @@ export class Account {
         this.unconfirmedBalance = data.unconfirmedBalance || 0;
         this.type = data.type || "offline";
         this.selected = data.selected || false;
-        this.keys = new Keys();
         if (data.keys != undefined) {
+            this.keys = new Keys();
             this.pinHash = data.pinHash || undefined;
             this.keys.publicKey = data.keys.publicKey || undefined;
             this.keys.signPrivateKey = data.keys.signPrivateKey || undefined;
