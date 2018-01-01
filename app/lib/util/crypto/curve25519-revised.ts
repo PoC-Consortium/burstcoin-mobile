@@ -642,7 +642,7 @@ export class Curvy {
         Curvy.curve25519_mulmodp(s, r1, x_1);								//  s = (t2 * t3 - t1 * t4)^2 * x_1
     }
 
-    private static curve25519_(f, c, s) { // f = k, c = , s = s
+    public static curve25519_(f, c, s) { // f = k, c = , s = s
         let j, a, x_1, q, fb, counter = 0;
         let t = new Array(16), t1 = new Array(16), t2 = new Array(16), t3 = new Array(16), t4 = new Array(16);
         let sb = new Int8Array(32);

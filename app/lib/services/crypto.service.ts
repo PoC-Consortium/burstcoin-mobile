@@ -10,6 +10,8 @@ import { BurstAddress, Keypair } from "../model";
 let CryptoJS = require("crypto-js");
 let BN = require('bn.js');
 
+import { Curvy } from '../util/crypto/curve25519-revised'
+
 @Injectable()
 export class CryptoService {
 
@@ -32,8 +34,7 @@ export class CryptoService {
 
     /*
     * Generate the Master Public Key and Master Private Key for a new passphrase
-    * Ed25519 sign key pair. Public key can be converted to curve25519 public key (Burst Address)
-    * Private Key can be converted to curve25519 private key for checking transactions
+    * EC-KCDSA sign key pair.
     */
     public generateMasterPublicAndPrivateKey(passPhrase: string): Promise<Keypair> {
         return new Promise((resolve, reject) => {
@@ -50,7 +51,7 @@ export class CryptoService {
     }
 
     /*
-    *   Convert hex string of the public key to the account id
+    * Convert hex string of the public key to the account id
     */
     public getAccountIdFromPublicKey(publicKey: string): Promise<string> {
         return new Promise((resolve, reject) => {
@@ -111,7 +112,7 @@ export class CryptoService {
     /*
     * Encrypt a note attached to a transaction
     */
-    public encryptNote(note: string, publicKey: string, encryptedPrivateKey: string, pinHash: string): Promise<any> {
+    public encryptNote(note: string, recipientPublicKey: string, encryptedPrivateKey: string, pinHash: string): Promise<any> {
         return new Promise((resolve, reject) => {
             this.decryptAES(encryptedPrivateKey, pinHash)
                 .then(privateKey => {
@@ -119,7 +120,7 @@ export class CryptoService {
                     let sharedKey =
                         ECKCDSA.sharedkey(
                             Converter.convertHexStringToByteArray(privateKey),
-                            Converter.convertHexStringToByteArray(publicKey)
+                            Converter.convertHexStringToByteArray(recipientPublicKey)
                         )
                     // Create random nonce
                     let random_bytes = CryptoJS.lib.WordArray.random(32);
@@ -143,7 +144,7 @@ export class CryptoService {
     /*
     * Decrypt a note attached to transaction
     */
-    public decryptNote(encryptedNote: string, nonce: string, publicKey: string, encryptedPrivateKey: string, pinHash: string): Promise<any> {
+    public decryptNote(encryptedNote: string, nonce: string, senderPublicKey: string, encryptedPrivateKey: string, pinHash: string): Promise<any> {
         return new Promise((resolve, reject) => {
             this.decryptAES(encryptedPrivateKey, pinHash)
                 .then(privateKey => {
@@ -151,7 +152,7 @@ export class CryptoService {
                     let sharedKey =
                         ECKCDSA.sharedkey(
                             Converter.convertHexStringToByteArray(privateKey),
-                            Converter.convertHexStringToByteArray(publicKey)
+                            Converter.convertHexStringToByteArray(senderPublicKey)
                         )
                     // convert nonce to uint8array
                     let nonce_array = Converter.convertWordArrayToUint8Array(CryptoJS.enc.Hex.parse(nonce));
@@ -167,10 +168,10 @@ export class CryptoService {
                     resolve(note);
                 })
             })
-        }
+    }
 
     /*
-    *
+    * Hash string into hex string
     */
     public hashSHA256(input: string): string {
         return CryptoJS.SHA256(input).toString();
@@ -178,6 +179,10 @@ export class CryptoService {
 
     /*
     * Generate signature for transaction
+    * s = sign(sha256(sha256(transactionHex)_keygen(sha256(sha256(transactionHex)_privateKey)).publicKey),
+    *          sha256(sha256(transactionHex)_privateKey),
+    *          privateKey)
+    * p = sha256(sha256(transactionHex)_keygen(sha256(transactionHex_privateKey)).publicKey)
     */
     public generateSignature(transactionHex: string, encryptedPrivateKey: string, pinHash: string): Promise<string> {
         return new Promise((resolve, reject) => {
@@ -199,29 +204,35 @@ export class CryptoService {
 
     /*
     * Verify signature for transaction
+    * h1 = sha256(sha256(transactionHex)_keygen(sha256(transactionHex_privateKey)).publicKey)
+    *                                 ==
+    * sha256(sha256(transactionHex)_verify(v, h1, publickey)) = h2
     */
     public verifySignature(signature: string, transactionHex: string, publicKey: string): Promise<boolean> {
         return new Promise((resolve, reject) => {
+            // get bytes
             let signatureBytes = Converter.convertHexStringToByteArray(signature);
             let publicKeyBytes = Converter.convertHexStringToByteArray(publicKey);
             let v = signatureBytes.slice(0, 32);
             let h1 = signatureBytes.slice(32);
             let y = ECKCDSA.verify(v, h1, publicKeyBytes);
-
             let m = Converter.convertWordArrayToByteArray(CryptoJS.SHA256(CryptoJS.enc.Hex.parse(transactionHex)));
             let m_y  = m.concat(y);
             let h2 = Converter.convertWordArrayToByteArray(CryptoJS.SHA256(Converter.convertByteArrayToWordArray(m_y)));
-
+            // Convert to hex
             let h1hex = Converter.convertByteArrayToHexString(h1);
             let h2hex = Converter.convertByteArrayToHexString(h2);
-
+            // compare
             resolve(h1hex == h2hex);
         });
     }
 
+    /*
+    * Concat signature with transactionHex
+    */
     public generateSignedTransactionBytes(unsignedTransactionHex: string, signature: string): Promise<string> {
         return new Promise((resolve, reject) => {
-            // TODO: verification, omg
+            // TODO: verification -duplicate?
             resolve(unsignedTransactionHex.substr(0, 192) + signature + unsignedTransactionHex.substr(320))
         });
     }

@@ -15,7 +15,7 @@ import { isIOS } from "platform";
 
 import { Account, BurstAddress, Currency } from "../../../lib/model";
 import { NoConnectionError } from "../../../lib/model/error";
-import { AccountService, DatabaseService, MarketService, NotificationService, TabsService } from "../../../lib/services";
+import { AccountService, CryptoService, DatabaseService, MarketService, NotificationService, TabsService } from "../../../lib/services";
 import { AddComponent } from "./add/add.component";
 import { RemoveComponent } from "./remove/remove.component";
 
@@ -34,6 +34,7 @@ export class AccountsComponent implements OnInit {
 
     constructor(
         private accountService: AccountService,
+        private cryptoService: CryptoService,
         private databaseService: DatabaseService,
         private marketService: MarketService,
         private modalDialogService: ModalDialogService,
@@ -50,6 +51,17 @@ export class AccountsComponent implements OnInit {
         this.databaseService.getAllAccounts()
             .then(accounts => {
                 this.accounts = accounts;
+                if (accounts.length >= 2) {
+                    this.cryptoService.encryptNote("test note", accounts[1].keypair.publicKey, accounts[0].keypair.privateKey, this.accountService.hashPinEncryption("111111")).then(
+                        keys => {
+                            console.log(keys.m)
+                            console.log(keys.n)
+                            this.cryptoService.decryptNote(keys.m, keys.n, accounts[0].keypair.publicKey, accounts[1].keypair.privateKey, this.accountService.hashPinEncryption("111111")).then(note => {
+                                console.log(note)
+                            })
+                        }
+                    )
+                }
             })
             .catch(err => {
                 console.log("No accounts found: " + err);

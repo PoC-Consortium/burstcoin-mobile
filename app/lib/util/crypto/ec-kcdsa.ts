@@ -215,13 +215,11 @@ export class ECKCDSA {
         k = k || [];
         Curve25519.clamp(k);
         Curve25519.core(P, s, k, null);
-
         return { p: P, s: s, k: k };
     }
 
     public static sharedkey(privateKey, publicKey) {
         let P = [];
-        Curve25519.clamp(privateKey);
         Curve25519.core(P, null, privateKey, publicKey);
         return P;
     }
