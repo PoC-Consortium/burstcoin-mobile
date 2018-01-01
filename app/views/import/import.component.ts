@@ -21,6 +21,7 @@ export class ImportComponent implements OnInit {
     step: number;
     activeInput: string;
     offlineInput: string;
+    offlineInputParts: string[];
     state: string;
     hint: string;
     active: boolean;
@@ -38,6 +39,7 @@ export class ImportComponent implements OnInit {
         this.step = 1;
         this.activeInput = "";
         this.offlineInput = "";
+        this.offlineInputParts = [];
         this.hint = "Passphrase";
         this.active = true;
     }
@@ -56,27 +58,21 @@ export class ImportComponent implements OnInit {
     }
 
     public onTapImport(e) {
-        if (this.offlineInput.length > 0) {
-            if (this.accountService.isBurstcoinAddress(this.offlineInput)) {
-                this.step = 0;
-                this.accountService.createOfflineAccount(this.offlineInput)
-                    .then(account => {
-                        this.accountService.selectAccount(account)
-                            .then(account => {
-                                this.router.navigate(['tabs'], { clearHistory: true });
-                            });
-                    })
-                    .catch(error => {
-                        this.step = 1;
-                        this.notificationService.info(error);
-                    });
-            } else {
-                this.translateService.get("NOTIFICATIONS.ADDRESS").subscribe((res: string) => {
-                    this.notificationService.info(res);
+        if (this.accountService.isBurstcoinAddress(this.accountService.constructBurstAddress(this.offlineInputParts))) {
+            this.step = 0;
+            this.accountService.createOfflineAccount(this.accountService.constructBurstAddress(this.offlineInputParts))
+                .then(account => {
+                    this.accountService.selectAccount(account)
+                        .then(account => {
+                            this.router.navigate(['tabs'], { clearHistory: true });
+                        });
+                })
+                .catch(error => {
+                    this.step = 1;
+                    this.notificationService.info(error);
                 });
-            }
         } else {
-            this.translateService.get("NOTIFICATIONS.ENTER_SOMETHING").subscribe((res: string) => {
+            this.translateService.get("NOTIFICATIONS.ADDRESS").subscribe((res: string) => {
                 this.notificationService.info(res);
             });
         }
@@ -88,8 +84,8 @@ export class ImportComponent implements OnInit {
             if (this.active) {
                 this.step = 0;
                 this.cryptoService.generateMasterKeys(this.activeInput)
-                    .then(keypair => {
-                        this.cryptoService.getAccountIdFromPublicKey(keypair.publicKey)
+                    .then(keys => {
+                        this.cryptoService.getAccountIdFromPublicKey(keys.publicKey)
                             .then(id => {
                                 this.cryptoService.getBurstAddressFromAccountId(id)
                                     .then(address => {
@@ -127,7 +123,7 @@ export class ImportComponent implements OnInit {
                         .then(account => {
                             this.router.navigate(['tabs'], { clearHistory: true })
                         })
-                })
+                })//
                 .catch(error => {
                     this.step = 2;
                     this.notificationService.info(error);
@@ -140,7 +136,11 @@ export class ImportComponent implements OnInit {
     }
 
     public formatAddress() {
-        this.offlineInput = this.offlineInput.toUpperCase();
+        for (let i = 0; i < this.offlineInputParts.length; i++) {
+            if (this.offlineInputParts[i] != undefined) {
+                this.offlineInputParts[i] = this.offlineInputParts[i].toUpperCase()
+            }
+        }
     }
 
 }

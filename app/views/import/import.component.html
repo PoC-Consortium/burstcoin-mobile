@@ -36,7 +36,16 @@
 
                     <Switch class="m-10 toggle-switch" checked="true" (checkedChange)="onChecked($event)"></Switch>
                     <TextField *ngIf="active" class="input input-paad" [hint]="'IMPORT.ACTIVE_ACCOUNT_INPUT_HINT' | translate" [(ngModel)]="activeInput"></TextField>
-                    <TextField *ngIf="!active" class="input input-paad" [hint]="'IMPORT.OFFLINE_ACCOUNT_INPUT_HINT' | translate" [(ngModel)]="offlineInput" (returnPress)="formatAddress()"></TextField>
+                    <GridLayout *ngIf="!active" class="text-left m-t-5" columns="auto, 4*, auto, 4*, auto, 4*, auto, 5*" rows="auto">
+                        <Label col="0" row="1" class="address-label fa" text="BURST-"></Label>
+                        <TextField col="1" row="1" class="input" [(ngModel)]="offlineInputParts[0]" (returnPress)="formatAddress()" maxLength="4" returnKeyType="next"></TextField>
+                        <Label col="2" row="1" class="address-label fa" text="-"></Label>
+                        <TextField col="3" row="1" class="input" [(ngModel)]="offlineInputParts[1]" (returnPress)="formatAddress()" maxLength="4" returnKeyType="next"></TextField>
+                        <Label col="4" row="1" class="address-label fa" text="-"></Label>
+                        <TextField col="5" row="1" class="input" [(ngModel)]="offlineInputParts[2]" (returnPress)="formatAddress()" maxLength="4" returnKeyType="next"></TextField>
+                        <Label col="6" row="1" class="address-label fa" text="-"></Label>
+                        <TextField col="7" row="1" class="input" [(ngModel)]="offlineInputParts[3]" (returnPress)="formatAddress()" maxLength="5" returnKeyType="done"></TextField>
+                    </GridLayout>
                 </StackLayout>
                 <StackLayout orientation="vertical">
                     <Button *ngIf="active" class="btn btn-primary btn-active action-button fa" [text]="('IMPORT.NEXT' | translate) + ' &#xf18e;'" (tap)="onTapNext($event)"></Button>

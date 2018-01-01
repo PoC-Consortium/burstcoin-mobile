@@ -247,7 +247,9 @@ export class InputComponent implements OnInit {
 
     public formatRecipient() {
         for (let i = 0; i < this.recipientParts.length; i++) {
-            this.recipientParts[i] = this.recipientParts[i].toUpperCase()
+            if (this.recipientParts[i] != undefined) {
+                this.recipientParts[i] = this.recipientParts[i].toUpperCase()
+            }
         }
     }
 }
