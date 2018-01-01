@@ -218,6 +218,18 @@ export class ECKCDSA {
         return { p: P, s: s, k: k };
     }
 
+
+    /*
+    * Get private key for encryption
+    */
+    public static clamp(k) {
+        Curve25519.clamp(k);
+        return k;
+    }
+
+    /*
+    * Get shared key for encryption
+    */
     public static sharedkey(privateKey, publicKey) {
         let P = [];
         Curve25519.core(P, null, privateKey, publicKey);

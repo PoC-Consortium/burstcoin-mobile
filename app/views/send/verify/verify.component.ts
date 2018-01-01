@@ -46,8 +46,8 @@ export class VerifyComponent implements OnInit {
 
     public onTapAccept() {
         if (this.accountService.checkPin(this.pin)) {
-            this.sendService.createTransaction(this.account.keypair.publicKey, this.account.keypair.privateKey, this.pin).then(transaction => {
-                this.accountService.doTransaction(transaction, this.account.keypair.privateKey, this.pin)
+            this.sendService.createTransaction(this.account.keys.publicKey, this.account.keys.signPrivateKey, this.pin).then(transaction => {
+                this.accountService.doTransaction(transaction, this.account.keys.signPrivateKey, this.pin)
                     .then(transaction => {
                         this.translateService.get('NOTIFICATIONS.TRANSACTION').subscribe((res: string) => {
                             this.notificationService.info(res);

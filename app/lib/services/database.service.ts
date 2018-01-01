@@ -71,8 +71,9 @@ export class DatabaseService extends Database {
                         w.balance = account.balance;
                         w.type = account.type;
                         w.selected = account.selected;
-                        w.keypair.publicKey = account.keypair.publicKey;
-                        w.keypair.privateKey = account.keypair.privateKey;
+                        w.keys.publicKey = account.keys.publicKey;
+                        w.keys.signPrivateKey = account.keys.signPrivateKey;
+                        w.keys.agreementPrivateKey = account.keys.agreementPrivateKey;
                         w.transactions = account.transactions;
                     });
                 }

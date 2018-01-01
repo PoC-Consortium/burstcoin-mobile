@@ -87,7 +87,7 @@ export class ImportComponent implements OnInit {
         if (this.activeInput.length > 0) {
             if (this.active) {
                 this.step = 0;
-                this.cryptoService.generateMasterPublicAndPrivateKey(this.activeInput)
+                this.cryptoService.generateMasterKeys(this.activeInput)
                     .then(keypair => {
                         this.cryptoService.getAccountIdFromPublicKey(keypair.publicKey)
                             .then(id => {

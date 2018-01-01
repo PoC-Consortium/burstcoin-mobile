@@ -8,7 +8,7 @@ import { RouterExtensions } from "nativescript-angular/router";
 import { device } from "platform";
 import { Observable, ReplaySubject } from 'rxjs/Rx';
 
-import { Account, BurstAddress, Currency, HttpError, Keypair, Settings, Transaction } from "../model";
+import { Account, BurstAddress, Currency, HttpError, Keys, Settings, Transaction } from "../model";
 import { NoConnectionError, UnknownAccountError } from "../model/error";
 import { CryptoService, DatabaseService, NotificationService} from "./";
 
@@ -45,22 +45,26 @@ export class AccountService {
             let account: Account = new Account();
             // import active account
             account.type = "active";
-            return this.cryptoService.generateMasterPublicAndPrivateKey(passphrase)
-                .then(keypair => {
-                    account.keypair.publicKey = keypair.publicKey;
-                    return this.cryptoService.encryptAES(keypair.privateKey, this.hashPinEncryption(pin))
+            return this.cryptoService.generateMasterKeys(passphrase)
+                .then(keys => {
+                    account.keys.publicKey = keys.publicKey;
+                    return this.cryptoService.encryptAES(keys.signPrivateKey, this.hashPinEncryption(pin))
                         .then(encryptedKey => {
-                            account.keypair.privateKey = encryptedKey;
-                            account.pinHash = this.hashPinStorage(pin, account.keypair.publicKey);
-                            return this.cryptoService.getAccountIdFromPublicKey(keypair.publicKey)
-                                .then(id => {
-                                    account.id = id;
-                                    return this.cryptoService.getBurstAddressFromAccountId(id)
-                                        .then(address => {
-                                            account.address = address;
-                                            return this.databaseService.saveAccount(account)
-                                                .then(account => {
-                                                    resolve(account);
+                            account.keys.signPrivateKey = encryptedKey;
+                            return this.cryptoService.encryptAES(keys.agreementPrivateKey, this.hashPinEncryption(pin))
+                                .then(encryptedKey => {
+                                    account.keys.agreementPrivateKey = encryptedKey;
+                                    account.pinHash = this.hashPinStorage(pin, keys.publicKey);
+                                    return this.cryptoService.getAccountIdFromPublicKey(keys.publicKey)
+                                        .then(id => {
+                                            account.id = id;
+                                            return this.cryptoService.getBurstAddressFromAccountId(id)
+                                                .then(address => {
+                                                    account.address = address;
+                                                    return this.databaseService.saveAccount(account)
+                                                        .then(account => {
+                                                            resolve(account);
+                                                        });
                                                 });
                                         });
                                 });
@@ -95,19 +99,23 @@ export class AccountService {
 
     public activateAccount(account: Account, passphrase: string, pin: string): Promise<Account> {
         return new Promise((resolve, reject) => {
-            this.cryptoService.generateMasterPublicAndPrivateKey(passphrase)
+            this.cryptoService.generateMasterKeys(passphrase)
                 .then(keys => {
-                    account.keypair.publicKey = keys.publicKey;
-                    this.cryptoService.encryptAES(keys.privateKey, this.hashPinEncryption(pin))
+                    account.keys.publicKey = keys.publicKey;
+                    return this.cryptoService.encryptAES(keys.signPrivateKey, this.hashPinEncryption(pin))
                         .then(encryptedKey => {
-                            account.keypair.privateKey = encryptedKey;
-                            account.pinHash = this.hashPinStorage(pin, account.keypair.publicKey);
-                            account.type = "active";
-                            return this.databaseService.saveAccount(account)
-                                .then(account => {
-                                    resolve(account);
+                            account.keys.signPrivateKey = encryptedKey;
+                            return this.cryptoService.encryptAES(keys.agreementPrivateKey, this.hashPinEncryption(pin))
+                                .then(encryptedKey => {
+                                    account.keys.agreementPrivateKey = encryptedKey;
+                                    account.pinHash = this.hashPinStorage(pin, keys.publicKey);
+                                    account.type = "active";
+                                    return this.databaseService.saveAccount(account)
+                                        .then(account => {
+                                            resolve(account);
+                                        });
                                 });
-                        })
+                        });
                 })
         });
     }
@@ -310,7 +318,7 @@ export class AccountService {
                         console.log(JSON.stringify(response.json()))
                         reject("Transaction error: Generating transaction. Check the recipient!");
                     }
-                }).catch(error => { console.log(error); reject("Transaction error: Generating transaction. Check the recipient!")});
+                }).catch(error => { console.log(error); reject("Transaction error: Generating transaction. Check the recipient!") });
         });
     }
 

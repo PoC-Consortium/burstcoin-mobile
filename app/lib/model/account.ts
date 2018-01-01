@@ -2,7 +2,7 @@
     Copyright 2017 icewave.org
 */
 
-import { Keypair } from "./keypair";
+import { Keys } from "./keys";
 import { Transaction } from "./transaction";
 
 export class Account {
@@ -15,7 +15,7 @@ export class Account {
     selected: boolean;
 
     pinHash: string;
-    keypair: Keypair;
+    keys: Keys;
     transactions: Transaction[];
 
     constructor(data: any = {}) {
@@ -25,11 +25,12 @@ export class Account {
         this.unconfirmedBalance = data.unconfirmedBalance || 0;
         this.type = data.type || "offline";
         this.selected = data.selected || false;
-        this.keypair = new Keypair();
-        if (data.keypair != undefined) {
+        this.keys = new Keys();
+        if (data.keys != undefined) {
             this.pinHash = data.pinHash || undefined;
-            this.keypair.publicKey = data.keypair.publicKey || undefined;
-            this.keypair.privateKey = data.keypair.privateKey || undefined;
+            this.keys.publicKey = data.keys.publicKey || undefined;
+            this.keys.signPrivateKey = data.keys.signPrivateKey || undefined;
+            this.keys.agreementPrivateKey = data.keys.agreementPrivateKey || undefined;
         }
         if (data.transactions != undefined && data.transactions.length > 0) {
             this.transactions = data.transactions;

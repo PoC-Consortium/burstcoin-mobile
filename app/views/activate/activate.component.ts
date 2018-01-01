@@ -44,7 +44,7 @@ export class ActivateComponent implements OnInit {
     public onTapNext() {
         if (this.passphrase.length > 0) {
             this.step = 0;
-            this.cryptoService.generateMasterPublicAndPrivateKey(this.passphrase)
+            this.cryptoService.generateMasterKeys(this.passphrase)
                 .then(keypair => {
                     this.cryptoService.getAccountIdFromPublicKey(keypair.publicKey)
                         .then(id => {

@@ -5,12 +5,10 @@
 import { Injectable } from '@angular/core';
 import { Converter } from "../util";
 import { PassPhraseGenerator, ECKCDSA } from "../util/crypto";
-import { BurstAddress, Keypair } from "../model";
+import { BurstAddress, Keys } from "../model";
 
 let CryptoJS = require("crypto-js");
 let BN = require('bn.js');
-
-import { Curvy } from '../util/crypto/curve25519-revised'
 
 @Injectable()
 export class CryptoService {
@@ -34,19 +32,20 @@ export class CryptoService {
 
     /*
     * Generate the Master Public Key and Master Private Key for a new passphrase
-    * EC-KCDSA sign key pair.
+    * EC-KCDSA sign key pair + agreement key.
     */
-    public generateMasterPublicAndPrivateKey(passPhrase: string): Promise<Keypair> {
+    public generateMasterKeys(passPhrase: string): Promise<Keys> {
         return new Promise((resolve, reject) => {
             // hash passphrase with sha256
             let hashedPassPhrase = CryptoJS.SHA256(passPhrase);
-            // use ec-kcdsa to generate keypair from passphrase
+            // use ec-kcdsa to generate keys from passphrase
             let keys = ECKCDSA.keygen(Converter.convertWordArrayToByteArray(hashedPassPhrase));
-            let keypair: Keypair = new Keypair({
+            let keyObject: Keys = new Keys({
                 "publicKey": Converter.convertByteArrayToHexString(keys.p),
-                "privateKey": Converter.convertByteArrayToHexString(keys.s)
+                "signPrivateKey": Converter.convertByteArrayToHexString(keys.s),
+                "agreementPrivateKey": Converter.convertByteArrayToHexString(keys.k)
             });
-            resolve(keypair);
+            resolve(keyObject);
         });
     }
 
@@ -116,12 +115,15 @@ export class CryptoService {
         return new Promise((resolve, reject) => {
             this.decryptAES(encryptedPrivateKey, pinHash)
                 .then(privateKey => {
+                    console.log(privateKey)
+                    console.log(recipientPublicKey)
                     // generate shared key
                     let sharedKey =
                         ECKCDSA.sharedkey(
                             Converter.convertHexStringToByteArray(privateKey),
                             Converter.convertHexStringToByteArray(recipientPublicKey)
-                        )
+                        );
+                    console.log("s1: " + Converter.convertByteArrayToHexString(sharedKey))
                     // Create random nonce
                     let random_bytes = CryptoJS.lib.WordArray.random(32);
                     let r_nonce = Converter.convertWordArrayToUint8Array(random_bytes);
@@ -131,6 +133,7 @@ export class CryptoService {
                     }
                     // hash shared key
                     let key = CryptoJS.SHA256(Converter.convertByteArrayToWordArray(sharedKey))
+                    //console.log(key.toString())
                     // ENCRYPT
                     let message = CryptoJS.AES.encrypt(note, key.toString()).toString()
                     // Uint 8 to hex
@@ -148,12 +151,15 @@ export class CryptoService {
         return new Promise((resolve, reject) => {
             this.decryptAES(encryptedPrivateKey, pinHash)
                 .then(privateKey => {
+                    console.log(privateKey)
+                    console.log(senderPublicKey)
                     // generate shared key
                     let sharedKey =
                         ECKCDSA.sharedkey(
                             Converter.convertHexStringToByteArray(privateKey),
                             Converter.convertHexStringToByteArray(senderPublicKey)
-                        )
+                        );
+                    console.log("s2: " + Converter.convertByteArrayToHexString(sharedKey))
                     // convert nonce to uint8array
                     let nonce_array = Converter.convertWordArrayToUint8Array(CryptoJS.enc.Hex.parse(nonce));
                     // combine
@@ -162,6 +168,7 @@ export class CryptoService {
                     }
                     // hash shared key
                     let key = CryptoJS.SHA256(Converter.convertByteArrayToWordArray(sharedKey))
+                    //console.log(key.toString())
                     // DECRYPT
                     let note = CryptoJS.AES.decrypt(encryptedNote, key.toString()).toString(CryptoJS.enc.Utf8);
                     // return decrypted note
