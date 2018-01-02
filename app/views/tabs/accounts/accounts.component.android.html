@@ -6,13 +6,11 @@
                 <Label *ngIf="item.selected" col="5" row="0" rowspan="2" class="fa text-center select-indicator" text="&#xf111;"></Label>
                 <Label *ngIf="!item.selected" col="5" row="0" rowspan="2" class="fa text-center select-indicator" text="&#xf10c;"></Label>
 
-                <Label col="0" row="1" colspan="3" rowspan="2" class="balance text-left" [text]="('TABS.ACCOUNTS.BALANCE' | translate) + ': ' + item.balance + ' BURST'"></Label>
+                <Label col="0" row="2" colspan="4" class="text-left" [text]="('TABS.ACCOUNTS.BALANCE' | translate) + ': ' + item.balance + ' BURST'"></Label>
+                <Label col="0" row="3" colspan="4" class="text-left fa" [text]="marketService.getPriceBTC(item.balance) + ' &#xf0ec; ' + marketService.getPriceFiatCurrency(item.balance)"></Label>
 
                 <Label *ngIf="item.keys != undefined" col="4" row="0" class="text-center fa active-indicator" text="&#xf00c;"></Label>
                 <Label *ngIf="item.keys == undefined" col="4" row="0" class="text-center fa active-indicator" text="&#xf05e;"></Label>
-                <Label col="1" row="3" class="fa text-center p-t-2 p-l-5 p-r-5" text="&#xf0ec;"></Label>
-                <Label col="0" row="3" class="text-right" [text]="marketService.getPriceBTC(item.balance)"></Label>
-                <Label col="2" row="3" class="text-left" [text]="marketService.getPriceFiatCurrency(item.balance)"></Label>
 
                 <Button col="5" row="2" rowspan="2" style="margin: 2" class="btn btn-primary btn-active icon-button fa text-center" text="&#xf00d;" (tap)="onTapRemoveAccount(item)"></Button>
             </GridLayout>
