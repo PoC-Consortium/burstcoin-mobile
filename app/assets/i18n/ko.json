@@ -134,6 +134,7 @@
       "KEYPAIR": "패스프레이즈에 사용되는 키 쌍을 생성하는 데 실패했습니다!",
       "LANGUAGE": "언어 변환에 실패했습니다!",
       "NODE": "노드 업데이트 실패!",
+      "NO_PUBLIC_KEY": "Recipient has no public key yet! Sending of encrypted message not possible!",
       "QR_CODE": "QR 코드를 스캔하는 데 실패했습니다!",
       "REDIRECT": "전송 BURST 페이지를 여는 데 실패했습니다! 현재 계정이 활성화 되어있지 않습니다!",
       "REMOVE": "계정을 삭제할 수 없습니다!",

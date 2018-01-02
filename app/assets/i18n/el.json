@@ -133,6 +133,7 @@
             "KEYPAIR": "Αποτυχία δημιουργίας keypair για φράση-κλειδί!",
             "LANGUAGE": "Αποτυχία αλλαγής γλώσσας!",
             "NODE": "Αποτυχία αναβάθμισης κόμβου!",
+            "NO_PUBLIC_KEY": "Recipient has no public key yet! Sending of encrypted message not possible!",
             "QR_CODE": "Αποτυχία σκαναρίσματος κωδικού QR!",
             "REDIRECT": "Αποτυχία άνοιγμα σελίδας αποστολής BURST! Ο τρέχων λογαριασμός δεν είναι ενεργός!",
             "REMOVE": "Αποτυχία αφαίρεσης λογαριασμού!",

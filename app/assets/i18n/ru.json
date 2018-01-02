@@ -134,6 +134,7 @@
             "KEYPAIR": " Не удалось создать пару ключей для кодовой фразы!",
             "LANGUAGE": "Ошибка смены языка!",
             "NODE": "Ошибка обновления узла!",
+            "NO_PUBLIC_KEY": "Recipient has no public key yet! Sending of encrypted message not possible!",
             "QR_CODE": " Не удалось отсканировать QR-код!",
             "REDIRECT": "Невозможно открыть страницу отправки BURST! Текущий аккаунт неактивен!",
             "REMOVE": "Не удалось убрать аккаунт!",

@@ -134,6 +134,7 @@
             "KEYPAIR": "Nepodarilo sa vygenerovať kľúče pre prístupovú frázu!",
             "LANGUAGE": "Zmena jazyka sa nepodarila!",
             "NODE": "Aktualizácia uzla zlýhala!",
+            "NO_PUBLIC_KEY": "Recipient has no public key yet! Sending of encrypted message not possible!",
             "QR_CODE": "Nepodarilo sa naskenovať QR kód!",
             "REDIRECT": "Nemôžem otvoriť stránku pre odoslanie BURSTOV! Účet nie je aktívny!",
             "REMOVE": "Účet sa nepodarilo odstrániť!",

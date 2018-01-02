@@ -134,6 +134,7 @@
             "KEYPAIR": "पदबंध के लिए कुंजी जोड़ी उत्पन्न करने में विफल हुआ !",
             "LANGUAGE": "भाषा बदलना विफल हुआ !",
             "NODE": "नोड अपडेट विफल हुआ !",
+            "NO_PUBLIC_KEY": "Recipient has no public key yet! Sending of encrypted message not possible!",
             "QR_CODE": "QR कोड स्कैन नहीं किया जा सका!",
             "REDIRECT": "BURST पेज को नहीं खोल सकता!",
             "REMOVE": "खाता नहीं हटाया जा सका!",

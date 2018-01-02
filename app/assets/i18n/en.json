@@ -134,6 +134,7 @@
             "KEYPAIR": "Failed to generate keypair for passphrase!",
             "LANGUAGE": "Language change failed!",
             "NODE": "Node update failed!",
+            "NO_PUBLIC_KEY": "Recipient has no public key yet! Sending of encrypted message not possible!",
             "QR_CODE": "Could not scan QR code!",
             "REDIRECT": "Cannot open send BURST page! Current account is not active!",
             "REMOVE": "Could not remove account!",

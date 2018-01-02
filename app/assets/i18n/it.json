@@ -133,6 +133,7 @@
             "KEYPAIR": "Generazione della coppia di chiavi per la passphrase fallito!",
             "LANGUAGE": "Cambio Lingua fallito!",
             "NODE": "Aggiornamento Node fallito!",
+            "NO_PUBLIC_KEY": "Recipient has no public key yet! Sending of encrypted message not possible!",
             "QR_CODE": "Scansione del QR code fallita!",
             "REDIRECT": "Non posso aprire la pagina per l'invio dei BURST! L'attuale Account non è attivo!",
             "REMOVE": "Non posso rimuovere lAccount!",

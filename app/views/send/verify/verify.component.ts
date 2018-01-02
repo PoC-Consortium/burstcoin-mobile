@@ -59,11 +59,10 @@ export class VerifyComponent implements OnInit {
                     })
             }).catch(error => {
                 if (error instanceof UnknownAccountError) {
-                    this.translateService.get('NOTIFICATIONS.ERROR.NO_PUBLIC_KEY').subscribe((res: string) => {
+                    this.translateService.get('NOTIFICATIONS.ERRORS.NO_PUBLIC_KEY').subscribe((res: string) => {
                         this.notificationService.info(res);
                     });
                 }
-                console.log(error)
             })
         } else {
             this.translateService.get('NOTIFICATIONS.WRONG_PIN').subscribe((res: string) => {

@@ -133,6 +133,7 @@
             "KEYPAIR": "Wygenerowanie pary kluczy dla hasła zakończono błędem",
             "LANGUAGE": "Zmiana języka niepomyślna!",
             "NODE": "Aktualizacja węzła nie powiodła się!",
+            "NO_PUBLIC_KEY": "Recipient has no public key yet! Sending of encrypted message not possible!",
             "QR_CODE": "Nie można zeskanować kodu QR!",
             "REDIRECT": "Nie można otworzyć strony wysyłania. Obecne konto jest nieaktywne!",
             "REMOVE": "Nie można usunąć konta!",

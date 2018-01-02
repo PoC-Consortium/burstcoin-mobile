@@ -135,6 +135,7 @@
             "KEYPAIR": "Fehler beim Generieren des Schlüsselpaars!",
             "LANGUAGE": "Fehler beim Ändern der Sprache!",
             "NODE": "Fehler beim Aktualisieren des Endpunkts!",
+            "NO_PUBLIC_KEY": "Empfänger hat noch keinen öffentlichen Schlüssel! Senden der verschlüsselten Nachricht nicht möglich",
             "QR_CODE": "Kein QR Code gescannt!",
             "REDIRECT": "Senden von Burstcoin nicht möglich. Ausgewähltes Konto ist kein aktives Konto!",
             "REMOVE": "Fehler beim Entfernen des Kontos!",

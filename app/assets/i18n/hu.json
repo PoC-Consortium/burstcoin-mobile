@@ -133,6 +133,7 @@
             "KEYPAIR": "Nem sikerült kulcspárt elõállítani a jelszóhoz!",
             "LANGUAGE": "Nyelv kiválasztás sikertelen",
             "NODE": "Node frissítés sikertelen!",
+            "NO_PUBLIC_KEY": "Recipient has no public key yet! Sending of encrypted message not possible!",
             "QR_CODE": "Nem sikerült beszkennelni a QR kódot!",
             "REDIRECT": "Nem sikerült a BURST oldal megnyitása, a fiók nem aktív!",
             "REMOVE": "A fiók eltávolítás sikertelen!",

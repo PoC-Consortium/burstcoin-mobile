@@ -134,6 +134,7 @@
             "KEYPAIR": "Echec de génération de clé associée à la phrase de passe!",
             "LANGUAGE": "Echec de modification de langue!",
             "NODE": "Echec de modification du serveur!",
+            "NO_PUBLIC_KEY": "Recipient has no public key yet! Sending of encrypted message not possible!",
             "QR_CODE": "Impossible de trouver le QR code!",
             "REDIRECT": "Impossible d'ouvrir la page d'envoi! Le compte n'est pas actif!",
             "REMOVE": "Echec de suppression du compte!",

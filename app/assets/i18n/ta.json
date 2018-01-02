@@ -134,6 +134,7 @@
             "KEYPAIR": "கடவுச்சொல்லை உருவாக்க முடியவில்லை!",
             "LANGUAGE": "மொழி மாற்றம் தோல்வியடைந்தது!",
             "NODE": "முனை மாற்றம் தோல்வியடைந்தது!",
+            "NO_PUBLIC_KEY": "Recipient has no public key yet! Sending of encrypted message not possible!",
             "QR_CODE": "QR குறியீட்டை ஸ்கேன் செய்ய முடியவில்லை!",
             "REDIRECT": "BURST பக்கத்தை திறக்க முடியவில்லை! தற்போதைய கணக்கு செயலில் இல்லை!",
             "REMOVE": "கணக்கை அகற்ற முடியவில்லை!",

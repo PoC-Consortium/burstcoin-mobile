@@ -133,6 +133,7 @@
             "KEYPAIR": "Misslyckades med att skapa nyckelpar för lösenordsfras.",
             "LANGUAGE": "Språkändring misslyckades.",
             "NODE": "Noduppdatering misslyckades.",
+            "NO_PUBLIC_KEY": "Recipient has no public key yet! Sending of encrypted message not possible!",
             "QR_CODE": "Kunde inte skanna QR kod.",
             "REDIRECT": "Kan inte öppna 'skicka BURST' sida. Nuvarande konto är inte aktivt.",
             "REMOVE": "Det gick inte att ta bort konto.",

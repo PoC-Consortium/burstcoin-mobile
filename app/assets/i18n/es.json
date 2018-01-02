@@ -133,6 +133,7 @@
             "KEYPAIR": "Error al generar la contraseña.",
             "LANGUAGE": "Error al cambiar de idioma.",
             "NODE": "Error al actualizar el nodo.",
+            "NO_PUBLIC_KEY": "Recipient has no public key yet! Sending of encrypted message not possible!",
             "QR_CODE": "No fue posible escapar el código.",
             "REDIRECT": "No es posible abrir la vista de envío. Esta cuenta no esta activa.",
             "REMOVE": "Eliminación fallida.",

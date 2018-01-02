@@ -262,16 +262,12 @@ export class AccountService {
             requestOptions.params = params;
             return this.http.get(this.nodeUrl, requestOptions).timeout(this.timeout).toPromise()
                 .then(response => {
-                    console.log(response.json())
-                    if (response.json().errorCode == undefined || response.json() == "{}") {
+                    console.log(JSON.stringify(response.json()))
+                    if (response.json().publicKey != undefined) {
                         let publicKey = response.json().publicKey;
                         resolve(response.json().publicKey);
                     } else {
-                        if (response.json().errorDescription == "Unknown account") {
-                            reject(new UnknownAccountError())
-                        } else {
-                            reject(new Error("Failed fetching balance"));
-                        }
+                        reject(new UnknownAccountError())
                     }
                 })
                 .catch(error => reject(new NoConnectionError()));
@@ -344,7 +340,6 @@ export class AccountService {
 
                             }).catch(error => reject("Transaction error: Generating signature!"));
                     } else {
-                        console.log(JSON.stringify(response.json()))
                         reject("Transaction error: Generating transaction. Check the recipient!");
                     }
                 }).catch(error => { console.log(error); reject("Transaction error: Generating transaction. Check the recipient!") });

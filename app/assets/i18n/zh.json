@@ -134,6 +134,7 @@
             "KEYPAIR": "为密码产生密钥对失败!",
             "LANGUAGE": "更改语言失败!",
             "NODE": "更新节点失败!",
+            "NO_PUBLIC_KEY": "Recipient has no public key yet! Sending of encrypted message not possible!",
             "QR_CODE": "扫描QR码失败!",
             "REDIRECT": "不能开BURST页! 活期账户还未激活!",
             "REMOVE": "删除账户失败!",
