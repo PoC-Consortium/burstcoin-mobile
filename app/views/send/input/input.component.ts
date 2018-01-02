@@ -70,6 +70,9 @@ export class InputComponent implements OnInit {
         } else {
             this.recipientParts = this.accountService.splitBurstAddress(this.sendService.getRecipient());
         }
+    }
+
+    ngOnInit(): void {
         this.amount = this.sendService.getAmount() != 0 ? this.sendService.getAmount() : undefined;
         this.fee = this.sendService.getFee();
         this.total = this.sendService.getAmount() + this.sendService.getFee();
@@ -77,9 +80,7 @@ export class InputComponent implements OnInit {
         this.message = this.sendService.getMessage();
         this.messageEnabled = this.sendService.getMessageEnabled();
         this.messageEncrypted = this.sendService.getMessageEncrypted();
-    }
 
-    ngOnInit(): void {
         if (this.accountService.currentAccount.value != undefined) {
             this.account = this.accountService.currentAccount.value;
             this.balance = this.marketService.formatBurstcoin(this.account.balance);
@@ -230,40 +231,32 @@ export class InputComponent implements OnInit {
     }
 
     public verifyAmount(): boolean {
-        return this.amount > 0 && !isNaN(Number(this.amount))
+        return this.amount != undefined && this.amount >= 0
     }
 
     public verifyFee() {
-        return this.fee >= 1 && !isNaN(Number(this.fee))
+        return this.fee != undefined && this.fee >= 1
     }
 
     public verifyTotal(): boolean {
-        return parseFloat(this.amount.toString()) + parseFloat(this.fee.toString()) <= this.account.balance
+        return Number(this.amount) + Number(this.fee) <= this.account.balance
     }
 
     public calculateTotal(input: string) {
-        let aNumber;
-        let fNumber;
-        if (this.amount != undefined) {
-            aNumber = parseFloat(this.amount.toString());
+        if (this.amount < 0) {
+            this.amount = undefined;
         }
-        if (this.fee != undefined) {
-            fNumber = parseFloat(this.fee.toString());
+        if (this.fee < 1) {
+            this.fee = 1;
         }
-        if (isNaN(aNumber)) {
-            aNumber = 0;
+        if (this.amount != undefined && !this.verifyTotal()) {
+            this.amount = this.account.balance - Number(this.fee);
         }
-        if (isNaN(fNumber)) {
-            fNumber = 0;
+        if (this.amount == undefined) {
+            this.total = Number(this.fee);
+        } else {
+            this.total = Number(this.amount) + Number(this.fee);
         }
-        if (aNumber + fNumber > this.account.balance) {
-            if (input == "amount") {
-                this.amount = this.account.balance - fNumber;
-            } else {
-                this.fee = this.account.balance - aNumber;
-            }
-        }
-        this.total = parseFloat(this.amount.toString()) + parseFloat(this.fee.toString());
     }
 
     public formatRecipient() {

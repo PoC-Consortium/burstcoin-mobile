@@ -7,6 +7,7 @@ import { RouterExtensions } from "nativescript-angular/router";
 import { ActivatedRoute } from "@angular/router";
 import { TranslateService } from 'ng2-translate';
 import { Account, BurstAddress, Transaction } from "../../../lib/model";
+import { UnknownAccountError } from "../../../lib/model/error"
 import { AccountService, MarketService, NotificationService } from "../../../lib/services";
 import { BarcodeScanner, ScanOptions } from 'nativescript-barcodescanner';
 
@@ -40,13 +41,12 @@ export class VerifyComponent implements OnInit {
             this.account = this.accountService.currentAccount.value;
             this.balance = this.marketService.formatBurstcoin(this.account.balance);
         }
-
-        this.total = parseFloat(this.sendService.getAmount().toString()) + parseFloat(this.sendService.getFee().toString());
+        this.total = Number(this.sendService.getAmount()) + Number(this.sendService.getFee());
     }
 
     public onTapAccept() {
         if (this.accountService.checkPin(this.pin)) {
-            this.sendService.createTransaction(this.account.keys.publicKey, this.account.keys.signPrivateKey, this.pin).then(transaction => {
+            this.sendService.createTransaction(this.account.keys, this.pin).then(transaction => {
                 this.accountService.doTransaction(transaction, this.account.keys.signPrivateKey, this.pin)
                     .then(transaction => {
                         this.translateService.get('NOTIFICATIONS.TRANSACTION').subscribe((res: string) => {
@@ -57,7 +57,14 @@ export class VerifyComponent implements OnInit {
                     }).catch(error => {
                         this.notificationService.info(error);
                     })
-            }).catch(error => console.log(error))
+            }).catch(error => {
+                if (error instanceof UnknownAccountError) {
+                    this.translateService.get('NOTIFICATIONS.ERROR.NO_PUBLIC_KEY').subscribe((res: string) => {
+                        this.notificationService.info(res);
+                    });
+                }
+                console.log(error)
+            })
         } else {
             this.translateService.get('NOTIFICATIONS.WRONG_PIN').subscribe((res: string) => {
                 this.notificationService.info(res);

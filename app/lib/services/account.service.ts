@@ -253,6 +253,31 @@ export class AccountService {
         });
     }
 
+    public getAccountPublicKey(id: string): Promise<string> {
+        return new Promise((resolve, reject) => {
+            let params: URLSearchParams = new URLSearchParams();
+            params.set("requestType", "getAccountPublicKey");
+            params.set("account", id);
+            let requestOptions = this.getRequestOptions();
+            requestOptions.params = params;
+            return this.http.get(this.nodeUrl, requestOptions).timeout(this.timeout).toPromise()
+                .then(response => {
+                    console.log(response.json())
+                    if (response.json().errorCode == undefined || response.json() == "{}") {
+                        let publicKey = response.json().publicKey;
+                        resolve(response.json().publicKey);
+                    } else {
+                        if (response.json().errorDescription == "Unknown account") {
+                            reject(new UnknownAccountError())
+                        } else {
+                            reject(new Error("Failed fetching balance"));
+                        }
+                    }
+                })
+                .catch(error => reject(new NoConnectionError()));
+        });
+    }
+
     public doTransaction(transaction: Transaction, encryptedPrivateKey: string, pin: string): Promise<Transaction> {
         return new Promise((resolve, reject) => {
             let unsignedTransactionHex, sendFields, broadcastFields, transactionFields;
@@ -327,7 +352,7 @@ export class AccountService {
     }
 
     public checkPin(pin: string): boolean {
-        return this.currentAccount.value != undefined ? this.currentAccount.value.pinHash == this.hashPinStorage(pin, this.currentAccount.value.keypair.publicKey) : false;
+        return this.currentAccount.value != undefined ? this.currentAccount.value.pinHash == this.hashPinStorage(pin, this.currentAccount.value.keys.publicKey) : false;
     }
 
     public hashPinEncryption(pin: string): string {

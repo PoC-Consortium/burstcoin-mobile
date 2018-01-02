@@ -25,7 +25,7 @@ export class ContactComponent {
         private notificationService: NotificationService,
         private translateService: TranslateService
     ) {
-        this.addressParts = ["RFR4", "DQ4V", "XF3Q", "9FD3E"];
+        this.addressParts = [];
         this.page.on("unloaded", () => {
             this.params.closeCallback();
         });
@@ -43,8 +43,9 @@ export class ContactComponent {
 
     public formatAddress() {
         for (let i = 0; i < this.addressParts.length; i++) {
-            console.log(i)
-            this.addressParts[i] = this.addressParts[i].toUpperCase()
+            if (this.addressParts[i] != undefined) {
+                this.addressParts[i] = this.addressParts[i].toUpperCase()
+            }
         }
     }
 }

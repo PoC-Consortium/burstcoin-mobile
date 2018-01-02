@@ -111,7 +111,7 @@ export class CryptoService {
     /*
     * Encrypt a note attached to a transaction
     */
-    public encryptNote(note: string, recipientPublicKey: string, encryptedPrivateKey: string, pinHash: string): Promise<any> {
+    public encryptNote(note: string, encryptedPrivateKey: string, pinHash: string, recipientPublicKey: string): Promise<any> {
         return new Promise((resolve, reject) => {
             this.decryptAES(encryptedPrivateKey, pinHash)
                 .then(privateKey => {
