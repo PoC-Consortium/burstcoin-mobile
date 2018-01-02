@@ -132,7 +132,7 @@ export class CryptoService {
                     // hash shared key
                     let key = CryptoJS.SHA256(Converter.convertByteArrayToWordArray(sharedKey));
                     // ENCRYPT
-                    let message = CryptoJS.AES.encrypt(note, key.toString()).toString().toString();
+                    let message = CryptoJS.AES.encrypt(note, key.toString()).toString();
                     // Uint 8 to hex
                     let nonce = random_bytes.toString(CryptoJS.enc.Hex);
                     // return encrypted pair
