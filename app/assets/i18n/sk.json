@@ -97,6 +97,7 @@
         "BALANCE": "Zostatok",
         "CONTACTS": "Contacts",
         "FEE": "Poplatok",
+        "FIAT": "Fiat currency to BURST",
         "MESSAGE": "Message",
         "PIN_INPUT_HINT": "PIN",
         "RECIPIENT": "Príjemca",

@@ -53,7 +53,7 @@ export class SendComponent implements OnInit {
             if (this.account.keys == undefined) {
                 this.router.navigate(['/tabs']);
             }
-            this.balance = this.marketService.getPriceBurstcoin(this.account.balance);
+            this.balance = this.marketService.formatBurstcoin(this.account.balance);
         }
     }
 

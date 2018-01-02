@@ -1,0 +1,16 @@
+<StackLayout class="modal-view-style">
+    <StackLayout class="page-content">
+        <StackLayout class="modal-container">
+            <StackLayout class="body-container">
+                <Label class="solo fa" textWrap="true" [text]="marketService.getCurrencySymbol() + '  &#xf178;  BURST'"></Label>
+                <GridLayout class="text-left m-t-10" columns="2*, auto, auto, 3*" rows="auto">
+                    <TextField col="0" row="0" class="input-border number-input" keyboardType="number" [(ngModel)]="amount" (ngModelChange)="calculateBurstcoins()" returnKeyType="done"></TextField>
+                    <Label col="1" row="0" class="fa text-center vertical-center" [text]="marketService.getCurrencySymbol()"></Label>
+                    <Label col="2" row="0" class="p-l-5 p-r-5 fa text-center vertical-center" text=" = "></Label>
+                    <Label col="3" row="0" class="fa text-center vertical-center" [text]="marketService.formatBurstcoin(burstcoins)"></Label>
+                </GridLayout>
+                <Button class="btn btn-primary btn-active action-button fa" text="&#xf05d;" (tap)="onTapOk()"></Button>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</StackLayout>

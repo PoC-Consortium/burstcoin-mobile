@@ -97,6 +97,7 @@
     "BALANCE": "잔액",
     "CONTACTS": "Contacts",
     "FEE": "수수료",
+    "FIAT": "Fiat currency to BURST",
     "MESSAGE": "Message",
     "PIN_INPUT_HINT": "핀",
     "RECIPIENT": "수령인",

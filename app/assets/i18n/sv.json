@@ -96,6 +96,7 @@
         "BALANCE": "Saldo",
         "CONTACTS": "Contacts",
         "FEE": "Avgift",
+        "FIAT": "Fiat currency to BURST",
         "MESSAGE": "Message",
         "PIN_INPUT_HINT": "Pin",
         "RECIPIENT": "Mottagare",

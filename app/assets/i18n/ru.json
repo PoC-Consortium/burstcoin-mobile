@@ -97,6 +97,7 @@
         "BALANCE": "Баланс",
         "CONTACTS": "Contacts",
         "FEE": "Комиссия",
+        "FIAT": "Fiat currency to BURST",
         "MESSAGE": "Message",
         "PIN_INPUT_HINT": "ПИН",
         "RECIPIENT": "Получатель",

@@ -43,7 +43,7 @@
                     <Label col="2" row="0" class="p-t-5 p-b-5 big-label fa" [text]="'&#xf0ec; ' + ('SEND.FEE' | translate)"></Label>
                     <TextField col="2" row="1" class="input-border number-input" keyboardType="number" [(ngModel)]="fee" (ngModelChange)="calculateTotal('fee')" returnKeyType="done"></TextField>
                     <Label col="1" row="1" rowspan="2" class="p-10 fa text-center" text="+"></Label>
-                    <Label col="3" row="1" rowspan="2" class="p-5 fa text-center" [text]="'= ' + marketService.getPriceFiatCurrency(total)"></Label>
+                    <Label (tap)="onTapFiat()" col="3" row="1" rowspan="2" class="p-5 fa text-center" [text]="'= ' + marketService.getPriceFiatCurrency(total)"></Label>
                 </GridLayout>
                 <StackLayout class="hr-light"></StackLayout>
                 <StackLayout *ngIf="messageEnabled" class="m-t-10">

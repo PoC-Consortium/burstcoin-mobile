@@ -68,7 +68,7 @@ export class BalanceComponent implements OnInit {
         // generate qr code image
         this.qrcode = this.zx.createBarcode({ encode: account.address, height: 400, width: 400, format: ZXing.QR_CODE });
         this.address = account.address;
-        this.balance = this.marketService.getPriceBurstcoin(account.balance);
+        this.balance = this.marketService.formatBurstcoin(account.balance);
         this.confirmed = account.balance == account.unconfirmedBalance;
     }
 
@@ -94,7 +94,7 @@ export class BalanceComponent implements OnInit {
         let account = this.accountService.currentAccount.value;
         this.accountService.synchronizeAccount(account)
             .then(account => {
-                this.balance = this.marketService.getPriceBurstcoin(account.balance);
+                this.balance = this.marketService.formatBurstcoin(account.balance);
                 this.accountService.setCurrentAccount(account);
                 this.marketService.updateCurrency()
                     .then(currency => {

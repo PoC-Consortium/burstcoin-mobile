@@ -96,6 +96,7 @@
         "BALANCE": "Balance",
         "CONTACTS": "Contacts",
         "FEE": "Comisión",
+        "FIAT": "Fiat currency to BURST",
         "MESSAGE": "Message",
         "PIN_INPUT_HINT": "NIP",
         "RECIPIENT": "Destinatario",

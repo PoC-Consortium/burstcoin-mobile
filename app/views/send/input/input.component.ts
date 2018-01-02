@@ -18,6 +18,7 @@ import { AccountService, DatabaseService, MarketService, NotificationService } f
 import { SendService } from "../send.service";
 
 import { ContactComponent } from "./contact/contact.component"
+import { FiatComponent } from "./fiat/fiat.component"
 
 let clipboard = require("nativescript-clipboard");
 
@@ -81,7 +82,7 @@ export class InputComponent implements OnInit {
     ngOnInit(): void {
         if (this.accountService.currentAccount.value != undefined) {
             this.account = this.accountService.currentAccount.value;
-            this.balance = this.marketService.getPriceBurstcoin(this.account.balance);
+            this.balance = this.marketService.formatBurstcoin(this.account.balance);
         }
 
         if (this.databaseService.settings.value != undefined) {
@@ -134,6 +135,26 @@ export class InputComponent implements OnInit {
 
     public onTapContacts() {
         this.drawer.showDrawer();
+    }
+
+    public onTapFiat() {
+        const options: ModalDialogOptions = {
+            viewContainerRef: this.vcRef,
+            fullscreen: false,
+        };
+        this.modalDialogService.showModal(FiatComponent, options)
+            .then(amount => {
+                if (amount != undefined) {
+                    this.amount = amount
+                    if (!this.verifyTotal()) {
+                        this.translateService.get('NOTIFICATIONS.EXCEED').subscribe((res: string) => {
+                            this.notificationService.info(res);
+                        });
+                    }
+                    this.calculateTotal('amount')
+                }
+            })
+            .catch(error => console.log(JSON.stringify(error)));
     }
 
     public onTapMessage() {
@@ -242,7 +263,7 @@ export class InputComponent implements OnInit {
                 this.fee = this.account.balance - aNumber;
             }
         }
-        this.total = aNumber + fNumber;
+        this.total = parseFloat(this.amount.toString()) + parseFloat(this.fee.toString());
     }
 
     public formatRecipient() {

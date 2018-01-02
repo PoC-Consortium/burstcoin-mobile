@@ -15,6 +15,7 @@ import { SendService } from "./send.service";
 import { SendComponent } from "./send.component";
 import { InputComponent } from "./input/input.component";
 import { ContactComponent } from "./input/contact/contact.component";
+import { FiatComponent } from "./input/fiat/fiat.component";
 import { VerifyComponent } from "./verify/verify.component";
 
 export function createBarcodeScanner() {
@@ -31,6 +32,7 @@ export function createBarcodeScanner() {
     ],
     declarations: [
         ContactComponent,
+        FiatComponent,
         InputComponent,
         SendComponent,
         VerifyComponent
@@ -41,6 +43,7 @@ export function createBarcodeScanner() {
     ],
     entryComponents: [
         ContactComponent,
+        FiatComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA

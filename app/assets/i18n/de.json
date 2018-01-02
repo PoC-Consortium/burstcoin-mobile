@@ -97,6 +97,7 @@
         "BALANCE": "Saldo",
         "CONTACTS": "Kontakte",
         "FEE": "Gebühr",
+        "FIAT": "Fiat Währung zu BURST",
         "MESSAGE": "Nachricht",
         "PIN_INPUT_HINT": "PIN",
         "RECIPIENT": "Empfänger",

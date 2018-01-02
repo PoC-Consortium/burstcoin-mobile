@@ -62,7 +62,7 @@
         "SETTINGS": {
             "ABOUT": {
                 "ABOUT": "About",
-                "ASSOCIATION": "In Association with",
+                "ASSOCIATION": "In association with",
                 "DEVELOPED": "Developed by",
                 "TWITTER": "Follow us on twitter to get updates on our projects!",
                 "VERSION": "Version"
@@ -97,7 +97,7 @@
         "BALANCE": "Balance",
         "CONTACTS": "Contacts",
         "FEE": "Fee",
-        "FIAT": "FIAT Amount",
+        "FIAT": "Fiat currency to BURST",
         "MESSAGE": "Message",
         "PIN_INPUT_HINT": "Pin",
         "RECIPIENT": "Recipient",

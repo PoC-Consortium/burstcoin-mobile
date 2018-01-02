@@ -96,6 +96,7 @@
         "BALANCE": "Stan konta",
         "CONTACTS": "Contacts",
         "FEE": "Opłata",
+        "FIAT": "Fiat currency to BURST",
         "MESSAGE": "Message",
         "PIN_INPUT_HINT": "Pin",
         "RECIPIENT": "Odbiorca",

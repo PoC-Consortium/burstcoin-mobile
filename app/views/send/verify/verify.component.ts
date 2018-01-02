@@ -38,7 +38,7 @@ export class VerifyComponent implements OnInit {
     ngOnInit(): void {
         if (this.accountService.currentAccount.value != undefined) {
             this.account = this.accountService.currentAccount.value;
-            this.balance = this.marketService.getPriceBurstcoin(this.account.balance);
+            this.balance = this.marketService.formatBurstcoin(this.account.balance);
         }
 
         this.total = parseFloat(this.sendService.getAmount().toString()) + parseFloat(this.sendService.getFee().toString());

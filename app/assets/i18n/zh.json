@@ -97,6 +97,7 @@
         "BALANCE": "余额",
         "CONTACTS": "Contacts",
         "FEE": "交易费",
+        "FIAT": "Fiat currency to BURST",
         "MESSAGE": "Message",
         "PIN_INPUT_HINT": "Pin",
         "RECIPIENT": "接受者",

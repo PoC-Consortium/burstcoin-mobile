@@ -37,7 +37,7 @@ export class DatabaseService extends Database {
         }
         let settings = this.database.getCollection("settings");
         if (settings == null) {
-            settings = this.database.addCollection("settings", { unique : ["currency", "id", "language", "node", "notification", "patchnotes", "theme", "contacts"]});
+            settings = this.database.addCollection("settings", { unique : ["currency", "id", "language", "node", "notification", "patchnotes", "theme"]});
             settings.insert(new Settings());
         }
         this.database.saveDatabase();
