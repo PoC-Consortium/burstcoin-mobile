@@ -17,7 +17,7 @@
                     <Label col="2" row="1" rowspan="2" style="vertical-align:middle" class="p-5 p-l-15" [text]="'= ' + marketService.getPriceFiatCurrency(total)"></Label>
                 </GridLayout>
                 <GridLayout *ngIf="sendService.getMessageEnabled()" columns="auto, auto, *, auto" rows="auto">
-                    <Label col="0" row="0" class="p-t-5 p-b-5 fa" text="&#xf0e0;  "></Label>
+                    <Label col="0" row="0" class="p-t-5 p-b-5 fa" text="&#xf003;  "></Label>
                     <TextView col="1" row="0" colspan="2" class="message p-t-5 p-b-5 p-l-5 fa" textWrap="true" editable="false" [text]="sendService.getMessage()"></TextView>
 
                     <Label *ngIf="sendService.getMessageEncrypted()" style="vertical-align: center" col="3" row="0" colspan="2" class="p-t-5 p-b-5 p-l-5 fa" text="&#xf023;"></Label>

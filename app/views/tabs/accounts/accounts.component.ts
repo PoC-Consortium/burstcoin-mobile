@@ -51,16 +51,6 @@ export class AccountsComponent implements OnInit {
         this.databaseService.getAllAccounts()
             .then(accounts => {
                 this.accounts = accounts;
-                if (accounts.length >= 2) {
-                    this.cryptoService.encryptNote("test note", accounts[0].keys.agreementPrivateKey, this.accountService.hashPinEncryption("111111"), accounts[1].keys.publicKey).then(
-                        keys => {
-                            console.log(keys.m)
-                            this.cryptoService.decryptNote(keys.m, keys.n, accounts[1].keys.agreementPrivateKey, this.accountService.hashPinEncryption("111111"), accounts[0].keys.publicKey).then(note => {
-                                console.log(note)
-                            })
-                        }
-                    )
-                }
             })
             .catch(err => {
                 console.log("No accounts found: " + err);
