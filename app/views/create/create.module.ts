@@ -7,9 +7,13 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { SharedModule } from "../../lib/shared.module";
 import { CreateRoutingModule } from "./create.routing";
-import { CreateComponent } from "./create.component";
 
-//import { NgaModule } from "../lib/nga.module";
+import { CreateService } from "./create.service";
+import { CreateComponent } from "./create.component";
+import { RecordComponent } from "./record/record.component";
+import { ReproduceComponent } from "./reproduce/reproduce.component";
+import { SeedComponent } from "./seed/seed.component";
+import { VerifyComponent } from "./verify/verify.component";
 
 @NgModule({
     imports: [
@@ -19,10 +23,14 @@ import { CreateComponent } from "./create.component";
         CreateRoutingModule
     ],
     declarations: [
-        CreateComponent
+        CreateComponent,
+        RecordComponent,
+        ReproduceComponent,
+        SeedComponent,
+        VerifyComponent
     ],
     providers: [
-
+        CreateService
     ],
     schemas: [
         NO_ERRORS_SCHEMA

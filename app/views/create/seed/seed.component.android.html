@@ -1,0 +1,21 @@
+<StackLayout>
+    <StackLayout class="info-container" orientation="vertical">
+        <StackLayout orientation="vertical">
+            <Label class="top text-view-label fa" text="&#xf05a;"></Label>
+            <Label class="bottom" textWrap="true" [text]="'CREATE.INFO_STEP_ONE' | translate"></Label>
+        </StackLayout>
+    </StackLayout>
+
+    <StackLayout style="padding: 0px;" class="body-container m-t-10" orientation="vertical">
+        <StackLayout *ngIf="seed.length < seedLimit" (touch)="onTouch($event)" class="seed-area" orientation="vertical">
+            <Label class="font-weight-bold" [text]="'CREATE.INFO_SEED' | translate"></Label>
+            <StackLayout class="seed-progress" orientation="vertical">
+                <Progress [value]="seed.length" [maxValue]="seedLimit" class="m-20"></Progress>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout *ngIf="seed.length >= seedLimit">
+            <Label class="font-weight-bold solo" [text]="'CREATE.INFO_SEED_FINISHED' | translate"></Label>
+            <Button class="btn btn-primary btn-active action-button fa" [isEnabled]="seed.length >= seedLimit" [text]="('CREATE.NEXT' | translate) + ' &#xf18e;'" (tap)="onTapSeedNext($event)"></Button>
+        </StackLayout>
+    </StackLayout>
+</StackLayout>

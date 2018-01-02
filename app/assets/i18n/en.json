@@ -97,6 +97,7 @@
         "BALANCE": "Balance",
         "CONTACTS": "Contacts",
         "FEE": "Fee",
+        "FIAT": "FIAT Amount",
         "MESSAGE": "Message",
         "PIN_INPUT_HINT": "Pin",
         "RECIPIENT": "Recipient",

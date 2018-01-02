@@ -1,0 +1,14 @@
+@import '../../../app-variables';
+
+.possibilities {
+    width: 100%;
+    margin-left: 7;
+    height: 70;
+    text-align: center;
+}
+
+.possibility-button {
+    margin: 2;
+    text-transform: lowercase;
+    height: $btn-height;
+}

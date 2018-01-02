@@ -1,0 +1,16 @@
+<StackLayout>
+    <StackLayout class="info-container" orientation="vertical">
+        <StackLayout orientation="vertical">
+            <Label class="top text-view-label fa" text="&#xf05a;"></Label>
+            <Label class="bottom" textWrap="true" [text]="'CREATE.INFO_STEP_THREE' | translate"></Label>
+        </StackLayout>
+    </StackLayout>
+
+    <StackLayout class="body-container m-b-15" orientation="vertical">
+        <Label class="solo" [text]="'CREATE.INFO_STEP_THREE_ACTION' | translate:wordnumber"></Label>
+        <StackLayout class="possibilities" orientation="horizontal">
+            <Button *ngFor="let possibility of retypePassPhrase" class="btn btn-primary btn-active possibility-button" [text]="possibility" (tap)="onTapPossibility($event)"></Button>
+        </StackLayout>
+        <TextField class="input" [text]="try" [hint]="'CREATE.POSSIBILITY_INPUT_HINT' | translate:wordnumber" (textChange)="onChange($event)"></TextField>
+    </StackLayout>
+</StackLayout>

@@ -19,7 +19,7 @@ export class PassPhraseGenerator {
         this.seed = [];
     }
 
-	public generatePassPhrase(): string {
+	public generatePassPhrase(): string[] {
         // seed with given seed if seed was given, yep
         this.seed.map(element => seedrandom(element, { "entropy": true, "global":true }));
 
@@ -30,7 +30,7 @@ export class PassPhraseGenerator {
 			words.push(PassPhraseGenerator.words[number]);
 		}
         // return concatenated string
-        return words.join(" ");
+        return words;
 	}
 
 	public reSeed(seed) {

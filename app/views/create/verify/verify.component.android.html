@@ -1,0 +1,17 @@
+<StackLayout>
+    <StackLayout class="info-container" orientation="vertical">
+        <StackLayout orientation="vertical">
+            <Label class="top text-view-label fa" text="&#xf05a;"></Label>
+            <Label class="bottom" textWrap="true" [text]="'CREATE.INFO_STEP_FOUR' | translate"></Label>
+        </StackLayout>
+    </StackLayout>
+
+    <StackLayout orientation="vertical">
+        <StackLayout class="body-container" orientation="vertical">
+            <TextField class="input" [(ngModel)]="pin" [hint]="'CREATE.PIN_INPUT_HINT' | translate" keyboardType="number" returnKeyType="done"></TextField>
+        </StackLayout>
+        <StackLayout orientation="vertical">
+            <Button class="btn btn-primary btn-active action-button fa" [text]="('CREATE.DONE' | translate) + ' &#xf00c;'" (tap)="onTapDone($event)"></Button>
+        </StackLayout>
+    </StackLayout>
+</StackLayout>

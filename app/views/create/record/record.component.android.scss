@@ -1,0 +1,13 @@
+@import '../../../app-variables';
+
+.chip {
+    display: inline-block;
+    padding: 0 8;
+    margin: 10 2 10 2;
+    height: 38;
+    width: 50%;
+    font-size: 24;
+    line-height: 8;
+    border-radius: 7;
+    background-color: $light-gray;
+}
