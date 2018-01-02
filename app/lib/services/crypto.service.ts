@@ -9,6 +9,7 @@ import { BurstAddress, Keys } from "../model";
 
 let CryptoJS = require("crypto-js");
 let BN = require('bn.js');
+let pako = require('pako');
 
 @Injectable()
 export class CryptoService {
@@ -115,15 +116,12 @@ export class CryptoService {
         return new Promise((resolve, reject) => {
             this.decryptAES(encryptedPrivateKey, pinHash)
                 .then(privateKey => {
-                    console.log(privateKey)
-                    console.log(recipientPublicKey)
                     // generate shared key
                     let sharedKey =
                         ECKCDSA.sharedkey(
                             Converter.convertHexStringToByteArray(privateKey),
                             Converter.convertHexStringToByteArray(recipientPublicKey)
                         );
-                    console.log("s1: " + Converter.convertByteArrayToHexString(sharedKey))
                     // Create random nonce
                     let random_bytes = CryptoJS.lib.WordArray.random(32);
                     let r_nonce = Converter.convertWordArrayToUint8Array(random_bytes);
@@ -133,9 +131,10 @@ export class CryptoService {
                     }
                     // hash shared key
                     let key = CryptoJS.SHA256(Converter.convertByteArrayToWordArray(sharedKey))
-                    //console.log(key.toString())
+                    // compress
+                    let compressedNote = pako.gzip(new Uint8Array(Converter.convertStringToByteArray(note)))
                     // ENCRYPT
-                    let message = CryptoJS.AES.encrypt(note, key.toString()).toString()
+                    let message = CryptoJS.AES.encrypt(compressedNote, key.toString()).toString()
                     // Uint 8 to hex
                     let nonce = random_bytes.toString(CryptoJS.enc.Hex)
                     // return encrypted pair
@@ -151,15 +150,12 @@ export class CryptoService {
         return new Promise((resolve, reject) => {
             this.decryptAES(encryptedPrivateKey, pinHash)
                 .then(privateKey => {
-                    console.log(privateKey)
-                    console.log(senderPublicKey)
                     // generate shared key
                     let sharedKey =
                         ECKCDSA.sharedkey(
                             Converter.convertHexStringToByteArray(privateKey),
                             Converter.convertHexStringToByteArray(senderPublicKey)
                         );
-                    console.log("s2: " + Converter.convertByteArrayToHexString(sharedKey))
                     // convert nonce to uint8array
                     let nonce_array = Converter.convertWordArrayToUint8Array(CryptoJS.enc.Hex.parse(nonce));
                     // combine
@@ -168,9 +164,10 @@ export class CryptoService {
                     }
                     // hash shared key
                     let key = CryptoJS.SHA256(Converter.convertByteArrayToWordArray(sharedKey))
-                    //console.log(key.toString())
                     // DECRYPT
-                    let note = CryptoJS.AES.decrypt(encryptedNote, key.toString()).toString(CryptoJS.enc.Utf8);
+                    let compressedNote = CryptoJS.AES.decrypt(encryptedNote, key.toString()).toString(CryptoJS.enc.Utf8);
+                    // Decompress
+                    let note = Converter.convertByteArrayToString(pako.inflate(new Uint8Array(compressedNote)))
                     // return decrypted note
                     resolve(note);
                 })

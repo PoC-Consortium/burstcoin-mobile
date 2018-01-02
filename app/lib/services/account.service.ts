@@ -262,7 +262,6 @@ export class AccountService {
             requestOptions.params = params;
             return this.http.get(this.nodeUrl, requestOptions).timeout(this.timeout).toPromise()
                 .then(response => {
-                    console.log(JSON.stringify(response.json()))
                     if (response.json().publicKey != undefined) {
                         let publicKey = response.json().publicKey;
                         resolve(response.json().publicKey);
