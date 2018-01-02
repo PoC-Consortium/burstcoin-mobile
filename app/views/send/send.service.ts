@@ -101,10 +101,9 @@ export class SendService {
                         id => {
                             this.accountService.getAccountPublicKey(id).then(
                                 publicKey => {
-                                    console.log(publicKey)
                                     this.cryptoService.encryptNote(this.message, keys.agreementPrivateKey, this.accountService.hashPinEncryption(pin), publicKey).then(encrypted => {
-                                        transaction.attachment.message = encrypted.message;
-                                        transaction.attachment.nonce = encrypted.nonce;
+                                        transaction.attachment.message = encrypted.m;
+                                        transaction.attachment.nonce = encrypted.n;
                                         resolve(transaction)
                                     })
                                 }).catch(error => {

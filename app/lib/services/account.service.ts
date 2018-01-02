@@ -285,9 +285,9 @@ export class AccountService {
             params.set("deadline", "1440");
             if (transaction.attachment != undefined) {
                 if (transaction.attachment.messageIsEncrypted) {
-                    params.set("encryptedMessageData", transaction.attachment.message)
-                    params.set("encryptedMessageNonce", transaction.attachment.nonce)
-                    params.set("messageToEncryptIsText", String(transaction.attachment.messageIsText))
+                    params.set("encryptedMessageData", transaction.attachment.message);
+                    params.set("encryptedMessageNonce", transaction.attachment.nonce);
+                    params.set("messageToEncryptIsText", String(transaction.attachment.messageIsText));
                 } else {
                     params.set("message", transaction.attachment.message)
                     params.set("messageIsText", String(transaction.attachment.messageIsText))
@@ -299,6 +299,7 @@ export class AccountService {
             // request 'sendMoney' to burst node
             return this.http.post(this.nodeUrl, {}, requestOptions).timeout(this.timeout).toPromise()
                 .then(response => {
+                    console.log(JSON.stringify(response.json()))
                     if (response.json().unsignedTransactionBytes != undefined) {
                         // get unsigned transactionbytes
                         unsignedTransactionHex = response.json().unsignedTransactionBytes;

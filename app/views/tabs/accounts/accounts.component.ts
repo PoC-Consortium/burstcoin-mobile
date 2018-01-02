@@ -53,11 +53,10 @@ export class AccountsComponent implements OnInit {
                 this.accounts = accounts;
                 /*
                 if (accounts.length >= 2) {
-                    this.cryptoService.encryptNote("test note", accounts[1].keys.publicKey, accounts[0].keys.agreementPrivateKey, this.accountService.hashPinEncryption("111111")).then(
+                    this.cryptoService.encryptNote("test note", accounts[0].keys.agreementPrivateKey, this.accountService.hashPinEncryption("111111"), accounts[1].keys.publicKey).then(
                         keys => {
                             console.log(keys.m)
-                            console.log(keys.n)
-                            this.cryptoService.decryptNote(keys.m, keys.n, accounts[0].keys.publicKey, accounts[1].keys.agreementPrivateKey, this.accountService.hashPinEncryption("111111")).then(note => {
+                            this.cryptoService.decryptNote(keys.m, keys.n, accounts[1].keys.agreementPrivateKey, this.accountService.hashPinEncryption("111111"), accounts[0].keys.publicKey).then(note => {
                                 console.log(note)
                             })
                         }

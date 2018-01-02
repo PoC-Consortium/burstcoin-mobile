@@ -130,13 +130,11 @@ export class CryptoService {
                         sharedKey[i] ^= r_nonce[i];
                     }
                     // hash shared key
-                    let key = CryptoJS.SHA256(Converter.convertByteArrayToWordArray(sharedKey))
-                    // compress
-                    let compressedNote = pako.gzip(new Uint8Array(Converter.convertStringToByteArray(note)))
+                    let key = CryptoJS.SHA256(Converter.convertByteArrayToWordArray(sharedKey));
                     // ENCRYPT
-                    let message = CryptoJS.AES.encrypt(compressedNote, key.toString()).toString()
+                    let message = CryptoJS.enc.Base64.parse(CryptoJS.AES.encrypt(note, key.toString()).toString()).toString(CryptoJS.enc.Hex);
                     // Uint 8 to hex
-                    let nonce = random_bytes.toString(CryptoJS.enc.Hex)
+                    let nonce = random_bytes.toString(CryptoJS.enc.Hex);
                     // return encrypted pair
                     resolve({ m: message, n: nonce})
                 })
@@ -146,7 +144,7 @@ export class CryptoService {
     /*
     * Decrypt a note attached to transaction
     */
-    public decryptNote(encryptedNote: string, nonce: string, senderPublicKey: string, encryptedPrivateKey: string, pinHash: string): Promise<any> {
+    public decryptNote(encryptedNote: string, nonce: string, encryptedPrivateKey: string, pinHash: string, senderPublicKey: string): Promise<any> {
         return new Promise((resolve, reject) => {
             this.decryptAES(encryptedPrivateKey, pinHash)
                 .then(privateKey => {
@@ -165,9 +163,7 @@ export class CryptoService {
                     // hash shared key
                     let key = CryptoJS.SHA256(Converter.convertByteArrayToWordArray(sharedKey))
                     // DECRYPT
-                    let compressedNote = CryptoJS.AES.decrypt(encryptedNote, key.toString()).toString(CryptoJS.enc.Utf8);
-                    // Decompress
-                    let note = Converter.convertByteArrayToString(pako.inflate(new Uint8Array(compressedNote)))
+                    let note = CryptoJS.AES.decrypt(CryptoJS.enc.Hex.parse(encryptedNote).toString(CryptoJS.enc.Base64), key.toString()).toString(CryptoJS.enc.Utf8);
                     // return decrypted note
                     resolve(note);
                 })
