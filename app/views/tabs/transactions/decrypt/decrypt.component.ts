@@ -19,6 +19,7 @@ export class DecryptComponent implements OnInit {
 
     pin: string;
     decrypted: string;
+    decryptError: boolean;
     transaction: Transaction;
     account: Account;
 
@@ -32,6 +33,7 @@ export class DecryptComponent implements OnInit {
     ) {
         this.transaction = params.context;
         this.decrypted = "-"
+        this.decryptError = false;
         this.page.on("unloaded", () => {
             this.params.closeCallback();
         });
@@ -44,15 +46,32 @@ export class DecryptComponent implements OnInit {
     }
 
     public onTapOk() {
-        let pk: string;
-        if (this.transaction.recipientPublicKey == this.account.keys.publicKey) {
-            pk = this.transaction.senderPublicKey
+        let id: string;
+        if (this.transaction.recipientId == this.account.id) {
+            id = this.transaction.senderId
         } else {
-            pk = this.transaction.recipientPublicKey
+            id = this.transaction.recipientId
         }
-        let em: EncryptedMessage = <EncryptedMessage> this.transaction.attachment;
-        this.cryptoService.decryptNote(em.data, em.nonce, this.account.keys.agreementPrivateKey, this.accountService.hashPinEncryption(this.pin), pk).then(note => {
-            this.decrypted = note;
-        })
+        let em: EncryptedMessage = <EncryptedMessage>this.transaction.attachment;
+        if (this.accountService.checkPin(this.pin)) {
+            this.accountService.getAccountPublicKey(id).then(publicKey => {
+                this.cryptoService.decryptNote(em.data, em.nonce, this.account.keys.agreementPrivateKey, this.accountService.hashPinEncryption(this.pin), publicKey).then(note => {
+                    if (note != undefined && note != "") {
+                        this.decrypted = note;
+                    } else {
+                        this.decryptError = true
+                        this.translateService.get('TABS.HISTORY.DECRYPT_IMPOSSIBLE').subscribe((res: string) => {
+                            this.decrypted = res
+                        });
+                    }
+                }).catch(error => {
+                    this.decryptError = true
+                    this.translateService.get('TABS.HISTORY.DECRYPT_IMPOSSIBLE').subscribe((res: string) => {
+                        this.decrypted = res
+                    });
+                })
+            })
+
+        }
     }
 }

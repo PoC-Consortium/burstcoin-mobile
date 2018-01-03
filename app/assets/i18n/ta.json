@@ -59,6 +59,7 @@
         "HISTORY": {
             "TITLE": "வரலாறு",
             "DECRYPT": "Decrypt",
+            "DECRYPT_IMPOSSIBLE": "Could not be decrypted!",
             "PIN_INPUT_HINT": "ரகசிய எண்"
         },
         "SETTINGS": {

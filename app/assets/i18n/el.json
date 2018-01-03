@@ -58,6 +58,7 @@
         "HISTORY": {
             "TITLE": "Ιστορικό",
             "DECRYPT": "Decrypt",
+            "DECRYPT_IMPOSSIBLE": "Could not be decrypted!",
             "PIN_INPUT_HINT": "PIN"
         },
         "SETTINGS": {

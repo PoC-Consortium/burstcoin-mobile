@@ -2,12 +2,11 @@
     <StackLayout class="page-content">
         <StackLayout class="modal-container">
             <StackLayout class="body-container">
-                <Label class="solo fa" [text]="'&#xf067; ' + ('TABS.HISTORY.DECRYPT' | translate)"></Label>
                 <GridLayout columns="auto, *" rows="auto, auto, auto">
                     <Label col="0" row="0" class="fa p-b-5 p-r-5 text-center vertical-top" text="&#xf003;"></Label>
                     <Label col="1" row="0" class="fa p-b-5 p-r-5 text-left vertical-center" textWrap="true" [text]="transaction.attachment.data"></Label>
                     <Label col="0" row="1" class="fa p-b-5 p-r-5 text-center vertical-top" text="&#xf09c;"></Label>
-                    <Label col="1" row="1" class="fa p-b-5 p-r-5 text-left vertical-center" textWrap="true" [text]="decrypted"></Label>
+                    <Label col="1" row="1" class="fa p-b-5 p-r-5 text-left vertical-center" [ngClass]="{'error': decryptError}" textWrap="true" [text]="decrypted"></Label>
                 </GridLayout>
                 <TextField class="input" [(ngModel)]="pin" [hint]="'TABS.HISTORY.PIN_INPUT_HINT' | translate" keyboardType="number" returnKeyType="done" secure="true"></TextField>
                 <Button class="btn btn-primary btn-active action-button fa" text="&#xf05d;" (tap)="onTapOk()"></Button>

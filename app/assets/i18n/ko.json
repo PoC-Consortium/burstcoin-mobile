@@ -59,6 +59,7 @@
         "HISTORY": {
             "TITLE": "히스토리",
             "DECRYPT": "Decrypt",
+            "DECRYPT_IMPOSSIBLE": "Could not be decrypted!",
             "PIN_INPUT_HINT": "핀"
         },
         "SETTINGS": {

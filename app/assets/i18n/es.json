@@ -58,6 +58,7 @@
         "HISTORY": {
             "TITLE": "Historial",
             "DECRYPT": "Decrypt",
+            "DECRYPT_IMPOSSIBLE": "Could not be decrypted!",
             "PIN_INPUT_HINT": "NIP"
         },
         "SETTINGS": {

@@ -59,6 +59,7 @@
         "HISTORY": {
             "TITLE": "Historie",
             "DECRYPT": "Entschlüsseln",
+            "DECRYPT_IMPOSSIBLE": "Kann nicht entschlüsselt werden!",
             "PIN_INPUT_HINT": "PIN"
         },
         "SETTINGS": {
