@@ -57,7 +57,9 @@
             "TITLE": "Balance"
         },
         "HISTORY": {
-            "TITLE": "History"
+            "TITLE": "History",
+            "DECRYPT": "Decrypt",
+            "PIN_INPUT_HINT": "Pin"
         },
         "SETTINGS": {
             "ABOUT": {

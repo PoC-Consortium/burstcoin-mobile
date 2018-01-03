@@ -57,7 +57,9 @@
             "TITLE": "शेष"
         },
         "HISTORY": {
-            "TITLE": "हिस्ट्री"
+            "TITLE": "हिस्ट्री",
+            "DECRYPT": "Decrypt",
+            "PIN_INPUT_HINT": "पिन"
         },
         "SETTINGS": {
             "ABOUT": {

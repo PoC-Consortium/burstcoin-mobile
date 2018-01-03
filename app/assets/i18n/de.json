@@ -57,7 +57,9 @@
             "TITLE": "Saldo"
         },
         "HISTORY": {
-            "TITLE": "Historie"
+            "TITLE": "Historie",
+            "DECRYPT": "Entschlüsseln",
+            "PIN_INPUT_HINT": "PIN"
         },
         "SETTINGS": {
             "ABOUT": {

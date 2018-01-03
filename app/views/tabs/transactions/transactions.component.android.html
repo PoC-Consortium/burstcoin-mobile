@@ -11,19 +11,27 @@
                 <Label *ngIf="item?.confirmed" col="4" row="2" class="fa confirmed-indicator p-b-5 text-right" text="&#xf00c;"></Label>
                 <Label *ngIf="!item?.confirmed" col="4" row="2" class="fa unconfirmed-indicator p-b-5 text-right" text="&#xf021;"></Label>
 
-                <Label *ngIf="item?.attachment?.message != undefined" col="0" row="3" colspan="4" class="fa p-b-5" [text]="'&#xf003; ' + item.attachment.message"></Label>
+                <Label *ngIf="item?.attachment?.type == 'message'" col="0" row="3" colspan="4" class="fa p-b-5" [text]="'&#xf003; ' + item.attachment.message"></Label>
             </GridLayout>
-            <GridLayout *ngIf="item?.recipientId != ownId" (tap)="onTap(item.id)" (doubleTap)="onDoubleTap(item.recipientAddress)" (longPress)="onLongPress(item.recipientAddress)" class="m-x-auto list-item" columns="auto, auto, auto, *, auto" rows="auto, auto, auto, auto">
-                <Label col="0" row="0" colspan="3" class="font-weight-italic fa p-b-5 amount" [text]="item.amountNQT + ' BURST / ' + marketService.getPriceFiatCurrency(item.amountNQT, 2)"></Label>
-                <Label col="4" row="0" class="transaction-label-out fa" text="&#xf077;"></Label>
+            <GridLayout *ngIf="item?.recipientId != ownId" (tap)="onTap(item.id)" (doubleTap)="onDoubleTap(item.recipientAddress)" (longPress)="onLongPress(item.recipientAddress)" class="m-x-auto list-item" columns="auto, auto, auto, auto, *, auto" rows="auto, auto, auto, auto">
+                <Label col="0" row="0" colspan="5" class="font-weight-italic fa p-b-5 amount" [text]="item.amountNQT + ' BURST / ' + marketService.getPriceFiatCurrency(item.amountNQT, 2)"></Label>
+                <Label col="5" row="0" class="transaction-label-out fa" text="&#xf077;"></Label>
 
-                <Label col="0" row="1" colspan="5" class="fa p-b-5 address" [text]="'&#xf2bc; ' + item.recipientAddress"></Label>
+                <Label col="0" row="1" class="fa p-b-5 p-r-5 text-center vertical-center" text="&#xf2bc;"></Label>
+                <Label col="1" row="1" colspan="4" class="p-b-5 address vertical-center" [text]="item.recipientAddress"></Label>
 
-                <Label col="0" row="2" colspan="3" class="fa p-b-5" [text]="'&#xf017; ' + (convertTimestamp(item.timestamp) | date: 'dd.MM.yyyy HH:mm:ss')"></Label>
-                <Label *ngIf="item?.confirmed" col="4" row="2" class="fa confirmed-indicator p-b-5 text-right" text="&#xf00c;"></Label>
-                <Label *ngIf="!item?.confirmed" col="4" row="2" class="fa unconfirmed-indicator p-b-5 text-right" text="&#xf021;"></Label>
+                <Label col="0" row="2" class="fa p-b-5 p-r-5 text-center vertical-center" text="&#xf017;"></Label>
+                <Label col="1" row="2" colspan="4" class="p-b-5 vertical-center" [text]="(convertTimestamp(item.timestamp) | date: 'dd.MM.yyyy HH:mm:ss')"></Label>
 
-                <Label *ngIf="item?.attachment?.message != undefined" col="0" row="3" colspan="4" class="fa p-b-5" [text]="'&#xf003; ' + item.attachment.message"></Label>
+                <Label *ngIf="item?.confirmed" col="5" row="2" rowspan="2" class="fa confirmed-indicator p-b-5 text-right vertical-bottom" text="&#xf00c;"></Label>
+                <Label *ngIf="!item?.confirmed" col="5" row="2" rowspan="2" class="fa unconfirmed-indicator p-b-5 text-right vertical-bottom" text="&#xf021;"></Label>
+
+                <Label *ngIf="item?.attachment?.type == 'message'" col="0" row="3" class="fa p-b-5 p-r-5 text-center vertical-center" text="&#xf003;"></Label>
+                <Label *ngIf="item?.attachment?.type == 'message'" col="1" row="3" colspan="4" class="p-b-5 vertical-center" textWrap="true" [text]="item.attachment.message"></Label>
+
+                <Label *ngIf="item?.attachment?.type == 'encrypted_message'" col="0" row="3" class="fa p-b-5 p-r-5 text-center vertical-center" text="&#xf003;" (tap)="onTapDecrypt(item)"></Label>
+                <Label *ngIf="item?.attachment?.type == 'encrypted_message'" col="1" row="3" class="fa p-b-5 p-r-5 text-center vertical-center" textWrap="true" [text]="formatRawEncryptedMessage(item?.attachment?.data)" (tap)="onTapDecrypt(item)"></Label>
+                <Label *ngIf="item?.attachment?.type == 'encrypted_message'" col="2" row="3" class="fa p-b-5 p-r-5 text-center vertical-center" text="&#xf023;" (tap)="onTapDecrypt(item)"></Label>
         </GridLayout>
         </StackLayout>
     </ng-template>

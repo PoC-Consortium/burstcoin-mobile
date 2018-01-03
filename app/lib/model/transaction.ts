@@ -2,7 +2,7 @@
     Copyright 2017 icewave.org
 */
 
-import { Attachment } from "./attachment"
+import { Attachment, EncryptedMessage, Message } from "./attachment"
 
 export class Transaction {
     id: string;
@@ -62,6 +62,13 @@ export class Transaction {
         this.height = data.height || 0;
         this.blockTimestamp = data.blockTimestamp || 0;
 
-        this.attachment = data.attachment || undefined;
+        // message attachment
+        if (data.attachment != undefined && data.attachment.message != undefined) {
+            this.attachment = new Message(data.attachment);
+        }
+        // encryptedMessage attachment
+        if (data.attachment != undefined && data.attachment.encryptedMessage != undefined) {
+            this.attachment = new EncryptedMessage(data.attachment.encryptedMessage)
+        }
     }
 }

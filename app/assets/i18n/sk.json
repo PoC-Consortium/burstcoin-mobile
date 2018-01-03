@@ -57,7 +57,9 @@
             "TITLE": "Zostatok"
         },
         "HISTORY": {
-            "TITLE": "História"
+            "TITLE": "História",
+            "DECRYPT": "Decrypt",
+            "PIN_INPUT_HINT": "PIN"
         },
         "SETTINGS": {
             "ABOUT": {

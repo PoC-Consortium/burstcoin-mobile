@@ -8,7 +8,7 @@ import { RouterExtensions } from "nativescript-angular/router";
 import { device } from "platform";
 import { Observable, ReplaySubject } from 'rxjs/Rx';
 
-import { Account, BurstAddress, Currency, HttpError, Keys, Settings, Transaction } from "../model";
+import { Account, BurstAddress, Currency, EncryptedMessage, HttpError, Keys, Message, Settings, Transaction } from "../model";
 import { NoConnectionError, UnknownAccountError } from "../model/error";
 import { CryptoService, DatabaseService, NotificationService} from "./";
 
@@ -284,13 +284,15 @@ export class AccountService {
             params.set("publicKey", transaction.senderPublicKey);
             params.set("deadline", "1440");
             if (transaction.attachment != undefined) {
-                if (transaction.attachment.messageIsEncrypted) {
-                    params.set("encryptedMessageData", transaction.attachment.message);
-                    params.set("encryptedMessageNonce", transaction.attachment.nonce);
-                    params.set("messageToEncryptIsText", String(transaction.attachment.messageIsText));
-                } else {
-                    params.set("message", transaction.attachment.message)
-                    params.set("messageIsText", String(transaction.attachment.messageIsText))
+                if (transaction.attachment.type == "encrypted_message") {
+                    let em: EncryptedMessage = <EncryptedMessage> transaction.attachment;
+                    params.set("encryptedMessageData", em.data);
+                    params.set("encryptedMessageNonce", em.nonce);
+                    params.set("messageToEncryptIsText", String(em.isText));
+                } else if (transaction.attachment.type == "message") {
+                    let m: Message = <Message> transaction.attachment;
+                    params.set("message", m.message)
+                    params.set("messageIsText", String(m.messageIsText))
                 }
             }
             let requestOptions = this.getRequestOptions();

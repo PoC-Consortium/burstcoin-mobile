@@ -57,7 +57,9 @@
             "TITLE": "Solde"
         },
         "HISTORY": {
-            "TITLE": "Historique"
+            "TITLE": "Historique",
+            "DECRYPT": "Decrypt",
+            "PIN_INPUT_HINT": "Pin"
         },
         "SETTINGS": {
             "ABOUT": {

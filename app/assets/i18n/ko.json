@@ -1,145 +1,147 @@
 {
-  "CREATE": {
-    "ACTION_BAR_TITLE": "새로운 계정 생성",
-    "DONE": "완료",
-    "GENERATE_AGAIN": "재생성",
-    "INFO_SEED": "탭 또는 스와이프하세요.",
-    "INFO_SEED_FINISHED": "시드 수집 완료.",
-    "INFO_STEP_ONE": "우선, 당신의 패스프레이즈의 생성을 위해 임의의 시드를 만드세요.",
-    "INFO_STEP_TWO": "이제, 당신의 패스프레이즈상의 12개의 단어들을 순서에 맞게 암기해야 합니다.",
-    "INFO_STEP_TWO_ACTION": "띄어쓰기로 구분된 아래 단어들을 받아 적으신 후, 이를 비밀에 부치십시오.",
-    "INFO_STEP_THREE": "당신의 패스프레이즈상의 단어들을 재입력하십시오.",
-    "INFO_STEP_THREE_ACTION": "단어 #{{value}} 를 입력한 후 선택하십시오.",
-    "INFO_STEP_FOUR": "당신의 계정에서 사용할 6자리 숫자의 핀 코드를 설정하십시오. 핀 코드는 외부 트랜잭션을 승인하는데 이용됩니다.",
-    "PIN_INPUT_HINT": "핀",
-    "POSSIBILITY_INPUT_HINT": "단어 #{{value}}",
-    "NEXT": "다음"
-  },
-  "IMPORT": {
-    "ACTION_BAR_TITLE": "기존 계정 정보 불러오기",
-    "ACTIVE_ACCOUNT": "계정 활성화",
-    "ACTIVE_ACCOUNT_DESCRIPTION": "활성된 계정은 완전한 기능을 수행합니다. 당신은 Burstcoins 를 수신하거나 송신할 수 있습니다. 게다가 당신의 잔액을 체크하거나 거래 기록을 확인할 수 있습니다.",
-    "ACTIVE_ACCOUNT_INPUT_HINT": "패스프레이즈",
-    "ACTIVE_ACCOUNT_PIN_INFO": "당신의 계정에서 사용할 6자리 숫자의 핀 코드를 설정하십시오. 핀 코드는 외부 트랜잭션을 승인하는데 이용됩니다.",
-    "DONE": "완료",
-    "IMPORT": "불러오기",
-    "INFO": "패스프레이즈를 입력함으로써 활성 계정을 불러오십시오. 아니면,  Burstcoin 어드레스를 입력함으로써 오프라인 계정을 불러오십시오.",
-    "NEXT": "다음",
-    "OFFLINE_ACCOUNT": "오프라인 계정",
-    "OFFLINE_ACCOUNT_DESCRIPTION": "오프라인 계정은 Burstcoins 를 다른 계정으로 송신할 수 없다는 점을 제외하고는 활성 계정과 동일한 기능을 수행합니다.",
-    "OFFLINE_ACCOUNT_INPUT_HINT": "BURST-XXXX-XXXX-XXXX-XXXXX",
-    "PIN_INPUT_HINT": "핀",
-    "SHOW": {
-      "QUESTION": "당신의 Burst 어드레스가 맞습니까?"
-    }
-  },
-  "TABS": {
-    "ACCOUNTS": {
-      "ACTIVATE": {
-        "ACTION_BAR_TITLE": "활성 계정",
+    "CREATE": {
+        "ACTION_BAR_TITLE": "새로운 계정 생성",
         "DONE": "완료",
-        "ENTER_PASSPHRASE": "계정 {{value}} 에  관한 패스프레이즈를 여기에 입력하십시오.",
-        "ENTER_PIN": "6자리 숫자의 핀코드를 설정하십시오.",
-        "PASSPHRASE_INPUT_HINT": "패스프레이즈",
+        "GENERATE_AGAIN": "재생성",
+        "INFO_SEED": "탭 또는 스와이프하세요.",
+        "INFO_SEED_FINISHED": "시드 수집 완료.",
+        "INFO_STEP_ONE": "우선, 당신의 패스프레이즈의 생성을 위해 임의의 시드를 만드세요.",
+        "INFO_STEP_TWO": "이제, 당신의 패스프레이즈상의 12개의 단어들을 순서에 맞게 암기해야 합니다.",
+        "INFO_STEP_TWO_ACTION": "띄어쓰기로 구분된 아래 단어들을 받아 적으신 후, 이를 비밀에 부치십시오.",
+        "INFO_STEP_THREE": "당신의 패스프레이즈상의 단어들을 재입력하십시오.",
+        "INFO_STEP_THREE_ACTION": "단어 #{{value}} 를 입력한 후 선택하십시오.",
+        "INFO_STEP_FOUR": "당신의 계정에서 사용할 6자리 숫자의 핀 코드를 설정하십시오. 핀 코드는 외부 트랜잭션을 승인하는데 이용됩니다.",
         "PIN_INPUT_HINT": "핀",
+        "POSSIBILITY_INPUT_HINT": "단어 #{{value}}",
         "NEXT": "다음"
-      },
-      "BALANCE": "잔액",
-      "CREATE": "만들기",
-      "IMPORT": "불러오기",
-      "REMOVE": "정말 이 계정을 삭제하길 원하십니까?",
-      "TITLE": "계정"
     },
-    "BALANCE": {
-      "ACTIVATE": "활성화",
-      "BALANCE": "잔액",
-      "SEND": "송신",
-      "TITLE": "잔액"
+    "IMPORT": {
+        "ACTION_BAR_TITLE": "기존 계정 정보 불러오기",
+        "ACTIVE_ACCOUNT": "계정 활성화",
+        "ACTIVE_ACCOUNT_DESCRIPTION": "활성된 계정은 완전한 기능을 수행합니다. 당신은 Burstcoins 를 수신하거나 송신할 수 있습니다. 게다가 당신의 잔액을 체크하거나 거래 기록을 확인할 수 있습니다.",
+        "ACTIVE_ACCOUNT_INPUT_HINT": "패스프레이즈",
+        "ACTIVE_ACCOUNT_PIN_INFO": "당신의 계정에서 사용할 6자리 숫자의 핀 코드를 설정하십시오. 핀 코드는 외부 트랜잭션을 승인하는데 이용됩니다.",
+        "DONE": "완료",
+        "IMPORT": "불러오기",
+        "INFO": "패스프레이즈를 입력함으로써 활성 계정을 불러오십시오. 아니면,  Burstcoin 어드레스를 입력함으로써 오프라인 계정을 불러오십시오.",
+        "NEXT": "다음",
+        "OFFLINE_ACCOUNT": "오프라인 계정",
+        "OFFLINE_ACCOUNT_DESCRIPTION": "오프라인 계정은 Burstcoins 를 다른 계정으로 송신할 수 없다는 점을 제외하고는 활성 계정과 동일한 기능을 수행합니다.",
+        "OFFLINE_ACCOUNT_INPUT_HINT": "BURST-XXXX-XXXX-XXXX-XXXXX",
+        "PIN_INPUT_HINT": "핀",
+        "SHOW": {
+            "QUESTION": "당신의 Burst 어드레스가 맞습니까?"
+        }
     },
-    "HISTORY": {
-      "TITLE": "히스토리"
+    "TABS": {
+        "ACCOUNTS": {
+            "ACTIVATE": {
+                "ACTION_BAR_TITLE": "활성 계정",
+                "DONE": "완료",
+                "ENTER_PASSPHRASE": "계정 {{value}} 에  관한 패스프레이즈를 여기에 입력하십시오.",
+                "ENTER_PIN": "6자리 숫자의 핀코드를 설정하십시오.",
+                "PASSPHRASE_INPUT_HINT": "패스프레이즈",
+                "PIN_INPUT_HINT": "핀",
+                "NEXT": "다음"
+            },
+            "BALANCE": "잔액",
+            "CREATE": "만들기",
+            "IMPORT": "불러오기",
+            "REMOVE": "정말 이 계정을 삭제하길 원하십니까?",
+            "TITLE": "계정"
+        },
+        "BALANCE": {
+            "ACTIVATE": "활성화",
+            "BALANCE": "잔액",
+            "SEND": "송신",
+            "TITLE": "잔액"
+        },
+        "HISTORY": {
+            "TITLE": "히스토리",
+            "DECRYPT": "Decrypt",
+            "PIN_INPUT_HINT": "핀"
+        },
+        "SETTINGS": {
+            "ABOUT": {
+                "ABOUT": "관하여",
+                "ASSOCIATION": "제휴 업체",
+                "DEVELOPED": "개발진",
+                "TWITTER": "우리의 프로젝트에 관한 업데이트 정보를 트위터를 통해 확인하세요!",
+                "VERSION": "버전"
+            },
+            "CURRENCY": {
+                "CURRENCY": "통화"
+            },
+            "DOCUMENTATION": {
+                "DOCUMENTATION": "문서"
+            },
+            "LANGUAGE": {
+                "LANGUAGE": "언어"
+            },
+            "NODE": {
+                "INFO": "Burst 노드는 Burst 네트워크와 교류하기 위해 사용됩니다.",
+                "NODE": "노드"
+            },
+            "SUPPORT": {
+                "CONTRIBUTION": "우리는 또한 비금적적 기여 인정하고 있습니다.",
+                "DONATE": "우리의 앱이 마음에 드셨나요? BURST 를 기부함으로써 우리를 지원하세요!",
+                "SUPPORT": "지원"
+            },
+            "TITLE": "설정"
+        }
     },
-    "SETTINGS": {
-      "ABOUT": {
-        "ABOUT": "관하여",
-        "ASSOCIATION": "제휴 업체",
-        "DEVELOPED": "개발진",
-        "TWITTER": "우리의 프로젝트에 관한 업데이트 정보를 트위터를 통해 확인하세요!",
-        "VERSION": "버전"
-      },
-      "CURRENCY": {
-        "CURRENCY": "통화"
-      },
-      "DOCUMENTATION": {
-        "DOCUMENTATION": "문서"
-      },
-      "LANGUAGE": {
-        "LANGUAGE": "언어"
-      },
-      "NODE": {
-        "INFO": "Burst 노드는 Burst 네트워크와 교류하기 위해 사용됩니다.",
-        "NODE": "노드"
-      },
-      "SUPPORT": {
-        "CONTRIBUTION": "우리는 또한 비금적적 기여 인정하고 있습니다.",
-        "DONATE": "우리의 앱이 마음에 드셨나요? BURST 를 기부함으로써 우리를 지원하세요!",
-        "SUPPORT": "지원"
-      },
-      "TITLE": "설정"
+    "SEND": {
+        "ACCEPT": "수락",
+        "ACTION_BAR_TITLE": "BURST 전송",
+        "ADD_CONTACT": "Add new contact",
+        "AMOUNT": "수량",
+        "BACK": "Back",
+        "BALANCE": "잔액",
+        "CONTACTS": "Contacts",
+        "FEE": "수수료",
+        "FIAT": "Fiat currency to BURST",
+        "MESSAGE": "Message",
+        "PIN_INPUT_HINT": "핀",
+        "RECIPIENT": "수령인",
+        "VERIFY": "검증"
+    },
+    "START": {
+        "CREATE": "만들기",
+        "IMPORT": "불러오기",
+        "INFO": "아직까지 계정이 생성되지 않음. 기존의 계정을 불러올지 새로운 계정을 만들지 선택하세요!"
+    },
+    "NOTIFICATIONS": {
+        "ADDRESS": "유효한 Burstcoin 어드레스를 입력하세요!",
+        "COPIED": "어드레스 {{value}} 가 클립보드에 복사되었습니다!",
+        "CONTACT_ADDED": "Contact added successfully!",
+        "DECIMAL_AMOUNT": "당신이 전송하고자 하는 BURST 수량을 십진법의 숫자로 입력해 주세요!",
+        "DECIMAL_FEE": "수수료로 지불할 (적어도 1) 십진법의 숫자를 입력해 주세요!",
+        "ENTER_SOMETHING": "임의의 값을 입력하세요!",
+        "EXCEED": "수량 및 수수료가 당신의 잔액을 초과합니다!",
+        "PIN": "6-자리 핀 숫자를 입력하세요!",
+        "REMOVE": "성공적으로 계정을 삭제하였습니다!",
+        "SELECTED": "선택된 계정: {{value}}",
+        "TRANSACTION": "트랜잭션 성공!",
+        "UPDATE_CURRENCY": "통화가 성공적으로 업데이트되었습니다!",
+        "UDPDATE_LANGUAGE": "언어가 성공적으로 업데이트되었습니다!",
+        "UPDATE_NODE": "노드가 성공적으로 업데이트되었습니다!",
+        "WRONG_PASSPHRASE": "잘못된 패스프레이즈값! 해당 패스프레이즈는 당신의 계정에 할당된 공개 키를 생성하지 않습니다!",
+        "WRONG_PIN": "해당 핀은 계정의 핀과 일치하지 않습니다!",
+        "ERRORS": {
+            "ACCOUNT_ID": "공개 키로부터 계정 ID 를 생성할 수 없습니다!",
+            "ADDRESS": "계정 ID 로부터 BURST 어드레스를 생성할 수 없습니다!",
+            "CONNECTION": "데이터를 불러오는 데 실패했습니다. 인터넷 연결을 확인하십시오!",
+            "CONTACT": "Failed to add new contact!",
+            "CURRENCY": "통화 업데이트 실패!",
+            "KEYPAIR": "패스프레이즈에 사용되는 키 쌍을 생성하는 데 실패했습니다!",
+            "LANGUAGE": "언어 변환에 실패했습니다!",
+            "NODE": "노드 업데이트 실패!",
+            "NO_PUBLIC_KEY": "Recipient has no public key yet! Sending of encrypted message not possible!",
+            "QR_CODE": "QR 코드를 스캔하는 데 실패했습니다!",
+            "REDIRECT": "전송 BURST 페이지를 여는 데 실패했습니다! 현재 계정이 활성화 되어있지 않습니다!",
+            "REMOVE": "계정을 삭제할 수 없습니다!",
+            "UPDATE": "계정 업데이트에 실패했습니다!",
+            "UNKNOWN_ACCOUNT": "식별되지 않은 계정입니다. 트랜잭션이 아직 수행되지 않았습니다!"
+        }
     }
-  },
-  "SEND": {
-    "ACCEPT": "수락",
-    "ACTION_BAR_TITLE": "BURST 전송",
-    "ADD_CONTACT": "Add new contact",
-    "AMOUNT": "수량",
-    "BACK": "Back",
-    "BALANCE": "잔액",
-    "CONTACTS": "Contacts",
-    "FEE": "수수료",
-    "FIAT": "Fiat currency to BURST",
-    "MESSAGE": "Message",
-    "PIN_INPUT_HINT": "핀",
-    "RECIPIENT": "수령인",
-    "VERIFY": "검증"
-  },
-  "START": {
-    "CREATE": "만들기",
-    "IMPORT": "불러오기",
-    "INFO": "아직까지 계정이 생성되지 않음. 기존의 계정을 불러올지 새로운 계정을 만들지 선택하세요!"
-  },
-  "NOTIFICATIONS": {
-    "ADDRESS": "유효한 Burstcoin 어드레스를 입력하세요!",
-    "COPIED": "어드레스 {{value}} 가 클립보드에 복사되었습니다!",
-    "CONTACT_ADDED": "Contact added successfully!",
-    "DECIMAL_AMOUNT": "당신이 전송하고자 하는 BURST 수량을 십진법의 숫자로 입력해 주세요!",
-    "DECIMAL_FEE": "수수료로 지불할 (적어도 1) 십진법의 숫자를 입력해 주세요!",
-    "ENTER_SOMETHING": "임의의 값을 입력하세요!",
-    "EXCEED": "수량 및 수수료가 당신의 잔액을 초과합니다!",
-    "PIN": "6-자리 핀 숫자를 입력하세요!",
-    "REMOVE": "성공적으로 계정을 삭제하였습니다!",
-    "SELECTED": "선택된 계정: {{value}}",
-    "TRANSACTION": "트랜잭션 성공!",
-    "UPDATE_CURRENCY": "통화가 성공적으로 업데이트되었습니다!",
-    "UDPDATE_LANGUAGE": "언어가 성공적으로 업데이트되었습니다!",
-    "UPDATE_NODE": "노드가 성공적으로 업데이트되었습니다!",
-    "WRONG_PASSPHRASE": "잘못된 패스프레이즈값! 해당 패스프레이즈는 당신의 계정에 할당된 공개 키를 생성하지 않습니다!",
-    "WRONG_PIN": "해당 핀은 계정의 핀과 일치하지 않습니다!",
-    "ERRORS": {
-      "ACCOUNT_ID": "공개 키로부터 계정 ID 를 생성할 수 없습니다!",
-      "ADDRESS": "계정 ID 로부터 BURST 어드레스를 생성할 수 없습니다!",
-      "CONNECTION": "데이터를 불러오는 데 실패했습니다. 인터넷 연결을 확인하십시오!",
-      "CONTACT":"Failed to add new contact!",
-      "CURRENCY": "통화 업데이트 실패!",
-      "KEYPAIR": "패스프레이즈에 사용되는 키 쌍을 생성하는 데 실패했습니다!",
-      "LANGUAGE": "언어 변환에 실패했습니다!",
-      "NODE": "노드 업데이트 실패!",
-      "NO_PUBLIC_KEY": "Recipient has no public key yet! Sending of encrypted message not possible!",
-      "QR_CODE": "QR 코드를 스캔하는 데 실패했습니다!",
-      "REDIRECT": "전송 BURST 페이지를 여는 데 실패했습니다! 현재 계정이 활성화 되어있지 않습니다!",
-      "REMOVE": "계정을 삭제할 수 없습니다!",
-      "UPDATE": "계정 업데이트에 실패했습니다!",
-      "UNKNOWN_ACCOUNT": "식별되지 않은 계정입니다. 트랜잭션이 아직 수행되지 않았습니다!"
-    }
-  }
 }

@@ -57,7 +57,9 @@
             "TITLE": "இருப்பு"
         },
         "HISTORY": {
-            "TITLE": "வரலாறு"
+            "TITLE": "வரலாறு",
+            "DECRYPT": "Decrypt",
+            "PIN_INPUT_HINT": "ரகசிய எண்"
         },
         "SETTINGS": {
             "ABOUT": {

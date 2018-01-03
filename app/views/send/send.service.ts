@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-import { Account, Attachment, BurstAddress, Keys, Transaction } from "../../lib/model";
+import { Account, Attachment, BurstAddress, EncryptedMessage, Keys, Message, Transaction } from "../../lib/model";
 import { AccountService, CryptoService } from "../../lib/services";
 
 @Injectable()
@@ -94,24 +94,28 @@ export class SendService {
             transaction.amountNQT = this.amount;
             transaction.feeNQT = this.fee;
             if (this.messageEnabled) {
-                transaction.attachment = new Attachment();
-                if (this.messageEncrypted) {
-                    transaction.attachment.messageIsEncrypted = this.messageEncrypted
+                if (this.messageEncrypted) { // encrypted message
+                    let em = new EncryptedMessage();
                     this.cryptoService.getAccountIdFromBurstAddress(this.recipient).then(
                         id => {
                             this.accountService.getAccountPublicKey(id).then(
                                 publicKey => {
                                     this.cryptoService.encryptNote(this.message, keys.agreementPrivateKey, this.accountService.hashPinEncryption(pin), publicKey).then(encrypted => {
-                                        transaction.attachment.message = encrypted.m;
-                                        transaction.attachment.nonce = encrypted.n;
+                                        em.data = encrypted.m;
+                                        em.nonce = encrypted.n;
+                                        em.isText = true
+                                        transaction.attachment = em
                                         resolve(transaction)
                                     })
                                 }).catch(error => {
                                     reject(error)
                                 })
                         })
-                } else {
-                    transaction.attachment.message = this.message;
+                } else { // message
+                    let m = new Message();
+                    m.message = this.message;
+                    m.messageIsText = true;
+                    transaction.attachment = m;
                     resolve(transaction);
                 }
             } else {

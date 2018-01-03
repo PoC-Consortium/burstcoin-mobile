@@ -57,7 +57,9 @@
             "TITLE": "Баланс"
         },
         "HISTORY": {
-            "TITLE": "История"
+            "TITLE": "История",
+            "DECRYPT": "Decrypt",
+            "PIN_INPUT_HINT": "ПИН"
         },
         "SETTINGS": {
             "ABOUT": {

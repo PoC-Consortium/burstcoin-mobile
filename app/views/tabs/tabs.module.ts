@@ -19,6 +19,7 @@ import { BalanceComponent } from "./balance/balance.component";
 import { ReceiveComponent } from "./balance/receive/receive.component";
 
 import { TransactionsComponent } from "./transactions/transactions.component";
+import { DecryptComponent } from "./transactions/decrypt/decrypt.component";
 
 import { SettingsComponent } from "./settings/settings.component";
 import { AboutComponent } from "./settings/about/about.component";
@@ -38,19 +39,20 @@ import { SharedModule } from "../../lib/shared.module";
         NativeScriptUIListViewModule
     ],
     declarations: [
-        TabsComponent,
-        BalanceComponent,
-        ReceiveComponent,
-        TransactionsComponent,
+        AboutComponent,
         AccountsComponent,
         AddComponent,
-        RemoveComponent,
-        SettingsComponent,
-        AboutComponent,
+        BalanceComponent,
         CurrencyComponent,
+        DecryptComponent,
         LanguageComponent,
         NodeComponent,
-        SupportComponent
+        ReceiveComponent,
+        RemoveComponent,
+        SettingsComponent,
+        SupportComponent,
+        TabsComponent,
+        TransactionsComponent
     ],
     providers: [
         ModalDialogService
@@ -62,6 +64,7 @@ import { SharedModule } from "../../lib/shared.module";
         AboutComponent,
         AddComponent,
         CurrencyComponent,
+        DecryptComponent,
         LanguageComponent,
         NodeComponent,
         RemoveComponent,

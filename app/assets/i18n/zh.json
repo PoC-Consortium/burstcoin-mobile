@@ -57,7 +57,9 @@
             "TITLE": "余额"
         },
         "HISTORY": {
-            "TITLE": "历史"
+            "TITLE": "历史",
+            "DECRYPT": "Decrypt",
+            "PIN_INPUT_HINT": "Pin"
         },
         "SETTINGS": {
             "ABOUT": {
