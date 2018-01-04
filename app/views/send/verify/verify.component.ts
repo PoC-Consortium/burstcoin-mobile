@@ -24,6 +24,7 @@ export class VerifyComponent implements OnInit {
     account: Account;
     pin: string;
     total: number;
+    loading: boolean;
 
     constructor(
         private accountService: AccountService,
@@ -46,6 +47,7 @@ export class VerifyComponent implements OnInit {
 
     public onTapAccept() {
         if (this.accountService.checkPin(this.pin)) {
+            this.loading = true;
             this.sendService.createTransaction(this.account.keys, this.pin).then(transaction => {
                 this.accountService.doTransaction(transaction, this.account.keys.signPrivateKey, this.pin)
                     .then(transaction => {
@@ -53,11 +55,13 @@ export class VerifyComponent implements OnInit {
                             this.notificationService.info(res);
                         });
                         this.sendService.reset();
-                        this.router.navigate(['/tabs']);
+                        this.router.navigate(['/tabs'], { clearHistory: true });
                     }).catch(error => {
+                        this.loading = false;
                         this.notificationService.info(error);
                     })
             }).catch(error => {
+                this.loading = false;
                 if (error instanceof UnknownAccountError) {
                     this.translateService.get('NOTIFICATIONS.ERRORS.NO_PUBLIC_KEY').subscribe((res: string) => {
                         this.notificationService.info(res);

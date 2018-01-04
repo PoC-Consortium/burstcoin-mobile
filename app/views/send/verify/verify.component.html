@@ -25,13 +25,18 @@
                 </GridLayout>
             </StackLayout>
             <StackLayout class="hr-light"></StackLayout>
-            <StackLayout class="body-container m-b-5" orientation="vertical">
-                <TextField class="input" [(ngModel)]="pin" [hint]="'SEND.PIN_INPUT_HINT' | translate" keyboardType="number" returnKeyType="done" secure="true"></TextField>
+            <StackLayout *ngIf="!loading">
+                <StackLayout class="body-container m-b-5" orientation="vertical">
+                    <TextField class="input" [(ngModel)]="pin" [hint]="'SEND.PIN_INPUT_HINT' | translate" keyboardType="number" returnKeyType="done" secure="true"></TextField>
+                </StackLayout>
+                <GridLayout class="m-b-20" columns="*,*" rows="auto">
+                    <Button col="0" class="btn btn-primary btn-active action-button fa" [text]="('SEND.BACK' | translate) +  ' &#xf112;'" (tap)="onTapBack($event)"></Button>
+                    <Button col="1" class="btn btn-primary btn-active action-button fa" [text]="('SEND.ACCEPT' | translate) +  ' &#xf05d;'" (tap)="onTapAccept($event)"></Button>
+                </GridLayout>
             </StackLayout>
-            <GridLayout class="m-b-20" columns="*,*" rows="auto">
-                <Button col="0" class="btn btn-primary btn-active action-button fa" [text]="('SEND.BACK' | translate) +  ' &#xf112;'" (tap)="onTapBack($event)"></Button>
-                <Button col="1" class="btn btn-primary btn-active action-button fa" [text]="('SEND.ACCEPT' | translate) +  ' &#xf05d;'" (tap)="onTapAccept($event)"></Button>
-            </GridLayout>
+            <StackLayout *ngIf="loading" class="p-10" orientation="vertical">
+                <ActivityIndicator busy="true" width="100" height="100" class="activity-indicator"></ActivityIndicator>
+            </StackLayout>
         </StackLayout>
     </StackLayout>
 </StackLayout>

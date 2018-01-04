@@ -27,8 +27,8 @@ import { CreateService } from "../create.service"
 })
 export class VerifyComponent {
 
-
     private pin: string
+    private loading: boolean
 
     constructor(
         private accountService: AccountService,
@@ -39,17 +39,17 @@ export class VerifyComponent {
     ) {}
 
     public onTapDone(args: EventData) {
-        //  TODO loading
         if (this.accountService.isPin(this.pin)) {
+            this.loading = true
             this.accountService.createActiveAccount(this.createService.getCompletePassphrase(), this.pin)
                 .then(account => {
                     this.accountService.selectAccount(account)
                         .then(account => {
-                            this.router.navigate(['tabs']);
+                            this.router.navigate(['tabs'], { clearHistory: true });
                         })
                 })
                 .catch(err => {
-                    this.router.navigate(['start']);
+                    this.router.navigate(['start'], { clearHistory: true });
                 })
         } else {
             this.translateService.get("NOTIFICATIONS.PIN").subscribe((res: string) => {

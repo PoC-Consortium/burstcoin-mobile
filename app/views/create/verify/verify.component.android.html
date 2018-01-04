@@ -6,12 +6,16 @@
         </StackLayout>
     </StackLayout>
 
-    <StackLayout orientation="vertical">
+    <StackLayout *ngIf="!loading" orientation="vertical">
         <StackLayout class="body-container" orientation="vertical">
-            <TextField class="input" [(ngModel)]="pin" [hint]="'CREATE.PIN_INPUT_HINT' | translate" keyboardType="number" returnKeyType="done"></TextField>
+            <TextField class="input" [(ngModel)]="pin" [hint]="'CREATE.PIN_INPUT_HINT' | translate" keyboardType="number" returnKeyType="done" secure="true"></TextField>
         </StackLayout>
         <StackLayout orientation="vertical">
             <Button class="btn btn-primary btn-active action-button fa" [text]="('CREATE.DONE' | translate) + ' &#xf00c;'" (tap)="onTapDone($event)"></Button>
         </StackLayout>
+    </StackLayout>
+
+    <StackLayout *ngIf="loading" class="p-10" orientation="vertical">
+        <ActivityIndicator busy="true" width="100" height="100" class="activity-indicator"></ActivityIndicator>
     </StackLayout>
 </StackLayout>
