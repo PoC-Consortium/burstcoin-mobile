@@ -13,6 +13,9 @@ import { Account } from "../../lib/model";
 import { UnknownAccountError } from "../../lib/model/error";
 import { AccountService, DatabaseService, NotificationService, TabsService } from "../../lib/services";
 
+import * as elementRegistryModule from 'nativescript-angular/element-registry';
+elementRegistryModule.registerElement("CardView", () => require("nativescript-cardview").CardView);
+
 @Component({
     selector: "TabsComponent",
     moduleId: module.id,

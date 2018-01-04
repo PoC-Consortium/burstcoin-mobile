@@ -1,8 +1,26 @@
 @import '../../../app-variables';
 
+.list-item {
+    margin: 5;
+}
+
+.account-card {
+    padding:0;
+    background-color: $background-light;
+}
+
 .icon-button {
     width: 50;
     height: 50;
+    margin: 10 0 0 0;
+}
+
+.vertical-center {
+    vertical-align: center;
+}
+
+.vertical-bottom {
+    vertical-align: bottom;
 }
 
 .active-indicator {

@@ -1,5 +1,9 @@
 @import '../../../app-variables';
 
+.list-item {
+    margin: 5;
+}
+
 .transaction-label-in {
     font-size: 16;
     color: $success-light;
@@ -12,6 +16,11 @@
     color: $error-light;
     text-align: right;
     vertical-align: middle;
+}
+
+.transaction-card {
+    padding:0;
+    background-color: $background-light;
 }
 
 .address {
