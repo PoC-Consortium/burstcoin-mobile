@@ -1,7 +1,7 @@
 <RadListView [items]="transactions" pullToRefresh="true" (pullToRefreshInitiated)="refresh($event)" separatorColor="transparent">
     <ng-template tkListItemTemplate let-item="item" let-i="index">
         <StackLayout>
-            <CardView class="transaction-card" margin="10" elevation="5" radius="2">
+            <CardView class="transaction-card" margin="10" elevation="5" radius="3">
                 <GridLayout *ngIf="item?.recipientId == ownId" (tap)="onTap(item.id)" (doubleTap)="onDoubleTap(item.senderAddress)" (longPress)="onLongPress(item.senderAddress)" class="list-item" columns="auto, auto, auto, auto, *, auto" rows="auto, auto, auto, auto">
                     <Label col="0" row="0" colspan="5" class="font-weight-italic fa p-b-5 amount" [text]="item.amountNQT + ' BURST / ' + marketService.getPriceFiatCurrency(item.amountNQT, 2)"></Label>
                     <Label col="5" row="0" class="transaction-label-in fa" text="&#xf077;"></Label>
