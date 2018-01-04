@@ -4,7 +4,8 @@
 
 import { Injectable } from "@angular/core";
 import { Http, Headers, RequestOptions, Response, URLSearchParams } from "@angular/http";
-import { Observable, BehaviorSubject } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Currency, HttpError } from "../model";
 import { NoConnectionError } from "../model/error";
 import { DatabaseService } from "./";
