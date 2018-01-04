@@ -55,7 +55,7 @@ export class DecryptComponent implements OnInit {
         let em: EncryptedMessage = <EncryptedMessage>this.transaction.attachment;
         if (this.accountService.checkPin(this.pin)) {
             this.accountService.getAccountPublicKey(id).then(publicKey => {
-                this.cryptoService.decryptNote(em.data, em.nonce, this.account.keys.agreementPrivateKey, this.accountService.hashPinEncryption(this.pin), publicKey).then(note => {
+                this.cryptoService.decryptMessage(em.data, em.nonce, this.account.keys.agreementPrivateKey, this.accountService.hashPinEncryption(this.pin), publicKey).then(note => {
                     if (note != undefined && note != "") {
                         this.decrypted = note;
                     } else {

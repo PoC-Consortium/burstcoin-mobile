@@ -100,7 +100,7 @@ export class SendService {
                         id => {
                             this.accountService.getAccountPublicKey(id).then(
                                 publicKey => {
-                                    this.cryptoService.encryptNote(this.message, keys.agreementPrivateKey, this.accountService.hashPinEncryption(pin), publicKey).then(encrypted => {
+                                    this.cryptoService.encryptMessage(this.message, keys.agreementPrivateKey, this.accountService.hashPinEncryption(pin), publicKey).then(encrypted => {
                                         em.data = encrypted.m;
                                         em.nonce = encrypted.n;
                                         em.isText = true

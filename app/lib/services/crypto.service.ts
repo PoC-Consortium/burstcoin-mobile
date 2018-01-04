@@ -110,9 +110,9 @@ export class CryptoService {
     }
 
     /*
-    * Encrypt a note attached to a transaction
+    * Encrypt a message attached to a transaction
     */
-    public encryptNote(note: string, encryptedPrivateKey: string, pinHash: string, recipientPublicKey: string): Promise<any> {
+    public encryptMessage(message: string, encryptedPrivateKey: string, pinHash: string, recipientPublicKey: string): Promise<any> {
         return new Promise((resolve, reject) => {
             this.decryptAES(encryptedPrivateKey, pinHash)
                 .then(privateKey => {
@@ -132,19 +132,21 @@ export class CryptoService {
                     // hash shared key
                     let key = CryptoJS.SHA256(Converter.convertByteArrayToWordArray(sharedKey));
                     // ENCRYPT
-                    let message = CryptoJS.AES.encrypt(note, key.toString()).toString();
+                    let messageB64 = CryptoJS.AES.encrypt(message, key.toString()).toString();
+                    // convert base 64 to hex due to node limitation
+                    let messageHex = CryptoJS.enc.Base64.parse(messageB64).toString(CryptoJS.enc.Hex);
                     // Uint 8 to hex
                     let nonce = random_bytes.toString(CryptoJS.enc.Hex);
                     // return encrypted pair
-                    resolve({ m: message, n: nonce})
+                    resolve({ m: messageHex, n: nonce })
                 })
-            })
+        })
     }
 
     /*
-    * Decrypt a note attached to transaction
+    * Decrypt a message attached to transaction
     */
-    public decryptNote(encryptedNote: string, nonce: string, encryptedPrivateKey: string, pinHash: string, senderPublicKey: string): Promise<any> {
+    public decryptMessage(encryptedMessage: string, nonce: string, encryptedPrivateKey: string, pinHash: string, senderPublicKey: string): Promise<any> {
         return new Promise((resolve, reject) => {
             this.decryptAES(encryptedPrivateKey, pinHash)
                 .then(privateKey => {
@@ -162,12 +164,14 @@ export class CryptoService {
                     }
                     // hash shared key
                     let key = CryptoJS.SHA256(Converter.convertByteArrayToWordArray(sharedKey))
+                    // convert message hex back to base 64 due to limitation of node
+                    let messageB64 = CryptoJS.enc.Hex.parse(encryptedMessage).toString(CryptoJS.enc.Base64);
                     // DECRYPT
-                    let note = CryptoJS.AES.decrypt(encryptedNote, key.toString()).toString(CryptoJS.enc.Utf8);
-                    // return decrypted note
-                    resolve(note);
+                    let message = CryptoJS.AES.decrypt(messageB64, key.toString()).toString(CryptoJS.enc.Utf8);
+                    // return decrypted message
+                    resolve(message);
                 })
-            })
+        })
     }
 
     /*
@@ -217,7 +221,7 @@ export class CryptoService {
             let h1 = signatureBytes.slice(32);
             let y = ECKCDSA.verify(v, h1, publicKeyBytes);
             let m = Converter.convertWordArrayToByteArray(CryptoJS.SHA256(CryptoJS.enc.Hex.parse(transactionHex)));
-            let m_y  = m.concat(y);
+            let m_y = m.concat(y);
             let h2 = Converter.convertWordArrayToByteArray(CryptoJS.SHA256(Converter.convertByteArrayToWordArray(m_y)));
             // Convert to hex
             let h1hex = Converter.convertByteArrayToHexString(h1);
