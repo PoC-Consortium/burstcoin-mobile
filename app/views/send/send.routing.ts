@@ -16,6 +16,7 @@ export const routes: Routes = [
         component: SendComponent,
         children: [
             { path: '', redirectTo: 'input', pathMatch: 'full' },
+            { path: ':address', component: InputComponent },
             { path: 'input', component: InputComponent },
             { path: 'verify', component: VerifyComponent }
         ]

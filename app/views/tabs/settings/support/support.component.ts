@@ -41,7 +41,7 @@ export class SupportComponent implements OnInit {
     public onTapSupport() {
         if (this.accountService.currentAccount.value.type == "active") {
             this.params.closeCallback();
-            this.router.navigate(['/tabs/balance/send', this.donateAddress]);
+            this.router.navigate(['/send', this.donateAddress]);
         } else {
             this.params.closeCallback();
             this.translateService.get('NOTIFICATIONS.ERRORS.REDIRECT').subscribe((res: string) => {
