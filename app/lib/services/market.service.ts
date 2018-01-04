@@ -9,6 +9,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Currency, HttpError } from "../model";
 import { NoConnectionError } from "../model/error";
 import { DatabaseService } from "./";
+import 'rxjs/add/operator/timeout'
 
 @Injectable()
 export class MarketService {

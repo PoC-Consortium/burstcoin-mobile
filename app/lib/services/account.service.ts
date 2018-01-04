@@ -15,6 +15,7 @@ import { CryptoService, DatabaseService, NotificationService} from "./";
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/timeout'
 
 
 @Injectable()
