@@ -1,9 +1,16 @@
 @import '../../../app-variables';
 
+.balance-card {
+    background-color: $background-light;
+
+    margin-top: 30;
+    margin-left: 30;
+    margin-right: 30;
+}
+
 .balance-container {
     background-color: $background-light;
     padding: 3;
-    margin-top: 33;
     text-align: center;
     border-radius: $default-border;
     width: 80%;
