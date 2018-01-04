@@ -47,9 +47,6 @@ export class TransactionsComponent implements OnInit {
         this.accountService.currentAccount.subscribe((account: Account) => {
             if (account != undefined) {
                 this.transactions = account.transactions;
-                for (let t of this.transactions) {
-                    console.log(JSON.stringify(t.attachment))
-                }
                 this.ownId = this.accountService.currentAccount.value.id;
             }
         });

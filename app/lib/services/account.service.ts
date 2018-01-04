@@ -301,7 +301,6 @@ export class AccountService {
             // request 'sendMoney' to burst node
             return this.http.post(this.nodeUrl, {}, requestOptions).timeout(this.timeout).toPromise()
                 .then(response => {
-                    console.log(JSON.stringify(response.json()))
                     if (response.json().unsignedTransactionBytes != undefined) {
                         // get unsigned transactionbytes
                         unsignedTransactionHex = response.json().unsignedTransactionBytes;
