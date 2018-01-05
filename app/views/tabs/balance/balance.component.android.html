@@ -1,7 +1,7 @@
 <RadListView #radListView [items]="[0]" pullToRefresh="true" (pullToRefreshInitiated)="refresh($event)">
     <ng-template tkListItemTemplate let-item="item" let-i="index">
         <StackLayout orientation="vertical">
-            <CardView class="balance-card" elevation="5" radius="3">
+            <CardView class="balance-card" elevation="7" radius="3">
                 <StackLayout (doubleTap)="onDoubleTapBalance()" (longPress)="onLongPressBalance()" (swipe)="onSwipeBalance($event)" class="balance-container" orientation="vertical">
                     <Image *ngIf="loading == false" class="qrcode" [src]="qrcode"></Image>
                     <StackLayout *ngIf="loading" class="p-30" orientation="vertical">

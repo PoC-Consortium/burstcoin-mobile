@@ -8,6 +8,7 @@ import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/mod
 import { LangChangeEvent, TranslateService } from 'ng2-translate';
 import { isAndroid } from "platform";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
+import { Page } from "ui/page";
 
 import { Account } from "../../lib/model";
 import { UnknownAccountError } from "../../lib/model/error";
@@ -29,14 +30,15 @@ export class TabsComponent implements OnInit {
     private selectedIndex: number;
 
     constructor(
+        private accountService: AccountService,
         private databaseService: DatabaseService,
         private modalDialogService: ModalDialogService,
         private notificationService: NotificationService,
+        private page: Page,
         private router: RouterExtensions,
-        private vcRef: ViewContainerRef,
-        private accountService: AccountService,
         private tabsService: TabsService,
-        private translateService: TranslateService
+        private translateService: TranslateService,
+        private vcRef: ViewContainerRef
     ) {
 
     }

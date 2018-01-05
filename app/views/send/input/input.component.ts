@@ -203,7 +203,7 @@ export class InputComponent implements OnInit {
                         this.sendService.setMessageEnabled(this.messageEnabled)
                         this.sendService.setMessage(this.message)
                         this.sendService.setMessageEncrypted(this.messageEncrypted)
-                        this.router.navigate(['/send/verify'])
+                        this.router.navigate(['send', 'verify'])
                     } else {
                         this.translateService.get('NOTIFICATIONS.EXCEED').subscribe((res: string) => {
                             this.notificationService.info(res);
@@ -251,6 +251,12 @@ export class InputComponent implements OnInit {
         }
         if (this.amount != undefined && !this.verifyTotal()) {
             this.amount = this.account.balance - Number(this.fee);
+            if (this.amount < 0) {
+                this.amount = 0;
+                this.translateService.get('NOTIFICATIONS.EXCEED').subscribe((res: string) => {
+                    this.notificationService.info(res);
+                });
+            }
         }
         if (this.amount == undefined) {
             this.total = Number(this.fee);

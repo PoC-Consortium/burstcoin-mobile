@@ -108,6 +108,16 @@ export class BalanceComponent implements OnInit {
                     });
             })
             .catch(error => {
+                this.marketService.updateCurrency()
+                    .then(currency => {
+                        listView.notifyPullToRefreshFinished();
+                    })
+                    .catch(error => {
+                        this.translateService.get(error.message).subscribe((res: string) => {
+                            this.notificationService.info(res);
+                        });
+                        listView.notifyPullToRefreshFinished();
+                    });
                 this.translateService.get(error.message).subscribe((res: string) => {
                     this.notificationService.info(res);
                 });
