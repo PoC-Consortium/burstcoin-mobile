@@ -58,9 +58,9 @@
         },
         "HISTORY": {
             "TITLE": "Historique",
-            "DECRYPT": "Decrypt",
-            "DECRYPT_IMPOSSIBLE": "Could not be decrypted!",
-            "PIN_INPUT_HINT": "Pin"
+            "DECRYPT": "Décrypter",
+            "DECRYPT_IMPOSSIBLE": "Echec du décryptage",
+            "PIN_INPUT_HINT": "Epingler"
         },
         "SETTINGS": {
             "ABOUT": {
@@ -94,13 +94,13 @@
     "SEND": {
         "ACCEPT": "Valider",
         "ACTION_BAR_TITLE": "Envoyer des BURST",
-        "ADD_CONTACT": "Add new contact",
+        "ADD_CONTACT": "Ajouter un contact",
         "AMOUNT": "Montant",
-        "BACK": "Back",
+        "BACK": "Retour",
         "BALANCE": "Solde",
         "CONTACTS": "Contacts",
         "FEE": "Frais",
-        "FIAT": "Fiat currency to BURST",
+        "FIAT": "Monnaie fiduciaire pour BURST",
         "MESSAGE": "Message",
         "PIN_INPUT_HINT": "Pin",
         "RECIPIENT": "Bénéficiaire",
@@ -114,7 +114,7 @@
     "NOTIFICATIONS" : {
         "ADDRESS": "Entrez une adresse Burst valide.",
         "COPIED": "Adresse {{value}} copiée!",
-        "CONTACT_ADDED": "Contact added successfully!",
+        "CONTACT_ADDED": "Contact ajouté avec succès",
         "DECIMAL_AMOUNT": "Veuillez entrer le montant de BURST que vous souhaitez envoyer!",
         "DECIMAL_FEE": "Veuillez entrer les frais de transaction (au moins 1)!",
         "ENTER_SOMETHING": "Veuillez entrer quelque chose!",
@@ -137,7 +137,7 @@
             "KEYPAIR": "Echec de génération de clé associée à la phrase de passe!",
             "LANGUAGE": "Echec de modification de langue!",
             "NODE": "Echec de modification du serveur!",
-            "NO_PUBLIC_KEY": "Recipient has no public key yet! Sending of encrypted message not possible!",
+            "NO_PUBLIC_KEY": "Le destinataire n'a pas de clé plublique! Impossible d'envoyer le message!",
             "QR_CODE": "Impossible de trouver le QR code!",
             "REDIRECT": "Impossible d'ouvrir la page d'envoi! Le compte n'est pas actif!",
             "REMOVE": "Echec de suppression du compte!",
