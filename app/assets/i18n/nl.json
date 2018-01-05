@@ -1,0 +1,148 @@
+{
+    "CREATE": {
+        "ACTION_BAR_TITLE": "Maak een nieuwe Account aan",
+        "DONE": "Klaar",
+        "GENERATE_AGAIN": "Genereer Opnieuw",
+        "INFO_SEED": "Druk en beweeg over dit gebied.",
+        "INFO_SEED_FINISHED": "Seed ontvangen.",
+        "INFO_STEP_ONE": "Maak eerst een willekeurige seed voor het genereren van je passphrase.",
+        "INFO_STEP_TWO": "Nu moet je de 12 woorden van je passphrase in de juiste volgorde onthouden.",
+        "INFO_STEP_TWO_ACTION": "Vul de volgende woorden gescheiden door spaties neer, en houdt deze goed geheim.",
+        "INFO_STEP_THREE": "Vul de woorden van je passphrase opnieuw in.",
+        "INFO_STEP_THREE_ACTION": "Schrijf het woord #{{value}} neer, en selecteer het.",
+        "INFO_STEP_FOUR": "Kies een zes-cijferige pin code voor je account. Deze pin code zal gebruikt worden om buitengaande transacties goed te keuren.",
+        "PIN_INPUT_HINT": "PIN",
+        "POSSIBILITY_INPUT_HINT": "Woord #{{value}}",
+        "NEXT": "Volgende"
+    },
+    "IMPORT" : {
+        "ACTION_BAR_TITLE": "Bestaande Account Importeren",
+        "ACTIVE_ACCOUNT": "Actieve Account",
+        "ACTIVE_ACCOUNT_DESCRIPTION": "Een actieve account biedt de volledige functionaliteiten aan. Je kan er Burstcoins mee verzenden en ontvangen. Je kan ook je huidige balans, en de geschiedenis van je transacties bekijken.",
+        "ACTIVE_ACCOUNT_INPUT_HINT": "Passphrase",
+        "ACTIVE_ACCOUNT_PIN_INFO": "Kies een zes-cijferige pin code voor je account. Deze pin code zal gebruikt worden om buitengaande transacties goed te keuren.",
+        "DONE": "Klaar",
+        "IMPORT": "Importeer",
+        "INFO": "Importeer een bestaande account door middel van een passphrase, of importeer een offline account door middel van een Burstcoin adres.",
+        "NEXT": "Volgende",
+        "OFFLINE_ACCOUNT": "Offline Account",
+        "OFFLINE_ACCOUNT_DESCRIPTION": "Een offline account biedt dezelfde functionaliteit aan als een actieve account, behalve dat je geen Burstcoins naar een ander verzenden kan.",
+        "OFFLINE_ACCOUNT_INPUT_HINT": "BURST-XXXX-XXXX-XXXX-XXXXX",
+        "PIN_INPUT_HINT": "PIN",
+        "SHOW" : {
+            "QUESTION": "Is dit je Burstcoin adres?"
+        }
+    },
+    "TABS": {
+        "ACCOUNTS": {
+            "ACTIVATE": {
+                "ACTION_BAR_TITLE": "Activeer Account",
+                "DONE": "Klaar",
+                "ENTER_PASSPHRASE": "Vul hier de passphrase voor account {{value}} in.",
+                "ENTER_PIN": "Gebruik een zes-cijferige PIN code.",
+                "PASSPHRASE_INPUT_HINT": "Passphrase",
+                "PIN_INPUT_HINT": "PIN",
+                "NEXT": "Volgende"
+            },
+            "BALANCE": "Balans",
+            "CREATE": "Nieuwe account",
+            "IMPORT": "Importeer account",
+            "REMOVE": "Ben je zeker dat je deze account wilt verwijderen?",
+            "TITLE": "Accounts"
+        },
+        "BALANCE": {
+            "ACTIVATE": "Activeer",
+            "BALANCE": "Balans",
+            "SEND": "Verzend",
+            "TITLE": "Balans"
+        },
+        "HISTORY": {
+            "TITLE": "Geschiedenis",
+			"DECRYPT": "Decrypt",
+            "DECRYPT_IMPOSSIBLE": "Kon niet gedecrypteerd worden!",
+            "PIN_INPUT_HINT": "PIN"
+        },
+        "SETTINGS": {
+            "ABOUT": {
+                "ABOUT": "Over",
+                "ASSOCIATION": "In samenwerking met",
+                "DEVELOPED": "Ontwikkeld door",
+                "TWITTER": "Volg ons op twitter om updates over onze projecten te ontvangen!",
+                "VERSION": "Versie"
+            },
+            "CURRENCY": {
+                "CURRENCY": "Valuta"
+            },
+            "DOCUMENTATION": {
+                "DOCUMENTATION": "Documentatie"
+            },
+            "LANGUAGE": {
+                "LANGUAGE": "Taal"
+            },
+            "NODE": {
+                "INFO": "De Burst node dat gebruikt wordt om te communiceren met het Burst netwerk",
+                "NODE": "Node"
+            },
+            "SUPPORT": {
+                "CONTRIBUTION": "We houden ook van niet-financiële bijdragen",
+                "DONATE": "Hou je van onze app? Draag dan bij door Burst te doneren!",
+                "SUPPORT": "Doneren"
+            },
+            "TITLE": "Settings"
+        }
+    },
+    "SEND": {
+        "ACCEPT": "Aanvaarden",
+        "ACTION_BAR_TITLE": "Stuur BURST",
+		"ADD_CONTACT": "Add new contact",
+        "AMOUNT": "Bedrag",
+		"BACK": "Back",
+        "BALANCE": "Balans",
+		"CONTACTS": "Contacts",
+        "FEE": "Kost",
+		"FIAT": "Fiat valuta in BURST",
+		"MESSAGE": "Boodschap",
+        "PIN_INPUT_HINT": "PIN",
+		"RECIPIENT": "Ontvanger",
+        "VERIFY": "Accepteer"
+    },
+    "START" : {
+        "CREATE": "Aanmaken",
+        "IMPORT": "Importeren",
+        "INFO": "Nog geen account aangemaakt. Kies om een bestaande account te importeren, of maak een nieuwe aan!"
+    },
+    "NOTIFICATIONS" : {
+        "ADDRESS": "Geef een correct Burstcoin adres!",
+        "COPIED": "Adres {{value}} naar het plakbord gekopiëerd!",
+		"CONTACT_ADDED": "Contact added successfully!",
+        "DECIMAL_AMOUNT": "Geef met een decimaal getal het BURST gedrag dat je wilt verzenden!",
+        "DECIMAL_FEE": "Geef een decimaal bedrag (minstens 1) als kost!",
+        "ENTER_SOMETHING": "Voer iets in!",
+        "EXCEED": "Bedrag en Kost zijn meer dan je huidige balans!",
+        "PIN": "Gebruik een zes-cijferige PIN code!",
+        "REMOVE": "Account successful verwijderd!",
+        "SELECTED": "Geselecteerde  account: {{value}}",
+        "TRANSACTION": "Transactie succesvol!",
+        "UPDATE_CURRENCY": "Valuta succesvol geupdate!",
+        "UDPDATE_LANGUAGE": "Taal succesvol geupdate!",
+        "UPDATE_NODE": "Node succesvol geupdate!",
+        "WRONG_PASSPHRASE": "Foute passphrase! De opgegeven passphrase genereerd niet de publieke sleutel die toegewezen is aan je account!",
+        "WRONG_PIN": "De gegeven PIN is niet gelijk aan de PIN van de account!",
+        "ERRORS": {
+            "ACCOUNT_ID": "Kon geen account ID maken van de publieke sleutel!",
+            "ADDRESS": "Kon geen BURST addres maken van de account id!",
+            "CONNECTION": "Kon data niet ophalen. Controleer je internet verbinding!",
+			"CONTACT":"Contact toevoegen mislukt!",
+            "CURRENCY": "Valuta update gefaalt!",
+            "KEYPAIR": "Kon geen keypair maken voor de passphrase!",
+            "LANGUAGE": "Taal veranderen mislukt!",
+            "NODE": "Node veranderen mislukt!",
+			"NO_PUBLIC_KEY": "Ontvanger heeft nog geen public key! Een geëncrypteerde boodschap sturen is niet mogelijk!",
+            "QR_CODE": "Kon QR code niet scannen!",
+            "REDIRECT": "Kon de verzend Burst Pagina niet openen! Huidige account is niet actief!",
+            "REMOVE": "Kon account niet verwijderen!",
+            "UPDATE": "Update van account mislukt!",
+            "UNKNOWN_ACCOUNT": "Account is nog onbekend. Nog geen transacties!"
+        }
+    }
+}
