@@ -58,8 +58,8 @@
         },
         "HISTORY": {
             "TITLE": "História",
-            "DECRYPT": "Decrypt",
-            "DECRYPT_IMPOSSIBLE": "Could not be decrypted!",
+            "DECRYPT": "Dešifrovanie",
+            "DECRYPT_IMPOSSIBLE": "Nemožno dešifrovať!",
             "PIN_INPUT_HINT": "PIN"
         },
         "SETTINGS": {
@@ -93,15 +93,15 @@
     },
     "SEND": {
         "ACCEPT": "Akceptovať",
-        "ACTION_BAR_TITLE": "Send BURST",
-        "ADD_CONTACT": "Add new contact",
+        "ACTION_BAR_TITLE": "Odoslať BURSTY",
+        "ADD_CONTACT": "Pridať nový kontakt",
         "AMOUNT": "Čiastka",
-        "BACK": "Back",
+        "BACK": "Späť",
         "BALANCE": "Zostatok",
         "CONTACTS": "Contacts",
         "FEE": "Poplatok",
-        "FIAT": "Fiat currency to BURST",
-        "MESSAGE": "Message",
+        "FIAT": "Fiat mena na BURSTY",
+        "MESSAGE": "Správa",
         "PIN_INPUT_HINT": "PIN",
         "RECIPIENT": "Príjemca",
         "VERIFY": "Kontrola"
@@ -114,7 +114,7 @@
     "NOTIFICATIONS": {
         "ADDRESS": "Zadajte platnú Burstcoin adresu!",
         "COPIED": "Kopírovať {{value}} do clipboardu!",
-        "CONTACT_ADDED": "Contact added successfully!",
+        "CONTACT_ADDED": "Kontakt bol úspešne pridaný!",
         "DECIMAL_AMOUNT": "Zadajte desatinné číslo, koľko BURSTCOINOV chcete odoslať!",
         "DECIMAL_FEE": "Zadajte desatinné číslo (viac ako 1) pre poplatok!",
         "ENTER_SOMETHING": "Zadajte niečo!",
@@ -137,7 +137,7 @@
             "KEYPAIR": "Nepodarilo sa vygenerovať kľúče pre prístupovú frázu!",
             "LANGUAGE": "Zmena jazyka sa nepodarila!",
             "NODE": "Aktualizácia uzla zlýhala!",
-            "NO_PUBLIC_KEY": "Recipient has no public key yet! Sending of encrypted message not possible!",
+            "NO_PUBLIC_KEY": "Príjemca ešte nemá verejný kľúč! Nie je možné odoslať šifrovanú správu!",
             "QR_CODE": "Nepodarilo sa naskenovať QR kód!",
             "REDIRECT": "Nemôžem otvoriť stránku pre odoslanie BURSTOV! Účet nie je aktívny!",
             "REMOVE": "Účet sa nepodarilo odstrániť!",
