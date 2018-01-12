@@ -11,9 +11,13 @@ let CryptoJS = require("crypto-js");
 let BN = require('bn.js');
 let pako = require('pako');
 
+/*
+* CryptoService class
+*
+* The CryptoService class takes care of everything crypto related.
+*/
 @Injectable()
 export class CryptoService {
-
     private passPhraseGenerator: PassPhraseGenerator;
 
     constructor() {
@@ -210,7 +214,7 @@ export class CryptoService {
     /*
     * Verify signature for transaction
     * h1 = sha256(sha256(transactionHex)_keygen(sha256(transactionHex_privateKey)).publicKey)
-    *                                 ==
+    * ==
     * sha256(sha256(transactionHex)_verify(v, h1, publickey)) = h2
     */
     public verifySignature(signature: string, transactionHex: string, publicKey: string): Promise<boolean> {
@@ -237,7 +241,7 @@ export class CryptoService {
     */
     public generateSignedTransactionBytes(unsignedTransactionHex: string, signature: string): Promise<string> {
         return new Promise((resolve, reject) => {
-            // TODO: verification -duplicate?
+            // TODO: verification - duplicate?
             resolve(unsignedTransactionHex.substr(0, 192) + signature + unsignedTransactionHex.substr(320))
         });
     }

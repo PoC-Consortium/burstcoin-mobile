@@ -12,9 +12,14 @@ import * as fs from "tns-core-modules/file-system";
 let Loki = require("lokijs");
 let LokiNativeScriptAdapter = require("loki-nativescript-adapter");
 
+/*
+* DatabaseService class
+*
+* The DatabaseService is responsible for providing a database to persistently saveDatabase
+* entities.
+*/
 @Injectable()
 export class DatabaseService extends Database {
-
     private database: any;
     private static readonly path: string = fs.path.join(fs.knownFolders.documents().path, "loki.db");
 
@@ -30,6 +35,9 @@ export class DatabaseService extends Database {
         });
     }
 
+    /*
+    * Called on db start
+    */
     public init() {
         let accounts = this.database.getCollection("accounts");
         if (accounts == null) {
@@ -59,6 +67,9 @@ export class DatabaseService extends Database {
         this.settings.next(state);
     }
 
+    /*
+    * Method reponsible for saving/updating Account objects to the database.
+    */
     public saveAccount(account: Account): Promise<Account> {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
@@ -83,6 +94,9 @@ export class DatabaseService extends Database {
         });
     }
 
+    /*
+    * Method reponsible for getting the selected account from the database.
+    */
     public getSelectedAccount(): Promise<Account> {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
@@ -111,6 +125,9 @@ export class DatabaseService extends Database {
         });
     }
 
+    /*
+    * Method reponsible for selecting a new Account.
+    */
     public selectAccount(account: Account): Promise<Account> {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
@@ -130,6 +147,9 @@ export class DatabaseService extends Database {
         });
     }
 
+    /*
+    * Method reponsible for fetching all accounts from the database.
+    */
     public getAllAccounts(): Promise<Account[]> {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
@@ -146,6 +166,9 @@ export class DatabaseService extends Database {
         });
     }
 
+    /*
+    * Method reponsible for finding an account by its numeric id from the database.
+    */
     public findAccount(id: string): Promise<Account> {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
@@ -163,6 +186,9 @@ export class DatabaseService extends Database {
         });
     }
 
+    /*
+    * Method reponsible for removing an account from the database.
+    */
     public removeAccount(account: Account): Promise<boolean> {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
@@ -176,6 +202,9 @@ export class DatabaseService extends Database {
         });
     }
 
+    /*
+    * Method reponsible for saving/updating the global Settings object to the database.
+    */
     public saveSettings(save: Settings): Promise<Settings> {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
@@ -202,6 +231,9 @@ export class DatabaseService extends Database {
         });
     }
 
+    /*
+    * Method reponsible for fetching the global Settings object from the database.
+    */
     public getSettings(): Promise<Settings> {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
@@ -213,5 +245,4 @@ export class DatabaseService extends Database {
             }
         });
     }
-
 }
