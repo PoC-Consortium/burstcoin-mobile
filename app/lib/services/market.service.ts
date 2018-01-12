@@ -4,18 +4,23 @@
 
 import { Injectable } from "@angular/core";
 import { Http, Headers, RequestOptions, Response, URLSearchParams } from "@angular/http";
-import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import 'rxjs/add/operator/timeout'
+
 import { Currency, HttpError } from "../model";
 import { NoConnectionError } from "../model/error";
 import { DatabaseService } from "./";
-import 'rxjs/add/operator/timeout'
 
+/*
+* MarketService class
+*
+* The MarketService is responsible for getting currency information. (right now, only from coinmarketcap.com)
+*/
 @Injectable()
 export class MarketService {
+    private timeout: number = 10000; // 10 seconds
 
     public currency: BehaviorSubject<any> = new BehaviorSubject(undefined);
-    private timeout: number = 10000; // 10 seconds
 
     constructor(
         private databaseService: DatabaseService,
@@ -61,6 +66,9 @@ export class MarketService {
         });
     }
 
+    /*
+    * Format a coin amount number to 8 decimals and return string with BURST addition
+    */
     public formatBurstcoin(coins: number): string {
         if (isNaN(coins)) {
             return "0 BURST";
@@ -74,10 +82,16 @@ export class MarketService {
         }
     }
 
+    /*
+    * Convert fiat amount to burst amunt
+    */
     public convertFiatCurrencyToBurstcoin(amount: number): number {
         return amount / this.currency.value.priceCur;
     }
 
+    /*
+    * Format number to 8 decimals string and BTC addition
+    */
     public getPriceBTC(coins: number, decimals: number = 8): string {
         if (this.currency.value != undefined) {
             return (coins * this.currency.value.priceBTC).toFixed(decimals) + " BTC";
@@ -86,11 +100,13 @@ export class MarketService {
         }
     }
 
+    /*
+    * Format fiat amount to Burst amount string with BURST addition
+    */
     public getPriceBurstcoin(amount: number): string {
         if (isNaN(amount)) {
             return "0 BURST";
         } else {
-            console.log(amount)
             let coins = amount / this.currency.value.priceCur;
             if (coins % 1 === 0) {
                 // whole number
@@ -101,6 +117,9 @@ export class MarketService {
         }
     }
 
+    /*
+    * Format number to 8 decimals string and fiat addition
+    */
     public getPriceFiatCurrency(coins: number, decimals: number = 2): string {
         if (this.currency.value != undefined) {
             return (coins * this.currency.value.priceCur).toFixed(decimals) + " " + this.getCurrencySymbol();
@@ -109,6 +128,9 @@ export class MarketService {
         }
     }
 
+    /*
+    * Get current fiat currency symbol
+    */
     public getCurrencySymbol(): string {
         if (this.currency.value != undefined) {
             switch (this.currency.value.currency) {
@@ -180,6 +202,9 @@ export class MarketService {
         return options;
     }
 
+    /*
+    * Helper Method to handle HTTP errors
+    */
     private handleError(error: Response | any) {
         return Promise.reject(new HttpError(error.json()));
     }

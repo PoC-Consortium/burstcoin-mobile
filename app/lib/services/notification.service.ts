@@ -3,8 +3,13 @@
 */
 
 import { Injectable } from "@angular/core";
-import { SnackBar, SnackBarOptions } from "nativescript-snackbar";
+import { SnackBar } from "nativescript-snackbar";
 
+/*
+* NotificaitionService class
+*
+* Easy generaton of notifications.
+*/
 @Injectable()
 export class NotificationService {
     private snackbar: SnackBar;
