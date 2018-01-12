@@ -1,5 +1,5 @@
 /*
-    Copyright 2017 icewave.org
+* Copyright 2018 PoC-Consortium
 */
 
 import { NgModule, NgModuleFactoryLoader, NO_ERRORS_SCHEMA } from "@angular/core";

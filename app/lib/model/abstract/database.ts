@@ -1,9 +1,14 @@
 /*
-    Copyright 2017 icewave.org
+* Copyright 2018 PoC-Consortium
 */
 
 import { Account } from "../";
 
+/*
+* Database class
+*
+* An abstract class defining the essential database methods.
+*/
 export abstract class Database {
     protected static readonly DATABASE_TABLE = "burst";
     public abstract init(): void;

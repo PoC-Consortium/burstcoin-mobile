@@ -1,5 +1,5 @@
 /*
-    Copyright 2017 icewave.org
+* Copyright 2018 PoC-Consortium
 */
 /*
  * Ported to TypeScript 2.4.2 (https://github.com/Microsoft/TypeScript/issues/18158) 09/02/17. @author cgb

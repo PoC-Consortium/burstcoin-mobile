@@ -1,5 +1,5 @@
 /*
-    Copyright 2017 icewave.org
+* Copyright 2018 PoC-Consortium
 */
 
 import { Component, OnInit, ViewContainerRef, ViewChild } from "@angular/core";

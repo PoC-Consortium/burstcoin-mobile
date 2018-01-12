@@ -1,5 +1,5 @@
 /*
-    Copyright 2017 icewave.org
+* Copyright 2018 PoC-Consortium
 */
 
 import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild, ViewContainerRef } from "@angular/core";

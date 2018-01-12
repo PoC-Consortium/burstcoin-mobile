@@ -1,67 +1,42 @@
 /*
-    Copyright 2017 icewave.org
+    Copyright 2018 PoC-Consortium
 */
 
 import { Attachment, EncryptedMessage, Message } from "./attachment"
 
+/*
+* Transaction class
+*
+* The Transaction class is a mapping for a transaction on the Burst blockchain
+*/
 export class Transaction {
-    id: string;
-
-    senderId: string;
-    senderAddress: string;
-    senderPublicKey: string;
-
-    recipientId: string;
-    recipientAddress: string;
-    recipientPublicKey: string;
-
-    signature: string;
-    signatureHash: string;
-    fullHash: string;
-    block: string;
-
-    amountNQT: number;
-    feeNQT: number;
-    confirmations: number;
-    confirmed: boolean;
-
-    type: number;
-    subtype: number;
-    version: number;
-    deadline: number;
-    height: number;
-    blockTimestamp: number;
-    timestamp: number;
-
-    attachment: Attachment;
+    public id: string;
+    public amountNQT: number;
+    public attachment: Attachment;
+    public block: string;
+    public blockTimestamp: number;
+    public confirmations: number;
+    public confirmed: boolean;
+    public deadline: number;
+    public feeNQT: number;
+    public fullHash: string;
+    public height: number;
+    public recipientId: string;
+    public recipientAddress: string;
+    public recipientPublicKey: string;
+    public senderId: string;
+    public senderAddress: string;
+    public senderPublicKey: string;
+    public signature: string;
+    public signatureHash: string;
+    public subtype: number;
+    public timestamp: number;
+    public type: number;
+    public version: number;
 
     constructor(data: any = {}) {
         this.id = data.transaction || undefined;
-        this.senderId = data.sender || undefined;
-        this.senderAddress = data.senderRS|| undefined;
-        this.senderPublicKey = data.senderPublicKey || undefined;
-
-        this.recipientId = data.recipient || undefined;
-        this.recipientAddress = data.recipientRS || undefined;
-
-        this.signature = data.signature || undefined;
-        this.signatureHash = data.signatureHash || undefined;
-        this.fullHash = data.fullHash || undefined;
-        this.block = data.block || undefined;
-
         this.amountNQT = data.amountNQT || 0;
-        this.feeNQT = data.feeNQT || 0;
-        this.confirmations = data.confirmations || 0;
-        this.confirmed = data.confirmed == false ? false : true;
-
-        this.type = data.type || 0;
-        this.subtype = data.subtype || 0;
-        this.version = data.version || 0;
-        this.deadline = data.deadline || 0;
-        this.timestamp = data.timestamp || 0;
-        this.height = data.height || 0;
-        this.blockTimestamp = data.blockTimestamp || 0;
-
         // message attachment
         if (data.attachment != undefined && data.attachment.message != undefined) {
             this.attachment = new Message(data.attachment);
@@ -70,5 +45,25 @@ export class Transaction {
         if (data.attachment != undefined && data.attachment.encryptedMessage != undefined) {
             this.attachment = new EncryptedMessage(data.attachment.encryptedMessage)
         }
+        this.block = data.block || undefined;
+        this.blockTimestamp = data.blockTimestamp || 0;
+        this.confirmations = data.confirmations || 0;
+        this.confirmed = data.confirmed == false ? false : true;
+        this.deadline = data.deadline || 0;
+        this.feeNQT = data.feeNQT || 0;
+        this.fullHash = data.fullHash || undefined;
+        this.height = data.height || 0;
+        this.recipientId = data.recipient || undefined;
+        this.recipientAddress = data.recipientRS || undefined;
+        this.recipientPublicKey = data.recipientPublicKey || undefined;
+        this.senderId = data.sender || undefined;
+        this.senderAddress = data.senderRS|| undefined;
+        this.senderPublicKey = data.senderPublicKey || undefined;
+        this.signature = data.signature || undefined;
+        this.signatureHash = data.signatureHash || undefined;
+        this.subtype = data.subtype || 0;
+        this.timestamp = data.timestamp || 0;
+        this.type = data.type || 0;
+        this.version = data.version || 0;
     }
 }

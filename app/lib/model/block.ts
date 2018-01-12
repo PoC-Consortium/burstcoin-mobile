@@ -1,32 +1,37 @@
 /*
-    Copyright 2017 icewave.org
+* Copyright 2018 PoC-Consortium
 */
 
 import { Transaction } from "./transaction";
 
+/*
+* Block class
+*
+* NOT USED YET. CREATED IN REGARD TO SPV: https://bitcoin.org/bitcoin.pdf - §8
+*/
 export class Block {
-    id: number;
-    version: number;
-    timestamp: number;
-    height: number;
-    previousBlockId: number;
-    previousBlockHash: number[];
-    generatorPublicKey: number[];
-    totalAmountNQT: number;
-    totalFeeNQT: number;
-    playoadLength: number;
-    generatorId: number;
-    generationSignature: number[];
-    playloadHash: number[];
-    blockSignature: number[];
-    cumulativeDifficulty: number;
-    baseTarget: number;
-    nextBlockId: number;
-    nonce: number;
-    byteLength: number;
-    pocTime:number;
-    blockAts: number[];
-    transactions: Transaction[];
+    public id: number;
+    public version: number;
+    public timestamp: number;
+    public height: number;
+    public previousBlockId: number;
+    public previousBlockHash: number[];
+    public generatorPublicKey: number[];
+    public totalAmountNQT: number;
+    public totalFeeNQT: number;
+    public playoadLength: number;
+    public generatorId: number;
+    public generationSignature: number[];
+    public playloadHash: number[];
+    public blockSignature: number[];
+    public cumulativeDifficulty: number;
+    public baseTarget: number;
+    public nextBlockId: number;
+    public nonce: number;
+    public byteLength: number;
+    public pocTime:number;
+    public blockAts: number[];
+    public transactions: Transaction[];
 
     constructor(data: any = {}) {
         this.id = data.id || undefined;
