@@ -66,9 +66,9 @@ export class InputComponent implements OnInit {
         private vcRef: ViewContainerRef
     ) {
         if (this.route.snapshot.params['address'] != undefined) {
-            this.recipientParts = this.accountService.splitBurstAddress(this.route.snapshot.params['address']);
+            this.recipientParts = BurstAddress.splitBurstAddress(this.route.snapshot.params['address']);
         } else {
-            this.recipientParts = this.accountService.splitBurstAddress(this.sendService.getRecipient());
+            this.recipientParts = BurstAddress.splitBurstAddress(this.sendService.getRecipient());
         }
     }
 
@@ -129,7 +129,7 @@ export class InputComponent implements OnInit {
     }
 
     public onTapContact(contact: string) {
-        this.recipientParts = this.accountService.splitBurstAddress(contact)
+        this.recipientParts = BurstAddress.splitBurstAddress(contact)
         this.drawer.closeDrawer();
         this.amountField.nativeElement.focus();
     }
@@ -164,8 +164,8 @@ export class InputComponent implements OnInit {
 
     public onDoubleTapRecipient() {
         clipboard.getText().then(text => {
-            if (this.accountService.isBurstcoinAddress(text)) {
-                this.recipientParts = this.accountService.splitBurstAddress(text)
+            if (BurstAddress.isBurstcoinAddress(text)) {
+                this.recipientParts = BurstAddress.splitBurstAddress(text)
             }
         })
     }
@@ -183,7 +183,7 @@ export class InputComponent implements OnInit {
             formats: "QR_CODE"
         }
         this.barcodeScanner.scan(options).then((result) => {
-            this.recipientParts = this.accountService.splitBurstAddress(result.text);
+            this.recipientParts = BurstAddress.splitBurstAddress(result.text);
             this.amountField.nativeElement.focus();
         }, (errorMessage) => {
             this.translateService.get('NOTIFICATIONS.ERRORS.QR_CODE').subscribe((res: string) => {
@@ -197,7 +197,7 @@ export class InputComponent implements OnInit {
             if (this.verifyAmount()) {
                 if (this.verifyFee()) {
                     if (this.verifyTotal()) {
-                        this.sendService.setRecipient(this.accountService.constructBurstAddress(this.recipientParts))
+                        this.sendService.setRecipient(BurstAddress.constructBurstAddress(this.recipientParts))
                         this.sendService.setAmount(this.amount)
                         this.sendService.setFee(this.fee)
                         this.sendService.setMessageEnabled(this.messageEnabled)
@@ -227,7 +227,7 @@ export class InputComponent implements OnInit {
     }
 
     public verifyRecipient(): boolean {
-        return this.accountService.isBurstcoinAddress(this.accountService.constructBurstAddress(this.recipientParts))
+        return BurstAddress.isBurstcoinAddress(BurstAddress.constructBurstAddress(this.recipientParts))
     }
 
     public verifyAmount(): boolean {

@@ -32,6 +32,9 @@ export class BurstAddress {
         return BurstAddress.gexp[idx];
     }
 
+    /*
+    * Encode a numeric id into BURST-XXXX-XXXX-XXXX-XXXXX
+    */
     public static encode(plain: string): string {
         let plainString10 = [],
             codeword = BurstAddress.initialCodeword,
@@ -95,7 +98,9 @@ export class BurstAddress {
         return out;
     }
 
-
+    /*
+    * Decode a BURST-XXXX-XXXX-XXXX-XXXXX into a numeric id
+    */
     public static decode(address: string): string {
         // remove Burst prefix
         if (address.indexOf('BURST-') == 0) {
@@ -159,6 +164,9 @@ export class BurstAddress {
         return new BN(out.split("").reverse().join("")).toString();
     }
 
+    /*
+    * Check for valid Burst address (format: BURST-XXXX-XXXX-XXXX-XXXXX, XXXX-XXXX-XXXX-XXXXX)
+    */
     public static isValid(address: string) {
         if (address.indexOf('BURST-') == 0) {
             address = address.substr(6);
@@ -209,5 +217,32 @@ export class BurstAddress {
         }
 
         return (sum == 0);
+    }
+
+    /*
+    * Split the Burst address string into an array of 4 parts
+    */
+    public static splitBurstAddress(address: string): string[] {
+        let parts: string[] = address.split("-")
+        parts.shift()
+        if (parts.length == 4) {
+            return parts
+        } else {
+            return []
+        }
+    }
+
+    /*
+    * Construct a Burst address from a string array
+    */
+    public static constructBurstAddress(parts: string[]): string {
+        return "BURST-" + parts[0] + "-" + parts[1] + "-" + parts[2] + "-" + parts[3];
+    }
+
+    /*
+    * Validation Check. Quick validation of Burst addresses included
+    */
+    public static isBurstcoinAddress(address: string): boolean {
+        return /^BURST\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{5}/i.test(address) && BurstAddress.isValid(address);
     }
 }

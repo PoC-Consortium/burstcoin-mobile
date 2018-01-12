@@ -8,6 +8,7 @@ import { RouterExtensions } from "nativescript-angular/router";
 import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
 import { TranslateService } from 'ng2-translate';
 
+import { BurstAddress } from "../../lib/model";
 import { CryptoService, NotificationService, AccountService } from "../../lib/services";
 import { ShowComponent } from "./show/show.component";
 
@@ -58,9 +59,9 @@ export class ImportComponent implements OnInit {
     }
 
     public onTapImport(e) {
-        if (this.accountService.isBurstcoinAddress(this.accountService.constructBurstAddress(this.offlineInputParts))) {
+        if (BurstAddress.isBurstcoinAddress(BurstAddress.constructBurstAddress(this.offlineInputParts))) {
             this.step = 0;
-            this.accountService.createOfflineAccount(this.accountService.constructBurstAddress(this.offlineInputParts))
+            this.accountService.createOfflineAccount(BurstAddress.constructBurstAddress(this.offlineInputParts))
                 .then(account => {
                     this.accountService.selectAccount(account)
                         .then(account => {

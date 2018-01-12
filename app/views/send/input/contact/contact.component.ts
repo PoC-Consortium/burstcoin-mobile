@@ -6,6 +6,7 @@ import { Component, OnInit, NgModule } from "@angular/core";
 import { TranslateService } from "ng2-translate";
 import { ModalDialogParams } from "nativescript-angular/modal-dialog";
 import { Page } from "ui/page";
+import { BurstAddress } from "../../../../lib/model";
 import { AccountService, NotificationService } from "../../../../lib/services";
 
 // >> passing-parameters
@@ -32,8 +33,8 @@ export class ContactComponent {
     }
 
     public onTapOk() {
-        if (this.accountService.isBurstcoinAddress(this.accountService.constructBurstAddress(this.addressParts))) {
-            this.params.closeCallback(this.accountService.constructBurstAddress(this.addressParts));
+        if (BurstAddress.isBurstcoinAddress(BurstAddress.constructBurstAddress(this.addressParts))) {
+            this.params.closeCallback(BurstAddress.constructBurstAddress(this.addressParts));
         } else {
             this.translateService.get('NOTIFICATIONS.ADDRESS').subscribe((res: string) => {
                 this.notificationService.info(res);

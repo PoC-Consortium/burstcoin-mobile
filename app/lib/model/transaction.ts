@@ -1,5 +1,5 @@
 /*
-    Copyright 2018 PoC-Consortium
+* Copyright 2018 PoC-Consortium
 */
 
 import { Attachment, EncryptedMessage, Message } from "./attachment"

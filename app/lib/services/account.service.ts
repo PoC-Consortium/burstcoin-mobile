@@ -2,28 +2,31 @@
 * Copyright 2018 PoC-Consortium
 */
 
-import { Injectable, OnInit } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Http, Headers, RequestOptions, Response, URLSearchParams } from "@angular/http";
-import { RouterExtensions } from "nativescript-angular/router";
 import { device } from "platform";
-import { Observable, ReplaySubject } from 'rxjs/Rx';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/timeout'
 
 import { Account, BurstAddress, Currency, EncryptedMessage, HttpError, Keys, Message, Settings, Transaction } from "../model";
 import { NoConnectionError, UnknownAccountError } from "../model/error";
 import { CryptoService, DatabaseService, NotificationService} from "./";
 
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/timeout'
-
-
+/*
+* AccountService class
+*
+* The AccountService is responsible for communication with the Burst node.
+* It also preserves the current selected account and shares account related information
+* across components.
+*/
 @Injectable()
 export class AccountService {
-
+    private static transactionCount: string = "15";
     private nodeUrl: string;
     private timeout: number = 10000; // 10 seconds
 
+    // Behaviour Subject for the current selected account, can be subscribed by components
     public currentAccount: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
     constructor(
@@ -41,6 +44,11 @@ export class AccountService {
         this.currentAccount.next(account);
     }
 
+    /*
+    * Method responsible for creating a new active account from a passphrase.
+    * Generates keys for an account, encrypts them with the provided key and saves them.
+    * TODO: error handling of asynchronous method calls
+    */
     public createActiveAccount(passphrase: string, pin: string = ""): Promise<Account> {
         return new Promise((resolve, reject) => {
             let account: Account = new Account();
@@ -48,15 +56,15 @@ export class AccountService {
             account.type = "active";
             return this.cryptoService.generateMasterKeys(passphrase)
                 .then(keys => {
-                    let keysObject = new Keys();
-                    keysObject.publicKey = keys.publicKey;
+                    let newKeys = new Keys();
+                    newKeys.publicKey = keys.publicKey;
                     return this.cryptoService.encryptAES(keys.signPrivateKey, this.hashPinEncryption(pin))
                         .then(encryptedKey => {
-                            keysObject.signPrivateKey = encryptedKey;
+                            newKeys.signPrivateKey = encryptedKey;
                             return this.cryptoService.encryptAES(keys.agreementPrivateKey, this.hashPinEncryption(pin))
                                 .then(encryptedKey => {
-                                    keysObject.agreementPrivateKey = encryptedKey;
-                                    account.keys = keysObject;
+                                    newKeys.agreementPrivateKey = encryptedKey;
+                                    account.keys = newKeys;
                                     account.pinHash = this.hashPinStorage(pin, keys.publicKey);
                                     return this.cryptoService.getAccountIdFromPublicKey(keys.publicKey)
                                         .then(id => {
@@ -76,6 +84,10 @@ export class AccountService {
         });
     }
 
+    /*
+    * Method responsible for importing an offline account.
+    * Creates an account object with no keys attached.
+    */
     public createOfflineAccount(address: string): Promise<Account> {
         return new Promise((resolve, reject) => {
             let account: Account = new Account();
@@ -100,19 +112,23 @@ export class AccountService {
         });
     }
 
+    /*
+    * Method responsible for activating an offline account.
+    * This method adds keys to an existing account object and enables it.
+    */
     public activateAccount(account: Account, passphrase: string, pin: string): Promise<Account> {
         return new Promise((resolve, reject) => {
             this.cryptoService.generateMasterKeys(passphrase)
                 .then(keys => {
-                    let keysObject = new Keys();
-                    keysObject.publicKey = keys.publicKey;
+                    let newKeys = new Keys();
+                    newKeys.publicKey = keys.publicKey;
                     return this.cryptoService.encryptAES(keys.signPrivateKey, this.hashPinEncryption(pin))
                         .then(encryptedKey => {
-                            keysObject.signPrivateKey = encryptedKey;
+                            newKeys.signPrivateKey = encryptedKey;
                             return this.cryptoService.encryptAES(keys.agreementPrivateKey, this.hashPinEncryption(pin))
                                 .then(encryptedKey => {
-                                    keysObject.agreementPrivateKey = encryptedKey;
-                                    account.keys = keysObject;
+                                    newKeys.agreementPrivateKey = encryptedKey;
+                                    account.keys = newKeys;
                                     account.pinHash = this.hashPinStorage(pin, keys.publicKey);
                                     account.type = "active";
                                     return this.databaseService.saveAccount(account)
@@ -125,6 +141,9 @@ export class AccountService {
         });
     }
 
+    /*
+    * Method responsible for removing an existing account.
+    */
     public removeAccount(account: Account): Promise<boolean> {
         return new Promise((resolve, reject) => {
             this.databaseService.removeAccount(account)
@@ -137,6 +156,9 @@ export class AccountService {
         });
     }
 
+    /*
+    * Method responsible for synchronizing an account with the blockchain.
+    */
     public synchronizeAccount(account: Account): Promise<Account> {
         return new Promise((resolve, reject) => {
             this.getBalance(account.id)
@@ -158,6 +180,9 @@ export class AccountService {
         });
     }
 
+    /*
+    * Method responsible for selecting a different account.
+    */
     public selectAccount(account: Account): Promise<Account> {
         return new Promise((resolve, reject) => {
             this.databaseService.selectAccount(account)
@@ -167,12 +192,15 @@ export class AccountService {
         });
     }
 
+    /*
+    * Method responsible for getting the latest 15 transactions.
+    */
     public getTransactions(id: string): Promise<Transaction[]> {
         return new Promise((resolve, reject) => {
             let params: URLSearchParams = new URLSearchParams();
             params.set("requestType", "getAccountTransactions");
             params.set("firstIndex", "0");
-            params.set("lastIndex", "15");
+            params.set("lastIndex", AccountService.transactionCount);
             params.set("account", id);
             let requestOptions = this.getRequestOptions();
             requestOptions.params = params;
@@ -190,6 +218,9 @@ export class AccountService {
         });
     }
 
+    /*
+    * Method responsible for getting yet unconfirmed transactions.
+    */
     public getUnconfirmedTransactions(id: string): Promise<Transaction[]> {
         return new Promise((resolve, reject) => {
             let params: URLSearchParams = new URLSearchParams();
@@ -212,6 +243,9 @@ export class AccountService {
         });
     }
 
+    /*
+    * Method responsible for getting one specific transaction
+    */
     public getTransaction(id: string): Promise<Transaction> {
         return new Promise((resolve, reject) => {
             let params: URLSearchParams = new URLSearchParams();
@@ -227,6 +261,9 @@ export class AccountService {
         });
     }
 
+    /*
+    * Method responsible for getting the current balance of an account.
+    */
     public getBalance(id: string): Promise<any> {
         return new Promise((resolve, reject) => {
             let params: URLSearchParams = new URLSearchParams();
@@ -254,6 +291,9 @@ export class AccountService {
         });
     }
 
+    /*
+    * Method responsible for getting the public key in the blockchain of an account.
+    */
     public getAccountPublicKey(id: string): Promise<string> {
         return new Promise((resolve, reject) => {
             let params: URLSearchParams = new URLSearchParams();
@@ -274,16 +314,20 @@ export class AccountService {
         });
     }
 
+    /*
+    * Method responsible for executing a transaction.
+    * TODO: very bloated, maybe 'un'bloat
+    */
     public doTransaction(transaction: Transaction, encryptedPrivateKey: string, pin: string): Promise<Transaction> {
         return new Promise((resolve, reject) => {
             let unsignedTransactionHex, sendFields, broadcastFields, transactionFields;
             let params: URLSearchParams = new URLSearchParams();
             params.set("requestType", "sendMoney");
-            params.set("recipient", transaction.recipientAddress);
             params.set("amountNQT", this.convertNumberToString(transaction.amountNQT));
+            params.set("deadline", "1440");
             params.set("feeNQT", this.convertNumberToString(transaction.feeNQT));
             params.set("publicKey", transaction.senderPublicKey);
-            params.set("deadline", "1440");
+            params.set("recipient", transaction.recipientAddress);
             if (transaction.attachment != undefined) {
                 if (transaction.attachment.type == "encrypted_message") {
                     let em: EncryptedMessage = <EncryptedMessage> transaction.attachment;
@@ -298,7 +342,6 @@ export class AccountService {
             }
             let requestOptions = this.getRequestOptions();
             requestOptions.params = params;
-
             // request 'sendMoney' to burst node
             return this.http.post(this.nodeUrl, {}, requestOptions).timeout(this.timeout).toPromise()
                 .then(response => {
@@ -348,54 +391,60 @@ export class AccountService {
         });
     }
 
+    /*
+    * Method responsible for verifying the PIN
+    */
     public checkPin(pin: string): boolean {
         return this.currentAccount.value != undefined ? this.currentAccount.value.pinHash == this.hashPinStorage(pin, this.currentAccount.value.keys.publicKey) : false;
     }
 
+    /*
+    * Method responsible for hashing the PIN to carry out an ecryption.
+    */
     public hashPinEncryption(pin: string): string {
         return this.cryptoService.hashSHA256(pin + device.uuid);
     }
 
+    /*
+    * Method responsible for hashing the PIN for saving it into the database.
+    */
     public hashPinStorage(pin: string, publicKey: string): string {
         return this.cryptoService.hashSHA256(pin + publicKey);
     }
 
-    public splitBurstAddress(address: string): string[] {
-        let parts: string[] = address.split("-")
-        parts.shift()
-        if (parts.length == 4) {
-            return parts
-        } else {
-            return []
-        }
-    }
-
-    public constructBurstAddress(parts: string[]): string {
-        return "BURST-" + parts[0] + "-" + parts[1] + "-" + parts[2] + "-" + parts[3];
-    }
-
-    public isBurstcoinAddress(address: string): boolean {
-        return /^BURST\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{5}/i.test(address) && BurstAddress.isValid(address);
-    }
-
+    /*
+    * Method responsible for pin validation.
+    */
     public isPin(pin: string): boolean {
         return /^[0-9]{6}$/i.test(pin);
     }
 
+    /*
+    * Helper method to handle NQT
+    */
     public convertStringToNumber(str, value = ".", position = 8) {
         return str.substring(0, str.length - position) + value + str.substring(str.length - position);
     }
 
+    /*
+    * Helper method to Number to String(8 decimals) representation
+    */
     public convertNumberToString(n: number) {
         return parseFloat(n.toString()).toFixed(8).replace(".", "");
     }
 
+    /*
+    * Helper method to construct request options
+    */
     public getRequestOptions(fields = {}) {
         let headers = new Headers(fields);
         let options = new RequestOptions({ headers: headers });
         return options;
     }
 
+    /*
+    * Helper method to handle HTTP error
+    */
     private handleError(error: Response | any) {
         return Promise.reject(new HttpError(error));
     }

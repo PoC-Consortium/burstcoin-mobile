@@ -72,7 +72,7 @@ export class SendComponent implements OnInit {
     }
 
     public onTapVerify() {
-        if (this.accountService.isBurstcoinAddress(this.recipient)) {
+        if (BurstAddress.isBurstcoinAddress(this.recipient)) {
             if (this.amount > 0 && !isNaN(Number(this.amount))) {
                 if (this.fee >= 1 && !isNaN(Number(this.fee))) {
                     if (parseFloat(this.amount.toString()) + parseFloat(this.fee.toString()) <= this.account.balance) {
