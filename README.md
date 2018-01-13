@@ -73,6 +73,6 @@ This repository holds the source code for the Burstcoin mobile wallet developed 
 - SolidLiquid
 - westhorn
 
-## Bugs and Feature Requests
+## Bugs and feature requests
 
 Please post bugs/problems into the issue section of this repository. This is the only place guaranteeing your issue is recognized and resolved quickly. Feature requests can also be posted.
