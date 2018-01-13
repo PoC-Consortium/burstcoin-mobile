@@ -1,15 +1,5 @@
 @import '../../../app-ios-variables';
 
-.progress-bottom {
-    margin-top: 33;
-    height: 20%;
-}
-
-.progress-bar {
-    color: $default-text;
-    background-color: $background-light;
-}
-
 .seed-area {
     background-color: $background-light;
     border-color: $background-dark;
@@ -19,37 +9,4 @@
     text-align:center;
     width: 100%;
     height: 250;
-}
-
-.chip {
-    padding-top: 5;
-    text-align: center;
-    margin: 10 2 10 2;
-    height: 38;
-    width: 50%;
-    font-size: 24;
-    border-radius: 7;
-    background-color: $light-gray;
-}
-
-.possibilities {
-    width: 100%;
-    margin-left: 7;
-    height: 70;
-    text-align: center;
-}
-
-.possibility-button {
-    margin: 2;
-    text-transform: lowercase;
-    height: 40;
-}
-
-.generate-again-button {
-    margin: 16 0 0 0;
-    width: 60%;
-}
-
-.bottom-filler {
-    height: 50;
 }

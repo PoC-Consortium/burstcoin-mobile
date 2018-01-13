@@ -7,9 +7,7 @@ import { RouterExtensions } from "nativescript-angular/router";
 import { Button } from "ui/button";
 import { TextField } from "ui/text-field";
 import { EventData } from "data/observable";
-
 import { PassPhraseGenerator } from "../../../lib/util/crypto";
-
 import { CreateService } from "../create.service"
 
 @Component({

@@ -9,7 +9,7 @@
     <StackLayout style="padding: 0px;" class="body-container m-t-10" orientation="vertical">
         <StackLayout *ngIf="seed.length < seedLimit" (touch)="onTouch($event)" class="seed-area" orientation="vertical">
             <Label class="font-weight-bold" [text]="'CREATE.INFO_SEED' | translate"></Label>
-            <StackLayout class="seed-progress" orientation="vertical">
+            <StackLayout orientation="vertical">
                 <Progress [value]="seed.length" [maxValue]="seedLimit" class="m-20"></Progress>
             </StackLayout>
         </StackLayout>
