@@ -2,21 +2,11 @@
 * Copyright 2018 PoC-Consortium
 */
 
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import { Component } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
-import { isAndroid } from "platform";
-import { SelectedIndexChangedEventData, TabView, TabViewItem } from "ui/tab-view";
-import { Label } from "ui/label";
-import { Progress } from "ui/progress";
-import { TouchGestureEventData } from "ui/gestures";
-import { Button } from "ui/button";
-import { TextField } from "ui/text-field";
 import { EventData } from "data/observable";
-import { TranslateService } from 'ng2-translate';
-
-import { AccountService, CryptoService, NotificationService } from "../../../lib/services";
-import { PassPhraseGenerator } from "../../../lib/util/crypto";
-
+import { TranslateService } from "ng2-translate";
+import { AccountService, NotificationService } from "../../../lib/services";
 import { CreateService } from "../create.service"
 
 @Component({
@@ -26,7 +16,6 @@ import { CreateService } from "../create.service"
     styleUrls: ["./verify.component.css"]
 })
 export class VerifyComponent {
-
     private pin: string
     private loading: boolean
 
