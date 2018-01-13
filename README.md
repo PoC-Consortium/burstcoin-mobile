@@ -33,6 +33,7 @@ npm install
 ```
 
 3. Run the application on your virtual device
+
 *Android*
 ```
 tns run android
