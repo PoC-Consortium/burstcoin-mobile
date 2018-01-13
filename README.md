@@ -8,42 +8,42 @@ This repository holds the source code for the Burstcoin mobile wallet developed 
 
 # Building
 
-**Prerequisities**
+  **Prerequisities**
 
-*Android*
-- [Node.js](https://nodejs.org/en/download/package-manager/)
-- [NativeScript CLI](https://docs.nativescript.org/angular/start/quick-setup#step-2-install-the-nativescript-cli)
-- [Android SDK and Virtual Device](https://docs.nativescript.org/angular/start/quick-setup#step-3-install-ios-and-android-requirements)
+  *Android*
+  - [Node.js](https://nodejs.org/en/download/package-manager/)
+  - [NativeScript CLI](https://docs.nativescript.org/angular/start/quick-setup#step-2-install-the-nativescript-cli)
+  - [Android SDK and Virtual Device](https://docs.nativescript.org/angular/start/quick-setup#step-3-install-ios-and-android-requirements)
 
-*iOS*
-- [Node.js](https://nodejs.org/en/download/package-manager/)
-- [NativeScript CLI](https://docs.nativescript.org/angular/start/quick-setup#step-2-install-the-nativescript-cli)
-- [Xcode](https://docs.nativescript.org/angular/start/quick-setup#step-3-install-ios-and-android-requirements)
+  *iOS*
+  - [Node.js](https://nodejs.org/en/download/package-manager/)
+  - [NativeScript CLI](https://docs.nativescript.org/angular/start/quick-setup#step-2-install-the-nativescript-cli)
+  - [Xcode](https://docs.nativescript.org/angular/start/quick-setup#step-3-install-ios-and-android-requirements)
 
 **If you setup your environment correctly, follow these steps:**
 
 1. **Clone this repository**
 
-```
-git clone git@github.com:cgebe/burst-pocket.git
-```
+    ```
+    git clone git@github.com:cgebe/burst-pocket.git
+    ```
 
 2. **Install all used npm packages**
 
-```
-npm install
-```
+    ```
+    npm install
+    ```
 
 3. **Run the application on your virtual device**
 
-*Android*
-```
-tns run android
-```
-*iOS*
-```
-tns run ios
-```
+    *Android*
+    ```
+    tns run android
+    ```
+    *iOS*
+    ```
+    tns run ios
+    ```
 
 ## Features
 
