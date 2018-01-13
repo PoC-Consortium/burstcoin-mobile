@@ -1,3 +1,5 @@
+[![Discord](https://img.shields.io/badge/chat-discord-brightgreen.svg)](https://discord.gg/xenZTNw)
+
 # Burstcoin Mobile Wallet
 
 <a href='https://play.google.com/store/apps/details?id=org.icewave.burstcoinwallet&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' width="200" src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
@@ -42,6 +44,18 @@ tns run android
 ```
 tns run ios
 ```
+
+## Features
+
+- Watch only addresses
+- Currency conversion
+- Client-side encryption and decryption
+- Encrypted / Unencrypted transaction messages
+- Contact book
+- QR code support
+- Secure and easy passphrase generation
+- Support for over 15 languages
+- Support for over 30 currencies
 
 ## Translators :two_hearts:
 
