@@ -10,31 +10,7 @@
         <StackLayout class="container" orientation="vertical">
             <Image class="logo-small m-b-15" src="res://logo"></Image>
 
-            <StackLayout *ngIf="this.step == 0" style="margin-bottom: 200px;" orientation="vertical">
-                <ActivityIndicator busy="true" width="100" height="100" class="activity-indicator"></ActivityIndicator>
-            </StackLayout>
-
-            <StackLayout *ngIf="step == 1">
-                <StackLayout class="info-container" orientation="vertical">
-                    <Label class="top text-view-label fa" text="&#xf05a;"></Label>
-                    <Label textWrap="true" class="bottom" [text]="'TABS.ACCOUNTS.ACTIVATE.ENTER_PASSPHRASE' | translate:address"></Label>
-                </StackLayout>
-                <StackLayout class="body-container m-b-20" orientation="vertical">
-                    <TextField class="input" [(ngModel)]="passphrase" [hint]="'TABS.ACCOUNTS.ACTIVATE.PASSPHRASE_INPUT_HINT' | translate" returnKeyType="done"></TextField>
-                    <Button class="btn btn-primary btn-active action-button fa" [text]="('TABS.ACCOUNTS.ACTIVATE.NEXT' | translate) + ' &#xf18e;'" (tap)="onTapNext($event)"></Button>
-                </StackLayout>
-            </StackLayout>
-
-            <StackLayout *ngIf="step == 2">
-                <StackLayout class="info-container" orientation="vertical">
-                    <Label class="top text-view-label fa" text="&#xf05a;"></Label>
-                    <Label textWrap="true" class="bottom" [text]="'TABS.ACCOUNTS.ACTIVATE.ENTER_PIN' | translate"></Label>
-                </StackLayout>
-                <StackLayout class="body-container m-b-20" orientation="vertical">
-                    <TextField class="input" [(ngModel)]="pin" [hint]="'TABS.ACCOUNTS.ACTIVATE.PIN_INPUT_HINT' | translate" keyboardType="number" returnKeyType="done" secure="true"></TextField>
-                    <Button class="btn btn-primary btn-active action-button fa" [text]="('TABS.ACCOUNTS.ACTIVATE.DONE' | translate) + ' &#xf05d;'" (tap)="onTapDone()"></Button>
-                </StackLayout>
-            </StackLayout>
+            <router-outlet></router-outlet>
         </StackLayout>
     </StackLayout>
 </Page>

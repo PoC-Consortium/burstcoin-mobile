@@ -3,19 +3,15 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-import { Account, BurstAddress, Transaction } from "../../lib/model";
-import { AccountService } from "../../lib/services";
-
 @Injectable()
 export class ActivateService {
+    private passphrase: string;
 
-    public constructor(
-        private accountService: AccountService
-    ) {
-
+    public getPassphrase(): string {
+        return this.passphrase;
     }
 
-    public getPassword(): string {
-        return undefined;
+    public setPassphrase(passphrase: string) {
+        this.passphrase = passphrase;
     }
 }

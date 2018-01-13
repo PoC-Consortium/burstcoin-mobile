@@ -1,0 +1,148 @@
+﻿{
+    "CREATE": {
+        "ACTION_BAR_TITLE": "Vytvořit nový účet",
+        "DONE": "Hotovo",
+        "GENERATE_AGAIN": "Generovat znovu",
+        "INFO_SEED": "Jezděte prstem po obdélníku",
+        "INFO_SEED_FINISHED": "Seed zaznamenán",
+        "INFO_STEP_ONE": "Nejprve vytvořte náhodný seed pro vygenerování přístupové fráze",
+        "INFO_STEP_TWO": "Nyní si poznamenejte všech 12 slov přístupové fráze",
+        "INFO_STEP_TWO_ACTION": "Pečlivě si zapište všechna slova oddělená mezerou a uchovávejte je tajnosti",
+        "INFO_STEP_THREE": "Zadejte prosím znovu slova vaší přístupové fráze.",
+        "INFO_STEP_THREE_ACTION": "Napište slovo #{{value}} a vyberte ho.",
+        "INFO_STEP_FOUR": "Zadejte šestimístný PIN kód pro Váš účet. PIN se používá pro ověření odchozích plateb.",
+        "PIN_INPUT_HINT": "PIN",
+        "POSSIBILITY_INPUT_HINT": "Slovo #{{value}}",
+        "NEXT": "Pokračovat"
+    },
+    "IMPORT": {
+        "ACTION_BAR_TITLE": "Import existujícího účtu",
+        "ACTIVE_ACCOUNT": "Aktivní účet",
+        "ACTIVE_ACCOUNT_DESCRIPTION": "Aktivní účet je plně funkční. Můžete posílat a přijímat Burstcoiny. Také můžete zkontrolovat zůstatek a prohlédnout si historii transakcí.",
+        "ACTIVE_ACCOUNT_INPUT_HINT": "Přístupová fráze",
+        "ACTIVE_ACCOUNT_PIN_INFO": "Zadajte šestimístný PIN kód pro Váš účet. PIN se používá pro ověření odchozích plateb.",
+        "DONE": "Hotovo",
+        "IMPORT": "Import",
+        "INFO": "Pro import aktivního účtu zadejte přístupovou frázi. Případně importujte off-line účet zadáním jeho Burstcoin adresy.",
+        "NEXT": "Pokračovat",
+        "OFFLINE_ACCOUNT": "Offline účet",
+        "OFFLINE_ACCOUNT_DESCRIPTION": "Účet v off-line režimu nabízí stejné funkce kromě odesílání Burstcoinů na jiný účet.",
+        "OFFLINE_ACCOUNT_INPUT_HINT": "BURST-XXXX-XXXX-XXXX-XXXXX",
+        "PIN_INPUT_HINT": "PIN",
+        "SHOW": {
+            "QUESTION": "Je to vaše Burstcoin adresa účtu ?"
+        }
+    },
+    "TABS": {
+        "ACCOUNTS": {
+            "ACTIVATE": {
+                "ACTION_BAR_TITLE": "Aktivovat účet",
+                "DONE": "Hotovo",
+                "ENTER_PASSPHRASE": "Sem vložte přístupovou frázi {{value}}.",
+                "ENTER_PIN": "Vložte 6 místný PIN kód.",
+                "PASSPHRASE_INPUT_HINT": "Přístupová fráze",
+                "PIN_INPUT_HINT": "PIN",
+                "NEXT": "Pokračovat"
+            },
+            "BALANCE": "Zůstatek",
+            "CREATE": "Vytvořit",
+            "IMPORT": "Import",
+            "REMOVE": "Určitě chcete odstranit tento účet?",
+            "TITLE": "Účty"
+        },
+        "BALANCE": {
+            "ACTIVATE": "Aktivovat",
+            "BALANCE": "Zůstatek",
+            "SEND": "Odeslat",
+            "TITLE": "Zůstatek"
+        },
+        "HISTORY": {
+            "TITLE": "Historie",
+            "DECRYPT": "Dešifrování",
+            "DECRYPT_IMPOSSIBLE": "Není možné dešifrovat!",
+            "PIN_INPUT_HINT": "PIN"
+        },
+        "SETTINGS": {
+            "ABOUT": {
+                "ABOUT": "O aplikaci",
+                "ASSOCIATION": "V asociaci s",
+                "DEVELOPED": "Vyvinutý",
+                "TWITTER": "Sledujte náš Twitter a získejte aktuální informace o našich projektech.",
+                "VERSION": "Verze"
+            },
+            "CURRENCY": {
+                "CURRENCY": "Měna"
+            },
+            "DOCUMENTATION": {
+                "DOCUMENTATION": "Dokumentace"
+            },
+            "LANGUAGE": {
+                "LANGUAGE": "Jazyk"
+            },
+            "NODE": {
+                "INFO": "Burst uzel se používá pro komunikaci se sítí Burstcoin",
+                "NODE": "Uzel"
+            },
+            "SUPPORT": {
+                "CONTRIBUTION": "Jsme rádi za vaše nepeněžité příspěvky",
+                "DONATE": "Líbí se vám naše aplikace? Podpořte nás Burstcoiny",
+                "SUPPORT": "Podpora"
+            },
+            "TITLE": "Možnosti"
+        }
+    },
+    "SEND": {
+        "ACCEPT": "Akceptovat",
+        "ACTION_BAR_TITLE": "Odeslat BURSTY",
+        "ADD_CONTACT": "Přidat nový kontakt",
+        "AMOUNT": "Částka",
+        "BACK": "Zpět",
+        "BALANCE": "Zůstatek",
+        "CONTACTS": "Kontakty",
+        "FEE": "Poplatek",
+        "FIAT": "Fiat měna na BURSTY",
+        "MESSAGE": "Zpráva",
+        "PIN_INPUT_HINT": "PIN",
+        "RECIPIENT": "Příjemce",
+        "VERIFY": "Ověření"
+    },
+    "START": {
+        "CREATE": "Vytvořit",
+        "IMPORT": "Import",
+        "INFO": "Zatím nebyl vytvořen účet. Vyberte, zda-li chcete importovat existující účet nebo založit nový!"
+    },
+    "NOTIFICATIONS": {
+        "ADDRESS": "Zadejte platnou Burstcoin adresu!",
+        "COPIED": "Kopírovat {{value}} do schránky!",
+        "CONTACT_ADDED": "Kontakt úspěšně přidaný!",
+        "DECIMAL_AMOUNT": "Zadejte desetinné číslo, kolik Burstcoinů chcete poslat!",
+        "DECIMAL_FEE": "Zadejte desetinné číslo (více jak 1) pro poplatek!",
+        "ENTER_SOMETHING": "Zadajte něco!",
+        "EXCEED": "Částka + poplatek přesahují váš zůstatek!",
+        "PIN": "Zadejte šestimístné číslo jako PIN kód!",
+        "REMOVE": "Účet byl úspěšně odebrán!",
+        "SELECTED": "Vybraný účet: {{value}}",
+        "TRANSACTION": "Transakce byla úspěšná!",
+        "UPDATE_CURRENCY": "Měna byla úspešně aktualizovaná!",
+        "UDPDATE_LANGUAGE": "Jazyk byl úspešně aktualizovaný!",
+        "UPDATE_NODE": "Uzel úspešně aktualizovaný!",
+        "WRONG_PASSPHRASE": "Nesprávná přístupová fráze! Zadaná přístupová fráze nevytvořila veřejný klíč k Vašemu účtu!",
+        "WRONG_PIN": "Zadaný PIN se neshoduje s pinem vašeho účtu",
+        "ERRORS": {
+            "ACCOUNT_ID": "Nelze generovat identifikátor účtu z veřejného klíče!",
+            "ADDRESS": "Nelze generovat Burst adresu z identifikátoru účtu!",
+            "CONNECTION": "Nepodařilo se načíst údaje. Zkontrolujte připojení k internetu!",
+            "CONTACT":"Přidání kontaktu selhalo!",
+            "CURRENCY": "Aktualizace měny selhala!",
+            "KEYPAIR": "Nepodařilo se generovat klíče pro přísupovou frázi!",
+            "LANGUAGE": "Nepodařilo se změnit jazyk!",
+            "NODE": "Aktualizace uzlu selhala!",
+            "NO_PUBLIC_KEY": "Příjemce ještě nemá veřejný klíč. Není možné zaslat šifrovanou zprávu!",
+            "QR_CODE": "Nepodařilo se oskenovat QR kód!",
+            "REDIRECT": "Nelze otevřít stránku pro odeslání Burstcoinu! Účet není aktivní!",
+            "REMOVE": "Účet se nepodařilo odstranit!",
+            "UPDATE": "Aktualizace účtu selhala!",
+            "UNKNOWN_ACCOUNT": "Účet stále neznámý! Žádné transakce!"
+        }
+    }
+}
