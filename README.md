@@ -18,21 +18,21 @@ This repository holds the source code for the Burstcoin mobile wallet developed 
 - [NativeScript CLI](https://docs.nativescript.org/angular/start/quick-setup#step-2-install-the-nativescript-cli)
 - [Xcode](https://docs.nativescript.org/angular/start/quick-setup#step-3-install-ios-and-android-requirements)
 
-If you setup your environment correctly, follow these steps:
+**If you setup your environment correctly, follow these steps:**
 
-1. Clone this repository
+1. **Clone this repository**
 
 ```
 git clone git@github.com:cgebe/burst-pocket.git
 ```
 
-2. Install all used npm packages
+2. **Install all used npm packages**
 
 ```
 npm install
 ```
 
-3. Run the application on your virtual device
+3. **Run the application on your virtual device**
 
 *Android*
 ```
