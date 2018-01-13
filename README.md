@@ -22,19 +22,19 @@ This repository holds the source code for the Burstcoin mobile wallet developed 
 
 **If you setup your environment correctly, follow these steps:**
 
-1. **Clone this repository**
+1. Clone this repository
 
     ```
     git clone git@github.com:cgebe/burst-pocket.git
     ```
 
-2. **Install all used npm packages**
+2. Install all used npm packages
 
     ```
     npm install
     ```
 
-3. **Run the application on your virtual device**
+3. Run the application on your virtual device
 
     *Android*
     ```
