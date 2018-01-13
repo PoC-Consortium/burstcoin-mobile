@@ -3,12 +3,11 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-import { Account, Attachment, BurstAddress, EncryptedMessage, Keys, Message, Transaction } from "../../lib/model";
+import { Account, Attachment, EncryptedMessage, Keys, Message, Transaction } from "../../lib/model";
 import { AccountService, CryptoService } from "../../lib/services";
 
 @Injectable()
 export class SendService {
-
     private amount: number;
     private fee: number;
     private recipient: string;
@@ -21,7 +20,7 @@ export class SendService {
         private accountService: AccountService,
         private cryptoService: CryptoService
     ) {
-        this.reset()
+        this.reset();
     }
 
     public reset() {

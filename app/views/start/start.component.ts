@@ -8,7 +8,7 @@ import { TranslateService } from 'ng2-translate';
 import { device } from "platform";
 import { Page } from "ui/page";
 
-import { Account, BurstAddress } from "../../lib/model";
+import { Account } from "../../lib/model";
 import { AccountService, DatabaseService, NotificationService } from "../../lib/services";
 
 @Component({
@@ -18,8 +18,7 @@ import { AccountService, DatabaseService, NotificationService } from "../../lib/
     styleUrls: ["./start.component.css"]
 })
 export class StartComponent implements OnInit {
-
-    loading: boolean;
+    private loading: boolean;
 
     constructor(
         private accountService: AccountService,
@@ -28,7 +27,9 @@ export class StartComponent implements OnInit {
         private page: Page,
         private router: RouterExtensions,
         private translateService: TranslateService
-    ) {
+    ) {}
+
+    public ngOnInit() {
         this.page.actionBarHidden = true;
         this.databaseService.ready.subscribe((init: boolean) => {
             this.loadSelectedAccount(init)
@@ -64,10 +65,5 @@ export class StartComponent implements OnInit {
         } else {
             this.translateService.use(device.language);
         }
-    }
-
-
-    public ngOnInit() {
-
     }
 }
