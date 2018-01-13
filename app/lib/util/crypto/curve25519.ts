@@ -1,24 +1,20 @@
 /*
-* Copyright 2018 PoC-Consortium
+* Copyright 2018 PoC-Consortium and authors
+*
+* Generic 64-bit integer implementation of Curve25519 ECDH
+* Public domain.
+* Original: http://cds.xs4all.nl:8081/ecdh/
+* Written by Matthijs van Duin, 200608242056
+* Based on work by Daniel J Bernstein, http://cr.yp.to/ecdh.html
+*
+* Ported from C to Java by Dmitry Skiba [sahn0], 23/02/08.
+* Ported to JavaScript from Java 07/01/14.
+* Ported to TypeScript 2.4.2 (https://github.com/Microsoft/TypeScript/issues/18158) 09/02/17. @author cgb
 */
-/*
- * Ported to TypeScript 2.4.2 (https://github.com/Microsoft/TypeScript/issues/18158) 09/02/17. @author cgb
- * Ported to JavaScript from Java 07/01/14.
- * Ported from C to Java by Dmitry Skiba [sahn0], 23/02/08.
- * Original: http://cds.xs4all.nl:8081/ecdh/
- */
-/*
- * Generic 64-bit integer implementation of Curve25519 ECDH
- * Written by Matthijs van Duin, 200608242056
- * Public domain.
- *
- * Based on work by Daniel J Bernstein, http://cr.yp.to/ecdh.html
- */
 
 export class Curve25519 {
 
     //region Constants
-
     public static KEY_SIZE: number = 32;
 
     /* array length */

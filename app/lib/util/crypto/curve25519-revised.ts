@@ -5,10 +5,12 @@
 // - functions to read from/to 8bit string
 // - removed base32/hex functions (cleanup)
 // - removed setbit function (cleanup, had a bug anyway)
-// BloodyRookie 2014:
+// BloodyRookie, 2014:
 // - ported part of the java implementation by Dmitry Skiba to js and merged into this file
 // - profiled for higher speed
-//
+// cgb, PoC-Consortium, 2017:
+// - ported into typescript
+
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation; either version 2 of the License, or

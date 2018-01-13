@@ -30,14 +30,12 @@ export class Converter {
         }
     }
 
-    // Convert a hex string to a byte array
     public static convertHexStringToByteArray(hex): number[] {
         for (var bytes = [], c = 0; c < hex.length; c += 2)
             bytes.push(parseInt(hex.substr(c, 2), 16));
         return bytes;
     }
 
-    // Convert a byte array to a hex string
     public static convertByteArrayToHexString(bytes) {
         for (var hex = [], i = 0; i < bytes.length; i++) {
             hex.push((bytes[i] >>> 4).toString(16));
