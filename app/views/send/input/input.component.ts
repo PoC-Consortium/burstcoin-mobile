@@ -10,7 +10,6 @@ import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/mod
 import { RadSideDrawerComponent, SideDrawerType } from "nativescript-pro-ui/sidedrawer/angular";
 import { RadSideDrawer } from "nativescript-pro-ui/sidedrawer";
 import { Switch } from "ui/switch";
-import { TextField } from "ui/text-field";
 import { BarcodeScanner, ScanOptions } from 'nativescript-barcodescanner';
 
 import { Account, BurstAddress, Settings, Transaction } from "../../../lib/model";
@@ -29,27 +28,24 @@ let clipboard = require("nativescript-clipboard");
     templateUrl: "./input.component.html"
 })
 export class InputComponent implements OnInit {
-    account: Account;
-    balance: string;
-    recipientParts: string[];
-    amount: number;
-    fee: number;
-    pin: string;
-    total: number;
+    private account: Account;
+    private amount: number;
+    private balance: string;
+    private drawer: RadSideDrawer;
+    private fee: number;
+    private messageEnabled: boolean
+    private message: string
+    private messageEncrypted: boolean
+    private pin: string;
+    private recipientParts: string[];
+    private settings: Settings;
+    private total: number;
 
     @ViewChild("amountField")
     public amountField: ElementRef;
 
     @ViewChild(RadSideDrawerComponent)
     public drawerComponent: RadSideDrawerComponent;
-
-    private drawer: RadSideDrawer;
-
-    settings: Settings;
-
-    messageEnabled: boolean
-    message: string
-    messageEncrypted: boolean
 
     constructor(
         private accountService: AccountService,
@@ -64,31 +60,30 @@ export class InputComponent implements OnInit {
         private sendService: SendService,
         private translateService: TranslateService,
         private vcRef: ViewContainerRef
-    ) {
+    ) {}
+
+    ngOnInit(): void {
+        // if called with address in path, insert address
         if (this.route.snapshot.params['address'] != undefined) {
             this.recipientParts = BurstAddress.splitBurstAddress(this.route.snapshot.params['address']);
         } else {
             this.recipientParts = BurstAddress.splitBurstAddress(this.sendService.getRecipient());
         }
-    }
-
-    ngOnInit(): void {
-        this.amount = this.sendService.getAmount() != 0 ? this.sendService.getAmount() : undefined;
-        this.fee = this.sendService.getFee();
-        this.total = this.sendService.getAmount() + this.sendService.getFee();
-
-        this.message = this.sendService.getMessage();
-        this.messageEnabled = this.sendService.getMessageEnabled();
-        this.messageEncrypted = this.sendService.getMessageEncrypted();
-
+        // load current account
         if (this.accountService.currentAccount.value != undefined) {
             this.account = this.accountService.currentAccount.value;
             this.balance = this.marketService.formatBurstcoin(this.account.balance);
         }
-
+        // load current settings
         if (this.databaseService.settings.value != undefined) {
             this.settings = this.databaseService.settings.value;
         }
+        this.amount = this.sendService.getAmount() != 0 ? this.sendService.getAmount() : undefined;
+        this.fee = this.sendService.getFee();
+        this.total = this.sendService.getAmount() + this.sendService.getFee();
+        this.message = this.sendService.getMessage();
+        this.messageEnabled = this.sendService.getMessageEnabled();
+        this.messageEncrypted = this.sendService.getMessageEncrypted();
     }
 
     ngAfterViewInit() {

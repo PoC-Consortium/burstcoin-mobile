@@ -2,20 +2,18 @@
 * Copyright 2018 PoC-Consortium
 */
 
-import { Component, OnInit, NgModule } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { TranslateService } from "ng2-translate";
 import { ModalDialogParams } from "nativescript-angular/modal-dialog";
 import { Page } from "ui/page";
 import { AccountService, MarketService, NotificationService } from "../../../../lib/services";
 
-// >> passing-parameters
 @Component({
     moduleId: module.id,
     templateUrl: "./fiat.component.html",
     styleUrls: ["./fiat.component.css"]
 })
 export class FiatComponent {
-
     private amount: string;
     private burstcoins: number;
 

@@ -20,11 +20,11 @@ import { SendService } from "../send.service";
     templateUrl: "./verify.component.html"
 })
 export class VerifyComponent implements OnInit {
-    balance: string
-    account: Account;
-    pin: string;
-    total: number;
-    loading: boolean;
+    private account: Account;
+    private balance: string
+    private loading: boolean;
+    private pin: string;
+    private total: number;
 
     constructor(
         private accountService: AccountService,
