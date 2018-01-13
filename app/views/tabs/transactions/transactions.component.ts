@@ -4,8 +4,7 @@
 
 import { Component, OnInit, ViewContainerRef } from "@angular/core";
 import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
-import { ListViewEventData } from "nativescript-pro-ui/listview";
-import { GestureEventData, SwipeGestureEventData } from "ui/gestures";
+import { SwipeGestureEventData } from "ui/gestures";
 import { TranslateService } from 'ng2-translate';
 
 import { Account, Transaction } from "../../../lib/model";
@@ -25,9 +24,8 @@ let clipboard = require("nativescript-clipboard");
     styleUrls: ["./transactions.component.css"]
 })
 export class TransactionsComponent implements OnInit {
-
-    transactions: Transaction[];
-    ownId: string;
+    private ownId: string;
+    private transactions: Transaction[];
 
     constructor(
         private databaseService: DatabaseService,
@@ -38,12 +36,11 @@ export class TransactionsComponent implements OnInit {
         private tabsService: TabsService,
         private translateService: TranslateService,
         private vcRef: ViewContainerRef
-    ) {
-        this.ownId = "";
-        this.transactions = [];
-    }
+    ) {}
 
     ngOnInit(): void {
+        this.ownId = "";
+        this.transactions = [];
         this.accountService.currentAccount.subscribe((account: Account) => {
             if (account != undefined) {
                 this.transactions = account.transactions;

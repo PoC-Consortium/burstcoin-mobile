@@ -6,8 +6,8 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
 import { SwipeGestureEventData } from "ui/gestures";
 import { Image } from "ui/image"
-import { TranslateService } from 'ng2-translate';
-import { Account, BurstAddress, Currency } from "../../../lib/model";
+import { TranslateService } from "ng2-translate";
+import { Account, Currency } from "../../../lib/model";
 import { AccountService, DatabaseService, MarketService, NotificationService, TabsService } from "../../../lib/services";
 import { RadListViewComponent } from "nativescript-pro-ui/listview/angular";
 import { isIOS } from "platform";
@@ -25,13 +25,13 @@ let ZXing = require('nativescript-zxing');
 })
 export class BalanceComponent implements OnInit {
 
-    account: Account;
-    address: string;
-    balance: string;
-    confirmed: boolean;
-    loading: boolean;
-    qrcode: Image;
-    zx: any;
+    private account: Account;
+    private address: string;
+    private balance: string;
+    private confirmed: boolean;
+    private loading: boolean;
+    private qrcode: Image;
+    private zx: any;
 
     @ViewChild('radListView') radListView: RadListViewComponent;
 
@@ -42,13 +42,12 @@ export class BalanceComponent implements OnInit {
         private notificationService: NotificationService,
         private tabsService: TabsService,
         private translateService: TranslateService
-    ) {
+    ) {}
+
+    ngOnInit(): void {
         this.zx = new ZXing();
         this.confirmed = true;
         this.loading = true;
-    }
-
-    ngOnInit(): void {
         this.accountService.currentAccount.subscribe((account: Account) => {
             if (account != undefined) {
                 // update information
@@ -58,7 +57,6 @@ export class BalanceComponent implements OnInit {
                 if (isIOS) {
                     this.radListView.listView.notifyPullToRefreshFinished(); // workaround https://github.com/NativeScript/nativescript-angular/issues/872
                 }
-
             }
         });
     }

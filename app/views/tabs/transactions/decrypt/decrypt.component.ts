@@ -2,26 +2,24 @@
 * Copyright 2018 PoC-Consortium
 */
 
-import { Component, OnInit, NgModule } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { TranslateService } from "ng2-translate";
 import { ModalDialogParams } from "nativescript-angular/modal-dialog";
 import { Page } from "ui/page";
 import { AccountService, CryptoService, NotificationService } from "../../../../lib/services";
 import { Account, EncryptedMessage, Transaction } from "../../../../lib/model";
 
-// >> passing-parameters
 @Component({
     moduleId: module.id,
     templateUrl: "./decrypt.component.html",
     styleUrls: ["./decrypt.component.css"]
 })
 export class DecryptComponent implements OnInit {
-
-    pin: string;
-    decrypted: string;
-    decryptError: boolean;
-    transaction: Transaction;
-    account: Account;
+    private account: Account;
+    private decrypted: string;
+    private decryptError: boolean;
+    private pin: string;
+    private transaction: Transaction;
 
     constructor(
         private accountService: AccountService,
@@ -30,16 +28,15 @@ export class DecryptComponent implements OnInit {
         private page: Page,
         private notificationService: NotificationService,
         private translateService: TranslateService
-    ) {
-        this.transaction = params.context;
+    ) {}
+
+    ngOnInit() {
+        this.transaction = this.params.context;
         this.decrypted = "-"
         this.decryptError = false;
         this.page.on("unloaded", () => {
             this.params.closeCallback();
         });
-    }
-
-    ngOnInit() {
         if (this.accountService.currentAccount.value != undefined) {
             this.account = this.accountService.currentAccount.value;
         }

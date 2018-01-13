@@ -2,13 +2,12 @@
 * Copyright 2018 PoC-Consortium
 */
 
-import { Component, OnInit, NgModule } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ModalDialogParams } from "nativescript-angular/modal-dialog";
 import { Page } from "ui/page";
 
 import * as utils from "utils/utils";
 
-// >> passing-parameters
 @Component({
     moduleId: module.id,
     templateUrl: "./about.component.html",
@@ -16,16 +15,17 @@ import * as utils from "utils/utils";
 })
 export class AboutComponent implements OnInit {
 
-    public version: string = "0.2.0";
+    private version: string = "0.2.0";
 
-    constructor(private params: ModalDialogParams, private page: Page) {
+    constructor(
+        private params: ModalDialogParams,
+        private page: Page
+    ) {}
+
+    ngOnInit() {
         this.page.on("unloaded", () => {
             this.params.closeCallback();
         });
-    }
-
-    ngOnInit() {
-
     }
 
     public onTapTwitter() {

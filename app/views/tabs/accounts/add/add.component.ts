@@ -2,7 +2,7 @@
 * Copyright 2018 PoC-Consortium
 */
 
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
 import { ModalDialogParams } from "nativescript-angular/modal-dialog";
 import { Page } from "ui/page";
@@ -19,16 +19,14 @@ export class AddComponent implements OnInit {
         private params: ModalDialogParams,
         private page: Page,
         private router: RouterExtensions
-    ) {
+    ) {}
+
+    public ngOnInit() {
         this.page.on("unloaded", () => {
             // using the unloaded event to close the modal when there is user interaction
             // e.g. user taps outside the modal page
             this.params.closeCallback();
         });
-    }
-
-    public ngOnInit() {
-
     }
 
     public onTapImport() {

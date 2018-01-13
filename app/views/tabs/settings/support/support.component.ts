@@ -18,7 +18,6 @@ import * as utils from "utils/utils";
     styleUrls: ["./support.component.css"]
 })
 export class SupportComponent implements OnInit {
-
     private donateAddress: string = "BURST-RTEY-HUSA-BJG4-EZW9E";
 
     constructor(
@@ -28,14 +27,12 @@ export class SupportComponent implements OnInit {
         private router: RouterExtensions,
         private notificationService: NotificationService,
         private translateService: TranslateService
-        ) {
+    ) {}
+
+    ngOnInit() {
         this.page.on("unloaded", () => {
             this.params.closeCallback();
         });
-    }
-
-    ngOnInit() {
-
     }
 
     public onTapSupport() {

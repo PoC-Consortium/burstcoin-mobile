@@ -27,9 +27,9 @@ import * as utils from "utils/utils";
 })
 export class SettingsComponent implements OnInit {
 
-    settings: Settings;
-    languageNames: string[] = ["Deutsch", "Ελληνικά", "English", "Español", "Français", "हिन्दी", "Italiano", "한국어", "Magyar", "Nederlands", "Polski", "Pу́сский", "Slovensky", "Svenska", "தமிழ", "中文"]
-    languages: string[] = ["de", "el", "en", "es", "fr", "hi", "it", "ko", "hu", "nl", "pl", "ru", "sk", "sv", "ta", "zh"]
+    private settings: Settings;
+    private languageNames: string[] = ["Deutsch", "Ελληνικά", "English", "Español", "Français", "हिन्दी", "Italiano", "한국어", "Magyar", "Nederlands", "Polski", "Pу́сский", "Slovensky", "Svenska", "தமிழ", "中文"]
+    private languages: string[] = ["de", "el", "en", "es", "fr", "hi", "it", "ko", "hu", "nl", "pl", "ru", "sk", "sv", "ta", "zh"]
 
     constructor(
         private accountService: AccountService,
@@ -40,13 +40,12 @@ export class SettingsComponent implements OnInit {
         private tabsService: TabsService,
         private translateService: TranslateService,
         private vcRef: ViewContainerRef
-    ) {
+    ) {}
+
+    ngOnInit(): void {
         this.settings = new Settings();
         this.settings.currency = "...";
         this.settings.node = "...";
-    }
-
-    ngOnInit(): void {
         this.databaseService.getSettings()
             .then(settings => {
                 this.settings = settings;

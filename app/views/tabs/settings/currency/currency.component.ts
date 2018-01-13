@@ -13,24 +13,21 @@ import { DatabaseService } from "../../../../lib/services";
     templateUrl: "./currency.component.html",
 })
 export class CurrencyComponent implements OnInit {
-
-    picked: string;
-    currencies: string[] = ["AUD", "BRL", "CAD", "CHF", "CLP", "CNY", "CZK", "DKK", "EUR", "GBP", "HKD", "HUF", "IDR", "ILS", "INR", "JPY", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP", "PKR", "PLN", "RUB", "SEK", "SGD", "THB", "TRY", "TWD", "USD", "ZAR"]
-    index: number;
+    private currencies: string[] = ["AUD", "BRL", "CAD", "CHF", "CLP", "CNY", "CZK", "DKK", "EUR", "GBP", "HKD", "HUF", "IDR", "ILS", "INR", "JPY", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP", "PKR", "PLN", "RUB", "SEK", "SGD", "THB", "TRY", "TWD", "USD", "ZAR"]
+    private index: number;
+    private picked: string;
 
     constructor(
         private databaseService: DatabaseService,
         private params: ModalDialogParams,
         private page: Page
-    ) {
-        this.index = this.currencies.indexOf(params.context)
+    ) {}
+
+    ngOnInit() {
+        this.index = this.currencies.indexOf(this.params.context)
         this.page.on("unloaded", () => {
             this.params.closeCallback();
         });
-    }
-
-    ngOnInit() {
-
     }
 
     public selectedIndexChanged(args) {

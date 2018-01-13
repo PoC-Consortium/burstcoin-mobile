@@ -29,7 +29,7 @@ import * as SocialShare from "nativescript-social-share";
 })
 export class AccountsComponent implements OnInit {
 
-    accounts: Account[];
+    private accounts: Account[];
     @ViewChild('radListView') radListView: RadListViewComponent;
 
     constructor(
@@ -43,11 +43,10 @@ export class AccountsComponent implements OnInit {
         private tabsService: TabsService,
         private translateService: TranslateService,
         private vcRef: ViewContainerRef
-    ) {
-        this.accounts = [];
-    }
+    ) {}
 
     ngOnInit(): void {
+        this.accounts = [];
         this.databaseService.getAllAccounts()
             .then(accounts => {
                 this.accounts = accounts;
@@ -178,6 +177,4 @@ export class AccountsComponent implements OnInit {
                 })
         }
     }
-
-
 }

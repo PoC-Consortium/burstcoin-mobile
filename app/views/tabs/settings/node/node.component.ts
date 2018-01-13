@@ -8,29 +8,25 @@ import { Page } from "ui/page";
 import { Settings } from "../../../../lib/model";
 import { DatabaseService } from "../../../../lib/services";
 
-// >> passing-parameters
 @Component({
     moduleId: module.id,
     templateUrl: "./node.component.html",
     styleUrls: ["./node.component.css"]
 })
 export class NodeComponent implements OnInit {
-
-    address: string;
+    private address: string;
 
     constructor(
         private databaseService: DatabaseService,
         private params: ModalDialogParams,
         private page: Page
-    ) {
-        this.address = params.context;
+    ) {}
+
+    ngOnInit() {
+        this.address = this.params.context;
         this.page.on("unloaded", () => {
             this.params.closeCallback();
         });
-    }
-
-    ngOnInit() {
-
     }
 
     public onTapOk() {

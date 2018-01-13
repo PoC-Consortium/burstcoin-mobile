@@ -2,7 +2,7 @@
 * Copyright 2018 PoC-Consortium
 */
 
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
 import { ModalDialogParams } from "nativescript-angular/modal-dialog";
 import { Page } from "ui/page";
@@ -19,8 +19,8 @@ import { AccountService, DatabaseService, NotificationService } from "../../../.
 })
 export class RemoveComponent implements OnInit {
 
-    loading: boolean;
-    remove: Account;
+    private loading: boolean;
+    private remove: Account;
 
     constructor(
         private accountService: AccountService,
@@ -30,15 +30,13 @@ export class RemoveComponent implements OnInit {
         private page: Page,
         private router: RouterExtensions,
         private translateService: TranslateService
-    ) {
-        this.remove = params.context;
+    ) {}
+
+    public ngOnInit() {
+        this.remove = this.params.context;
         this.page.on("unloaded", () => {
             this.params.closeCallback(false);
         });
-    }
-
-    public ngOnInit() {
-
     }
 
     public onTapNo() {

@@ -2,7 +2,7 @@
 * Copyright 2018 PoC-Consortium
 */
 
-import { Component, ElementRef, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
+import { Component, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
 import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
 import { LangChangeEvent, TranslateService } from 'ng2-translate';
@@ -11,7 +11,6 @@ import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-mo
 import { Page } from "ui/page";
 
 import { Account } from "../../lib/model";
-import { UnknownAccountError } from "../../lib/model/error";
 import { AccountService, DatabaseService, NotificationService, TabsService } from "../../lib/services";
 
 import * as elementRegistryModule from 'nativescript-angular/element-registry';
@@ -39,9 +38,7 @@ export class TabsComponent implements OnInit {
         private tabsService: TabsService,
         private translateService: TranslateService,
         private vcRef: ViewContainerRef
-    ) {
-
-    }
+    ) {}
 
     ngOnInit(): void {
         if (this.accountService.currentAccount.value == undefined) {
@@ -115,5 +112,4 @@ export class TabsComponent implements OnInit {
         this.selectedIndex = args.newIndex;
         this.title = selectedTabViewItem.title;
     }
-
 }
