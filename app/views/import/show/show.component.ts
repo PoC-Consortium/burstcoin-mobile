@@ -2,7 +2,7 @@
 * Copyright 2018 PoC-Consortium
 */
 
-import { Component, OnInit, NgModule } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ModalDialogParams } from "nativescript-angular/modal-dialog";
 import { Page } from "ui/page";
 
@@ -11,21 +11,18 @@ import { Page } from "ui/page";
     templateUrl: "./show.component.html",
 })
 export class ShowComponent implements OnInit {
-
-    address: string;
+    private address: string;
 
     constructor(
         private params: ModalDialogParams,
         private page: Page
-    ) {
-        this.address = params.context;
+    ) {}
+
+    ngOnInit() {
+        this.address = this.params.context;
         this.page.on("unloaded", () => {
             this.params.closeCallback(false);
         });
-    }
-
-    ngOnInit() {
-
     }
 
     public onTapNo() {

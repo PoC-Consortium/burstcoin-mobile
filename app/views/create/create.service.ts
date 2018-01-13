@@ -7,7 +7,6 @@ import { AccountService, CryptoService } from "../../lib/services";
 
 @Injectable()
 export class CreateService {
-
     private passphrase: string[];
     private progress: number;
 

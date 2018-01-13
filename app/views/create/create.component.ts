@@ -17,8 +17,7 @@ export class CreateComponent {
     constructor(
         private createService: CreateService,
         private router: RouterExtensions
-    ) {
-    }
+    ) {}
 
     /*
     * Used to go back to seed generation step

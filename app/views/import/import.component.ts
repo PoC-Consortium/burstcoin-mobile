@@ -7,9 +7,8 @@ import { Switch } from "ui/switch";
 import { RouterExtensions } from "nativescript-angular/router";
 import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
 import { TranslateService } from 'ng2-translate';
-
 import { BurstAddress } from "../../lib/model";
-import { CryptoService, NotificationService, AccountService } from "../../lib/services";
+import { AccountService, CryptoService, NotificationService } from "../../lib/services";
 import { ShowComponent } from "./show/show.component";
 
 @Component({
@@ -19,34 +18,33 @@ import { ShowComponent } from "./show/show.component";
     styleUrls: ["./import.component.css"]
 })
 export class ImportComponent implements OnInit {
-    step: number;
-    activeInput: string;
-    offlineInput: string;
-    offlineInputParts: string[];
-    state: string;
-    hint: string;
-    active: boolean;
-    pin: string;
+    private step: number;
+    private activeInput: string;
+    private offlineInput: string;
+    private offlineInputParts: string[];
+    private state: string;
+    private hint: string;
+    private active: boolean;
+    private pin: string;
 
     constructor(
+        private accountService: AccountService,
         private cryptoService: CryptoService,
         private modalDialogService: ModalDialogService,
         private notificationService: NotificationService,
-        private vcRef: ViewContainerRef,
-        private accountService: AccountService,
         private router: RouterExtensions,
-        private translateService: TranslateService
-    ) {
+        private translateService: TranslateService,
+        private vcRef: ViewContainerRef
+    ) {}
+
+    public ngOnInit() {
+        // TODO: check if account already exists, then redirect to tabs
         this.step = 1;
         this.activeInput = "";
         this.offlineInput = "";
         this.offlineInputParts = [];
         this.hint = "Passphrase";
         this.active = true;
-    }
-
-    public ngOnInit() {
-        // TODO: check if account already exists, then redirect to tabs
     }
 
     public onChecked(args) {
@@ -143,5 +141,4 @@ export class ImportComponent implements OnInit {
             }
         }
     }
-
 }
