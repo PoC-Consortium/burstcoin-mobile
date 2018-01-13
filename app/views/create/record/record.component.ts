@@ -4,7 +4,6 @@
 
 import { Component, OnInit } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
-import { CryptoService, NotificationService } from "../../../lib/services";
 import { CreateService } from "../create.service"
 
 @Component({
@@ -14,7 +13,6 @@ import { CreateService } from "../create.service"
     styleUrls: ["./record.component.css"]
 })
 export class RecordComponent implements OnInit {
-
     private index: number;
 
     constructor(
@@ -38,5 +36,4 @@ export class RecordComponent implements OnInit {
             this.router.navigate(['create/reproduce'])
         }
     }
-
 }

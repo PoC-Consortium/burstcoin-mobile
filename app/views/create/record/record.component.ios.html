@@ -1,78 +1,16 @@
-<ActionBar class="action-bar">
-    <StackLayout orientation="horizontal">
-        <Image class="logo-tiny m-r-15" src="res://logo"></Image>
-        <Label class="action-bar-title" [text]="'CREATE.ACTION_BAR_TITLE' | translate"></Label>
-    </StackLayout>
-</ActionBar>
-
-<ScrollView>
-    <StackLayout class="page-content" orientation="vertical">
-
-        <StackLayout class="container" orientation="vertical">
-            <Image *ngIf="step != 0" class="logo-small m-b-15 m-t-15" src="res://logo"></Image>
-            <Image *ngIf="step == 0" class="logo-normal m-b-15 m-t-15" src="res://logo"></Image>
-
-            <StackLayout *ngIf="step != 0" class="info-container" orientation="vertical">
-                <StackLayout orientation="vertical">
-                    <Label *ngIf="step != 0" class="top text-view-label fa" text="&#xf05a;"></Label>
-                    <Label *ngIf="step == 1" class="bottom" textWrap="true" [text]="'CREATE.INFO_STEP_ONE' | translate"></Label>
-                    <Label *ngIf="step == 2" class="bottom" textWrap="true" [text]="'CREATE.INFO_STEP_TWO' | translate"></Label>
-                    <Label *ngIf="step == 3" class="bottom" textWrap="true" [text]="'CREATE.INFO_STEP_THREE' | translate"></Label>
-                    <Label *ngIf="step == 4" class="bottom" textWrap="true" [text]="'CREATE.INFO_STEP_FOUR' | translate"></Label>
-                </StackLayout>
-            </StackLayout>
-
-            <StackLayout *ngIf="step == 0" class="p-10" orientation="vertical">
-                <ActivityIndicator busy="true" width="100" height="100" class="activity-indicator"></ActivityIndicator>
-            </StackLayout>
-
-            <StackLayout *ngIf="step == 1" style="padding: 0px;" class="body-container m-t-10" orientation="vertical">
-                <StackLayout *ngIf="seed.length < seedLimit" (touch)="onTouch($event)" class="seed-area" orientation="vertical">
-                    <Label class="font-weight-bold" [text]="'CREATE.INFO_SEED' | translate"></Label>
-                    <StackLayout orientation="vertical">
-                        <Progress class="progress-bar" [value]="seed.length" [maxValue]="seedLimit" class="m-20"></Progress>
-                    </StackLayout>
-                </StackLayout>
-                <StackLayout *ngIf="seed.length >= seedLimit">
-                    <Label class="font-weight-bold solo" [text]="'CREATE.INFO_SEED_FINISHED' | translate"></Label>
-                    <Button class="btn btn-primary btn-active action-button fa" [isEnabled]="seed.length >= seedLimit" [text]="('CREATE.NEXT' | translate) + ' &#xf18e;'" (tap)="onTapSeedNext($event)"></Button>
-                </StackLayout>
-            </StackLayout>
-
-            <StackLayout *ngIf="step == 2">
-                <StackLayout class="body-container" orientation="vertical">
-                    <Label class="top" textWrap="true" [text]="'CREATE.INFO_STEP_TWO_ACTION' | translate"></Label>
-                    <StackLayout class="chip">
-                        <Label [text]="passPhrase[word]"></Label>
-                    </StackLayout>
-                    <Button class="btn btn-primary btn-active action-button fa" [text]="('CREATE.NEXT' | translate) + ' &#xf18e;'" (tap)="onTapNext($event)"></Button>
-                </StackLayout>
-            </StackLayout>
-
-            <StackLayout *ngIf="step == 3" class="body-container m-b-15" orientation="vertical">
-                <Label class="solo" [text]="'CREATE.INFO_STEP_THREE_ACTION' | translate:wordnumber"></Label>
-                <StackLayout class="possibilities" orientation="horizontal">
-                    <Button *ngFor="let possibility of retypePassPhrase" class="btn btn-primary btn-active possibility-button" [text]="possibility" (tap)="onTapPossibility($event)"></Button>
-                </StackLayout>
-                <TextField class="input" [text]="try" [hint]="'CREATE.POSSIBILITY_INPUT_HINT' | translate:wordnumber" (textChange)="onChange($event)"></TextField>
-            </StackLayout>
-
-            <StackLayout *ngIf="step == 4" orientation="vertical">
-                <StackLayout class="body-container" orientation="vertical">
-                    <TextField class="input" [(ngModel)]="pin" [hint]="'CREATE.PIN_INPUT_HINT' | translate" keyboardType="number" returnKeyType="done"></TextField>
-                </StackLayout>
-                <StackLayout orientation="vertical">
-                    <Button class="btn btn-primary btn-active action-button fa" [text]="('CREATE.DONE' | translate) + ' &#xf00c;'" (tap)="onTapDone($event)"></Button>
-                </StackLayout>
-            </StackLayout>
-
-            <StackLayout *ngIf="step != 0 && step != 1" class="progress-bottom" orientation="vertical">
-                <StackLayout *ngIf="step == 2 || step == 3">
-                    <Button class="generate-again-button btn btn-primary btn-active fa" [text]="('CREATE.GENERATE_AGAIN' | translate) + ' &#xf021;'" (tap)="onTapGenerateAgain($event)"></Button>
-                </StackLayout>
-                <StackLayout *ngIf="step != 3 && step != 2" class="bottom-filler"></StackLayout>
-                <Progress class="m-20 progress-bar" *ngIf="step > 0" [value]="step - 1" maxValue="3"></Progress>
-            </StackLayout>
+<StackLayout>
+    <StackLayout class="info-container" orientation="vertical">
+        <StackLayout orientation="vertical">
+            <Label class="top text-view-label fa" text="&#xf05a;"></Label>
+            <Label class="bottom" textWrap="true" [text]="'CREATE.INFO_STEP_TWO' | translate"></Label>
         </StackLayout>
     </StackLayout>
-</ScrollView>
+
+    <StackLayout>
+        <StackLayout class="body-container" orientation="vertical">
+            <Label class="top" textWrap="true" [text]="'CREATE.INFO_STEP_TWO_ACTION' | translate"></Label>
+            <Label class="chip" [text]="this.createService.getPassphrasePart(index)"></Label>
+            <Button class="btn btn-primary btn-active action-button fa" [text]="('CREATE.NEXT' | translate) + ' &#xf18e;'" (tap)="onTapNext($event)"></Button>
+        </StackLayout>
+    </StackLayout>
+</StackLayout>
