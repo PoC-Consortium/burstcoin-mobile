@@ -1,3 +1,4 @@
+Original pngs run through formatter @
 https://romannurik.github.io/AndroidAssetStudio/icons-generic.html
 
 Image

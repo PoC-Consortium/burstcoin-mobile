@@ -1,3 +1,0 @@
-- Android Manifest Version
-- About Version
-- Check Functions
