@@ -1,3 +1,6 @@
+/*
+* Copyright 2018 PoC-Consortium
+*/
 
 export const constants = {
     connectionTimeout: 10000,
