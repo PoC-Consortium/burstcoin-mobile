@@ -25,11 +25,11 @@ export class LanguageComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        // search for sleected language index
+        // search for selected language index
         this.index = constants.languages.findIndex(i => i.code === this.params.context);
         // get only lnaguage names for listpicker
         this.languageNames = [];
-        constants.languages.map(lang => this.languageNames.push(lang.name))
+        constants.languages.map(lang => this.languageNames.push(lang.name));
         this.page.on("unloaded", () => {
             this.params.closeCallback();
         });

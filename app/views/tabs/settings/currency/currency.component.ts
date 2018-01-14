@@ -14,7 +14,7 @@ import { DatabaseService } from "../../../../lib/services";
     templateUrl: "./currency.component.html",
 })
 export class CurrencyComponent implements OnInit {
-    private currencyCodes: string[] = constants.currencies;
+    private currencyCodes: string[];
     private index: number;
     private picked: string;
 
@@ -25,7 +25,11 @@ export class CurrencyComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.index = constants.currencies.indexOf(this.params.context)
+        // search for selected currency index
+        this.index = constants.currencies.findIndex(i => i.code === this.params.context)
+        // prepare listpicker list
+        this.currencyCodes = [];
+        constants.currencies.map(currency => this.currencyCodes.push(currency.code + " (" + currency.symbol + ")"))
         this.page.on("unloaded", () => {
             this.params.closeCallback();
         });
@@ -33,7 +37,7 @@ export class CurrencyComponent implements OnInit {
 
     public selectedIndexChanged(args) {
         let picker = <ListPicker>args.object;
-        this.picked = constants.currencies[picker.selectedIndex];
+        this.picked = constants.currencies[picker.selectedIndex].code;
     }
 
     public onTapOk() {

@@ -18,8 +18,6 @@ import { DatabaseService } from "./";
 */
 @Injectable()
 export class MarketService {
-    private timeout: number = 10000; // 10 seconds
-
     public currency: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
     constructor(
@@ -48,7 +46,7 @@ export class MarketService {
                 requestOptions.params = params;
             }
             return this.http.get(constants.marketUrl, requestOptions)
-                .timeout(this.timeout)
+                .timeout(constants.connectionTimeout)
                 .toPromise()
                 .then(response => {
                     let r = response.json() || [];
@@ -130,64 +128,14 @@ export class MarketService {
 
     /*
     * Get current fiat currency symbol
-    * TODO: refactor into constants.ts
     */
     public getCurrencySymbol(): string {
         if (this.currency.value != undefined) {
-            switch (this.currency.value.currency) {
-                case "AUD":
-                case "CAD":
-                case "CLP":
-                case "HKD":
-                case "MXN":
-                case "NZD":
-                case "SGD":
-                case "TWD":
-                case "USD":
-                    return "$";
-                case "BRL":
-                    return "R$";
-                case "CNY":
-                case "JPY":
-                    return "¥";
-                case "CZK":
-                    return "Kč";
-                case "DKK":
-                case "NOK":
-                case "SEK":
-                    return "kr";
-                case "EUR":
-                    return "€";
-                case "GBP":
-                    return "£";
-                case "HUF":
-                    return "Ft";
-                case "IDR":
-                    return "Rp";
-                case "ILS":
-                    return "₪";
-                case "INR":
-                    return "₹";
-                case "KRW":
-                    return "₩";
-                case "MYR":
-                    return "RM";
-                case "PHP":
-                    return "₱";
-                case "PKR":
-                    return "₨";
-                case "PLN":
-                    return "zł";
-                case "RUB":
-                    return "₽";
-                case "THB":
-                    return "฿";
-                case "TRY":
-                    return "₺";
-                case "ZAR":
-                    return "Rs";
-                default:
-                    return this.currency.value.currency.toUpperCase()
+            let currency = constants.currencies.find(c => c.code === this.currency.value.currency);
+            if (currency != undefined) {
+                return currency.symbol;
+            } else {
+                this.currency.value.currency.toUpperCase();
             }
         } else {
             return "...";
