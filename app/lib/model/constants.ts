@@ -1,0 +1,48 @@
+
+export const constants = {
+    connectionTimeout: 10000,
+    currencies: [
+        "AUD", "BRL", "CAD",
+        "CHF", "CLP", "CNY",
+        "CZK", "DKK", "EUR",
+        "GBP", "HKD", "HUF",
+        "IDR", "ILS", "INR",
+        "JPY", "KRW", "MXN",
+        "MYR", "NOK", "NZD",
+        "PHP", "PKR", "PLN",
+        "RUB", "SEK", "SGD",
+        "THB", "TRY", "TWD",
+        "USD", "ZAR"
+    ],
+    database: "loki.db",
+    defaultCurrency: "USD",
+    defaultLanguage: "en",
+    defaultNode: "https://wallet.burst.cryptoguru.org:8125/burst",
+    defaultTheme: "light",
+    documentationUrl: "https://poc-consortium.github.io/burstcoin-mobile-doc/",
+    donate: "BURST-RTEY-HUSA-BJG4-EZW9E",
+    languages: [
+        { name: "čeština", code: "cs" },
+        { name: "Deutsch", code: "de" },
+        { name: "Ελληνικά", code: "el" },
+        { name: "English", code: "en" },
+        { name: "Español", code: "es" },
+        { name: "Français", code: "fr" },
+        { name: "हिन्द", code: "hi" },
+        { name: "Italiano", code: "it" },
+        { name: "한국어", code: "ko" },
+        { name: "Magyar", code: "hu" },
+        { name: "Nederlands", code: "nl" },
+        { name: "Polski", code: "pl" },
+        { name: "Slovensky", code: "sk" },
+        { name: "Svenska", code: "sv" },
+        { name: "தமிழ", code: "ta" },
+        { name: "中文", code: "zh" }
+    ],
+    marketUrl: "https://api.coinmarketcap.com/v1/ticker/burst",
+    supportUrl: "https://github.com/poc-consortium/burstcoin-mobile-doc/issues",
+    transactionCount: "15",
+    transactionUrl: "https://explore.burst.cryptoguru.org/transaction/",
+    twitter: "https://twitter.com/PoC_Consortium",
+    version: "0.2.0"
+}

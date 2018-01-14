@@ -24,7 +24,6 @@ let ZXing = require('nativescript-zxing');
     styleUrls: ["./balance.component.css"]
 })
 export class BalanceComponent implements OnInit {
-
     private account: Account;
     private address: string;
     private balance: string;

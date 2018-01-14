@@ -16,7 +16,6 @@ import { AddComponent } from "./accounts/add/add.component";
 import { RemoveComponent } from "./accounts/remove/remove.component";
 
 import { BalanceComponent } from "./balance/balance.component";
-import { ReceiveComponent } from "./balance/receive/receive.component";
 
 import { TransactionsComponent } from "./transactions/transactions.component";
 import { DecryptComponent } from "./transactions/decrypt/decrypt.component";
@@ -47,7 +46,6 @@ import { SharedModule } from "../../lib/shared.module";
         DecryptComponent,
         LanguageComponent,
         NodeComponent,
-        ReceiveComponent,
         RemoveComponent,
         SettingsComponent,
         SupportComponent,

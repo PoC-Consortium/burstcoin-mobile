@@ -5,6 +5,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ModalDialogParams } from "nativescript-angular/modal-dialog";
 import { Page } from "ui/page";
+import { constants } from "../../../../lib/model";
 
 import * as utils from "utils/utils";
 
@@ -14,8 +15,7 @@ import * as utils from "utils/utils";
     styleUrls: ["./about.component.css"]
 })
 export class AboutComponent implements OnInit {
-
-    private version: string = "0.2.0";
+    private version: string = constants.version;
 
     constructor(
         private params: ModalDialogParams,
@@ -29,7 +29,7 @@ export class AboutComponent implements OnInit {
     }
 
     public onTapTwitter() {
-        utils.openUrl("https://twitter.com/PoC_Consortium")
+        utils.openUrl(constants.twitter)
     }
 
     public onTapNo() {

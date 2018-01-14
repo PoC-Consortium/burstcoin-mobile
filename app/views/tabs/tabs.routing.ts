@@ -7,8 +7,6 @@ import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 
 import { TabsComponent } from "./tabs.component";
-import { AddComponent } from "./accounts/add/add.component";
-import { ReceiveComponent } from "./balance/receive/receive.component";
 
 const routes: Routes = [
     { path: "", component: TabsComponent }

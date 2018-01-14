@@ -7,7 +7,7 @@ import { Http, Headers, RequestOptions, Response, URLSearchParams } from "@angul
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/timeout'
 
-import { Currency, HttpError } from "../model";
+import { Currency, HttpError, constants } from "../model";
 import { NoConnectionError } from "../model/error";
 import { DatabaseService } from "./";
 
@@ -47,7 +47,7 @@ export class MarketService {
                 params.set("convert", currency);
                 requestOptions.params = params;
             }
-            return this.http.get("https://api.coinmarketcap.com/v1/ticker/burst", requestOptions)
+            return this.http.get(constants.marketUrl, requestOptions)
                 .timeout(this.timeout)
                 .toPromise()
                 .then(response => {
@@ -130,6 +130,7 @@ export class MarketService {
 
     /*
     * Get current fiat currency symbol
+    * TODO: refactor into constants.ts
     */
     public getCurrencySymbol(): string {
         if (this.currency.value != undefined) {

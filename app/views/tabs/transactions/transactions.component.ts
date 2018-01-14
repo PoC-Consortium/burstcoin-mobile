@@ -7,7 +7,7 @@ import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/mod
 import { SwipeGestureEventData } from "ui/gestures";
 import { TranslateService } from 'ng2-translate';
 
-import { Account, Transaction } from "../../../lib/model";
+import { Account, Transaction, constants } from "../../../lib/model";
 import { Converter } from "../../../lib/util";
 import { AccountService, DatabaseService, MarketService, NotificationService, TabsService } from "../../../lib/services";
 
@@ -50,7 +50,7 @@ export class TransactionsComponent implements OnInit {
     }
 
     public onTap(id: string) {
-        utils.openUrl("https://explore.burst.cryptoguru.org/transaction/" + id);
+        utils.openUrl(constants.transactionUrl + id);
     }
 
     public onTapDecrypt(transaction: Transaction) {

@@ -3,6 +3,7 @@
 */
 
 import { device } from "platform";
+import { constants } from "./constants";
 
 /*
 * Settings class
@@ -25,10 +26,10 @@ export class Settings {
         } else {
             this.contacts = [];
         }
-        this.currency = data.currency || "USD";
-        this.language = data.language || device.language || "en";
-        this.node = data.node || "https://wallet.burst.cryptoguru.org:8125/burst";
-        this.theme = data.theme || "light";
-        this.version = data.version || "";
+        this.currency = data.currency || constants.defaultCurrency;
+        this.language = data.language || device.language || constants.defaultLanguage;
+        this.node = data.node || constants.defaultNode;
+        this.theme = data.theme || constants.defaultTheme;
+        this.version = data.version || constants.version;
     }
 }

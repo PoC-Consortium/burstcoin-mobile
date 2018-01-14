@@ -6,7 +6,8 @@ import { Component, OnInit, NgModule } from "@angular/core";
 import { ModalDialogParams } from "nativescript-angular/modal-dialog";
 import { RouterExtensions } from "nativescript-angular/router";
 import { Page } from "ui/page";
-import { TranslateService } from 'ng2-translate';
+import { TranslateService } from "ng2-translate";
+import { constants } from "../../../../lib/model";
 import { AccountService, NotificationService } from "../../../../lib/services";
 
 import * as utils from "utils/utils";
@@ -18,7 +19,6 @@ import * as utils from "utils/utils";
     styleUrls: ["./support.component.css"]
 })
 export class SupportComponent implements OnInit {
-    private donateAddress: string = "BURST-RTEY-HUSA-BJG4-EZW9E";
 
     constructor(
         private accountService: AccountService,
@@ -38,7 +38,7 @@ export class SupportComponent implements OnInit {
     public onTapSupport() {
         if (this.accountService.currentAccount.value.type == "active") {
             this.params.closeCallback();
-            this.router.navigate(['/send', this.donateAddress]);
+            this.router.navigate(['/send', constants.donate]);
         } else {
             this.params.closeCallback();
             this.translateService.get('NOTIFICATIONS.ERRORS.REDIRECT').subscribe((res: string) => {
@@ -48,7 +48,7 @@ export class SupportComponent implements OnInit {
     }
 
     public onTapGithub() {
-        utils.openUrl("https://github.com/poc-consortium/burstcoin-mobile-doc/issues");
+        utils.openUrl(constants.supportUrl);
     }
 
     public onTapNo() {

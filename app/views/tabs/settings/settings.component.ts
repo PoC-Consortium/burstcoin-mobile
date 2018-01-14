@@ -8,7 +8,7 @@ import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-mo
 import { TranslateService } from 'ng2-translate';
 import { SwipeGestureEventData } from "ui/gestures";
 
-import { Account, Transaction, Settings } from "../../../lib/model";
+import { Account, Transaction, Settings, constants } from "../../../lib/model";
 
 import { AccountService, DatabaseService, MarketService, NotificationService, TabsService } from "../../../lib/services";
 import { AboutComponent } from "./about/about.component";
@@ -26,10 +26,8 @@ import * as utils from "utils/utils";
     styleUrls: ["./settings.component.css"]
 })
 export class SettingsComponent implements OnInit {
-
     private settings: Settings;
-    private languageNames: string[] = ["Deutsch", "Ελληνικά", "English", "Español", "Français", "हिन्दी", "Italiano", "한국어", "Magyar", "Nederlands", "Polski", "Pу́сский", "Slovensky", "Svenska", "தமிழ", "中文"]
-    private languages: string[] = ["de", "el", "en", "es", "fr", "hi", "it", "ko", "hu", "nl", "pl", "ru", "sk", "sv", "ta", "zh"]
+    private currentLanguageName: string;
 
     constructor(
         private accountService: AccountService,
@@ -49,6 +47,7 @@ export class SettingsComponent implements OnInit {
         this.databaseService.getSettings()
             .then(settings => {
                 this.settings = settings;
+                this.currentLanguageName = constants.languages.find(i => i.code == settings.language).name;
             })
     }
 
@@ -119,6 +118,7 @@ export class SettingsComponent implements OnInit {
                     this.databaseService.saveSettings(this.settings)
                         .then(settings => {
                             this.translateService.use(language.toLowerCase());
+                            this.currentLanguageName = constants.languages.find(i => i.code == settings.language).name;
                             this.translateService.get('NOTIFICATIONS.UDPDATE_LANGUAGE').subscribe((res: string) => {
                                 this.notificationService.info(res);
                             });
@@ -134,7 +134,7 @@ export class SettingsComponent implements OnInit {
     }
 
     public onTapDocumentation() {
-        utils.openUrl("https://poc-consortium.github.io/burstcoin-mobile-doc/");
+        utils.openUrl(constants.documentationUrl);
     }
 
     public onSwipeItem(args: SwipeGestureEventData) {

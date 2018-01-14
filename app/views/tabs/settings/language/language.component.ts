@@ -6,6 +6,7 @@ import { Component, OnInit, NgModule } from "@angular/core";
 import { ModalDialogParams } from "nativescript-angular/modal-dialog";
 import { Page } from "ui/page";
 import { ListPicker } from "ui/list-picker";
+import { constants } from "../../../../lib/model";
 import { DatabaseService } from "../../../../lib/services";
 
 @Component({
@@ -13,10 +14,9 @@ import { DatabaseService } from "../../../../lib/services";
     templateUrl: "./language.component.html",
 })
 export class LanguageComponent implements OnInit {
-    private languageNames: string[] = ["Deutsch", "Ελληνικά", "English", "Español", "Français", "हिन्दी", "Italiano", "한국어", "Magyar", "Nederlands", "Polski", "Pу́сский", "Slovensky", "Svenska", "தமிழ", "中文"]
-    private languages: string[] = ["de", "el", "en", "es", "fr", "hi", "it", "ko", "hu", "nl", "pl", "ru", "sk", "sv", "ta", "zh"]
     private picked: string;
     private index: number;
+    private languageNames: string[];
 
     constructor(
         private databaseService: DatabaseService,
@@ -25,7 +25,11 @@ export class LanguageComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.index = this.languages.indexOf(this.params.context)
+        // search for sleected language index
+        this.index = constants.languages.findIndex(i => i.code === this.params.context);
+        // get only lnaguage names for listpicker
+        this.languageNames = [];
+        constants.languages.map(lang => this.languageNames.push(lang.name))
         this.page.on("unloaded", () => {
             this.params.closeCallback();
         });
@@ -33,7 +37,7 @@ export class LanguageComponent implements OnInit {
 
     public selectedIndexChanged(args) {
         let picker = <ListPicker>args.object;
-        this.picked = this.languages[picker.selectedIndex];
+        this.picked = constants.languages[picker.selectedIndex].code;
     }
 
     public onTapOk() {

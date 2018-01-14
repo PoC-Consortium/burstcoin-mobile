@@ -5,7 +5,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Database } from "../model/abstract";
-import { Account, Settings } from "../model";
+import { Account, Settings, constants } from "../model";
 
 import * as fs from "tns-core-modules/file-system";
 
@@ -21,7 +21,7 @@ let LokiNativeScriptAdapter = require("loki-nativescript-adapter");
 @Injectable()
 export class DatabaseService extends Database {
     private database: any;
-    private static readonly path: string = fs.path.join(fs.knownFolders.documents().path, "loki.db");
+    private static readonly path: string = fs.path.join(fs.knownFolders.documents().path, constants.database);
 
     public ready: BehaviorSubject<any> = new BehaviorSubject(false);
     public settings: BehaviorSubject<any> = new BehaviorSubject(false);
