@@ -19,3 +19,5 @@ report/
 .nyc_output/
 coverage/
 !webpack.config.js
+
+site/
