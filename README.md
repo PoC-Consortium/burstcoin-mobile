@@ -25,7 +25,7 @@ This repository holds the source code for the Burstcoin mobile wallet developed 
 1. Clone this repository
 
     ```
-    git clone git@github.com:cgebe/burst-pocket.git
+    git clone git@github.com:poc-consortium/burstcoin-mobile-wallet.git
     ```
 
 2. Install all used npm packages
