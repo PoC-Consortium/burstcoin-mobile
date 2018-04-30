@@ -124,7 +124,7 @@
         "SELECTED": "Konto ausgewählt: {{value}}",
         "TRANSACTION": "Transaktion erfolgreich!",
         "UPDATE_CURRENCY": "Währung erfolgreich aktualisiert!",
-        "UDPDATE_LANGUAGE": "Sprache erfolgreich aktualisiert!",
+        "UPDATE_LANGUAGE": "Sprache erfolgreich aktualisiert!",
         "UPDATE_NODE": "Endpunkt erfolgreich aktualisiert!",
         "WRONG_PASSPHRASE": "Die eingegebene Passphrase passt nicht zum öffentlichen Schlüssel deines Kontos!",
         "WRONG_PIN": "Der eingegebene Pin Code stimmt nicht mit dem Pin Code des Kontos überein!",
