@@ -1,0 +1,148 @@
+{
+    "CREATE": {
+        "ACTION_BAR_TITLE": "Krijo një llogari të re",
+        "DONE": "Done",
+        "GENERATE_AGAIN": "Krijo përsëri",
+        "INFO_SEED": "Prekni dhe shpullë këtë zonë".
+        "INFO_SEED_FINISHED": "Gjenerimi u ruajt".
+        "INFO_STEP_ONE": "Për të filluar, gjeneroni rastësisht fjalëkalimin tuaj.",
+        "INFO_STEP_TWO": "Tani mësoj përmendësh 12 fjalët e fjalëkalimit tuaj në mënyrë korrekte.",
+        "INFO_STEP_TWO_ACTION": "Shkruani dhe mbajeni fjalët e mëposhtme sekrete duke mbajtur hapësirat".
+        "INFO_STEP_THREE": "Shkruani sërish vargun e fjalëve të rastit".
+        "INFO_STEP_THREE_ACTION": "Shkruani fjalën # {{value}} dhe përzgjidhni atë.",
+        "INFO_STEP_FOUR": "Cakto një kod PIN me 6 shifra për llogarinë tuaj. Ky kod përdoret për të miratuar transaksionet tuaja.",
+        "PIN_INPUT_HINT": "PIN",
+        "POSSIBILITY_INPUT_HINT": "Fjala # {{vlera}}",
+        "NEXT": "Tjetra"
+    }
+    "IMPORT": {
+        "ACTION_BAR_TITLE": "Importo një llogari ekzistuese",
+        "ACTIVE_ACCOUNT": "Llogaria aktive",
+        "ACTIVE_ACCOUNT_DESCRIPTION": "një llogari aktive përfshin të gjitha karakteristikat që ju mund të dërgoni dhe të merrni burstcoins, konsultohet bilancin e llogarisë suaj dhe historinë e saj .."
+        "ACTIVE_ACCOUNT_INPUT_HINT": "Passphrase",
+        "ACTIVE_ACCOUNT_PIN_INFO": "Cakto një kod PIN me 6 shifra për llogarinë tënde, ky kod përdoret për të miratuar transaksionet tuaja.",
+        "DONE": "Done",
+        "IMPORT": "Import",
+        "INFO": "Futni një llogari aktive duke futur fjalëkalimin e saj, përndryshe importoni një llogari pasive duke futur adresën e saj Burst.",
+        "NEXT": "Tjetra",
+        "OFFLINE_ACCOUNT": "Llogaria pasive",
+        "OFFLINE_ACCOUNT_DESCRIPTION": "Një llogari detyrim përfshin të njëjtën funksionalitetit si llogari aktive, përveç ju nuk mund të dërgoni burstcoins në një tjetër adresë."
+        "OFFLINE_ACCOUNT_INPUT_HINT": "BURST-XXXX-XXXX-XXXX-XXXXX",
+        "PIN_INPUT_HINT": "PIN",
+        "SHOW": {
+            "QUESTION": "A është ndezur adresa juaj?"
+        }
+    },
+    "TABS": {
+        "ACCOUNT": {
+            "ACTIVATE": {
+                "ACTION_BAR_TITLE": "Aktivizo llogarinë",
+                "DONE": "Done",
+                "ENTER_PASSPHRASE": "Futni fjalëkalimin për llogarinë tuaj {{value}}".
+                "ENTER_PIN": "Zgjidh një PIN me 6 shifra".
+                "PASSPHRASE_INPUT_HINT": "Passphrase",
+                "PIN_INPUT_HINT": "PIN",
+                "NEXT": "Tjetra"
+            }
+            "BALANCE": "Bilanci",
+            "CREATE": "Krijo",
+            "IMPORT": "Import",
+            "REMOVE": "Jeni i sigurt që doni ta fshini këtë llogari?",
+            "TITLE": "Llogaritë"
+        }
+        "BALANCE": {
+            "ACTIVATE": "Aktivizo",
+            "BALANCE": "Bilanci",
+            "SEND": "Dërgo",
+            "TITLE": "Bilanci"
+        }
+        "HISTORY": {
+            "TITLE": "Historia",
+            "DECRYPT": "Dekripto",
+            "DECRYPT_IMPOSSIBLE": "Dekriptimi dështoi",
+            "PIN_INPUT_HINT": "Pinning"
+        }
+        "SETTINGS": {
+            "ABOUT": {
+                "ABOUT": "Rreth",
+                "ASSOCIATION": "Në bashkëpunim me",
+                "DEVELOPED": "Zhvilluar nga",
+                "TWITTER": "Na ndiqni në eksitim për t'u informuar për projektet tona!",
+                "VERSION": "Versioni"
+            }
+            "CURRENCY": {
+                "CURRENCY": "Valuta"
+            }
+            "DOCUMENTATION": {
+                "DOCUMENTATION": "Dokumentacioni"
+            }
+            "LANGUAGE": {
+                "LANGUAGE": "Gjuha"
+            }
+            "NODE": {
+                "INFO": "Serveri përdoret për të komunikuar me rrjetin Burst",
+                "NODE": "Server"
+            }
+            "SUPPORT": {
+                "CONTRIBUTION": "Ne gjithashtu i vlerësojmë të gjitha kontributet.",
+                "DONATE": "A e pëlqen këtë aplikacion? Trego me BURST!",
+                "SUPPORT": "Mbështetje"
+            }
+            "TITLE": "Cilësimet"
+        }
+    },
+    "SEND": {
+         "ACCEPT": "Validate",
+         "ACTION_BAR_TITLE": "Dërgo BURST",
+         "ADD_CONTACT": "Shto një kontakt",
+         "AMOUNT": "Shuma",
+         "BACK": "Kthehu",
+         "BALANCE": "Bilanci",
+         "CONTACTS": "Kontaktet",
+         "FEE": "I freskët",
+         "FIAT": "Valuta për BURST",
+         "MESSAGE": "Mesazhi",
+         "PIN_INPUT_HINT": "Pin",
+         "RECIPIENT": "Përfitues",
+         "VERIFY": "Kontrollo"
+     }
+     "START": {
+         "CREATE": "Krijo",
+         "IMPORT": "Import",
+         "INFO": "Asnjë llogari e re akoma, importon një llogari ekzistuese ose krijo një!"
+     }
+    "NOTIFICATION": {
+        "ADDRESS": "Futni një adresë të vlefshme Burst".
+        "COPIED": "{{value}} adresa kopjohet!",
+        "CONTACT_ADDED": "Kontaktoj me sukses",
+        "DECIMAL_AMOUNT": "Ju lutemi shkruani shumën e BURST që dëshironi të dërgoni!",
+        "DECIMAL_FEE": "Ju lutemi shkruani tarifat e transaksionit (të paktën 1)!",
+        "ENTER_SOMETHING": "Ju lutemi shkruani diçka!",
+        "EXCEED": "Shuma dhe kostot tejkalojnë ekuilibrin tuaj!",
+        "PIN": "Ju lutemi shkruani një PIN me gjashtë shifra!",
+        "REMOVE": "Llogaria është fshirë!",
+        "SELECTED": "Llogaria e zgjedhur: {{value}}",
+        "TRANSACTION": "Transaksioni validated!",
+        "UPDATE_CURRENCY": "Ndryshimi i monedhës së regjistruar!",
+        "UPDATE_LANGUAGE": "Ndrysho gjuhën e ruajtur!",
+        "UPDATE_NODE": "Ndryshim i ruajtur i serverit",
+        "WRONG_PASSPHRASE": "Passphrase gabuar! Kjo fjalëkalim nuk gjeneron çelësin publik të lidhur me llogarinë tënde!",
+        "WRONG_PIN": "Ky kod pin nuk përputhet me pinin e llogarisë!",
+        "ERROR": {
+            "ACCOUNT_ID": "Nuk mund të gjeneroj id llogari nëpërmjet çelës publik"
+            "ADDRESS": "Nuk mund të gjenerojë një adresë burst nëpërmjet idit të llogarisë",
+            "CONNECTION": "Dështoi në rikthimin e të dhënave, kontrolloni lidhjen tuaj!",
+            "CONTACT": "Dështoi në shtimin e një kontakti të ri!",
+            "CURRENCY": "Dështoi në ndryshimin e monedhës!",
+            "KEYPAIR": "Dështimi kryesor i gjenerimit që lidhet me fjalëkalimin!",
+            "LANGUAGE": "Dështova në ndryshimin e gjuhës!",
+            "NODE": "Dështoi në modifikimin e serverit!",
+            "NO_PUBLIC_KEY": "Marrësi nuk ka një çelës publik! Nuk mund të dërgojë mesazhin!",
+            "QR_CODE": "Nuk mund të gjesh QR kodin!",
+            "REDIRECT": "E pamundur për të hapur faqen e dërgimit! Llogaria nuk është aktive!",
+            "REMOVE": "Dështoi në fshirjen e llogarisë!",
+            "UPDATE": "Dështoi në ndryshimin e llogarisë!",
+            "UNKNOWN_ACCOUNT": "Kjo llogari është e panjohur dhe nuk ka transaksione!"
+        }
+    }
+}
