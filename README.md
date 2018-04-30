@@ -69,6 +69,7 @@ This repository holds the source code for the Burstcoin mobile wallet developed 
 - Quibus
 - RedFury
 - SolidLiquid
+- umbrellacorp03
 - westhorn
 
 ## Bugs and feature requests

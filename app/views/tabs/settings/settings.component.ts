@@ -119,7 +119,7 @@ export class SettingsComponent implements OnInit {
                         .then(settings => {
                             this.translateService.use(language.toLowerCase());
                             this.currentLanguageName = constants.languages.find(i => i.code == settings.language).name;
-                            this.translateService.get('NOTIFICATIONS.UDPDATE_LANGUAGE').subscribe((res: string) => {
+                            this.translateService.get('NOTIFICATIONS.UPDATE_LANGUAGE').subscribe((res: string) => {
                                 this.notificationService.info(res);
                             });
                         })

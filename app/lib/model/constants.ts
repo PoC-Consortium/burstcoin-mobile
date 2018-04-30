@@ -45,6 +45,7 @@ export const constants = {
     documentationUrl: "https://poc-consortium.github.io/burstcoin-mobile-doc/",
     donate: "BURST-RTEY-HUSA-BJG4-EZW9E",
     languages: [
+        { name: "shqip", code:"al" },
         { name: "čeština", code: "cs" },
         { name: "Deutsch", code: "de" },
         { name: "Ελληνικά", code: "el" },
