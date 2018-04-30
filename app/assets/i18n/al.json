@@ -3,12 +3,12 @@
         "ACTION_BAR_TITLE": "Krijo një llogari të re",
         "DONE": "Done",
         "GENERATE_AGAIN": "Krijo përsëri",
-        "INFO_SEED": "Prekni dhe shpullë këtë zonë".
-        "INFO_SEED_FINISHED": "Gjenerimi u ruajt".
+        "INFO_SEED": "Prekni dhe shpullë këtë zonë",
+        "INFO_SEED_FINISHED": "Gjenerimi u ruajt",
         "INFO_STEP_ONE": "Për të filluar, gjeneroni rastësisht fjalëkalimin tuaj.",
         "INFO_STEP_TWO": "Tani mësoj përmendësh 12 fjalët e fjalëkalimit tuaj në mënyrë korrekte.",
-        "INFO_STEP_TWO_ACTION": "Shkruani dhe mbajeni fjalët e mëposhtme sekrete duke mbajtur hapësirat".
-        "INFO_STEP_THREE": "Shkruani sërish vargun e fjalëve të rastit".
+        "INFO_STEP_TWO_ACTION": "Shkruani dhe mbajeni fjalët e mëposhtme sekrete duke mbajtur hapësirat",
+        "INFO_STEP_THREE": "Shkruani sërish vargun e fjalëve të rastit",
         "INFO_STEP_THREE_ACTION": "Shkruani fjalën # {{value}} dhe përzgjidhni atë.",
         "INFO_STEP_FOUR": "Cakto një kod PIN me 6 shifra për llogarinë tuaj. Ky kod përdoret për të miratuar transaksionet tuaja.",
         "PIN_INPUT_HINT": "PIN",
@@ -18,7 +18,7 @@
     "IMPORT": {
         "ACTION_BAR_TITLE": "Importo një llogari ekzistuese",
         "ACTIVE_ACCOUNT": "Llogaria aktive",
-        "ACTIVE_ACCOUNT_DESCRIPTION": "një llogari aktive përfshin të gjitha karakteristikat që ju mund të dërgoni dhe të merrni burstcoins, konsultohet bilancin e llogarisë suaj dhe historinë e saj .."
+        "ACTIVE_ACCOUNT_DESCRIPTION": "një llogari aktive përfshin të gjitha karakteristikat që ju mund të dërgoni dhe të merrni burstcoins, konsultohet bilancin e llogarisë suaj dhe historinë e saj ..",
         "ACTIVE_ACCOUNT_INPUT_HINT": "Passphrase",
         "ACTIVE_ACCOUNT_PIN_INFO": "Cakto një kod PIN me 6 shifra për llogarinë tënde, ky kod përdoret për të miratuar transaksionet tuaja.",
         "DONE": "Done",
@@ -26,7 +26,7 @@
         "INFO": "Futni një llogari aktive duke futur fjalëkalimin e saj, përndryshe importoni një llogari pasive duke futur adresën e saj Burst.",
         "NEXT": "Tjetra",
         "OFFLINE_ACCOUNT": "Llogaria pasive",
-        "OFFLINE_ACCOUNT_DESCRIPTION": "Një llogari detyrim përfshin të njëjtën funksionalitetit si llogari aktive, përveç ju nuk mund të dërgoni burstcoins në një tjetër adresë."
+        "OFFLINE_ACCOUNT_DESCRIPTION": "Një llogari detyrim përfshin të njëjtën funksionalitetit si llogari aktive, përveç ju nuk mund të dërgoni burstcoins në një tjetër adresë.",
         "OFFLINE_ACCOUNT_INPUT_HINT": "BURST-XXXX-XXXX-XXXX-XXXXX",
         "PIN_INPUT_HINT": "PIN",
         "SHOW": {
@@ -38,8 +38,8 @@
             "ACTIVATE": {
                 "ACTION_BAR_TITLE": "Aktivizo llogarinë",
                 "DONE": "Done",
-                "ENTER_PASSPHRASE": "Futni fjalëkalimin për llogarinë tuaj {{value}}".
-                "ENTER_PIN": "Zgjidh një PIN me 6 shifra".
+                "ENTER_PASSPHRASE": "Futni fjalëkalimin për llogarinë tuaj {{value}}",
+                "ENTER_PIN": "Zgjidh një PIN me 6 shifra",
                 "PASSPHRASE_INPUT_HINT": "Passphrase",
                 "PIN_INPUT_HINT": "PIN",
                 "NEXT": "Tjetra"
