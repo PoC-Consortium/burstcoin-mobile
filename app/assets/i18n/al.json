@@ -128,7 +128,7 @@
         "UPDATE_NODE": "Ndryshim i ruajtur i serverit",
         "WRONG_PASSPHRASE": "Passphrase gabuar! Kjo fjalëkalim nuk gjeneron çelësin publik të lidhur me llogarinë tënde!",
         "WRONG_PIN": "Ky kod pin nuk përputhet me pinin e llogarisë!",
-        "ERROR": {
+        "ERRORS": {
             "ACCOUNT_ID": "Nuk mund të gjeneroj id llogari nëpërmjet çelës publik"
             "ADDRESS": "Nuk mund të gjenerojë një adresë burst nëpërmjet idit të llogarisë",
             "CONNECTION": "Dështoi në rikthimin e të dhënave, kontrolloni lidhjen tuaj!",
