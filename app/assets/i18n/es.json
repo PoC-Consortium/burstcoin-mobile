@@ -123,7 +123,7 @@
         "SELECTED": "Cuenta seleccionada: {{value}}",
         "TRANSACTION": "Transacción exitosa.",
         "UPDATE_CURRENCY": "Divisa actualizada exitosamente.",
-        "UDPDATE_LANGUAGE": "Idioma actualizado exitosamente.",
+        "UPDATE_LANGUAGE": "Idioma actualizado exitosamente.",
         "UPDATE_NODE": "Nodo actualizado exitosamente.",
         "WRONG_PASSPHRASE": "Contraseña incorrecta. Las palabras introducidas no generan la contraseña pública correcta.",
         "WRONG_PIN": "El nip introducido no es el correcto.",
