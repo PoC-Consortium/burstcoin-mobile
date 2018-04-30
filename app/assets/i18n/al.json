@@ -15,7 +15,7 @@
         "POSSIBILITY_INPUT_HINT": "Fjala # {{vlera}}",
         "NEXT": "Tjetra"
     }
-    "IMPORT": {
+    "IMPORT" : {
         "ACTION_BAR_TITLE": "Importo një llogari ekzistuese",
         "ACTIVE_ACCOUNT": "Llogaria aktive",
         "ACTIVE_ACCOUNT_DESCRIPTION": "një llogari aktive përfshin të gjitha karakteristikat që ju mund të dërgoni dhe të merrni burstcoins, konsultohet bilancin e llogarisë suaj dhe historinë e saj ..",
@@ -106,12 +106,12 @@
          "RECIPIENT": "Përfitues",
          "VERIFY": "Kontrollo"
      }
-     "START": {
+     "START" : {
          "CREATE": "Krijo",
          "IMPORT": "Import",
          "INFO": "Asnjë llogari e re akoma, importon një llogari ekzistuese ose krijo një!"
      }
-    "NOTIFICATION": {
+    "NOTIFICATION" : {
         "ADDRESS": "Futni një adresë të vlefshme Burst".
         "COPIED": "{{value}} adresa kopjohet!",
         "CONTACT_ADDED": "Kontaktoj me sukses",
