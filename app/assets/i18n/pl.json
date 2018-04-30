@@ -123,7 +123,7 @@
         "SELECTED": "Wybrane konto: {{value}}",
         "TRANSACTION": "Transakcja pomyślna!",
         "UPDATE_CURRENCY": "Waluta pomyślnie zaktualizowana!",
-        "UDPDATE_LANGUAGE": "Język pomyślnie zaktualizowany!",
+        "UPDATE_LANGUAGE": "Język pomyślnie zaktualizowany!",
         "UPDATE_NODE": "Węzeł pomyślnie zaktualizowany!",
         "WRONG_PASSPHRASE": "Złe hasło! Wpisane hasło nie pasuje do klucza publicznego twojego konta!",
         "WRONG_PIN": "Podany PIN nie zgadza się z podanym przy zakładaniu konta",

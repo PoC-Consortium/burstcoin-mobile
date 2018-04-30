@@ -124,7 +124,7 @@
         "SELECTED": "Geselecteerde  account: {{value}}",
         "TRANSACTION": "Transactie succesvol!",
         "UPDATE_CURRENCY": "Valuta succesvol geupdate!",
-        "UDPDATE_LANGUAGE": "Taal succesvol geupdate!",
+        "UPDATE_LANGUAGE": "Taal succesvol geupdate!",
         "UPDATE_NODE": "Node succesvol geupdate!",
         "WRONG_PASSPHRASE": "Foute passphrase! De opgegeven passphrase genereerd niet de publieke sleutel die toegewezen is aan je account!",
         "WRONG_PIN": "De gegeven PIN is niet gelijk aan de PIN van de account!",

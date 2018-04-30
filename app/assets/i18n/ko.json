@@ -124,7 +124,7 @@
         "SELECTED": "선택된 계정: {{value}}",
         "TRANSACTION": "트랜잭션 성공!",
         "UPDATE_CURRENCY": "통화가 성공적으로 업데이트되었습니다!",
-        "UDPDATE_LANGUAGE": "언어가 성공적으로 업데이트되었습니다!",
+        "UPDATE_LANGUAGE": "언어가 성공적으로 업데이트되었습니다!",
         "UPDATE_NODE": "노드가 성공적으로 업데이트되었습니다!",
         "WRONG_PASSPHRASE": "잘못된 패스프레이즈값! 해당 패스프레이즈는 당신의 계정에 할당된 공개 키를 생성하지 않습니다!",
         "WRONG_PIN": "해당 핀은 계정의 핀과 일치하지 않습니다!",

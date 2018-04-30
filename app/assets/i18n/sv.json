@@ -123,7 +123,7 @@
         "SELECTED": "Välj konto: {{value}}",
         "TRANSACTION": "Transaktionen lyckades.",
         "UPDATE_CURRENCY": "Uppdateringen av valuta lyckades.",
-        "UDPDATE_LANGUAGE": "Uppdateringen av språk lyckades.",
+        "UPDATE_LANGUAGE": "Uppdateringen av språk lyckades.",
         "UPDATE_NODE": "Uppdateringen av nod lyckades.",
         "WRONG_PASSPHRASE": "Fel lösenordsfras. Den angivna lösenordsfrasen genererar inte den offentliga nyckel som tilldelats ditt konto.",
         "WRONG_PIN": "Den angivna pinkoden matchar inte kontots pinkod.",

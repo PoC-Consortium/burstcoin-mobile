@@ -123,7 +123,7 @@
         "SELECTED": "Account selezionato: {{value}}",
         "TRANSACTION": "Transazione completata con successo!",
         "UPDATE_CURRENCY": "Valuta aggiornata con successo!",
-        "UDPDATE_LANGUAGE": "Lingua aggiornata con successo!",
+        "UPDATE_LANGUAGE": "Lingua aggiornata con successo!",
         "UPDATE_NODE": "Nodo aggiornato con successo!",
         "WRONG_PASSPHRASE": "Passphrase Errata! La passphrase fornita non ha una chiave pubblica associata con il tuo account!",
         "WRONG_PIN": "Il pin fornito non corrisponde con il pin dell'Account",

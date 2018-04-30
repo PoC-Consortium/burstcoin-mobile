@@ -123,7 +123,7 @@
         "SELECTED": "A kijelölt fiók: {{value}}",
         "TRANSACTION": "Sikeres átutalás!",
         "UPDATE_CURRENCY": "Pénznem sikeresen frissítve!",
-        "UDPDATE_LANGUAGE": "Nyelv sikeresen beállítva!",
+        "UPDATE_LANGUAGE": "Nyelv sikeresen beállítva!",
         "UPDATE_NODE": "Node sikeresen frissítve!",
         "WRONG_PASSPHRASE": "Hibás jelszó!A beírt jelszó nem generál a fiókjának megfelelõ nyilvános kulcsot!",
         "WRONG_PIN": "Nem egyezik a PIN-kód",

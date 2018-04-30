@@ -124,7 +124,7 @@
         "SELECTED": "Selected account: {{value}}",
         "TRANSACTION": "Transaction successful!",
         "UPDATE_CURRENCY": "Currency successfully updated!",
-        "UDPDATE_LANGUAGE": "Language successfully updated!",
+        "UPDATE_LANGUAGE": "Language successfully updated!",
         "UPDATE_NODE": "Node successfully updated!",
         "WRONG_PASSPHRASE": "Wrong passphrase! The provided passphrase does not generate the public key assigned to your account!",
         "WRONG_PIN": "The provided pin does not match the account's pin!",
