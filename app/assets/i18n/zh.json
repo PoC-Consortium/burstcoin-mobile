@@ -124,7 +124,7 @@
         "SELECTED": "金额： {{value}}",
         "TRANSACTION": "交易成功!",
         "UPDATE_CURRENCY": "货币更新成功!",
-        "UDPDATE_LANGUAGE": "语言更新成功!",
+        "UPDATE_LANGUAGE": "语言更新成功!",
         "UPDATE_NODE": "节点更新成功!",
         "WRONG_PASSPHRASE": "密码错了! 密码无法产生给予你账户的公钥!",
         "WRONG_PIN": "输入的pin与账户的不匹配",
