@@ -124,7 +124,7 @@
         "SELECTED": "Vybraný účet: {{value}}",
         "TRANSACTION": "Transakcia bola úspešná!",
         "UPDATE_CURRENCY": "Mena bola úspešne aktualizovaná!",
-        "UDPDATE_LANGUAGE": "Jazyk bol úspešne aktualizovaný!",
+        "UPDATE_LANGUAGE": "Jazyk bol úspešne aktualizovaný!",
         "UPDATE_NODE": "Uzol úspešne aktualizovaný!",
         "WRONG_PASSPHRASE": "Nesprávna prístupová fráza! Zadaná prístupová fráza nevytvorila verejný kľúč priradený k Vášmu účtu!",
         "WRONG_PIN": "Zadaný PIN sa nezhoduje s pinom Vášho účtu",
