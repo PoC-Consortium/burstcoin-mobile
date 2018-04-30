@@ -124,7 +124,7 @@
         "SELECTED": "Compte sélectionné : {{value}}",
         "TRANSACTION": "Transaction validée!",
         "UPDATE_CURRENCY": "Changement de monnaie enregistré!",
-        "UDPDATE_LANGUAGE": "Changement de langue enregistré!",
+        "UPDATE_LANGUAGE": "Changement de langue enregistré!",
         "UPDATE_NODE": "Changement de serveur enregistré!",
         "WRONG_PASSPHRASE": "Mauvaise phrase de passe! Cette phrase de passe ne génère pas la clé publique associée à votre compte!",
         "WRONG_PIN": "Ce code pin ne correspond pas au pin du compte!",
