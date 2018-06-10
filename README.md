@@ -3,6 +3,7 @@
 # Burstcoin Mobile Wallet
 
 This repository holds the source code for the Burstcoin mobile wallet developed by the PoC-Consortium.
+Documentation: [https://poc-consortium.github.io/burstcoin-mobile/](https://poc-consortium.github.io/burstcoin-mobile/)
 
 # Building
 
