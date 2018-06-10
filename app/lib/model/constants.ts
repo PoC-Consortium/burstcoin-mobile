@@ -39,6 +39,7 @@ export const constants = {
     ],
     database: "loki.db",
     defaultCurrency: "USD",
+    defaultFee: 0.1,
     defaultLanguage: "en",
     defaultNode: "https://wallet.burst.cryptoguru.org:8125/burst",
     defaultTheme: "light",
@@ -64,7 +65,8 @@ export const constants = {
         { name: "中文", code: "zh" }
     ],
     marketUrl: "https://api.coinmarketcap.com/v1/ticker/burst",
-    supportUrl: "https://github.com/poc-consortium/burstcoin-mobile-doc/issues",
+    minimumFee: 0.00735,
+    supportUrl: "https://github.com/poc-consortium/burstcoin-mobile/issues",
     transactionCount: "15",
     transactionUrl: "https://explore.burst.cryptoguru.org/transaction/",
     twitter: "https://twitter.com/PoC_Consortium",

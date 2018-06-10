@@ -12,7 +12,7 @@ import { RadSideDrawer } from "nativescript-pro-ui/sidedrawer";
 import { Switch } from "ui/switch";
 import { BarcodeScanner, ScanOptions } from 'nativescript-barcodescanner';
 
-import { Account, BurstAddress, Settings, Transaction } from "../../../lib/model";
+import { Account, BurstAddress, Settings, Transaction, constants } from "../../../lib/model";
 import { AccountService, DatabaseService, MarketService, NotificationService } from "../../../lib/services";
 import { SendService } from "../send.service";
 
@@ -230,7 +230,7 @@ export class InputComponent implements OnInit {
     }
 
     public verifyFee() {
-        return this.fee != undefined && this.fee >= 1
+        return this.fee != undefined && this.fee >= constants.minimumFee
     }
 
     public verifyTotal(): boolean {
@@ -241,8 +241,8 @@ export class InputComponent implements OnInit {
         if (this.amount < 0) {
             this.amount = undefined;
         }
-        if (this.fee < 1) {
-            this.fee = 1;
+        if (this.fee < constants.minimumFee) {
+            this.fee = constants.minimumFee;
         }
         if (this.amount != undefined && !this.verifyTotal()) {
             this.amount = this.account.balance - Number(this.fee);
