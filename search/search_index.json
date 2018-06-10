@@ -1,0 +1,164 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "Documentation for the Android Burstcoin Wallet\n\n\nOn these pages you can find the documentation for the Android Burstcoin Wallet, developed by the PoC Consortium. If you have bugs or feature requests, please post them on the \ngithub issue page\n.\n\n\nControls\n\n\n\n\nSwapping down on the balance, transaction and accounts tab leads to a refresh of the page\n\n\nLong tap on Burst addresses opens the social share functionality\n\n\nDouble tap on Burst addresses copies them to the clipboard\n\n\nDouble tap on the recipient label on the send page inserts a Burst address from the clipboard\n\n\nTap on a transaction to open the Burst explorer showing the details of the transaction\n\n\nTap on the encrypted text of a transaction to open the decryption dialog\n\n\n\n\nNavigation\n\n\n\n\nAccounts\n\n\nCreate\n\n\nImport\n\n\nActivate\n\n\nSwitch\n\n\nRemove\n\n\n\n\n\n\nPIN code\n\n\nSend Burstcoins\n\n\nTransaction History\n\n\nPrivacy Policy", 
+            "title": "Documentation"
+        }, 
+        {
+            "location": "/#documentation-for-the-android-burstcoin-wallet", 
+            "text": "On these pages you can find the documentation for the Android Burstcoin Wallet, developed by the PoC Consortium. If you have bugs or feature requests, please post them on the  github issue page .", 
+            "title": "Documentation for the Android Burstcoin Wallet"
+        }, 
+        {
+            "location": "/#controls", 
+            "text": "Swapping down on the balance, transaction and accounts tab leads to a refresh of the page  Long tap on Burst addresses opens the social share functionality  Double tap on Burst addresses copies them to the clipboard  Double tap on the recipient label on the send page inserts a Burst address from the clipboard  Tap on a transaction to open the Burst explorer showing the details of the transaction  Tap on the encrypted text of a transaction to open the decryption dialog", 
+            "title": "Controls"
+        }, 
+        {
+            "location": "/#navigation", 
+            "text": "Accounts  Create  Import  Activate  Switch  Remove    PIN code  Send Burstcoins  Transaction History  Privacy Policy", 
+            "title": "Navigation"
+        }, 
+        {
+            "location": "/wallet/create/", 
+            "text": "Creation of a new Account\n\n\nThe Android Burstcoin Wallet Application provides a simple way of creating new Burstcoin accounts.\n\n\nPassphrase\n\n\nIn order to create a new Burstcoin account, you need to have a unique and secure passphrase. Your public Burst address and an according private key descend from your passphrase. This way, the passphrase can be used to access your account from any device. Therefore, keep your passphrase always safe and private!\n\n\nThe passphrase is a string containing 12 words separated by space.\n\n\nThe Android Burstcoin Wallet offers a very simple and secure way of generating such a random, unique and secure \npassphrase\n.\n\n\nIt takes four steps to create a new account:\n\n\n\n\nGenerate Seed\n\n\nWrite down your passphrase\n\n\nRecall your passphrase\n\n\nSet a PIN code for your account\n\n\n\n\nSeed\n\n\nFor the creation of your passphrase you need to produce a seed for the passphrase generation function. This secures the randomness of the passphrase.\nThis is done by tapping and swiping over a predefined area. Your random finger movement states the entropy for the generation.\n\n\nSecurity\n\n\nTo ensure security, you have to write down the generated passphrase and recall each word later on.\n\n\nPIN Code\n\n\nTo complete the generation of a new Burstcoin account, you need to set a PIN code for it. Please refer to \nPIN Code\n.", 
+            "title": "Create Account"
+        }, 
+        {
+            "location": "/wallet/create/#creation-of-a-new-account", 
+            "text": "The Android Burstcoin Wallet Application provides a simple way of creating new Burstcoin accounts.", 
+            "title": "Creation of a new Account"
+        }, 
+        {
+            "location": "/wallet/create/#passphrase", 
+            "text": "In order to create a new Burstcoin account, you need to have a unique and secure passphrase. Your public Burst address and an according private key descend from your passphrase. This way, the passphrase can be used to access your account from any device. Therefore, keep your passphrase always safe and private!  The passphrase is a string containing 12 words separated by space.  The Android Burstcoin Wallet offers a very simple and secure way of generating such a random, unique and secure  passphrase .  It takes four steps to create a new account:   Generate Seed  Write down your passphrase  Recall your passphrase  Set a PIN code for your account", 
+            "title": "Passphrase"
+        }, 
+        {
+            "location": "/wallet/create/#seed", 
+            "text": "For the creation of your passphrase you need to produce a seed for the passphrase generation function. This secures the randomness of the passphrase.\nThis is done by tapping and swiping over a predefined area. Your random finger movement states the entropy for the generation.", 
+            "title": "Seed"
+        }, 
+        {
+            "location": "/wallet/create/#security", 
+            "text": "To ensure security, you have to write down the generated passphrase and recall each word later on.", 
+            "title": "Security"
+        }, 
+        {
+            "location": "/wallet/create/#pin-code", 
+            "text": "To complete the generation of a new Burstcoin account, you need to set a PIN code for it. Please refer to  PIN Code .", 
+            "title": "PIN Code"
+        }, 
+        {
+            "location": "/wallet/import/", 
+            "text": "Import existing Account\n\n\nThe Android Burstcoin Wallet Application offers the possibility to import existing accounts. You can either import an active account or an offline account.\n\n\nActive Account\n\n\nAn active account offers full functionality. You can check your balance and transactions. In addition, you can send Burstcoins to other addresses. In order to use an active account you need to be in possession of the corresponding passphrase.\n\n\nAn active account can be imported with two easy steps:\n\n\n\n\nEnter the passphrase of the account\n\n\nEnter a PIN code to secure the account\n\n\n\n\nOffline Account\n\n\nAn offline account offers the same functionality than an active one. Except you cannot send Burstcoins to other addresses. An offline account does not need a passphrase, because it only serves to watch its current activities. You can even add addresses that aren't yours. This is possible through the transparency of the Burstcoin blockchain.\n\n\nOne easy step to import an offline account:\n\n\n\n\nEnter the Burst address of the account", 
+            "title": "Import Account"
+        }, 
+        {
+            "location": "/wallet/import/#import-existing-account", 
+            "text": "The Android Burstcoin Wallet Application offers the possibility to import existing accounts. You can either import an active account or an offline account.", 
+            "title": "Import existing Account"
+        }, 
+        {
+            "location": "/wallet/import/#active-account", 
+            "text": "An active account offers full functionality. You can check your balance and transactions. In addition, you can send Burstcoins to other addresses. In order to use an active account you need to be in possession of the corresponding passphrase.  An active account can be imported with two easy steps:   Enter the passphrase of the account  Enter a PIN code to secure the account", 
+            "title": "Active Account"
+        }, 
+        {
+            "location": "/wallet/import/#offline-account", 
+            "text": "An offline account offers the same functionality than an active one. Except you cannot send Burstcoins to other addresses. An offline account does not need a passphrase, because it only serves to watch its current activities. You can even add addresses that aren't yours. This is possible through the transparency of the Burstcoin blockchain.  One easy step to import an offline account:   Enter the Burst address of the account", 
+            "title": "Offline Account"
+        }, 
+        {
+            "location": "/wallet/activate/", 
+            "text": "Active an offline Account\n\n\nAlready imported offline accounts can be activated to gain full functionality.\n\n\nBy entering the passphrase which corresponds to the Burst address and a PIN code to secure the account, it is possible to activate the account in order to send Burstcoins to other addresses. Just tap on the Activate button in the balance view of the selected offline account.", 
+            "title": "Activate Account"
+        }, 
+        {
+            "location": "/wallet/activate/#active-an-offline-account", 
+            "text": "Already imported offline accounts can be activated to gain full functionality.  By entering the passphrase which corresponds to the Burst address and a PIN code to secure the account, it is possible to activate the account in order to send Burstcoins to other addresses. Just tap on the Activate button in the balance view of the selected offline account.", 
+            "title": "Active an offline Account"
+        }, 
+        {
+            "location": "/wallet/switch/", 
+            "text": "Switch Accounts\n\n\nThe Android Burstcoin Wallet Application offers you the possibility to manage multiple accounts. Just add as many active and offline accounts according to your needs. You can easily switch between accounts by taping on the desired one in the accounts tab.", 
+            "title": "Switch Account"
+        }, 
+        {
+            "location": "/wallet/switch/#switch-accounts", 
+            "text": "The Android Burstcoin Wallet Application offers you the possibility to manage multiple accounts. Just add as many active and offline accounts according to your needs. You can easily switch between accounts by taping on the desired one in the accounts tab.", 
+            "title": "Switch Accounts"
+        }, 
+        {
+            "location": "/wallet/remove/", 
+            "text": "Remove Accounts\n\n\nAccounts can be easily removed by tapping the x button next to an account on the accounts tab.", 
+            "title": "Remove Account"
+        }, 
+        {
+            "location": "/wallet/remove/#remove-accounts", 
+            "text": "Accounts can be easily removed by tapping the x button next to an account on the accounts tab.", 
+            "title": "Remove Accounts"
+        }, 
+        {
+            "location": "/pin/", 
+            "text": "PIN\n\n\nThe PIN code is a six-digit number which is used to encrypt the private key of a Burstcoin account. The PIN code does not get saved on your device.\nYou have to enter it everytime you want to do a transaction. This prevents people who got access to your phone from unauthorized transfer of Burstcoins to other addresses. Therefore, the PIN is an additional security mechanism to keep your Burstcoins safe.\n\n\nLost PIN\n\n\nIf you have forgotten or lost your PIN code, just remove the corresponding account and import it again by entering its passphrase. This way you are allowed to set a new PIN code for further transactions.", 
+            "title": "PIN Code"
+        }, 
+        {
+            "location": "/pin/#pin", 
+            "text": "The PIN code is a six-digit number which is used to encrypt the private key of a Burstcoin account. The PIN code does not get saved on your device.\nYou have to enter it everytime you want to do a transaction. This prevents people who got access to your phone from unauthorized transfer of Burstcoins to other addresses. Therefore, the PIN is an additional security mechanism to keep your Burstcoins safe.", 
+            "title": "PIN"
+        }, 
+        {
+            "location": "/pin/#lost-pin", 
+            "text": "If you have forgotten or lost your PIN code, just remove the corresponding account and import it again by entering its passphrase. This way you are allowed to set a new PIN code for further transactions.", 
+            "title": "Lost PIN"
+        }, 
+        {
+            "location": "/send/", 
+            "text": "Sending Burstcoins\n\n\nThe Android Burstcoin Wallet Application allows you to send Burstcoins to other addresses. Sending Burstcoins is only possible with an active account. If you have imported an offline account and want to send Burstcoins, please refer to \nActivate Account\n.\n\n\nSend\n\n\nIn order to send Burst to another address, you have to enter:\n\n\n\n\nA valid Burst address as recipient\n\n\nAn amount less or equal to your current balance\n\n\nA transaction fee of a minimum of 1 Burstcoin\n\n\n\n\nVerify\n\n\nFor your transaction to actually take place, you have to verify your transaction by entering the \nPIN code\n of your account. Otherwise, the transaction cannot be executed.", 
+            "title": "Send Burstcoins"
+        }, 
+        {
+            "location": "/send/#sending-burstcoins", 
+            "text": "The Android Burstcoin Wallet Application allows you to send Burstcoins to other addresses. Sending Burstcoins is only possible with an active account. If you have imported an offline account and want to send Burstcoins, please refer to  Activate Account .", 
+            "title": "Sending Burstcoins"
+        }, 
+        {
+            "location": "/send/#send", 
+            "text": "In order to send Burst to another address, you have to enter:   A valid Burst address as recipient  An amount less or equal to your current balance  A transaction fee of a minimum of 1 Burstcoin", 
+            "title": "Send"
+        }, 
+        {
+            "location": "/send/#verify", 
+            "text": "For your transaction to actually take place, you have to verify your transaction by entering the  PIN code  of your account. Otherwise, the transaction cannot be executed.", 
+            "title": "Verify"
+        }, 
+        {
+            "location": "/transactions/", 
+            "text": "Transaction History\n\n\nThe Android Burstcoin Wallet Application offers you a history of the last 15 transactions recorded for an account. A list containing ingoing and outgoing transactions with their according amounts. Ingoing transactions (indicated by a green arrow) state the sender's addresses and outgoing transactions (indicated by a red arrow) state the recipient's addresses. In addition, the exact dates are displayed, when transactions were executed. Transactions with transaction messages list the corresponding message text. Encrypted texts can be decrypted via the decryption dialog. The decryption dialog can be opened by tapping on the encrypted text. Currently, encrypted texts sent withh the desktop wallet cannot be decrypted with the mobile wallet, since gzip was avoided in the implementation.\n\n\nUnconfirmed Transactions\n\n\nThe history also shows unconfirmed transactions, which are currently being processed. Unconfirmed transactions are indicated by a blue refresh sign instead of a green check mark on the right side.", 
+            "title": "Transaction History"
+        }, 
+        {
+            "location": "/transactions/#transaction-history", 
+            "text": "The Android Burstcoin Wallet Application offers you a history of the last 15 transactions recorded for an account. A list containing ingoing and outgoing transactions with their according amounts. Ingoing transactions (indicated by a green arrow) state the sender's addresses and outgoing transactions (indicated by a red arrow) state the recipient's addresses. In addition, the exact dates are displayed, when transactions were executed. Transactions with transaction messages list the corresponding message text. Encrypted texts can be decrypted via the decryption dialog. The decryption dialog can be opened by tapping on the encrypted text. Currently, encrypted texts sent withh the desktop wallet cannot be decrypted with the mobile wallet, since gzip was avoided in the implementation.", 
+            "title": "Transaction History"
+        }, 
+        {
+            "location": "/transactions/#unconfirmed-transactions", 
+            "text": "The history also shows unconfirmed transactions, which are currently being processed. Unconfirmed transactions are indicated by a blue refresh sign instead of a green check mark on the right side.", 
+            "title": "Unconfirmed Transactions"
+        }, 
+        {
+            "location": "/privacy_policy/", 
+            "text": "Privacy Policy\n\n\nWe do \nnot\n collect or store any data!\n\n\nThe encryption and decryption of the private key is completely performed on the client.\nThe application connects to the BURST node specified in the settings tab, in order to get balance information and execute transactions. In addition, it connects to the API of coinmarketcap.com for currency conversion tasks. Permissions are not needed, except for the camera, if one decides to scan for QR codes!", 
+            "title": "Privacy Policy"
+        }, 
+        {
+            "location": "/privacy_policy/#privacy-policy", 
+            "text": "We do  not  collect or store any data!  The encryption and decryption of the private key is completely performed on the client.\nThe application connects to the BURST node specified in the settings tab, in order to get balance information and execute transactions. In addition, it connects to the API of coinmarketcap.com for currency conversion tasks. Permissions are not needed, except for the camera, if one decides to scan for QR codes!", 
+            "title": "Privacy Policy"
+        }
+    ]
+}
