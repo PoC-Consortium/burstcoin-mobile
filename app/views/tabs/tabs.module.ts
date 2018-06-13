@@ -3,7 +3,7 @@
 */
 
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
-import { NativeScriptModule } from "nativescript-angular/nativescript.module";
+import { NativeScriptCommonModule } from "nativescript-angular/common";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { ModalDialogService } from "nativescript-angular/modal-dialog";
 import { NativeScriptUIListViewModule } from "nativescript-pro-ui/listview/angular";
@@ -31,7 +31,7 @@ import { SharedModule } from "../../lib/shared.module";
 
 @NgModule({
     imports: [
-        NativeScriptModule,
+        NativeScriptCommonModule,
         NativeScriptFormsModule,
         SharedModule,
         TabsRoutingModule,

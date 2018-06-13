@@ -3,9 +3,10 @@
 */
 
 import { Component, OnInit } from "@angular/core";
-import { RouterExtensions } from "nativescript-angular/router";
+import { Router } from "@angular/router";
 import { ModalDialogParams } from "nativescript-angular/modal-dialog";
 import { Page } from "ui/page";
+import { topmost } from "ui/frame";
 
 @Component({
     selector: "add",
@@ -18,7 +19,7 @@ export class AddComponent implements OnInit {
     constructor(
         private params: ModalDialogParams,
         private page: Page,
-        private router: RouterExtensions
+        private router: Router
     ) {}
 
     public ngOnInit() {
@@ -30,13 +31,13 @@ export class AddComponent implements OnInit {
     }
 
     public onTapImport() {
-        this.params.closeCallback();
         this.router.navigate(['/import']);
+        this.params.closeCallback();
     }
 
     public onTapCreate() {
-        this.params.closeCallback();
         this.router.navigate(['/create']);
+        this.params.closeCallback();
     }
 
     public onTapNo() {

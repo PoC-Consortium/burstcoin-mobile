@@ -4,7 +4,7 @@
 
 import { Injectable } from "@angular/core";
 import { Http, Headers, RequestOptions, Response, URLSearchParams } from "@angular/http";
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 import 'rxjs/add/operator/timeout'
 
 import { Currency, HttpError, constants } from "../model";

@@ -1,7 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 
 import { Account, Attachment, EncryptedMessage, Keys, Message, Transaction, constants } from "../../lib/model";
 import { AccountService, CryptoService } from "../../lib/services";

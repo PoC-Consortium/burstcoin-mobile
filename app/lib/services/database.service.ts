@@ -3,7 +3,7 @@
 */
 
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 import { Database } from "../model/abstract";
 import { Account, Settings, constants } from "../model";
 

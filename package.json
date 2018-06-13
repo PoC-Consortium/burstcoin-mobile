@@ -10,10 +10,10 @@
   "nativescript": {
     "id": "org.icewave.burstcoinwallet",
     "tns-android": {
-      "version": "3.4.0"
+      "version": "4.1.2"
     },
     "tns-ios": {
-      "version": "3.4.0"
+      "version": "4.1.2"
     }
   },
   "scripts": {
@@ -42,9 +42,10 @@
     "@angular/router": "~5.0.0",
     "bn.js": "4.11.8",
     "crypto-js": "3.1.9-1",
+    "i": "^0.3.6",
     "loki-nativescript-adapter": "1.0.3",
     "lokijs": "1.5.1",
-    "nativescript-angular": "5.0.0",
+    "nativescript-angular": "6.0.0",
     "nativescript-barcodescanner": "2.7.4",
     "nativescript-cardview": "2.0.4",
     "nativescript-clipboard": "1.1.7",
@@ -55,16 +56,18 @@
     "nativescript-theme-core": "1.0.4",
     "nativescript-zxing": "1.5.2",
     "ng2-translate": "5.0.0",
+    "npm": "^6.1.0",
     "pako": "1.0.6",
     "reflect-metadata": "0.1.10",
-    "rxjs": "5.4.3",
+    "rxjs": "6.2.0",
+    "rxjs-compat": "6.2.0",
     "seedrandom": "2.4.3",
-    "tns-core-modules": "3.4.0",
-    "zone.js": "0.8.16"
+    "tns-core-modules": "4.1.0",
+    "zone.js": "^0.8.4"
   },
   "devDependencies": {
     "@angular/compiler-cli": "~5.0.0",
-    "@ngtools/webpack": "1.9.3",
+    "@ngtools/webpack": "~6.0.3",
     "@types/chai": "^4.0.3",
     "@types/mocha": "^2.2.41",
     "babel-traverse": "6.26.0",
@@ -72,27 +75,31 @@
     "babylon": "6.18.0",
     "chai": "^4.1.1",
     "codelyzer": "3.1.2",
-    "copy-webpack-plugin": "~4.0.1",
-    "extract-text-webpack-plugin": "~3.0.0",
+    "copy-webpack-plugin": "~4.5.1",
+    "extract-text-webpack-plugin": "~3.0.2",
     "lazy": "1.0.11",
     "mocha": "^3.5.0",
     "mocha-typescript": "^1.1.7",
     "nativescript-css-loader": "~0.26.0",
-    "nativescript-dev-sass": "1.3.0",
-    "nativescript-dev-typescript": "0.5.0",
-    "nativescript-dev-webpack": "0.9.0",
-    "nativescript-worker-loader": "~0.8.1",
-    "node-sass": "4.5.3",
+    "nativescript-dev-sass": "1.6.0",
+    "nativescript-dev-typescript": "0.7.1",
+    "nativescript-dev-webpack": "0.12.0",
+    "nativescript-worker-loader": "~0.9.0",
+    "node-sass": "4.9.0",
     "nyc": "^11.1.0",
     "raw-loader": "~0.5.1",
-    "resolve-url-loader": "~2.1.0",
+    "resolve-url-loader": "~2.3.0",
     "source-map-support": "^0.4.16",
     "tslint": "5.6.0",
-    "typescript": "2.6.2",
-    "webpack": "~3.8.1",
-    "webpack-bundle-analyzer": "^2.8.2",
-    "webpack-sources": "~1.0.1",
-    "css-loader": "~0.28.7",
-    "sass-loader": "~6.0.6"
+    "typescript": "2.8.1",
+    "webpack": "~4.6.0",
+    "webpack-bundle-analyzer": "~2.13.0",
+    "webpack-sources": "~1.1.0",
+    "css-loader": "~0.28.11",
+    "sass-loader": "~7.0.1",
+    "webpack-cli": "~2.1.3",
+    "clean-webpack-plugin": "~0.1.19",
+    "uglifyjs-webpack-plugin": "~1.2.5",
+    "@angular-devkit/core": "~0.6.3"
   }
 }

@@ -85,7 +85,7 @@ export class AccountsComponent implements OnInit {
         };
         this.modalDialogService.showModal(AddComponent, options)
             .then(result => { })
-            .catch(error => { });
+            .catch(error => { console.log(error) });
     }
 
     public onLongPress(address: string) {
