@@ -16,7 +16,10 @@
                     <Button col="5" row="2" rowspan="2" class="btn btn-primary btn-active icon-button fa text-center vertical-bottom" text="&#xf00d;" (tap)="onTapRemoveAccount(item)"></Button>
                 </GridLayout>
             </CardView>
-            <Button *ngIf="i == accounts.length - 1" class="btn btn-primary btn-active icon-button fa text-center" text="&#xf067;" (tap)="onTapAddAccount()"></Button>
+            <GridLayout rows="auto" columns="*,auto, auto,*">
+                <Button col="1" *ngIf="i == accounts.length - 1" class="btn btn-primary btn-active icon-button fa" text="&#xf067;" (tap)="onTapCreateAccount()"></Button>
+                <Button col="2" *ngIf="i == accounts.length - 1" class="btn btn-primary btn-active icon-button fa" text="&#xf103;" (tap)="onTapImportAccount()"></Button>
+            </GridLayout>
         </StackLayout>
     </ng-template>
 </RadListView>

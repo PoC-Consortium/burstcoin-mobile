@@ -78,13 +78,21 @@ export class AccountsComponent implements OnInit {
             })
     }
 
+    public onTapCreateAccount() {
+        this.router.navigate(['create']);
+    }
+
+    public onTapImportAccount() {
+        this.router.navigate(['import']);
+    }
+
     public onTapAddAccount() {
         const options: ModalDialogOptions = {
             viewContainerRef: this.vcRef,
             fullscreen: false,
         };
         this.modalDialogService.showModal(AddComponent, options)
-            .then(result => { })
+            .then(result => { this.router.navigate([result], { clearHistory: true });})
             .catch(error => { console.log(error) });
     }
 

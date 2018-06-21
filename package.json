@@ -1,8 +1,8 @@
 {
   "description": "Burstcoin Wallet",
-  "license": "closed source",
-  "readme": "none",
-  "repository": "private",
+  "license": "gpl-3.0",
+  "readme": "README.md",
+  "repository": "open-source",
   "profiling": "timeline",
   "android": {
     "markingMode": "none"
