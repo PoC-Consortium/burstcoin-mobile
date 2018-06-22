@@ -58,8 +58,8 @@
         },
         "HISTORY": {
             "TITLE": "履歴",
-            "DECRYPT": "Decrypt",
-            "DECRYPT_IMPOSSIBLE": "Could not be decrypted!",
+            "DECRYPT": "暗号解読",
+            "DECRYPT_IMPOSSIBLE": "暗号解読できませんでした!",
             "PIN_INPUT_HINT": "Pin"
         },
         "SETTINGS": {
