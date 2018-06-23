@@ -64,6 +64,7 @@ Documentation: [https://poc-consortium.github.io/burstcoin-mobile/](https://poc-
 - fabry1999
 - FLEGI
 - Gadrah
+- HajimeYamanaka
 - Hiro Inu
 - Leass
 - NullNomad

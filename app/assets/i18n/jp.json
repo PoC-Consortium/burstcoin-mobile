@@ -1,0 +1,148 @@
+{
+    "CREATE": {
+        "ACTION_BAR_TITLE": "新規アカウント作成",
+        "DONE": "完了",
+        "GENERATE_AGAIN": "やりなおす",
+        "INFO_SEED": "このエリアをタップか指でこすってください。",
+        "INFO_SEED_FINISHED": "完了",
+        "INFO_STEP_ONE": "まず、パスフレーズの生成のために乱数を生成します。",
+        "INFO_STEP_TWO": "パスフレーズの単語12個を順番に記録する必要があります。",
+        "INFO_STEP_TWO_ACTION": "スペースで区切られた次の単語を記録して下さい。",
+        "INFO_STEP_THREE": "記録したパスフレーズの単語をもう一度入力してください。",
+        "INFO_STEP_THREE_ACTION": "パスフレーズの #{{value}} 番目の単語を入力して下さい。",
+        "INFO_STEP_FOUR": "あなたのアカウントに6桁の数字で構成するPINコードを設定して下さい。このPINコードはトランザクションを発信するときに使われます。",
+        "PIN_INPUT_HINT": "PIN",
+        "POSSIBILITY_INPUT_HINT": "#{{value}} 番目",
+        "NEXT": "次へ"
+    },
+    "IMPORT" : {
+        "ACTION_BAR_TITLE": "既存アカウントの登録",
+        "ACTIVE_ACCOUNT": "アクティブアカウント",
+        "ACTIVE_ACCOUNT_DESCRIPTION": "アクティブアカウントはすべての機能を提供します。 Burstcoinを送受信できます。 また、残高を確認して取引の履歴を確認することもできます。",
+        "ACTIVE_ACCOUNT_INPUT_HINT": "パスフレーズ",
+        "ACTIVE_ACCOUNT_PIN_INFO": "あなたのアカウントに数字6桁のPINコードを設定して下さい。このPINコードはトランザクションを発信するときに使われます。",
+        "DONE": "完了",
+        "IMPORT": "既存アカウントの登録",
+        "INFO": "アクティブアカウントを登録するときはパスフレーズを入力します。それ以外の場合は、Burstcoinアドレスを入力してオフラインアカウントを登録します。",
+        "NEXT": "次へ",
+        "OFFLINE_ACCOUNT": "オフラインアカウント",
+        "OFFLINE_ACCOUNT_DESCRIPTION": "Burstcoinを別のアドレスに送信できないことを除いて、オフラインアカウントはアクティブアカウントと同じ機能を利用できます。",
+        "OFFLINE_ACCOUNT_INPUT_HINT": "BURST-XXXX-XXXX-XXXX-XXXXX",
+        "PIN_INPUT_HINT": "PIN",
+        "SHOW" : {
+            "QUESTION": "これはあなたのBurstアドレスですか?"
+        }
+    },
+    "TABS": {
+        "ACCOUNTS": {
+            "ACTIVATE": {
+                "ACTION_BAR_TITLE": "アカウントの有効化",
+                "DONE": "完了",
+                "ENTER_PASSPHRASE": "アカウント {{value}} のパスフレーズを入力して下さい。",
+                "ENTER_PIN": "数字6桁のPINを設定して下さい。",
+                "PASSPHRASE_INPUT_HINT": "パスフレーズ",
+                "PIN_INPUT_HINT": "Pin",
+                "NEXT": "次へ"
+            },
+            "BALANCE": "残高",
+            "CREATE": "作成",
+            "IMPORT": "登録",
+            "REMOVE": "本当にこのアカウントを削除しますか?",
+            "TITLE": "アカウント"
+        },
+        "BALANCE": {
+            "ACTIVATE": "アクティブ化",
+            "BALANCE": "残高",
+            "SEND": "送信",
+            "TITLE": "残高"
+        },
+        "HISTORY": {
+            "TITLE": "履歴",
+            "DECRYPT": "暗号解読",
+            "DECRYPT_IMPOSSIBLE": "暗号解読できませんでした!",
+            "PIN_INPUT_HINT": "Pin"
+        },
+        "SETTINGS": {
+            "ABOUT": {
+                "ABOUT": "このアプリケーションについて",
+                "ASSOCIATION": "In association with",
+                "DEVELOPED": "Developed by",
+                "TWITTER": "twitterでフォローして、プロジェクトの最新情報を入手してください!",
+                "VERSION": "バージョン"
+            },
+            "CURRENCY": {
+                "CURRENCY": "通貨"
+            },
+            "DOCUMENTATION": {
+                "DOCUMENTATION": "説明書"
+            },
+            "LANGUAGE": {
+                "LANGUAGE": "言語"
+            },
+            "NODE": {
+                "INFO": "BurstノードはBurstネットワークとの通信に使用されます",
+                "NODE": "ノード"
+            },
+            "SUPPORT": {
+                "CONTRIBUTION": "私達は無償の貢献に感謝致します",
+                "DONATE": "このアプリケーションを気に入りましたか? BURSTを寄付して私たちをサポートしてください!",
+                "SUPPORT": "サポート"
+            },
+            "TITLE": "設定"
+        }
+    },
+    "SEND": {
+        "ACCEPT": "送金",
+        "ACTION_BAR_TITLE": "BURSTの送金",
+        "ADD_CONTACT": "連絡先の追加",
+        "AMOUNT": "金額",
+        "BACK": "Back",
+        "BALANCE": "残高",
+        "CONTACTS": "連絡先",
+        "FEE": "手数料",
+        "FIAT": "通貨からBURST",
+        "MESSAGE": "メッセージ",
+        "PIN_INPUT_HINT": "Pin",
+        "RECIPIENT": "受信者",
+        "VERIFY": "確認"
+    },
+    "START" : {
+        "CREATE": "アカウントの作成",
+        "IMPORT": "アカウントの登録",
+        "INFO": "アカウントはまだ作成されていません。 既存アカウントの登録をするか、新規アカウントの作成を選択してください。"
+    },
+    "NOTIFICATIONS" : {
+        "ADDRESS": "正しいBurstcoinアドレスを入力して下さい!",
+        "COPIED": "クリップボードにアドレス {{value}} がコピーされました!",
+        "CONTACT_ADDED": "連絡先追加完了!",
+        "DECIMAL_AMOUNT": "送信したいBurstの金額を10進数で入力してください!",
+        "DECIMAL_FEE": "手数料は整数値(1～)を入力してください!",
+        "ENTER_SOMETHING": "なにか入力して下さい!",
+        "EXCEED": "残高不足です! 金額と手数料が残高を超えています。",
+        "PIN": "数字6桁のPIN番号を入力して下さい!",
+        "REMOVE": "アカウントの削除が成功しました!",
+        "SELECTED": "選択されたアカウント: {{value}}",
+        "TRANSACTION": "処理完了!",
+        "UPDATE_CURRENCY": "通貨の変更が成功しました!",
+        "UPDATE_LANGUAGE": "言語の変更が成功しました!",
+        "UPDATE_NODE": "ノードの変更が成功しました!",
+        "WRONG_PASSPHRASE": "無効なパスフレーズです! 入力されたパスフレーズは、あなたのアカウントに割り当てられた公開鍵を生成しません!",
+        "WRONG_PIN": "入力されたPINとアカウントのPINが一致していません!",
+        "ERRORS": {
+            "ACCOUNT_ID": "公開鍵からアカウントIDを生成できません!",
+            "ADDRESS": "アカウントIDからBURSTアドレスを生成できません!",
+            "CONNECTION": "データの取得に失敗しました。 インターネット接続を確認してください!",
+            "CONTACT":"連絡先追加に失敗しました!",
+            "CURRENCY": "通貨の変更失敗!",
+            "KEYPAIR": "パスフレーズから鍵の生成に失敗しました!",
+            "LANGUAGE": "言語変更失敗!",
+            "NODE": "ノード変更失敗!",
+            "NO_PUBLIC_KEY": "受信者にはまだ公開鍵がありません！ 暗号化されたメッセージの送信は不可能です!",
+            "QR_CODE": "QRコードをスキャンできませんでした!",
+            "REDIRECT": "BURST送信ページを開けません！ 現在のアカウントは有効ではありません!",
+            "REMOVE": "アカウントを削除できません!",
+            "UPDATE": "アカウントの更新に失敗しました!",
+            "UNKNOWN_ACCOUNT": "アカウントはまだ不明です。 まだ取引はありません!"
+        }
+    }
+}
