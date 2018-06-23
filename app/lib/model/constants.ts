@@ -55,6 +55,7 @@ export const constants = {
         { name: "Français", code: "fr" },
         { name: "हिन्द", code: "hi" },
         { name: "Italiano", code: "it" },
+        { name: "日本語", code: "jp"},
         { name: "한국어", code: "ko" },
         { name: "Magyar", code: "hu" },
         { name: "Nederlands", code: "nl" },
