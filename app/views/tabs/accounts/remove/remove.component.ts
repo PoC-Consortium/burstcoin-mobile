@@ -34,9 +34,6 @@ export class RemoveComponent implements OnInit {
 
     public ngOnInit() {
         this.remove = this.params.context;
-        this.page.on("unloaded", () => {
-            this.params.closeCallback(false);
-        });
     }
 
     public onTapNo() {

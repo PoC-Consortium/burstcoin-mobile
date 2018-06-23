@@ -32,7 +32,7 @@ export class StartComponent implements OnInit {
     public ngOnInit() {
         this.page.actionBarHidden = true;
         this.databaseService.ready.subscribe((init: boolean) => {
-            this.loadSelectedAccount(init)
+            this.loadSelectedAccount(init);
             this.setLanguage(init);
         });
         // TODO: show initial loading

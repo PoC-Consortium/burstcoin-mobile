@@ -7,7 +7,8 @@ import { Http, Headers, RequestOptions, Response, URLSearchParams } from "@angul
 import { device } from "platform";
 import { BehaviorSubject } from 'rxjs';
 import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/timeout'
+import 'rxjs/add/operator/timeout';
+import 'rxjs/add/operator/map';
 
 import { Account, BurstAddress, Currency, EncryptedMessage, HttpError, Keys, Message, Settings, Transaction, constants } from "../model";
 import { NoConnectionError, UnknownAccountError } from "../model/error";

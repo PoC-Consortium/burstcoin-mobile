@@ -43,7 +43,7 @@ export const constants = {
     defaultLanguage: "en",
     defaultNode: "https://wallet.burst.cryptoguru.org:8125/burst",
     defaultTheme: "light",
-    documentationUrl: "https://poc-consortium.github.io/burstcoin-mobile-doc/",
+    documentationUrl: "https://poc-consortium.github.io/burstcoin-mobile/",
     donate: "BURST-RTEY-HUSA-BJG4-EZW9E",
     languages: [
         { name: "shqip", code:"al" },
