@@ -30,9 +30,7 @@ export class SupportComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.page.on("unloaded", () => {
-            this.params.closeCallback();
-        });
+
     }
 
     public onTapSupport() {

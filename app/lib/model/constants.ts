@@ -71,5 +71,5 @@ export const constants = {
     transactionCount: "15",
     transactionUrl: "https://explore.burst.cryptoguru.org/transaction/",
     twitter: "https://twitter.com/PoC_Consortium",
-    version: "0.2.1"
+    version: "0.2.2"
 }
