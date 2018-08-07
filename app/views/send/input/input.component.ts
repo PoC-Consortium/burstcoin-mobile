@@ -12,12 +12,13 @@ import { RadSideDrawer } from "nativescript-pro-ui/sidedrawer";
 import { Switch } from "ui/switch";
 import { BarcodeScanner, ScanOptions } from 'nativescript-barcodescanner';
 
-import { Account, BurstAddress, Settings, Transaction, constants } from "../../../lib/model";
+import { Account, BurstAddress, Fees, Settings, Transaction, constants } from "../../../lib/model";
 import { AccountService, DatabaseService, MarketService, NotificationService } from "../../../lib/services";
 import { SendService } from "../send.service";
 
-import { ContactComponent } from "./contact/contact.component"
-import { FiatComponent } from "./fiat/fiat.component"
+import { ContactComponent } from "./contact/contact.component";
+import { FeesComponent } from "./fees/fees.component";
+import { FiatComponent } from "./fiat/fiat.component";
 
 let clipboard = require("nativescript-clipboard");
 
@@ -33,6 +34,7 @@ export class InputComponent implements OnInit {
     private balance: string;
     private drawer: RadSideDrawer;
     private fee: number;
+    private fees: Fees;
     private messageEnabled: boolean
     private message: string
     private messageEncrypted: boolean
@@ -84,6 +86,11 @@ export class InputComponent implements OnInit {
         this.message = this.sendService.getMessage();
         this.messageEnabled = this.sendService.getMessageEnabled();
         this.messageEncrypted = this.sendService.getMessageEncrypted();
+
+        this.accountService.getSuggestedFees().then(fees => {
+            this.fees = fees;
+            this.fee = fees.standard;
+        })
     }
 
     ngAfterViewInit() {
@@ -147,7 +154,28 @@ export class InputComponent implements OnInit {
                             this.notificationService.info(res);
                         });
                     }
-                    this.calculateTotal('amount')
+                    this.calculateTotal()
+                }
+            })
+            .catch(error => console.log(JSON.stringify(error)));
+    }
+
+    public onTapFees() {
+        const options: ModalDialogOptions = {
+            viewContainerRef: this.vcRef,
+            fullscreen: false,
+            context: this.fees,
+        };
+        this.modalDialogService.showModal(FeesComponent, options)
+            .then(fee => {
+                if (fee != undefined) {
+                    this.fee = fee
+                    if (!this.verifyTotal()) {
+                        this.translateService.get('NOTIFICATIONS.EXCEED').subscribe((res: string) => {
+                            this.notificationService.info(res);
+                        });
+                    }
+                    this.calculateTotal()
                 }
             })
             .catch(error => console.log(JSON.stringify(error)));
@@ -237,7 +265,7 @@ export class InputComponent implements OnInit {
         return Number(this.amount) + Number(this.fee) <= this.account.balance
     }
 
-    public calculateTotal(input: string) {
+    public calculateTotal() {
         if (this.amount < 0) {
             this.amount = undefined;
         }

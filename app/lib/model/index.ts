@@ -4,6 +4,7 @@ export * from "./block";
 export * from "./burstAddress";
 export * from "./constants";
 export * from "./currency";
+export * from "./fees";
 export * from "./httpError";
 export * from "./keys";
 export * from "./settings";

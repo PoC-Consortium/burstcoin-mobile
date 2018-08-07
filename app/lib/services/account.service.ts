@@ -10,7 +10,7 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/timeout';
 import 'rxjs/add/operator/map';
 
-import { Account, BurstAddress, Currency, EncryptedMessage, HttpError, Keys, Message, Settings, Transaction, constants } from "../model";
+import { Account, BurstAddress, Currency, EncryptedMessage, Fees, HttpError, Keys, Message, Settings, Transaction, constants } from "../model";
 import { NoConnectionError, UnknownAccountError } from "../model/error";
 import { CryptoService, DatabaseService, NotificationService} from "./";
 
@@ -387,6 +387,27 @@ export class AccountService {
                         reject("Transaction error: Generating transaction. Check the recipient!");
                     }
                 }).catch(error => { console.log(error); reject("Transaction error: Generating transaction. Check the recipient!") });
+        });
+    }
+
+    /*
+    * Get suggested fees from node
+    */
+    public getSuggestedFees(): Promise<Fees> {
+        return new Promise((resolve, reject) => {
+            let params: URLSearchParams = new URLSearchParams();
+            params.set("requestType", "suggestFee");
+            let requestOptions = this.getRequestOptions();
+            requestOptions.params = params;
+            return this.http.get(this.nodeUrl, requestOptions).timeout(constants.connectionTimeout).toPromise()
+                .then(response => {
+                    if (response.json().errorCode == undefined) {
+                        resolve(new Fees(response.json()));
+                    } else {
+                        reject(new Error("Failed fetching suggested fees"));
+                    }
+                })
+                .catch(error => reject(new NoConnectionError()));
         });
     }
 

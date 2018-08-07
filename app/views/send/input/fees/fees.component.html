@@ -1,0 +1,12 @@
+<StackLayout class="modal-view-style">
+    <StackLayout class="page-content">
+        <StackLayout class="modal-container">
+            <StackLayout class="body-container">
+                <Label class="solo fa" textWrap="true" [text]="'&#xf0ec; ' + ('SEND.FEE' | translate)"></Label>
+                <Button class="btn btn-primary btn-active action-button fa" [text]="('SEND.FEES.CHEAP' | translate) + ': ' + this.fees.cheap" (tap)="onTapCheap()"></Button>
+                <Button class="btn btn-primary btn-active action-button fa" [text]="('SEND.FEES.STANDARD' | translate) + ': ' + this.fees.standard" (tap)="onTapStandard()"></Button>
+                <Button class="btn btn-primary btn-active action-button fa" [text]="('SEND.FEES.PRIORITY' | translate) + ': ' + this.fees.priority" (tap)="onTapPriority()"></Button>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</StackLayout>
