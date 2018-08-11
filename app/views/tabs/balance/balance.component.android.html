@@ -16,7 +16,10 @@
                 </StackLayout>
             </CardView>
             <StackLayout orientation="vertical">
-                <Button *ngIf="account?.keys != undefined" class="btn btn-primary btn-active action-button fa" [text]="('TABS.BALANCE.SEND' | translate) + ' &#xf08b;'" [nsRouterLink]="['/send']"></Button>
+                <GridLayout class="button-container" *ngIf="account?.keys != undefined" rows="auto" columns="*,auto">
+                    <Button col="0" class="btn btn-primary btn-active action-button fa" [text]="('TABS.BALANCE.SEND' | translate) + ' &#xf08b;'" [nsRouterLink]="['/send']"></Button>
+                    <Button col="1" class="btn btn-primary btn-active camera-button fa" text="&#xf083;" (tap)="onTapCamera()"></Button>
+                </GridLayout>
                 <Button *ngIf="account?.keys == undefined" class="btn btn-primary btn-active action-button fa" [text]="('TABS.BALANCE.ACTIVATE' | translate) + ' &#xf05d;'" [nsRouterLink]="['/activate']"></Button>
             </StackLayout>
         </StackLayout>

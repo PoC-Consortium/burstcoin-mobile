@@ -11,6 +11,7 @@ import { Account, Currency } from "../../../lib/model";
 import { AccountService, DatabaseService, MarketService, NotificationService, TabsService } from "../../../lib/services";
 import { RadListViewComponent } from "nativescript-pro-ui/listview/angular";
 import { isIOS } from "platform";
+import { BarcodeScanner, ScanOptions } from 'nativescript-barcodescanner';
 
 import * as SocialShare from "nativescript-social-share";
 
@@ -36,12 +37,13 @@ export class BalanceComponent implements OnInit {
 
     constructor(
         private accountService: AccountService,
+        private barcodeScanner: BarcodeScanner,
         private databaseService: DatabaseService,
         public marketService: MarketService,
         private notificationService: NotificationService,
         private tabsService: TabsService,
         private translateService: TranslateService
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         this.zx = new ZXing();
@@ -71,7 +73,7 @@ export class BalanceComponent implements OnInit {
 
     public onDoubleTapBalance() {
         clipboard.setText(this.account.address);
-        this.translateService.get('NOTIFICATIONS.COPIED', {value: this.account.address}).subscribe((res: string) => {
+        this.translateService.get('NOTIFICATIONS.COPIED', { value: this.account.address }).subscribe((res: string) => {
             this.notificationService.info(res);
         });
     }
@@ -82,8 +84,21 @@ export class BalanceComponent implements OnInit {
 
     public onSwipeBalance(args: SwipeGestureEventData) {
         if (args.direction == 2) {
-                this.tabsService.changeTab(1);
+            this.tabsService.changeTab(1);
         }
+    }
+
+    public onTapCamera() {
+        let options: ScanOptions = {
+            formats: "QR_CODE"
+        }
+        this.barcodeScanner.scan(options).then((result) => {
+
+        }, (errorMessage) => {
+            this.translateService.get('NOTIFICATIONS.ERRORS.QR_CODE').subscribe((res: string) => {
+                this.notificationService.info(res);
+            });
+        });
     }
 
     public refresh(args) {

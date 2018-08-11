@@ -34,3 +34,16 @@
 .unconfirmed {
     color: $sky;
 }
+
+.camera-button {
+    height: $btn-height;
+    width: $btn-height;
+    margin-left: 0px
+    padding-left:0px;
+    margin-right: 0px
+    padding-right:0px;
+}
+
+.button-container {
+    width: 80%;
+}
