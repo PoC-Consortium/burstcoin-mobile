@@ -4,10 +4,11 @@
 
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
+import { RouterExtensions } from "nativescript-angular/router";
 import { SwipeGestureEventData } from "ui/gestures";
 import { Image } from "ui/image"
 import { TranslateService } from "ng2-translate";
-import { Account, Currency } from "../../../lib/model";
+import { Account, BurstAddress, Currency, constants } from "../../../lib/model";
 import { AccountService, DatabaseService, MarketService, NotificationService, TabsService } from "../../../lib/services";
 import { RadListViewComponent } from "nativescript-pro-ui/listview/angular";
 import { isIOS } from "platform";
@@ -41,6 +42,7 @@ export class BalanceComponent implements OnInit {
         private databaseService: DatabaseService,
         public marketService: MarketService,
         private notificationService: NotificationService,
+        private router: RouterExtensions,
         private tabsService: TabsService,
         private translateService: TranslateService
     ) { }
@@ -93,7 +95,13 @@ export class BalanceComponent implements OnInit {
             formats: "QR_CODE"
         }
         this.barcodeScanner.scan(options).then((result) => {
-
+            if (BurstAddress.isValid(result.text)) {
+                this.router.navigate(['/send', result.text]);
+            } else {
+                this.translateService.get('NOTIFICATIONS.ERRORS.QR_CODE').subscribe((res: string) => {
+                    this.notificationService.info(res);
+                });
+            }
         }, (errorMessage) => {
             this.translateService.get('NOTIFICATIONS.ERRORS.QR_CODE').subscribe((res: string) => {
                 this.notificationService.info(res);
