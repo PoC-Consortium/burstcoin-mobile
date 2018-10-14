@@ -37,7 +37,7 @@ export class BurstAddress {
     */
     public static encode(plain: string): string {
         let plainString10 = [],
-            codeword = BurstAddress.initialCodeword,
+            codeword = BurstAddress.initialCodeword.split(),
             pos = 0;
 
         let plainString = new BN(plain).toString();
@@ -109,7 +109,7 @@ export class BurstAddress {
             return undefined;
         }
 
-        let codeword = BurstAddress.initialCodeword,
+        let codeword = BurstAddress.initialCodeword.split(),
             codewordLength = 0;
 
         for (let i = 0; i < address.length; i++) {
