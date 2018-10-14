@@ -172,7 +172,7 @@ export class BurstAddress {
             address = address.substr(6);
         }
 
-        let codeword = BurstAddress.initialCodeword,
+        let codeword = BurstAddress.initialCodeword.slice(),
             codewordLength = 0;
 
         for (let i = 0; i < address.length; i++) {
