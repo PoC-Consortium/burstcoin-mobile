@@ -60,7 +60,10 @@ export const constants = {
         { name: "Magyar", code: "hu" },
         { name: "Nederlands", code: "nl" },
         { name: "Polski", code: "pl" },
+        { name: "русский", code: "ru" },
         { name: "Slovensky", code: "sk" },
+        { name: "српски", code: "sr-cyr" },
+        { name: "Srpski", code: "sr-lat" },
         { name: "Svenska", code: "sv" },
         { name: "தமிழ", code: "ta" },
         { name: "中文", code: "zh" }

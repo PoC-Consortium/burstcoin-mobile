@@ -26,7 +26,7 @@
         "INFO": "Import an active account by entering its passphrase. Otherwise, import an offline account by entering its Burstcoin address.",
         "NEXT": "Next",
         "OFFLINE_ACCOUNT": "Offline Account",
-        "OFFLINE_ACCOUNT_DESCRIPTION": "An offline account offers the same functionality than an active account, except you cannot send Burstcoins to another address.",
+        "OFFLINE_ACCOUNT_DESCRIPTION": "An offline account offers the same functionality as an active account, except you cannot send Burstcoins to another address.",
         "OFFLINE_ACCOUNT_INPUT_HINT": "BURST-XXXX-XXXX-XXXX-XXXXX",
         "PIN_INPUT_HINT": "PIN",
         "SHOW" : {
@@ -121,7 +121,7 @@
         "COPIED": "Copied address {{value}} to clipboard!",
         "CONTACT_ADDED": "Contact added successfully!",
         "DECIMAL_AMOUNT": "Please enter a decimal number for the amount of BURST you want to send!",
-        "DECIMAL_FEE": "Please enter a decimal number (atleast 1) as fee!",
+        "DECIMAL_FEE": "Please enter a decimal number as fee!",
         "ENTER_SOMETHING": "Please enter something!",
         "EXCEED": "Amount and Fee exceed your balance!",
         "PIN": "Please enter a six-digit number as Pin!",

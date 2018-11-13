@@ -1,0 +1,153 @@
+{
+    "CREATE": {
+        "ACTION_BAR_TITLE": "Napravi novi račun",
+        "DONE": "Gotovo",
+        "GENERATE_AGAIN": "Napravi ponovo",
+        "INFO_SEED": "Dodirni i prevuci preko ovog prostora.",
+        "INFO_SEED_FINISHED": "Uzorak prikupljen.",
+        "INFO_STEP_ONE": "Prvo, potrebno je napraviti nasumični uzorak za kreiranje lozinke.",
+        "INFO_STEP_TWO": "Sada je potrebno da upamtite svih 12 reči Vaše lozinke u tačnom redosledu.",
+        "INFO_STEP_TWO_ACTION": "Zapišite sledećih 12 reči razdvojene praznim mestima i čuvajte ih tajno.",
+        "INFO_STEP_THREE": "Unesite ponovo reči Vaše lozinke.",
+        "INFO_STEP_THREE_ACTION": "Zapišite reč #{{value}} i izaberite je.",
+        "INFO_STEP_FOUR": "Postavite šestocifreni PIN za Vaš račun. PIN je potreban za potvrdu odlaznih transakcija.",
+        "PIN_INPUT_HINT": "PIN",
+        "POSSIBILITY_INPUT_HINT": "Reč #{{value}}",
+        "NEXT": "Sledeće"
+    },
+    "IMPORT" : {
+        "ACTION_BAR_TITLE": "Uvoz postojećeg računa",
+        "ACTIVE_ACCOUNT": "Aktivan račun",
+        "ACTIVE_ACCOUNT_DESCRIPTION": "Aktivan račun pruža potpunu funkcionalnost. Možete primati i slati Burstcoin. Dodatno, možete proveriti stanje i prethodne transakcije.",
+        "ACTIVE_ACCOUNT_INPUT_HINT": "Lozinka",
+        "ACTIVE_ACCOUNT_PIN_INFO": "Postavite šestocifreni PIN za Vaš račun. PIN je potreban za potvrdu odlaznih transakcija.",
+        "DONE": "Gotovo",
+        "IMPORT": "Uvoz",
+        "INFO": "Uvezite aktivni račun unosom lozinke. Uvezite neaktivan račun unosom njegove Burstcoin adrese.",
+        "NEXT": "Sledeće",
+        "OFFLINE_ACCOUNT": "Neaktivan račun",
+        "OFFLINE_ACCOUNT_DESCRIPTION": "Neaktivan račun pruža istu funkcionalnost kao i aktivan, osim što nije moguće slanje Burstcoina na druge račune.",
+        "OFFLINE_ACCOUNT_INPUT_HINT": "BURST-XXXX-XXXX-XXXX-XXXXX",
+        "PIN_INPUT_HINT": "PIN",
+        "SHOW" : {
+            "QUESTION": "Da li je ovo Vaš Burst račun?"
+        }
+    },
+    "TABS": {
+        "ACCOUNTS": {
+            "ACTIVATE": {
+                "ACTION_BAR_TITLE": "Aktiviranje računa",
+                "DONE": "Gotovo",
+                "ENTER_PASSPHRASE": "Unesite lozinku za račun {{value}} ovde.",
+                "ENTER_PIN": "Postavite šestocifreni PIN.",
+                "PASSPHRASE_INPUT_HINT": "Lozinka",
+                "PIN_INPUT_HINT": "Pin",
+                "NEXT": "Sledeće"
+            },
+            "BALANCE": "Stanje",
+            "CREATE": "Napravi",
+            "IMPORT": "Uvoz",
+            "REMOVE": "Da li zaista želite da uklonite ovaj račun?",
+            "TITLE": "Računi"
+        },
+        "BALANCE": {
+            "ACTIVATE": "Aktiviranje",
+            "BALANCE": "Stanje",
+            "SEND": "Slanje",
+            "TITLE": "Stanje"
+        },
+        "HISTORY": {
+            "TITLE": "Istorija",
+            "DECRYPT": "Dekripcija",
+            "DECRYPT_IMPOSSIBLE": "Dekripcija nije moguća!",
+            "PIN_INPUT_HINT": "Pin"
+        },
+        "SETTINGS": {
+            "ABOUT": {
+                "ABOUT": "O aplikaciji",
+                "ASSOCIATION": "U saradnji sa",
+                "DEVELOPED": "Razvijeno od strane",
+                "TWITTER": "Pratite nas na Twitteru!",
+                "VERSION": "Verzija"
+            },
+            "CURRENCY": {
+                "CURRENCY": "Valuta"
+            },
+            "DOCUMENTATION": {
+                "DOCUMENTATION": "Dokumentacija"
+            },
+            "LANGUAGE": {
+                "LANGUAGE": "Jezik"
+            },
+            "NODE": {
+                "INFO": "Burst čvor koji se koristi za komunikaciju sa Burst mrežom",
+                "NODE": "Čvor"
+            },
+            "SUPPORT": {
+                "CONTRIBUTION": "Takođe zahvaljujemo na nenovčanim prilozima",
+                "DONATE": "Dopada Vam se aplikacija? Podržite nas donacijom Bursta!",
+                "SUPPORT": "Podrška"
+            },
+            "TITLE": "Podešavanja"
+        }
+    },
+    "SEND": {
+        "ACCEPT": "Prihvati",
+        "ACTION_BAR_TITLE": "Slanje BURSTa",
+        "ADD_CONTACT": "Dodavanje novog kontakta",
+        "AMOUNT": "Iznos",
+        "BACK": "Nazad",
+        "BALANCE": "Stanje",
+        "CONTACTS": "Kontakti",
+        "FEE": "Provizija",
+        "FEES": {
+            "CHEAP": "Najmanja",
+            "PRIORITY": "Prioritetna",
+            "STANDARD": "Standardna"
+        },
+        "FIAT": "Valuta u BURST",
+        "MESSAGE": "Poruka",
+        "PIN_INPUT_HINT": "Pin",
+        "RECIPIENT": "Primalac",
+        "VERIFY": "Potvrda"
+    },
+    "START" : {
+        "CREATE": "Napravi",
+        "IMPORT": "Uvoz",
+        "INFO": "Nema računa. Odaberite uvoz postojećeg ili napravite novi račun!"
+    },
+    "NOTIFICATIONS" : {
+        "ADDRESS": "Unesite validan Burstcoin račun!",
+        "COPIED": "Račun {{value}} kopiran!",
+        "CONTACT_ADDED": "Uspešno dodat kontakt!",
+        "DECIMAL_AMOUNT": "Unesite decimalni iznos BURSTa koji želite da pošaljete!",
+        "DECIMAL_FEE": "Unesite proviziju!",
+        "ENTER_SOMETHING": "Unesite neku vrednost!",
+        "EXCEED": "Iznos i provizija su veći od raspoloživog stanja!",
+        "PIN": "Unesite šestocifreni broj kao Pin!",
+        "REMOVE": "Račun uspešno uklonjen!",
+        "SELECTED": "Odabrani račun: {{value}}",
+        "TRANSACTION": "Transakcija je uspešna!",
+        "UPDATE_CURRENCY": "Valuta uspešno ažurirana!",
+        "UPDATE_LANGUAGE": "Jezik uspešno postavljen!",
+        "UPDATE_NODE": "Čvor je uspešno postavljen!",
+        "WRONG_PASSPHRASE": "Pogrešna lozinka! Uneta lozinka se ne odnosi na javni ključ dodeljen Vašem računu!",
+        "WRONG_PIN": "Uneti PIN ne odgovara PINu Vašeg računa!",
+        "ERRORS": {
+            "ACCOUNT_ID": "Nije moguće generisanje računa od datog javnog ključa!",
+            "ADDRESS": "Nije moguće generisati BURST adresu od oznake računa!",
+            "CONNECTION": "Podaci nisu dostupni. Proverite internet vezu!",
+            "CONTACT":"Unos novog kontakta nije uspeo!",
+            "CURRENCY": "Postavljanje valute nije uspelo!",
+            "KEYPAIR": "Generisanje ključeva za lozinku nije uspelo!",
+            "LANGUAGE": "Promena jezika nije uspela!",
+            "NODE": "Promena čvora nije uspela!",
+            "NO_PUBLIC_KEY": "Primaočev račun još nema javni ključ! Slanje šifrovane poruke nije moguće!",
+            "QR_CODE": "Skeniranje QR koda nije uspelo!",
+            "REDIRECT": "Nije moguće slanje BURSTa! Aktuelni račun nije aktivan!",
+            "REMOVE": "Uklanjanje računa nije uspelo!",
+            "UPDATE": "Ažuriranje računa nije uspelo!",
+            "UNKNOWN_ACCOUNT": "Račun je nepoznat. Još nema transakcija!"
+        }
+    }
+}
