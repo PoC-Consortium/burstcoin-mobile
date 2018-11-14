@@ -66,7 +66,8 @@ export const constants = {
         { name: "Srpski", code: "sr-lat" },
         { name: "Svenska", code: "sv" },
         { name: "தமிழ", code: "ta" },
-        { name: "中文", code: "zh" }
+        { name: "汉语", code: "zh-cn" },
+        { name: "漢語", code: "zh-tw" }
     ],
     marketUrl: "https://api.coinmarketcap.com/v1/ticker/burst",
     minimumFee: 0.00735,
@@ -74,5 +75,5 @@ export const constants = {
     transactionCount: "15",
     transactionUrl: "https://explore.burst.cryptoguru.org/transaction/",
     twitter: "https://twitter.com/PoC_Consortium",
-    version: "0.2.2"
+    version: "0.2.4"
 }
