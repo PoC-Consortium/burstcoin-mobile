@@ -1,0 +1,148 @@
+{
+    "CREATE": {
+        "ACTION_BAR_TITLE": "創建新帳戶",
+        "DONE": "完成",
+        "GENERATE_AGAIN": "重新產生",
+        "INFO_SEED": "在此區域點擊與滑動.",
+        "INFO_SEED_FINISHED": "收集了種子.",
+        "INFO_STEP_ONE": "首先，造成隨機種子，用以產生你的密碼.",
+        "INFO_STEP_TWO": "你現在需要順序記住全部的12密碼裡的詞語.",
+        "INFO_STEP_TWO_ACTION": "寫下下列以空格分隔的詞語，隨後對密碼保密.",
+        "INFO_STEP_THREE": "請重新輸入你的密碼.",
+        "INFO_STEP_THREE_ACTION": "寫下單詞 #{{value}} 然後選擇它.",
+        "INFO_STEP_FOUR": "請設置此應用賬戶六位數PIN。PIN用於批准向外交易。",
+        "PIN_INPUT_HINT": "PIN",
+        "POSSIBILITY_INPUT_HINT": "單詞 #{{value}}",
+        "NEXT": "下一步"
+    },
+    "IMPORT" : {
+        "ACTION_BAR_TITLE": "導入現有帳戶",
+        "ACTIVE_ACCOUNT": "活躍帳戶",
+        "ACTIVE_ACCOUNT_DESCRIPTION": "活躍帳戶提供完整功能。 你能發出與得到Burstcoins。此外，還能查餘額與看交易歷史。",
+        "ACTIVE_ACCOUNT_INPUT_HINT": "密碼",
+        "ACTIVE_ACCOUNT_PIN_INFO": "請設置此應用賬戶六位數PIN。PIN用於批准向外交易。",
+        "DONE": "完成",
+        "IMPORT": "導入",
+        "INFO": "將通過輸入活動賬戶的密碼完成導入. 否則，將通過輸入脫機賬戶的Burstcoin地址完成導入.",
+        "NEXT": "下一",
+        "OFFLINE_ACCOUNT": "離線賬戶",
+        "OFFLINE_ACCOUNT_DESCRIPTION": "離線賬戶和活動賬戶唯一不同的是，它不可以用於發送Burstcoins到別的地址。",
+        "OFFLINE_ACCOUNT_INPUT_HINT": "BURST-XXXX-XXXX-XXXX-XXXXX",
+        "PIN_INPUT_HINT": "PIN",
+        "SHOW" : {
+            "QUESTION": "這你的Burst地址嗎？"
+        }
+    },
+    "TABS": {
+        "ACCOUNTS": {
+            "ACTIVATE": {
+                "ACTION_BAR_TITLE": "Activate Account",
+                "DONE": "完成",
+                "ENTER_PASSPHRASE": "輸入賬戶的密碼在 {{value}} 這兒.",
+                "ENTER_PIN": "設置六位數PIN.",
+                "PASSPHRASE_INPUT_HINT": "密碼",
+                "PIN_INPUT_HINT": "Pin",
+                "NEXT": "下一步"
+            },
+            "BALANCE": "餘額",
+            "CREATE": "新建",
+            "IMPORT": "導入",
+            "REMOVE": "你確實要刪除賬戶？",
+            "TITLE": "賬戶"
+        },
+        "BALANCE": {
+            "ACTIVATE": "激活",
+            "BALANCE": "餘額",
+            "SEND": "發出",
+            "TITLE": "餘額"
+        },
+        "HISTORY": {
+            "TITLE": "歷史",
+            "DECRYPT": "Decrypt",
+            "DECRYPT_IMPOSSIBLE": "Could not be decrypted!",
+            "PIN_INPUT_HINT": "Pin"
+        },
+        "SETTINGS": {
+            "ABOUT": {
+                "ABOUT": "關於我們",
+                "ASSOCIATION": "合夥人",
+                "DEVELOPED": "軟件開發人員",
+                "TWITTER": "為了找到我們項目最新進展，可以在twitter上關注.",
+                "VERSION": "版本"
+            },
+            "CURRENCY": {
+                "CURRENCY": "貨幣"
+            },
+            "DOCUMENTATION": {
+                "DOCUMENTATION": "文檔"
+            },
+            "LANGUAGE": {
+                "LANGUAGE": "語言"
+            },
+            "NODE": {
+                "INFO": "Burst節點被用來與Burst網路通訊",
+                "NODE": "節點"
+            },
+            "SUPPORT": {
+                "CONTRIBUTION": "我們也為小貢獻感到高興",
+                "DONATE": "享受我們的APP？ 用BURST捐獻支持我們.",
+                "SUPPORT": "支持"
+            },
+            "TITLE": "設置"
+        }
+    },
+    "SEND": {
+        "ACCEPT": "接受",
+        "ACTION_BAR_TITLE": "發 BURST",
+        "ADD_CONTACT": "Add new contact",
+        "AMOUNT": "金額",
+        "BACK": "Back",
+        "BALANCE": "餘額",
+        "CONTACTS": "Contacts",
+        "FEE": "交易費",
+        "FIAT": "Fiat currency to BURST",
+        "MESSAGE": "Message",
+        "PIN_INPUT_HINT": "Pin",
+        "RECIPIENT": "接受者",
+        "VERIFY": "驗證"
+    },
+    "START" : {
+        "CREATE": "創新",
+        "IMPORT": "導入",
+        "INFO": "還沒賬戶. 選擇導入現有賬戶或者新建賬戶."
+    },
+    "NOTIFICATIONS" : {
+        "ADDRESS": "請輸入有效的Burstcoin 地址!",
+        "COPIED": "制了地址 {{value}} 到剪貼板!",
+        "CONTACT_ADDED": "Contact added successfully!",
+        "DECIMAL_AMOUNT": "請輸入小數當作想發出BURST 的金額!",
+        "DECIMAL_FEE": "請輸入小數（至少 1）當作交易費!",
+        "ENTER_SOMETHING": "請輸入!",
+        "EXCEED": "金額加交易費超過你的餘額!",
+        "PIN": "請輸入六位數的Pin!",
+        "REMOVE": "賬戶已成功刪除!",
+        "SELECTED": "金額： {{value}}",
+        "TRANSACTION": "交易成功!",
+        "UPDATE_CURRENCY": "貨幣更新成功!",
+        "UPDATE_LANGUAGE": "語言更新成功!",
+        "UPDATE_NODE": "節點更新成功!",
+        "WRONG_PASSPHRASE": "密碼錯了! 密碼無法產生給予你賬戶的公鑰!",
+        "WRONG_PIN": "輸入的pin與賬戶的不匹配",
+        "ERRORS": {
+            "ACCOUNT_ID": "公鑰不能產生賬戶ID!",
+            "ADDRESS": "賬戶ID不能用產生BURST地址!",
+            "CONNECTION": "檢索數據失敗。請檢查網絡連接!",
+            "CONTACT":"Failed to add new contact!",
+            "CURRENCY": "貨幣更新失敗!",
+            "KEYPAIR": "為密碼產生密鑰對失敗!",
+            "LANGUAGE": "更改語言失敗!",
+            "NODE": "更新節點失敗!",
+            "NO_PUBLIC_KEY": "Recipient has no public key yet! Sending of encrypted message not possible!",
+            "QR_CODE": "掃描QR碼失敗!",
+            "REDIRECT": "不能開BURST頁! 活期賬戶還未激活!",
+            "REMOVE": "刪除賬戶失敗!",
+            "UPDATE": "更新賬戶失敗!",
+            "UNKNOWN_ACCOUNT": "未知賬戶。還沒有交易!"
+        }
+    }
+}
