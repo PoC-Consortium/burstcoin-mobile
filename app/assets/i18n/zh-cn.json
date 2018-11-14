@@ -13,20 +13,20 @@
         "INFO_STEP_FOUR": "请设置此应用账户六位数PIN。PIN用于批准向外交易。",
         "PIN_INPUT_HINT": "PIN",
         "POSSIBILITY_INPUT_HINT": "单词 #{{value}}",
-        "NEXT": "接下去"
+        "NEXT": "下一步"
     },
     "IMPORT" : {
         "ACTION_BAR_TITLE": "导入现有帐户",
-        "ACTIVE_ACCOUNT": "活动账户",
-        "ACTIVE_ACCOUNT_DESCRIPTION": "活动账户提供完整功能。 你能发出与得到Burstcoins。此外，还能查余额与看交易历史。",
+        "ACTIVE_ACCOUNT": "活跃帐户",
+        "ACTIVE_ACCOUNT_DESCRIPTION": "活跃帐户提供完整功能。 你能发出与得到Burstcoins。此外，还能查余额与看交易历史。",
         "ACTIVE_ACCOUNT_INPUT_HINT": "密码",
         "ACTIVE_ACCOUNT_PIN_INFO": "请设置此应用账户六位数PIN。PIN用于批准向外交易。",
         "DONE": "完成",
         "IMPORT": "导入",
-        "INFO": "将通过输入活动账户的密码完成导入. 否则，将通过输入脱机账户的Burstcoin地址完成导入.",
-        "NEXT": "接下去",
-        "OFFLINE_ACCOUNT": "脱机账户",
-        "OFFLINE_ACCOUNT_DESCRIPTION": "脱机账户和活动账户唯一不同的是，它不可以用于发送Burstcoins到别的地址。",
+        "INFO": "将通过输入活动账户的密码完成导入. 否则，将通过输入离线账户的Burstcoin地址完成导入.",
+        "NEXT": "下一步",
+        "OFFLINE_ACCOUNT": "离线账户",
+        "OFFLINE_ACCOUNT_DESCRIPTION": "离线账户和活跃帐户唯一不同的是，它不可以用于发送Burstcoins到别的地址。",
         "OFFLINE_ACCOUNT_INPUT_HINT": "BURST-XXXX-XXXX-XXXX-XXXXX",
         "PIN_INPUT_HINT": "PIN",
         "SHOW" : {
@@ -42,7 +42,7 @@
                 "ENTER_PIN": "设置六位数PIN.",
                 "PASSPHRASE_INPUT_HINT": "密码",
                 "PIN_INPUT_HINT": "Pin",
-                "NEXT": "接下去"
+                "NEXT": "下一步"
             },
             "BALANCE": "余额",
             "CREATE": "新建",
